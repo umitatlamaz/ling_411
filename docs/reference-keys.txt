@@ -1,6 +1,5 @@
-url-your-book-url-like-httpsbookdown.orgyihuibookdown
+getting-started
 some-great-resources
 blocks
 basics
 a-section
-getting-started
