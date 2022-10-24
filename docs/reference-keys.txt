@@ -1,6 +1,3 @@
-fig:nice-fig
-tab:nice-tab
-eq:binom
 about
 usage
 render-book
@@ -22,3 +19,10 @@ sharing-your-book
 publishing
 pages
 metadata-for-sharing
+url-your-book-url-like-httpsbookdown.orgyihuibookdown
+getting-started
+some-great-resources
+section
+code-blocks-output-blocks-and-function-blocks
+blocks-1
+basics

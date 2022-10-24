@@ -1,4 +1,4 @@
-# Hello bookdown 
+# Basics
 
 All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (`#`) per .Rmd file.
 
@@ -9,3 +9,7 @@ All chapter sections start with a second-level (`##`) or higher heading followed
 ### An unnumbered section {-}
 
 Chapters and sections are numbered by default. To un-number a heading, add a `{.unnumbered}` or the shorter `{-}` at the end of the heading, like in this section.
+
+```{r cars}
+summary(cars)
+```

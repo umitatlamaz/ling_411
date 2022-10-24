@@ -1,6 +1,6 @@
 --- 
-title: "Introduction to R"
-author: "Ling 411 - Fall 2022"
+title: "Ling 411 - Fall 2022"
+author: "Ümit Atlamaz"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -13,46 +13,68 @@ link-citations: yes
 github-repo: rstudio/ling_411
 ---
 
-# About
-
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
-
-## Usage 
-
-Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.
-
-Use second-level and higher headings within chapters like: `## A short section` or `### An even shorter section`.
-
-The `index.Rmd` file is required, and is also your first book chapter. It will be the homepage when you render the book.
-
-## Render book
-
-You can render the HTML version of this example book without changing anything:
-
-1. Find the **Build** pane in the RStudio IDE, and
-
-1. Click on **Build Book**, then select your output format, or select "All formats" if you'd like to use multiple formats from the same book source files.
-
-Or build the book from the R console:
-
-```{r, eval=FALSE}
-bookdown::render_book()
-```
-
-To render this example to PDF as a `bookdown::pdf_book`, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
-
-## Preview book
-
-As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in "Preview book", or from the R console:
-
-```{r eval=FALSE}
-bookdown::serve_book()
+```{r z, include = T}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed, class.output="r-output")
+source("./source/r_functions.R")
 ```
 
 
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
+
+# Getting Started
+
+```{css echo=FALSE}
+.r-output {
+  font-weight: bold;
+}
+.function {
+  background-color: lightgrey;
+  padding: 0.5em 0.5em 0.5em 4em;
+  border: 1px solid black;
+}
 ```
+
+Welcome to the R tutorial for Ling 411. The purpose of these lecture notes is to help remind you some of the R related material we covered in the class. The material here is not intended to be complete and self-contained. These are just lecture notes. You need to attend the classes and Problem Sessions to get a full grasp of the concepts.
+
+
+## Some great resources
+- Throughout the semester, I will draw on from the following resources. These are just useful resources and feel free to take a look at them as you wish.
+  - The great introduction materials developed at the University of Glasgow: <https://psyteachr.github.io/>, in particular ['Data Skills for Reproducible Science'](https://psyteachr.github.io/msc-data-skills/).
+  - The also pretty great introduction to R and statistics by Danielle Navarro available [here](https://learningstatisticswithr.com).
+  - Matt Crump's ['Answering Questions with Data'](https://crumplab.github.io/statistics/).
+  - Primers on a variety of topics: https://rstudio.cloud/learn/primers
+  - Cheat sheets on a variety of topics: https://rstudio.cloud/learn/cheat-sheets
+
+- The following tutorials are great too.
+  - ['The Tidyverse Cookbook'](https://rstudio-education.github.io/tidyverse-cookbook/)
+  - ['A Ggplot2 Tutorial for Beautiful Plotting in R'](https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)
+  - ['R Graphics Cookbook, 2nd edition'](https://r-graphics.org/)
+  
+  
+## Blocks
+Code, output, and special functions will be shown in designated boxes. The first box below illustrates a **code block**. The code block contains code that you can type in your R interpreter as the source code. You can simply copy and paste it in your R code. The second box indicates the **output** of R given the code in the first box.
+
+```{r addition}
+2+2
+```
+
+Functions will be introduced in grey boxes. The following grey box describes the `summary()` function.
+
+`r function_definition("summary(x)", "Returns the summary statistics of a dataframe.", c(x="A dataframe."))`
+\
+\
+The following code block uses the `summary()` function on the `mtcars` dataframe that comes pre-installed with R. 
+
+
+```{r cars1}
+summary(mtcars)
+```
+\
+If you want to learn more about the `mtcars` dataset, you can simply put a question mark in front of its name, which will show the documentation for the dataset. The documentation will pop up in the `Help` tab on the bottom right window in RStudio.
+
+```{r mtcars2}
+?mtcars
+```
+
+
