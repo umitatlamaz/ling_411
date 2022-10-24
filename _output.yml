@@ -5,7 +5,7 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Ling 411 - Fall 2022</a></li>
       after: |
-        <li><a href="https://github.com/umitatlamaz/ling_411" target="https://github.com/umitatlamaz/ling_411</a></li>
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
