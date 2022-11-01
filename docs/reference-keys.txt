@@ -2,6 +2,7 @@ getting-started
 some-great-resources
 blocks
 basics
+tidyverse
 basic-math-operations
 operators
 variables-and-assignment
