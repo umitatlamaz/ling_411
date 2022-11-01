@@ -1,15 +1,146 @@
 # Basics
 
-All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (`#`) per .Rmd file.
+You can think of R as a fancy calculator. We could do almost all of the operations we do in R on a calculator. However, that would take a lot of time and effort when we are dealing with a large amount of data. That's (partly) why we're using R. I hope this helps those who might have a bit of anxiety about coding. 
 
-## A section
+You should also note that everything we do in R can also be done in other programming languages. However, R is used a lot by data analysts and statisticians. It is relatively easier to use for data analysis and there are lots of libraries (code someone else has written before that makes our life easier) that come quite handy.
 
-All chapter sections start with a second-level (`##`) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within a chapter.
+Without further ado, let's dive in. 
 
-### An unnumbered section {-}
 
-Chapters and sections are numbered by default. To un-number a heading, add a `{.unnumbered}` or the shorter `{-}` at the end of the heading, like in this section.
+## Basic Math Operations
 
-```{r cars}
-summary(cars)
+You can use R to make carry out basic mathematical operations. 
+
+**Addition**
+```{r}
+2+2
 ```
+
+**Subtraction**
+```{r}
+4-2
+```
+
+**Multiplication**
+```{r}
+47*3
+```
+
+**Division**
+```{r}
+9/4
+```
+
+**Floor Division**
+```{r}
+9%/%4
+```
+
+**Exponentiation**
+```{r}
+2^3
+```
+
+## Operators
+You can use basic mathematical operators in R.
+
+**Equals**
+
+`==` is the equals operator. Notice that this is distinct from the `=` operator we are used to. The latter is used for variable assignment in R. We won't use it. When you run `2==2`, R will evaluate this statement and return `TRUE` of `FALSE`.
+
+```{r}
+2 == 2
+```
+
+```{r}
+2 == 7
+```
+
+**Not Equal**
+
+`!=` is the not equal operator. 
+
+```{r}
+2!=2
+```
+
+```{r}
+2!=7
+```
+
+**Other logical operators**
+
+`<`,`>`,`<=`,`>=`
+
+```{r}
+2<3
+```
+
+```{r}
+2>5
+```
+
+```{r}
+2<=5
+```
+```{r}
+2>=5
+```
+
+
+
+## Variables and Assignment
+In R (like in many programming languages), values can be assigned to a variable to be used later. For example, you might want to store someone's age in a variable and then use it later for some purpose. In R, variables created via assignment `<-`. The following code creates a variable called *alex* and assigns it the value 35. Let's assume that this is Alex's age.
+
+```{r}
+alex <- 35
+```
+
+Next time you want to do anything with the age, you can simply call the variable *alex* and do whatever you want with it (e.g. print, multiply, reassign, etc.). For example, the following code simply prints the value of the *alex* variable.
+
+```{r}
+alex
+```
+
+The following code multiples it by 2.
+
+```{r}
+alex * 2
+```
+Now assume that Alex's friend Emma's is 2 years younger than Alex. Let's assign Emma's age by subtracting 2 from Alex' age. In the following code block, the first line creates the variable *emma* and assigns it the value `alex - 2`. The second line simply prints the value of the variable *emma*.
+
+```{r}
+emma <- alex - 2
+emma
+```
+
+A variable can hold different **types** of data. In the previous examples, we assigned **integers** to variables. We can also assign characters, vectors, etc.
+
+**character**
+```{r}
+name <- "emma"
+name
+```
+
+
+
+**vector**
+```{r}
+age_list <- c(35, 27, 48, 10)
+age_list
+```
+
+
+
+## Data Types
+
+In R, values have **types**: 
+
+| Data Type  | Examples|
+| -----------:|:-------------------------------:|
+| Integer (Numeric): | ..., -3, -2, -1, 0, +1, +2, +3, ... |
+| Double (Numeric):  | most rational numbers; e.g., 1.0, 1.5, 20.0, pi|
+| Character:  | `"a"`, `"b"`, `"word"`, `"hello dear friend, ..."`|
+| Logical:  | `TRUE` or `FALSE` (or: `T` or `F` ) |
+| Factor:  | Restricted, user-defined set of values, internally represented numerically (e.g., Gender {'male', 'female', 'other'}) |
+| Ordered factor:  | Factor with an ordering (e.g., Starbucks coffee sizes {'venti' > 'grande' > 'tall'}) |
