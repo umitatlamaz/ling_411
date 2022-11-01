@@ -2,4 +2,7 @@ getting-started
 some-great-resources
 blocks
 basics
-a-section
+basic-math-operations
+operators
+variables-and-assignment
+data-types
