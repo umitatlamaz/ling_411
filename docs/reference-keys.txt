@@ -2,6 +2,10 @@ getting-started
 some-great-resources
 blocks
 basics
+a-section
+r-markdown
+including-plots
+tidyverse
 basic-math-operations
 operators
 variables-and-assignment
