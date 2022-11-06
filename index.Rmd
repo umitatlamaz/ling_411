@@ -37,6 +37,8 @@ source("./source/r_functions.R")
 
 Welcome to the R tutorial for Ling 411. The purpose of these lecture notes is to help remind you some of the R related material we covered in the class. The material here is not intended to be complete and self-contained. These are just lecture notes. You need to attend the classes and Problem Sessions to get a full grasp of the concepts.
 
+## Disclaimer
+Some of the material in this book are from [Pavel Logaçev](https://scholar.google.com/citations?user=fhbdTJIAAAAJ&hl=tr)'s class notes for LING 411. I'm indebted to Pavel for his friendship, guidance and support. Without him LING 411 could not exist in its current form.
 
 ## Some great resources
 - Throughout the semester, I will draw on from the following resources. These are just useful resources and feel free to take a look at them as you wish.
