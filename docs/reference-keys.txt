@@ -1,4 +1,5 @@
 getting-started
+disclaimer
 some-great-resources
 blocks
 basics
@@ -6,16 +7,10 @@ basic-math-operations
 operators
 variables-and-assignment
 data-types
-tidyverse
 determining-the-data-type
 changing-the-types
-disclaimer
-section
 installing-packages
 plotting
-example-putting-it-all-and-some-more-together
-how-much-would-other-coffee-sizes-cost-if-starbucks-introduced-them
-how-much-would-other-coffee-sizes-cost-if-starbucks-introduced-them-a-second-attempt
 operators-and-functions-in-this-section
 operators-1
 operators-and-functions-in-this-section-1
