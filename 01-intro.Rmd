@@ -1,8 +1,43 @@
+--- 
+title: "Ling 411 - Fall 2022"
+author: "Ümit Atlamaz"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography:
+- book.bib
+- packages.bib
+description: |
+  This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022.
+link-citations: yes
+github-repo: rstudio/ling_411
+---
+
+```{r z, include = T}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed, class.output="r-output")
+source("./source/r_functions.R")
+```
+
+
+```{css echo=FALSE}
+.r-output {
+  font-weight: bold;
+}
+.function {
+  background-color: lightgrey;
+  padding: 0.5em 0.5em 0.5em 4em;
+  border: 1px solid black;
+}
+```
+
+
 # Basics
 
 You can think of R as a fancy calculator. We could do almost all of the operations we do in R on a calculator. However, that would take a lot of time and effort when we are dealing with a large amount of data. That's (partly) why we're using R. I hope this helps those who might have a bit of anxiety about coding. 
 
-You should also note that everything we do in R can also be done in other programming languages. However, R is used a lot by data analysts and statisticians. It is relatively easier to use for data analysis and there are lots of libraries (code someone else has written before that makes our life easier) that come quite handy.
+You should also note that everything we do in R can also be done in other programming languages. However, R is used a lot by data analysts and statisticians. It is relatively easier to use for data analysis and there are lots of libraries (code someone else has written that makes our life easier) that come quite handy.
 
 Without further ado, let's dive in. 
 
@@ -144,3 +179,235 @@ In R, values have **types**:
 | Logical:  | `TRUE` or `FALSE` (or: `T` or `F` ) |
 | Factor:  | Restricted, user-defined set of values, internally represented numerically (e.g., Gender {'male', 'female', 'other'}) |
 | Ordered factor:  | Factor with an ordering (e.g., Starbucks coffee sizes {'venti' > 'grande' > 'tall'}) |
+
+You need to understand the data types well as some operations are defined only on some data types. For example, you can add two integers or doubles but you cannot add an integer with a character. 
+
+```{r}
+my_integer_1 <- as.integer(2)
+my_integer_2 <- as.integer(5)
+my_character <- "two"
+my_double <- 2.2
+```
+
+Adding, multiplying, deducting, etc. two integers is fine. So is combining two doubles or a double with an integer.
+
+```{r}
+my_integer_1 + my_integer_2
+```
+
+```{r}
+my_integer_1 * my_double
+```
+
+
+However, combining an integer with a character will lead to an error. You should read the errors carefully as they will help you understand where things went wrong. 
+
+```{r, error=TRUE}
+my_integer_1 + my_character
+```
+
+## Determining the data type
+If you don't know the type of some data, you can use the `typeof()` function to get the type of a particular data item.
+
+```{r}
+typeof(my_double)
+```
+
+```{r}
+typeof(my_integer_1)
+```
+```{r}
+typeof(my_character)
+```
+
+## Changing the types
+You can change the type of a data item as long as the data is compatible with the type. For example, you can change an integer to a double. 
+
+```{r}
+as.double(my_integer_2)
+```
+
+```{r}
+as.integer(my_double)
+```
+
+
+You can also change a character into an integer if it is a compatible value.
+
+```{r}
+as.integer("2")
+```
+
+However, you cannot change any character into an integer.
+
+```{r}
+as.integer("two")
+```
+
+## Installing packages
+Packages of code written by other developers for particular needs. They save you a lot of time and effort in carrying out your jobs. All you have to do is to find the right package for your task and learn what the package is capable of and how it works. In this class, we will use several packages that will simplify our lives. 
+
+To install a package, simply run `install.packages("your_package_name")`. For example, we will make use of the `tidyverse` package. The official CRAN page for tidyverse is [here](https://cran.r-project.org/package=tidyverse). This is a more user friendly [link](https://www.tidyverse.org) about tidyverse. Finally, [this is a bookdown](https://bookdown.org/yih_huynh/Guide-to-R-Book/tidyverse.html) version that looks helpful.
+
+
+
+
+
+```{r, eval = FALSE}
+install.packages('tidyverse')
+```
+You need to install a package once. For this reason, you can use the console (bottom left window RStudio) rather than a script (top left window in RStudio). However, either way should work.
+
+Once you install a package, you need to load it before you can use its functions. Just use `library(package_name)` to load the package. The convention is to load all the packages you will use at the beginning of your script. For example, we can import the `tidyverse` package as follows. 
+
+```{r}
+library(tidyverse)
+```
+
+Tidyverse is a package that contains many useful packages including `ggplot2` (used for plotting), `tibble` (used for efficient dataframes) etc. We will dedicate a chapter to tidyverse but feel free to learn about as you like. 
+
+## Plotting 
+When you are analyzing data, plots are very useful to package information visually. There are various packages that help build nice plots. In this class, we will use the `ggplot2` package for plotting. You might have notices in the output box above that loading `tidyverse` automatically loads `ggplot2` as well. We can go ahead and use the `ggplot2` functions without having to import it again. If we hadn't imported `tidyverse`, then we would have to load `ggplot2` to use its functionality.
+
+Let us start with a simple plot for a linear function. 
+
+```{r}
+# Let us create a simple data set that satisfies the linear function y = 2x + 1
+x <- 1:10
+y <- 2*x+1
+
+# print x and y to see what it looks like
+x
+y
+```
+
+Let us now plot the data as points.
+
+```{r, message=FALSE}
+ggplot(data=NULL, aes(x,y)) +
+  geom_point()
+```
+
+
+
+
+
+Let us now plot a line to make our plot more informative and better looking. 
+```{r, message=FALSE}
+# Let us now plot x and y using ggplot2
+ggplot(data=NULL, aes(x,y)) +
+  geom_point() +
+  geom_smooth(method="lm")
+```
+      
+
+Notice that playing with the scale sizes will yield dramatic changes in the effects we observe. For this, we can simply use the `xlim()` and `ylim()` functions to identify the lower and upper limits of x and y axes. 
+
+```{r}
+
+ggplot(data=NULL, aes(x,y)) +
+  geom_point() +
+  geom_smooth(method="lm")+
+  xlim(0, 15) +
+  ylim(0,100)
+
+```
+
+
+
+
+
+
+Let us now plot a quadratic function. A quadratic function is one where the base is a variable and the exponent is constant. The following graph plots `n^2`.
+
+
+```{r, message=FALSE}
+# Let us now plot a and b using ggplot2
+
+a<- 1:10
+b <- a^2
+ggplot(data=NULL, aes(a,b)) +
+  geom_point() +
+  geom_smooth(method="lm",formula = y~x +I(x^2), color='orange')
+```
+
+
+Finally, we can plot an exponential function where the variable is the exponent and the base is constant. 
+
+
+```{r, message=FALSE}
+# Let us now plot a and b using ggplot2
+
+a<- 1:10
+b <- exp(a)
+ggplot(data=NULL, aes(a,b)) +
+  geom_point() +
+  geom_smooth(method="lm",color = "orange",formula= (y ~ exp(x)))
+  
+```
+
+
+
+You can mix and match.
+```{r, message=FALSE}
+# Let us now plot x and y using ggplot2
+a<- 1:10
+b<- a^2
+ggplot(data=NULL, aes(x,y)) +
+  geom_smooth(method="lm") +
+  geom_smooth(data=NULL, aes(a,b), method="lm", formula = y~x +I(x^2),color= 'orange') 
+
+```
+
+## Operators and functions in this section
+
+### Operators
+
+## Operators and functions in this section
+
+### Operators
+`r function_definition("x + y", "Addition")`
+<br>
+`r function_definition("x - y", "Subtraction")`
+<br>
+`r function_definition("x * y", "Multiplication")`
+<br>
+`r function_definition("x / y", "Division")`
+<br>
+`r function_definition("x^y", "Exponentiation")`
+<br>
+`r function_definition("x <- y", "Assignment")`
+<br>
+`r function_definition("==", "Test for equality. **Don't confuse with a single =, which is an assignment operator (and also always returns TRUE).**")`
+<br>
+`r function_definition("!=", "Test for inequality")`
+<br>
+`r function_definition("<", "Test, smaller than")`
+<br>
+`r function_definition(">", "Test, greater than")`
+<br>
+`r function_definition("<=", "Test, smaller than or equal to")`
+<br>
+`r function_definition(">=", "Test, greater than or equal to")`
+<br>
+
+### Functions
+
+```{r results='asis', echo=F}  
+cat( function_definition("install.packages(package_name)", 
+                         "Installs one or several package(s). 
+                         The argument `package_name` can either be a character (`install.packages('dplyr')`) like or a character vector (`install.packages(c('dplyr','ggplot2'))`)."))
+```
+<br>
+```{r results='asis', echo=F}  
+cat( function_definition("library(package_name)", 
+                         "Loads a package called `package_name`."))
+```
+<br>
+`r function_definition("typeof(x)", "Determines the type of a variable/vector.")`
+<br>
+`r function_definition("as.double(x)", "Converts a variable/vector to type **double**.")`
+<br>
+
+
+
