@@ -660,22 +660,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 --></li>
 </ul>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="data-structures.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(profits_by_game, <span class="fu">aes</span>(game, avg_profit)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 <ul>
 <li>We may also want lines that connect the points.</li>
 </ul>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="data-structures.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb103-2"><a href="data-structures.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(profits_by_game_and_wday, <span class="fu">aes</span>(game, avg_profit, <span class="at">color =</span> wday, <span class="at">group =</span> wday)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <ul>
 <li>Or, we may want to have a bar graph.</li>
 </ul>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="data-structures.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb104-2"><a href="data-structures.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(profits_by_game, <span class="fu">aes</span>(game, avg_profit)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="data-structures.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb105-2"><a href="data-structures.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(profits_by_game_and_wday, <span class="fu">aes</span>(game, avg_profit, <span class="at">fill =</span> wday)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <!-- 
 - dollar sign
 -->
@@ -800,7 +800,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub"],
+"download": ["main.pdf", "main.epub"],
 "search": {
 "engine": "fuse",
 "options": null
