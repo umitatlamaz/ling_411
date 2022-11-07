@@ -385,13 +385,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let us now plot the data as points.</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="basics.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
 <span id="cb69-2"><a href="basics.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>Let us now plot a line to make our plot more informative and better looking.</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="basics.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us now plot x and y using ggplot2</span></span>
 <span id="cb70-2"><a href="basics.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
 <span id="cb70-3"><a href="basics.html#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb70-4"><a href="basics.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <p>Notice that playing with the scale sizes will yield dramatic changes in the effects we observe. For this, we can simply use the <code>xlim()</code> and <code>ylim()</code> functions to identify the lower and upper limits of x and y axes.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="basics.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
 <span id="cb71-2"><a href="basics.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
@@ -399,7 +399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb71-4"><a href="basics.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">15</span>) <span class="sc">+</span></span>
 <span id="cb71-5"><a href="basics.html#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 <p>Let us now plot a quadratic function. A quadratic function is one where the base is a variable and the exponent is constant. The following graph plots <code>n^2</code>.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="basics.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us now plot a and b using ggplot2</span></span>
 <span id="cb73-2"><a href="basics.html#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -408,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb73-5"><a href="basics.html#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(a,b)) <span class="sc">+</span></span>
 <span id="cb73-6"><a href="basics.html#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb73-7"><a href="basics.html#cb73-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">formula =</span> y<span class="sc">~</span>x <span class="sc">+</span><span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">color=</span><span class="st">&#39;orange&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <p>Finally, we can plot an exponential function where the variable is the exponent and the base is constant.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="basics.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us now plot a and b using ggplot2</span></span>
 <span id="cb74-2"><a href="basics.html#cb74-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -417,7 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb74-5"><a href="basics.html#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(a,b)) <span class="sc">+</span></span>
 <span id="cb74-6"><a href="basics.html#cb74-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb74-7"><a href="basics.html#cb74-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">color =</span> <span class="st">&quot;orange&quot;</span>,<span class="at">formula=</span> (y <span class="sc">~</span> <span class="fu">exp</span>(x)))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <p>You can mix and match.</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="basics.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us now plot x and y using ggplot2</span></span>
 <span id="cb75-2"><a href="basics.html#cb75-2" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
@@ -425,7 +425,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb75-4"><a href="basics.html#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
 <span id="cb75-5"><a href="basics.html#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
 <span id="cb75-6"><a href="basics.html#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(a,b), <span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y<span class="sc">~</span>x <span class="sc">+</span><span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>),<span class="at">color=</span> <span class="st">&#39;orange&#39;</span>) </span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 </div>
 <div id="operators-and-functions-in-this-section" class="section level2 hasAnchor" number="2.9">
 <h2><span class="header-section-number">2.9</span> Operators and functions in this section<a href="basics.html#operators-and-functions-in-this-section" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -574,7 +574,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub"],
+"download": ["main.pdf", "main.epub"],
 "search": {
 "engine": "fuse",
 "options": null
