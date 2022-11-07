@@ -23,7 +23,7 @@
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2022-11-06" />
+<meta name="date" content="2022-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="index.html"/>
-
+<link rel="next" href="data-structures.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -162,6 +162,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.10.2" data-path="basics.html"><a href="basics.html#functions"><i class="fa fa-check"></i><b>2.10.2</b> Functions</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-structures.html"><a href="data-structures.html#data-types-in-r"><i class="fa fa-check"></i><b>3.1</b> Data Types in R</a></li>
+<li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html#data-structures-in-r"><i class="fa fa-check"></i><b>3.2</b> Data Structures in R</a></li>
+<li class="chapter" data-level="3.3" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>3.3</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-structures.html"><a href="data-structures.html#what-are-vectors-good-for"><i class="fa fa-check"></i><b>3.3.1</b> What are vectors good for?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>3.4</b> Data Frames</a></li>
+<li class="chapter" data-level="3.5" data-path="data-structures.html"><a href="data-structures.html#working-with-data-frames"><i class="fa fa-check"></i><b>3.5</b> Working with data frames</a></li>
+<li class="chapter" data-level="3.6" data-path="data-structures.html"><a href="data-structures.html#functions-in-this-section"><i class="fa fa-check"></i><b>3.6</b> Functions in this section</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -191,22 +203,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.1</span> Basic Math Operations<a href="basics.html#basic-math-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You can use R to make carry out basic mathematical operations.</p>
 <p><strong>Addition</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="basics.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="basics.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] 4</code></pre>
 <p><strong>Subtraction</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="basics.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4-2</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="basics.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4-2</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] 2</code></pre>
 <p><strong>Multiplication</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="basics.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">47</span><span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="basics.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">47</span><span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] 141</code></pre>
 <p><strong>Division</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="basics.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span><span class="sc">/</span><span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="basics.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span><span class="sc">/</span><span class="dv">4</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] 2.25</code></pre>
 <p><strong>Floor Division</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="basics.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span><span class="sc">%/%</span><span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="basics.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span><span class="sc">%/%</span><span class="dv">4</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] 2</code></pre>
 <p><strong>Exponentiation</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="basics.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="basics.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] 8</code></pre>
 </div>
 <div id="operators" class="section level2 hasAnchor" number="2.2">
@@ -214,49 +226,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can use basic mathematical operators in R.</p>
 <p><strong>Equals</strong></p>
 <p><code>==</code> is the equals operator. Notice that this is distinct from the <code>=</code> operator we are used to. The latter is used for variable assignment in R. We won’t use it. When you run <code>2==2</code>, R will evaluate this statement and return <code>TRUE</code> of <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="basics.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">==</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="basics.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">==</span> <span class="dv">2</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="basics.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">==</span> <span class="dv">7</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="basics.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">==</span> <span class="dv">7</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] FALSE</code></pre>
 <p><strong>Not Equal</strong></p>
 <p><code>!=</code> is the not equal operator.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="basics.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">!=</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="basics.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">!=</span><span class="dv">2</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="basics.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">!=</span><span class="dv">7</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="basics.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">!=</span><span class="dv">7</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] TRUE</code></pre>
 <p><strong>Other logical operators</strong></p>
 <p><code>&lt;</code>,<code>&gt;</code>,<code>&lt;=</code>,<code>&gt;=</code></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="basics.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">&lt;</span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="basics.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">&lt;</span><span class="dv">3</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="basics.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">&gt;</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="basics.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">&gt;</span><span class="dv">5</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="basics.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">&lt;=</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="basics.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">&lt;=</span><span class="dv">5</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="basics.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">&gt;=</span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="basics.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">&gt;=</span><span class="dv">5</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] FALSE</code></pre>
 </div>
 <div id="variables-and-assignment" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Variables and Assignment<a href="basics.html#variables-and-assignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In R (like in many programming languages), values can be assigned to a variable to be used later. For example, you might want to store someone’s age in a variable and then use it later for some purpose. In R, variables created via assignment <code>&lt;-</code>. The following code creates a variable called <em>alex</em> and assigns it the value 35. Let’s assume that this is Alex’s age.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="basics.html#cb30-1" aria-hidden="true" tabindex="-1"></a>alex <span class="ot">&lt;-</span> <span class="dv">35</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="basics.html#cb29-1" aria-hidden="true" tabindex="-1"></a>alex <span class="ot">&lt;-</span> <span class="dv">35</span></span></code></pre></div>
 <p>Next time you want to do anything with the age, you can simply call the variable <em>alex</em> and do whatever you want with it (e.g. print, multiply, reassign, etc.). For example, the following code simply prints the value of the <em>alex</em> variable.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basics.html#cb31-1" aria-hidden="true" tabindex="-1"></a>alex</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="basics.html#cb30-1" aria-hidden="true" tabindex="-1"></a>alex</span></code></pre></div>
 <pre class="r-output"><code>## [1] 35</code></pre>
 <p>The following code multiples it by 2.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="basics.html#cb33-1" aria-hidden="true" tabindex="-1"></a>alex <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="basics.html#cb32-1" aria-hidden="true" tabindex="-1"></a>alex <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] 70</code></pre>
 <p>Now assume that Alex’s friend Emma’s is 2 years younger than Alex. Let’s assign Emma’s age by subtracting 2 from Alex’ age. In the following code block, the first line creates the variable <em>emma</em> and assigns it the value <code>alex - 2</code>. The second line simply prints the value of the variable <em>emma</em>.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="basics.html#cb35-1" aria-hidden="true" tabindex="-1"></a>emma <span class="ot">&lt;-</span> alex <span class="sc">-</span> <span class="dv">2</span></span>
-<span id="cb35-2"><a href="basics.html#cb35-2" aria-hidden="true" tabindex="-1"></a>emma</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="basics.html#cb34-1" aria-hidden="true" tabindex="-1"></a>emma <span class="ot">&lt;-</span> alex <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb34-2"><a href="basics.html#cb34-2" aria-hidden="true" tabindex="-1"></a>emma</span></code></pre></div>
 <pre class="r-output"><code>## [1] 33</code></pre>
 <p>A variable can hold different <strong>types</strong> of data. In the previous examples, we assigned <strong>integers</strong> to variables. We can also assign characters, vectors, etc.</p>
 <p><strong>character</strong></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="basics.html#cb37-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">&quot;emma&quot;</span></span>
-<span id="cb37-2"><a href="basics.html#cb37-2" aria-hidden="true" tabindex="-1"></a>name</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="basics.html#cb36-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">&quot;emma&quot;</span></span>
+<span id="cb36-2"><a href="basics.html#cb36-2" aria-hidden="true" tabindex="-1"></a>name</span></code></pre></div>
 <pre class="r-output"><code>## [1] &quot;emma&quot;</code></pre>
 <p><strong>vector</strong></p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="basics.html#cb39-1" aria-hidden="true" tabindex="-1"></a>age_list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">27</span>, <span class="dv">48</span>, <span class="dv">10</span>)</span>
-<span id="cb39-2"><a href="basics.html#cb39-2" aria-hidden="true" tabindex="-1"></a>age_list</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="basics.html#cb38-1" aria-hidden="true" tabindex="-1"></a>age_list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">27</span>, <span class="dv">48</span>, <span class="dv">10</span>)</span>
+<span id="cb38-2"><a href="basics.html#cb38-2" aria-hidden="true" tabindex="-1"></a>age_list</span></code></pre></div>
 <pre class="r-output"><code>## [1] 35 27 48 10</code></pre>
 </div>
 <div id="data-types" class="section level2 hasAnchor" number="2.4">
@@ -301,41 +313,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>You need to understand the data types well as some operations are defined only on some data types. For example, you can add two integers or doubles but you cannot add an integer with a character.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="basics.html#cb41-1" aria-hidden="true" tabindex="-1"></a>my_integer_1 <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="dv">2</span>)</span>
-<span id="cb41-2"><a href="basics.html#cb41-2" aria-hidden="true" tabindex="-1"></a>my_integer_2 <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="dv">5</span>)</span>
-<span id="cb41-3"><a href="basics.html#cb41-3" aria-hidden="true" tabindex="-1"></a>my_character <span class="ot">&lt;-</span> <span class="st">&quot;two&quot;</span></span>
-<span id="cb41-4"><a href="basics.html#cb41-4" aria-hidden="true" tabindex="-1"></a>my_double <span class="ot">&lt;-</span> <span class="fl">2.2</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="basics.html#cb40-1" aria-hidden="true" tabindex="-1"></a>my_integer_1 <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="dv">2</span>)</span>
+<span id="cb40-2"><a href="basics.html#cb40-2" aria-hidden="true" tabindex="-1"></a>my_integer_2 <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="dv">5</span>)</span>
+<span id="cb40-3"><a href="basics.html#cb40-3" aria-hidden="true" tabindex="-1"></a>my_character <span class="ot">&lt;-</span> <span class="st">&quot;two&quot;</span></span>
+<span id="cb40-4"><a href="basics.html#cb40-4" aria-hidden="true" tabindex="-1"></a>my_double <span class="ot">&lt;-</span> <span class="fl">2.2</span></span></code></pre></div>
 <p>Adding, multiplying, deducting, etc. two integers is fine. So is combining two doubles or a double with an integer.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="basics.html#cb42-1" aria-hidden="true" tabindex="-1"></a>my_integer_1 <span class="sc">+</span> my_integer_2</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="basics.html#cb41-1" aria-hidden="true" tabindex="-1"></a>my_integer_1 <span class="sc">+</span> my_integer_2</span></code></pre></div>
 <pre class="r-output"><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="basics.html#cb44-1" aria-hidden="true" tabindex="-1"></a>my_integer_1 <span class="sc">*</span> my_double</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="basics.html#cb43-1" aria-hidden="true" tabindex="-1"></a>my_integer_1 <span class="sc">*</span> my_double</span></code></pre></div>
 <pre class="r-output"><code>## [1] 4.4</code></pre>
 <p>However, combining an integer with a character will lead to an error. You should read the errors carefully as they will help you understand where things went wrong.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="basics.html#cb46-1" aria-hidden="true" tabindex="-1"></a>my_integer_1 <span class="sc">+</span> my_character</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="basics.html#cb45-1" aria-hidden="true" tabindex="-1"></a>my_integer_1 <span class="sc">+</span> my_character</span></code></pre></div>
 <pre><code>## Error in my_integer_1 + my_character: non-numeric argument to binary operator</code></pre>
 </div>
 <div id="determining-the-data-type" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> Determining the data type<a href="basics.html#determining-the-data-type" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If you don’t know the type of some data, you can use the <code>typeof()</code> function to get the type of a particular data item.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="basics.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_double)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="basics.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_double)</span></code></pre></div>
 <pre class="r-output"><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="basics.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_integer_1)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="basics.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_integer_1)</span></code></pre></div>
 <pre class="r-output"><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="basics.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_character)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="basics.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_character)</span></code></pre></div>
 <pre class="r-output"><code>## [1] &quot;character&quot;</code></pre>
 </div>
 <div id="changing-the-types" class="section level2 hasAnchor" number="2.6">
 <h2><span class="header-section-number">2.6</span> Changing the types<a href="basics.html#changing-the-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You can change the type of a data item as long as the data is compatible with the type. For example, you can change an integer to a double.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="basics.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(my_integer_2)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="basics.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(my_integer_2)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="basics.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(my_double)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="basics.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(my_double)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 2</code></pre>
 <p>You can also change a character into an integer if it is a compatible value.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="basics.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="st">&quot;2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basics.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="st">&quot;2&quot;</span>)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 2</code></pre>
 <p>However, you cannot change any character into an integer.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="basics.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="st">&quot;two&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basics.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="st">&quot;two&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
 <pre class="r-output"><code>## [1] NA</code></pre>
 </div>
@@ -343,15 +355,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.7</span> Installing packages<a href="basics.html#installing-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Packages of code written by other developers for particular needs. They save you a lot of time and effort in carrying out your jobs. All you have to do is to find the right package for your task and learn what the package is capable of and how it works. In this class, we will use several packages that will simplify our lives.</p>
 <p>To install a package, simply run <code>install.packages("your_package_name")</code>. For example, we will make use of the <code>tidyverse</code> package. The official CRAN page for tidyverse is <a href="https://cran.r-project.org/package=tidyverse">here</a>. This is a more user friendly <a href="https://www.tidyverse.org">link</a> about tidyverse. Finally, <a href="https://bookdown.org/yih_huynh/Guide-to-R-Book/tidyverse.html">this is a bookdown</a> version that looks helpful.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basics.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="basics.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)</span></code></pre></div>
 <p>You need to install a package once. For this reason, you can use the console (bottom left window RStudio) rather than a script (top left window in RStudio). However, either way should work.</p>
 <p>Once you install a package, you need to load it before you can use its functions. Just use <code>library(package_name)</code> to load the package. The convention is to load all the packages you will use at the beginning of your script. For example, we can import the <code>tidyverse</code> package as follows.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="basics.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basics.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ ggplot2 3.3.6      ✔ purrr   0.3.5 
 ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
 ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
@@ -361,59 +373,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.8</span> Plotting<a href="basics.html#plotting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When you are analyzing data, plots are very useful to package information visually. There are various packages that help build nice plots. In this class, we will use the <code>ggplot2</code> package for plotting. You might have notices in the output box above that loading <code>tidyverse</code> automatically loads <code>ggplot2</code> as well. We can go ahead and use the <code>ggplot2</code> functions without having to import it again. If we hadn’t imported <code>tidyverse</code>, then we would have to load <code>ggplot2</code> to use its functionality.</p>
 <p>Let us start with a simple plot for a linear function.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="basics.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us create a simple data set that satisfies the linear function y = 2x + 1</span></span>
-<span id="cb66-2"><a href="basics.html#cb66-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb66-3"><a href="basics.html#cb66-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>x<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb66-4"><a href="basics.html#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-5"><a href="basics.html#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="co"># print x and y to see what it looks like</span></span>
-<span id="cb66-6"><a href="basics.html#cb66-6" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="basics.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us create a simple data set that satisfies the linear function y = 2x + 1</span></span>
+<span id="cb65-2"><a href="basics.html#cb65-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb65-3"><a href="basics.html#cb65-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>x<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb65-4"><a href="basics.html#cb65-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-5"><a href="basics.html#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="co"># print x and y to see what it looks like</span></span>
+<span id="cb65-6"><a href="basics.html#cb65-6" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
 <pre class="r-output"><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="basics.html#cb68-1" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="basics.html#cb67-1" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
 <pre class="r-output"><code>##  [1]  3  5  7  9 11 13 15 17 19 21</code></pre>
 <p>Let us now plot the data as points.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="basics.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
-<span id="cb70-2"><a href="basics.html#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="basics.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
+<span id="cb69-2"><a href="basics.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>Let us now plot a line to make our plot more informative and better looking.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="basics.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us now plot x and y using ggplot2</span></span>
-<span id="cb71-2"><a href="basics.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
-<span id="cb71-3"><a href="basics.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb71-4"><a href="basics.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="basics.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us now plot x and y using ggplot2</span></span>
+<span id="cb70-2"><a href="basics.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
+<span id="cb70-3"><a href="basics.html#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb70-4"><a href="basics.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <p>Notice that playing with the scale sizes will yield dramatic changes in the effects we observe. For this, we can simply use the <code>xlim()</code> and <code>ylim()</code> functions to identify the lower and upper limits of x and y axes.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="basics.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
-<span id="cb72-2"><a href="basics.html#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb72-3"><a href="basics.html#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)<span class="sc">+</span></span>
-<span id="cb72-4"><a href="basics.html#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb72-5"><a href="basics.html#cb72-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="basics.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
+<span id="cb71-2"><a href="basics.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb71-3"><a href="basics.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)<span class="sc">+</span></span>
+<span id="cb71-4"><a href="basics.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb71-5"><a href="basics.html#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="main_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 <p>Let us now plot a quadratic function. A quadratic function is one where the base is a variable and the exponent is constant. The following graph plots <code>n^2</code>.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="basics.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us now plot a and b using ggplot2</span></span>
+<span id="cb73-2"><a href="basics.html#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="basics.html#cb73-3" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb73-4"><a href="basics.html#cb73-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb73-5"><a href="basics.html#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(a,b)) <span class="sc">+</span></span>
+<span id="cb73-6"><a href="basics.html#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb73-7"><a href="basics.html#cb73-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">formula =</span> y<span class="sc">~</span>x <span class="sc">+</span><span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">color=</span><span class="st">&#39;orange&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p>Finally, we can plot an exponential function where the variable is the exponent and the base is constant.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="basics.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us now plot a and b using ggplot2</span></span>
 <span id="cb74-2"><a href="basics.html#cb74-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb74-3"><a href="basics.html#cb74-3" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb74-4"><a href="basics.html#cb74-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb74-4"><a href="basics.html#cb74-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">exp</span>(a)</span>
 <span id="cb74-5"><a href="basics.html#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(a,b)) <span class="sc">+</span></span>
 <span id="cb74-6"><a href="basics.html#cb74-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb74-7"><a href="basics.html#cb74-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">formula =</span> y<span class="sc">~</span>x <span class="sc">+</span><span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">color=</span><span class="st">&#39;orange&#39;</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
-<p>Finally, we can plot an exponential function where the variable is the exponent and the base is constant.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="basics.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us now plot a and b using ggplot2</span></span>
-<span id="cb75-2"><a href="basics.html#cb75-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-3"><a href="basics.html#cb75-3" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb75-4"><a href="basics.html#cb75-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">exp</span>(a)</span>
-<span id="cb75-5"><a href="basics.html#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(a,b)) <span class="sc">+</span></span>
-<span id="cb75-6"><a href="basics.html#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb75-7"><a href="basics.html#cb75-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">color =</span> <span class="st">&quot;orange&quot;</span>,<span class="at">formula=</span> (y <span class="sc">~</span> <span class="fu">exp</span>(x)))</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<span id="cb74-7"><a href="basics.html#cb74-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">color =</span> <span class="st">&quot;orange&quot;</span>,<span class="at">formula=</span> (y <span class="sc">~</span> <span class="fu">exp</span>(x)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <p>You can mix and match.</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="basics.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us now plot x and y using ggplot2</span></span>
-<span id="cb76-2"><a href="basics.html#cb76-2" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb76-3"><a href="basics.html#cb76-3" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span> a<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb76-4"><a href="basics.html#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
-<span id="cb76-5"><a href="basics.html#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb76-6"><a href="basics.html#cb76-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(a,b), <span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y<span class="sc">~</span>x <span class="sc">+</span><span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>),<span class="at">color=</span> <span class="st">&#39;orange&#39;</span>) </span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="basics.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us now plot x and y using ggplot2</span></span>
+<span id="cb75-2"><a href="basics.html#cb75-2" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb75-3"><a href="basics.html#cb75-3" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span> a<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb75-4"><a href="basics.html#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
+<span id="cb75-5"><a href="basics.html#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb75-6"><a href="basics.html#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(a,b), <span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y<span class="sc">~</span>x <span class="sc">+</span><span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>),<span class="at">color=</span> <span class="st">&#39;orange&#39;</span>) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 </div>
 <div id="operators-and-functions-in-this-section" class="section level2 hasAnchor" number="2.9">
 <h2><span class="header-section-number">2.9</span> Operators and functions in this section<a href="basics.html#operators-and-functions-in-this-section" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -498,17 +510,18 @@ The argument <code>package_name</code> can either be a character (<code>install.
 <p><code>library(package_name)</code></p>
 <p>Loads a package called <code>package_name</code>.</p>
 </div>
-<br>
+<br />
+
 <div class="function">
 <p><code>typeof(x)</code></p>
 <p>Determines the type of a variable/vector.</p>
 </div>
-<br>
+<br />
+
 <div class="function">
 <p><code>as.double(x)</code></p>
 <p>Converts a variable/vector to type <strong>double</strong>.</p>
 </div>
-<p><br></p>
 
 </div>
 </div>
@@ -518,8 +531,8 @@ The argument <code>package_name</code> can either be a character (<code>install.
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-structures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -561,7 +574,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["main.pdf", "main.epub"],
+"download": ["_main.pdf", "_main.epub"],
 "search": {
 "engine": "fuse",
 "options": null

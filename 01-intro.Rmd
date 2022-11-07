@@ -1,25 +1,12 @@
---- 
-title: "Ling 411 - Fall 2022"
-author: "Ümit Atlamaz"
-date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-documentclass: book
-bibliography:
-- book.bib
-- packages.bib
-description: |
-  This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022.
-link-citations: yes
-github-repo: rstudio/ling_411
----
 
-```{r z, include = T}
+```{r z3, include = FALSE}
 # Seed for random number generation
 set.seed(42)
 knitr::opts_chunk$set(cache.extra = knitr::rand_seed, class.output="r-output")
 source("./source/r_functions.R")
 ```
 
+(`r format(Sys.time(), '%d %B, %Y, %H:%M')`)
 
 ```{css echo=FALSE}
 .r-output {
@@ -366,6 +353,8 @@ ggplot(data=NULL, aes(x,y)) +
 ## Operators and functions in this section
 
 ### Operators
+
+
 `r function_definition("x + y", "Addition")`
 <br>
 `r function_definition("x - y", "Subtraction")`
@@ -403,11 +392,8 @@ cat( function_definition("install.packages(package_name)",
 cat( function_definition("library(package_name)", 
                          "Loads a package called `package_name`."))
 ```
-<br>
+\
 `r function_definition("typeof(x)", "Determines the type of a variable/vector.")`
-<br>
+\
 `r function_definition("as.double(x)", "Converts a variable/vector to type **double**.")`
-<br>
-
-
 

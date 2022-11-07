@@ -16,3 +16,12 @@ operators-1
 operators-and-functions-in-this-section-1
 operators-2
 functions
+data-structures
+data-types-in-r
+data-structures-in-r
+vectors
+what-are-vectors-good-for
+data-frames
+working-with-data-frames
+functions-in-this-section
+introR
