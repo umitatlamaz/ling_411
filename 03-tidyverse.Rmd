@@ -1,0 +1,196 @@
+---
+title: "03-tidyverse"
+output:
+  pdf_document: default
+  html_document: default
+date: "2022-11-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Working with Data
+
+In this section, we learn how to work with data in a **dataframe**. A dataframe is a two-dimensional array consisting of *rows* and *columns*. You can simply think of it as a spreadsheet (e.g. MS Excel, Google Sheets, etc.).
+
+## Basic dataframes
+R has some prebuilt functions to build dataframes. Let us see a simple example. Consider the following three vectors.
+
+```{r}
+
+name <- c("Sam", "Paulina", "Cenk")
+age <- c(23, 34, 19)
+height <- c(179, 167, 173)
+```
+
+Let us turn the data stored in different vectors into a single dataframe so that we can visualize the data better.
+
+```{r}
+#Let us first create the dataframe and assign it to the variable my_df
+my_df <- data.frame(name,age,height)
+
+#Let's print the dataframe now
+my_df
+```
+
+We can select a particular row, column, or cell on a dataframe by using indices. For this we can use the slicing method `my_dataframe[row,column]`.
+
+
+```{r}
+#Let us select the entire first row 
+my_df[1,]
+
+```
+
+
+```{r}
+#Now, let us select the first column 
+my_df[,1]
+
+```
+
+```{r}
+#Now, let us find Paulina's height. For this, we need to get the 2nd row and 3rd column.
+my_df[2,3]
+```
+
+
+```{r}
+#Now, let us find Paulina's age and height. For this, we need to get the 2nd row and 2nd and 3rd columns.
+my_df[2,2:3]
+```
+
+```{r}
+#Finally, let us get Sam and Paulina's ages.
+my_df[1:2,2]
+```
+
+You can also use the column name to select an entire column. Just add the dollar sign `$` after the df and then the column mane. 
+
+```{r}
+my_df$age
+```
+
+
+
+## Tibbles
+The standard dataframes in R are good but not great. Often, we will deal with a lot of data we may not now which index to use to find the value we want. So, we need to be able to have some better ways to access data on our dataframes. We also want to be able to add new data or change some of the existing data easily. For this, we will use various packages in **tidyverse** for better dataframe management. 
+
+Let us first load the tidyverse library, which will load the necessary packages for the functionality described in the following sections.
+
+
+```{r, message=FALSE}
+library(tidyverse)
+```
+
+
+Next, let us introduce tibbles. A  **tibble** is a dataframe with some improved properties. We can turn a regular dataframe into a tibble by calling the `as_tibble()` function on our dataframe.
+
+
+```{r}
+#Let's turn my_df into a tibble
+my_tibble <- as_tibble(my_df)
+
+#Let's print my_tibble
+my_tibble
+```
+
+As you can see above, the console output tells you that this is a 3x3 tibble meaning that it has 3 rows and 3 columns. It also tells you the type of the data in each column. You can see the data types right under each column name. 
+
+
+## Beyond Toy Data
+So far we have been working with toy data. In real life projects, you will have a lot more data. The data will usually be stored in some file from which you will have to read into a dataframe. Alternatively, it might be some dataset that from a corpus easily accessible to R. Let us see a few ways in which we can load some realistic datasets into a tibble. 
+
+### Reading data from a csv file
+
+In this course, we will use some of the data sets from Bodo Winter's book. Go to [this website](https://osf.io/34mq9/) to download the `materials` folder. Once your data has been downloaded, navigate to the `materials/data` folder and locate the `nettle_1999_climate.csv` file.
+
+To read in data from a csv to a tibble, we will use the `read_csv()` function. All we need to do is to provide the path to the csv file we want to read in. If your csv file is in the same folder as your script, you can simply give its name. Otherwise, you need to provide the relevant directory information as well in your path. 
+
+
+```{r}
+
+#Let's read in the data
+nettle <- read_csv('/Users/umit/Desktop/materials/data/nettle_1999_climate.csv')
+
+#Let's print the head of the data to see what it looks like
+nettle
+```
+
+If you want to see the last 5 items, use the `tail()` function. 
+
+```{r}
+tail(nettle)
+```
+
+
+If you want to view the entire dataset, you can use `View(nettle)`. This will open a new tab in RStudio and show your data as a table. 
+
+
+### Reading data from R data packages
+R has various data packages you can install and use. Let us install the `languageR` which has some nice language datasets. Once you install the package and load the library, you can easily use the datasets as tibles. For all the details and available datasets in `languageR`, you can check the [languageR documentation](https://cran.r-project.org/web/packages/languageR/languageR.pdf) on CRAN.
+
+```{r}
+#Let's load the library
+library(languageR)
+
+#We'll use the dativeSimplified dataset, which is documented. Let's see the documentation
+?dativeSimplified
+```
+
+```{r}
+#let's use the dativeSimplified data from the languageR 
+data <- as_tibble(dativeSimplified)
+
+#Let's print the first few lines of the data
+data
+```
+
+**Dative Alternation** is the phenomenon in English where a recipient of a ditransitive verb can occur as an NP or a PP.
+
+1. Alex gave Sam a book.
+2. Alex gave a book to Sam.
+
+Both of these constructions are grammatical and they mean essentially the same thing. The question is what factors are involved in picking one of the forms over the other. Bresnan et al. (2007) used this data to determine the relevant factors. 
+Let us randomly select 10 examples and see what they look like. For that, we can use the folloing code.
+
+
+```{r}
+# store all possible row indices in a vector
+indices_all <- 1:nrow(data)
+
+# set the random seed to make the results reproducible
+set.seed(123)
+
+# choose 10 such numbers at random without replacement
+indices_random <- sample(indices_all, size = 10)
+
+# use them to index the data frame to get the corresponding rows
+data[indices_random,]
+```
+
+
+## Summarizing Data
+Looking at the summary statistics of your data is always a good first step. Let's take a look at the percentage of NP realizations of the recipient by animacy of the theme.
+
+```{r}
+# First, let's take a look at the key dependet variable (NP or PP)
+
+unique(data$RealizationOfRec)
+```
+
+
+```{r}
+# now, let's compute the percentages (perc_NP) and the number of observations in each subset
+data%>% 
+  group_by(AnimacyOfRec) %>% 
+  summarize(perc_NP = mean(RealizationOfRec == "NP"), 
+                   N = n()
+                  )
+```
+
+**What do the results say?**
+
+* There are a total of 822 instances of animate recipients.
+* 63% of the animate recipients are NPs.

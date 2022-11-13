@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Working with Data | 03-tidyverse</title>
+  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Working with Data | 03-tidyverse" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
+  <meta name="github-repo" content="rstudio/ling_411" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Working with Data | 03-tidyverse" />
+  
+  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
+  
+
+<meta name="author" content="Ümit Atlamaz" />
+
+
+<meta name="date" content="2022-11-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-structures.html"/>
+<link rel="next" href="plotting-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Ling 411 - Fall 2022</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#disclaimer"><i class="fa fa-check"></i><b>1.1</b> Disclaimer</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#some-great-resources"><i class="fa fa-check"></i><b>1.2</b> Some great resources</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#blocks"><i class="fa fa-check"></i><b>1.3</b> Blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basics.html"><a href="basics.html#basic-math-operations"><i class="fa fa-check"></i><b>2.1</b> Basic Math Operations</a></li>
+<li class="chapter" data-level="2.2" data-path="basics.html"><a href="basics.html#operators"><i class="fa fa-check"></i><b>2.2</b> Operators</a></li>
+<li class="chapter" data-level="2.3" data-path="basics.html"><a href="basics.html#variables-and-assignment"><i class="fa fa-check"></i><b>2.3</b> Variables and Assignment</a></li>
+<li class="chapter" data-level="2.4" data-path="basics.html"><a href="basics.html#data-types"><i class="fa fa-check"></i><b>2.4</b> Data Types</a></li>
+<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#determining-the-data-type"><i class="fa fa-check"></i><b>2.5</b> Determining the data type</a></li>
+<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#changing-the-types"><i class="fa fa-check"></i><b>2.6</b> Changing the types</a></li>
+<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#installing-packages"><i class="fa fa-check"></i><b>2.7</b> Installing packages</a></li>
+<li class="chapter" data-level="2.8" data-path="basics.html"><a href="basics.html#plotting"><i class="fa fa-check"></i><b>2.8</b> Plotting</a></li>
+<li class="chapter" data-level="2.9" data-path="basics.html"><a href="basics.html#operators-and-functions-in-this-section"><i class="fa fa-check"></i><b>2.9</b> Operators and functions in this section</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="basics.html"><a href="basics.html#operators-1"><i class="fa fa-check"></i><b>2.9.1</b> Operators</a></li>
+<li class="chapter" data-level="2.9.2" data-path="basics.html"><a href="basics.html#functions"><i class="fa fa-check"></i><b>2.9.2</b> Functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-structures.html"><a href="data-structures.html#data-types-in-r"><i class="fa fa-check"></i><b>3.1</b> Data Types in R</a></li>
+<li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html#data-structures-in-r"><i class="fa fa-check"></i><b>3.2</b> Data Structures in R</a></li>
+<li class="chapter" data-level="3.3" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>3.3</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-structures.html"><a href="data-structures.html#what-are-vectors-good-for"><i class="fa fa-check"></i><b>3.3.1</b> What are vectors good for?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>3.4</b> Data Frames</a></li>
+<li class="chapter" data-level="3.5" data-path="data-structures.html"><a href="data-structures.html#working-with-data-frames"><i class="fa fa-check"></i><b>3.5</b> Working with data frames</a></li>
+<li class="chapter" data-level="3.6" data-path="data-structures.html"><a href="data-structures.html#functions-in-this-section"><i class="fa fa-check"></i><b>3.6</b> Functions in this section</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-data.html"><a href="working-with-data.html"><i class="fa fa-check"></i><b>4</b> Working with Data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="working-with-data.html"><a href="working-with-data.html#basic-dataframes"><i class="fa fa-check"></i><b>4.1</b> Basic dataframes</a></li>
+<li class="chapter" data-level="4.2" data-path="working-with-data.html"><a href="working-with-data.html#tibbles"><i class="fa fa-check"></i><b>4.2</b> Tibbles</a></li>
+<li class="chapter" data-level="4.3" data-path="working-with-data.html"><a href="working-with-data.html#beyond-toy-data"><i class="fa fa-check"></i><b>4.3</b> Beyond Toy Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="working-with-data.html"><a href="working-with-data.html#reading-data-from-a-csv-file"><i class="fa fa-check"></i><b>4.3.1</b> Reading data from a csv file</a></li>
+<li class="chapter" data-level="4.3.2" data-path="working-with-data.html"><a href="working-with-data.html#reading-data-from-r-data-packages"><i class="fa fa-check"></i><b>4.3.2</b> Reading data from R data packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="working-with-data.html"><a href="working-with-data.html#summarizing-data"><i class="fa fa-check"></i><b>4.4</b> Summarizing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="plotting-1.html"><a href="plotting-1.html"><i class="fa fa-check"></i><b>5</b> Plotting</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="plotting-1.html"><a href="plotting-1.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>5.1</b> The basics of ggplot2</a></li>
+<li class="chapter" data-level="5.2" data-path="plotting-1.html"><a href="plotting-1.html#the-basics-of-ggplot2-1"><i class="fa fa-check"></i><b>5.2</b> The basics of ggplot2</a></li>
+<li class="chapter" data-level="5.3" data-path="plotting-1.html"><a href="plotting-1.html#using-lines-in-plots"><i class="fa fa-check"></i><b>5.3</b> Using lines in plots</a></li>
+<li class="chapter" data-level="5.4" data-path="plotting-1.html"><a href="plotting-1.html#color-and-fill"><i class="fa fa-check"></i><b>5.4</b> Color and fill</a></li>
+<li class="chapter" data-level="5.5" data-path="plotting-1.html"><a href="plotting-1.html#grouping-and-facets"><i class="fa fa-check"></i><b>5.5</b> Grouping and facets</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">03-tidyverse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="working-with-data" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Working with Data<a href="working-with-data.html#working-with-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this section, we learn how to work with data in a <strong>dataframe</strong>. A dataframe is a two-dimensional array consisting of <em>rows</em> and <em>columns</em>. You can simply think of it as a spreadsheet (e.g. MS Excel, Google Sheets, etc.).</p>
+<div id="basic-dataframes" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Basic dataframes<a href="working-with-data.html#basic-dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R has some prebuilt functions to build dataframes. Let us see a simple example. Consider the following three vectors.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="working-with-data.html#cb1-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sam&quot;</span>, <span class="st">&quot;Paulina&quot;</span>, <span class="st">&quot;Cenk&quot;</span>)</span>
+<span id="cb1-2"><a href="working-with-data.html#cb1-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">34</span>, <span class="dv">19</span>)</span>
+<span id="cb1-3"><a href="working-with-data.html#cb1-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">179</span>, <span class="dv">167</span>, <span class="dv">173</span>)</span></code></pre></div>
+<p>Let us turn the data stored in different vectors into a single dataframe so that we can visualize the data better.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="working-with-data.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let us first create the dataframe and assign it to the variable my_df</span></span>
+<span id="cb2-2"><a href="working-with-data.html#cb2-2" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(name,age,height)</span>
+<span id="cb2-3"><a href="working-with-data.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="working-with-data.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s print the dataframe now</span></span>
+<span id="cb2-5"><a href="working-with-data.html#cb2-5" aria-hidden="true" tabindex="-1"></a>my_df</span></code></pre></div>
+<pre><code>##      name age height
+## 1     Sam  23    179
+## 2 Paulina  34    167
+## 3    Cenk  19    173</code></pre>
+<p>We can select a particular row, column, or cell on a dataframe by using indices. For this we can use the slicing method <code>my_dataframe[row,column]</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="working-with-data.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let us select the entire first row </span></span>
+<span id="cb4-2"><a href="working-with-data.html#cb4-2" aria-hidden="true" tabindex="-1"></a>my_df[<span class="dv">1</span>,]</span></code></pre></div>
+<pre><code>##   name age height
+## 1  Sam  23    179</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="working-with-data.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now, let us select the first column </span></span>
+<span id="cb6-2"><a href="working-with-data.html#cb6-2" aria-hidden="true" tabindex="-1"></a>my_df[,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Sam&quot;     &quot;Paulina&quot; &quot;Cenk&quot;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="working-with-data.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now, let us find Paulina&#39;s height. For this, we need to get the 2nd row and 3rd column.</span></span>
+<span id="cb8-2"><a href="working-with-data.html#cb8-2" aria-hidden="true" tabindex="-1"></a>my_df[<span class="dv">2</span>,<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 167</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="working-with-data.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now, let us find Paulina&#39;s age and height. For this, we need to get the 2nd row and 2nd and 3rd columns.</span></span>
+<span id="cb10-2"><a href="working-with-data.html#cb10-2" aria-hidden="true" tabindex="-1"></a>my_df[<span class="dv">2</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>##   age height
+## 2  34    167</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="working-with-data.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finally, let us get Sam and Paulina&#39;s ages.</span></span>
+<span id="cb12-2"><a href="working-with-data.html#cb12-2" aria-hidden="true" tabindex="-1"></a>my_df[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 23 34</code></pre>
+<p>You can also use the column name to select an entire column. Just add the dollar sign <code>$</code> after the df and then the column mane.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="working-with-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a>my_df<span class="sc">$</span>age</span></code></pre></div>
+<pre><code>## [1] 23 34 19</code></pre>
+</div>
+<div id="tibbles" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Tibbles<a href="working-with-data.html#tibbles" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The standard dataframes in R are good but not great. Often, we will deal with a lot of data we may not now which index to use to find the value we want. So, we need to be able to have some better ways to access data on our dataframes. We also want to be able to add new data or change some of the existing data easily. For this, we will use various packages in <strong>tidyverse</strong> for better dataframe management.</p>
+<p>Let us first load the tidyverse library, which will load the necessary packages for the functionality described in the following sections.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="working-with-data.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>Next, let us introduce tibbles. A <strong>tibble</strong> is a dataframe with some improved properties. We can turn a regular dataframe into a tibble by calling the <code>as_tibble()</code> function on our dataframe.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="working-with-data.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s turn my_df into a tibble</span></span>
+<span id="cb17-2"><a href="working-with-data.html#cb17-2" aria-hidden="true" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(my_df)</span>
+<span id="cb17-3"><a href="working-with-data.html#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="working-with-data.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s print my_tibble</span></span>
+<span id="cb17-5"><a href="working-with-data.html#cb17-5" aria-hidden="true" tabindex="-1"></a>my_tibble</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   name      age height
+##   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Sam        23    179
+## 2 Paulina    34    167
+## 3 Cenk       19    173</code></pre>
+<p>As you can see above, the console output tells you that this is a 3x3 tibble meaning that it has 3 rows and 3 columns. It also tells you the type of the data in each column. You can see the data types right under each column name.</p>
+</div>
+<div id="beyond-toy-data" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Beyond Toy Data<a href="working-with-data.html#beyond-toy-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So far we have been working with toy data. In real life projects, you will have a lot more data. The data will usually be stored in some file from which you will have to read into a dataframe. Alternatively, it might be some dataset that from a corpus easily accessible to R. Let us see a few ways in which we can load some realistic datasets into a tibble.</p>
+<div id="reading-data-from-a-csv-file" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Reading data from a csv file<a href="working-with-data.html#reading-data-from-a-csv-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this course, we will use some of the data sets from Bodo Winter’s book. Go to <a href="https://osf.io/34mq9/">this website</a> to download the <code>materials</code> folder. Once your data has been downloaded, navigate to the <code>materials/data</code> folder and locate the <code>nettle_1999_climate.csv</code> file.</p>
+<p>To read in data from a csv to a tibble, we will use the <code>read_csv()</code> function. All we need to do is to provide the path to the csv file we want to read in. If your csv file is in the same folder as your script, you can simply give its name. Otherwise, you need to provide the relevant directory information as well in your path.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="working-with-data.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s read in the data</span></span>
+<span id="cb19-2"><a href="working-with-data.html#cb19-2" aria-hidden="true" tabindex="-1"></a>nettle <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;/Users/umit/Desktop/materials/data/nettle_1999_climate.csv&#39;</span>)</span></code></pre></div>
+<pre><code>## Rows: 74 Columns: 5
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): Country
+## dbl (4): Population, Area, MGS, Langs
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="working-with-data.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s print the head of the data to see what it looks like</span></span>
+<span id="cb21-2"><a href="working-with-data.html#cb21-2" aria-hidden="true" tabindex="-1"></a>nettle</span></code></pre></div>
+<pre><code>## # A tibble: 74 × 5
+##    Country      Population  Area   MGS Langs
+##    &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Algeria            4.41  6.38  6.6     18
+##  2 Angola             4.01  6.1   6.22    42
+##  3 Australia          4.24  6.89  6      234
+##  4 Bangladesh         5.07  5.16  7.4     37
+##  5 Benin              3.69  5.05  7.14    52
+##  6 Bolivia            3.88  6.04  6.92    38
+##  7 Botswana           3.13  5.76  4.6     27
+##  8 Brazil             5.19  6.93  9.71   209
+##  9 Burkina Faso       3.97  5.44  5.17    75
+## 10 CAR                3.5   5.79  8.08    94
+## # … with 64 more rows</code></pre>
+<p>If you want to see the last 5 items, use the <code>tail()</code> function.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="working-with-data.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(nettle)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   Country   Population  Area   MGS Langs
+##   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Venezuela       4.31  5.96  7.98    40
+## 2 Vietnam         4.83  5.52  8.8     88
+## 3 Yemen           4.09  5.72  0        6
+## 4 Zaire           4.56  6.37  9.44   219
+## 5 Zambia          3.94  5.88  5.43    38
+## 6 Zimbabwe        4     5.59  5.29    18</code></pre>
+<p>If you want to view the entire dataset, you can use <code>View(nettle)</code>. This will open a new tab in RStudio and show your data as a table.</p>
+</div>
+<div id="reading-data-from-r-data-packages" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Reading data from R data packages<a href="working-with-data.html#reading-data-from-r-data-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R has various data packages you can install and use. Let us install the <code>languageR</code> which has some nice language datasets. Once you install the package and load the library, you can easily use the datasets as tibles. For all the details and available datasets in <code>languageR</code>, you can check the <a href="https://cran.r-project.org/web/packages/languageR/languageR.pdf">languageR documentation</a> on CRAN.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="working-with-data.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s load the library</span></span>
+<span id="cb25-2"><a href="working-with-data.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(languageR)</span>
+<span id="cb25-3"><a href="working-with-data.html#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="working-with-data.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#We&#39;ll use the dativeSimplified dataset, which is documented. Let&#39;s see the documentation</span></span>
+<span id="cb25-5"><a href="working-with-data.html#cb25-5" aria-hidden="true" tabindex="-1"></a>?dativeSimplified</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="working-with-data.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#let&#39;s use the dativeSimplified data from the languageR </span></span>
+<span id="cb26-2"><a href="working-with-data.html#cb26-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(dativeSimplified)</span>
+<span id="cb26-3"><a href="working-with-data.html#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="working-with-data.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s print the first few lines of the data</span></span>
+<span id="cb26-5"><a href="working-with-data.html#cb26-5" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
+<pre><code>## # A tibble: 903 × 5
+##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
+##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
+##  1 NP               feed  animate      inanimate              2.64 
+##  2 NP               give  animate      inanimate              1.10 
+##  3 NP               give  animate      inanimate              2.56 
+##  4 NP               give  animate      inanimate              1.61 
+##  5 NP               offer animate      inanimate              1.10 
+##  6 NP               give  animate      inanimate              1.39 
+##  7 NP               pay   animate      inanimate              1.39 
+##  8 NP               bring animate      inanimate              0    
+##  9 NP               teach animate      inanimate              2.40 
+## 10 NP               give  animate      inanimate              0.693
+## # … with 893 more rows</code></pre>
+<p><strong>Dative Alternation</strong> is the phenomenon in English where a recipient of a ditransitive verb can occur as an NP or a PP.</p>
+<ol style="list-style-type: decimal">
+<li>Alex gave Sam a book.</li>
+<li>Alex gave a book to Sam.</li>
+</ol>
+<p>Both of these constructions are grammatical and they mean essentially the same thing. The question is what factors are involved in picking one of the forms over the other. Bresnan et al. (2007) used this data to determine the relevant factors.
+Let us randomly select 10 examples and see what they look like. For that, we can use the folloing code.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="working-with-data.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store all possible row indices in a vector</span></span>
+<span id="cb28-2"><a href="working-with-data.html#cb28-2" aria-hidden="true" tabindex="-1"></a>indices_all <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data)</span>
+<span id="cb28-3"><a href="working-with-data.html#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="working-with-data.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set the random seed to make the results reproducible</span></span>
+<span id="cb28-5"><a href="working-with-data.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb28-6"><a href="working-with-data.html#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="working-with-data.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># choose 10 such numbers at random without replacement</span></span>
+<span id="cb28-8"><a href="working-with-data.html#cb28-8" aria-hidden="true" tabindex="-1"></a>indices_random <span class="ot">&lt;-</span> <span class="fu">sample</span>(indices_all, <span class="at">size =</span> <span class="dv">10</span>)</span>
+<span id="cb28-9"><a href="working-with-data.html#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="working-with-data.html#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># use them to index the data frame to get the corresponding rows</span></span>
+<span id="cb28-11"><a href="working-with-data.html#cb28-11" aria-hidden="true" tabindex="-1"></a>data[indices_random,]</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 5
+##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
+##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
+##  1 NP               give  inanimate    inanimate              1.79 
+##  2 NP               grant animate      inanimate              1.10 
+##  3 NP               grant animate      inanimate              2.40 
+##  4 NP               give  animate      inanimate              2.56 
+##  5 NP               tell  animate      inanimate              3.26 
+##  6 PP               give  animate      inanimate              0    
+##  7 NP               pay   animate      inanimate              0.693
+##  8 NP               hand  animate      inanimate              0.693
+##  9 NP               give  inanimate    inanimate              1.61 
+## 10 NP               wish  animate      inanimate              1.10</code></pre>
+</div>
+</div>
+<div id="summarizing-data" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Summarizing Data<a href="working-with-data.html#summarizing-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Looking at the summary statistics of your data is always a good first step. Let’s take a look at the percentage of NP realizations of the recipient by animacy of the theme.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="working-with-data.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, let&#39;s take a look at the key dependet variable (NP or PP)</span></span>
+<span id="cb30-2"><a href="working-with-data.html#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="working-with-data.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(data<span class="sc">$</span>RealizationOfRec)</span></code></pre></div>
+<pre><code>## [1] NP PP
+## Levels: NP PP</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="working-with-data.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now, let&#39;s compute the percentages (perc_NP) and the number of observations in each subset</span></span>
+<span id="cb32-2"><a href="working-with-data.html#cb32-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="working-with-data.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(AnimacyOfRec) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-4"><a href="working-with-data.html#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>), </span>
+<span id="cb32-5"><a href="working-with-data.html#cb32-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">N =</span> <span class="fu">n</span>()</span>
+<span id="cb32-6"><a href="working-with-data.html#cb32-6" aria-hidden="true" tabindex="-1"></a>                  )</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   AnimacyOfRec perc_NP     N
+##   &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;
+## 1 animate        0.634   822
+## 2 inanimate      0.420    81</code></pre>
+<p><strong>What do the results say?</strong></p>
+<ul>
+<li>There are a total of 822 instances of animate recipients.</li>
+<li>63% of the animate recipients are NPs.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="plotting-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-tidyverse.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

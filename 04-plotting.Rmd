@@ -1,0 +1,170 @@
+---
+title: "04-Plotting"
+output: html_document
+date: "2022-11-13"
+---
+
+```{r z5, include = FALSE}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed, class.output="r-output", fig.height = 3)
+source("./source/r_functions.R")
+```
+
+# Plotting
+(`r format(Sys.time(), '%d %B, %Y, %H:%M')`)
+
+```{css echo=FALSE, include}
+.r-output {
+  font-weight: bold;
+}
+.function {
+  background-color: lightgrey;
+  padding: 0.5em 0.5em 0.5em 4em;
+  border: 1px solid black;
+}
+```
+
+
+
+## The basics of ggplot2
+
+- Let's first take a look at some example plots.
+- Create a synthetic data set and load the `ggplot2` package to access the plotting functionality.
+```{r, error=T}
+library(ggplot2)
+df <- data.frame(a=1:10, a_sq=(1:10)^2, my_group = c("a","b"))
+df
+```
+
+- Take a look at the following code and the resulting plots. Can you tell what parts that start with geom_... does?
+
+```{r, error=T}
+ggplot(data = df, mapping = aes(x = a, y = a_sq)) + geom_point()
+```
+```{r, error=T}
+ggplot(data = df, mapping = aes(x = a, y = a_sq)) + geom_bar(stat="identity")
+```
+```{r, error=T}
+ggplot(data = df, mapping = aes(x = a_sq, y = a)) + geom_point()
+```
+```{r, error=T}
+ggplot(data = df, mapping = aes(x = a_sq, y = a)) + geom_bar(stat="identity")
+```
+
+## The basics of ggplot2
+- So what do those function calls mean?
+
+- Let's take a look at it again: This is pretty much the minimal useful plotting command in R.
+```{r, eval=F, error=T}
+ggplot(data = df, mapping = aes(x = a, y = a_sq)) + geom_point()
+```
+
+- Each ggplot2 plot specification consists, at a minimum, of three parts:
+  1. <span style="color:blue">the data to plot</span>
+  2. <span style="color:red">*an abstract specification of the plot* (a rough mapping between variables and axes and other plot elements, such as *groups*, *facets*, etc.)</span>
+  3. <span style="color:green">*concrete instructions on what to draw* (a specification of the actual visual elements to use)</span>
+
+- They correspond to three parts of the `ggplot()` function call 
+  1. <span style="color:blue">**data:** `data = df`</span>
+  2. <span style="color:red">**'aesthetic':** `mapping = aes(x, y)`</span> 
+  3. <span style="color:green">**'geoms':** `+ geom_point()`</span>
+
+- You can read the instruction below as *"Create a plot <span style="color:blue">using the data in data frame df</span>, <span style="color:red">placing `a` on the x-axis and `a_sq` on the y-axis</span>, <span style="color:green">and visualize the data using points</span>"*.
+- Keep in mind that information regarding x and y axes is specified within a function called `aes()`. 
+
+```{r, eval=F, error=T}
+ggplot(data = df, mapping = aes(x = a, y = a_sq)) + geom_point()
+```
+- As an aside: A shorter way to write the same code is below, and I'll mostly use some mixed form.
+```{r, eval=F, error=T}
+ggplot(df, aes(a, a_sq)) + geom_point()
+```
+
+
+## Using lines in plots
+
+- We already know `geom_point` and `geom_bar`. Let's take a look at some other *geoms*:.
+
+- `geom_line` connects the (invisible, in this case) points in the plot.
+```{r, error=T}
+ggplot(df, aes(a, a_sq)) + geom_line()
+```
+
+- We can even combine geoms:
+```{r, error=T}
+ggplot(df, aes(a, a_sq)) + geom_point() + geom_line()
+```
+
+- ... in fact, as many as we want. But there is no guarantee that the result will look good, or even make sense.
+```{r, error=T}
+ggplot(df, aes(a, a_sq)) + geom_point() + geom_line() + geom_bar(stat = "identity")
+```
+
+- The order of their specification matter a little bit. Here, the line is plotted over the bars, in contrast to the previous plot.
+```{r, error=T}
+ggplot(df, aes(a, a_sq)) + geom_point() + geom_bar(stat = "identity") + geom_line()
+```
+
+
+## Color and fill
+- Relationships between two variables are usually easy to visualize, but often there is a third variable.
+- There are various ways for dealing with it.
+
+- Let's first try using color coding for the third variable. 
+```{r, error=T}
+ggplot(df, aes(a, a_sq, color = my_group)) + geom_point(stat = "identity")
+```
+
+- Let's try this with bar plots. Not at all what you expected, is it? 
+
+```{r, error=T}
+ggplot(df, aes(a, a_sq, color = my_group)) + geom_bar(stat = "identity")
+```
+
+- This is what we wanted. The right argument for bar plots is `fill`.
+```{r, error=T}
+ggplot(df, aes(a, a_sq, fill = my_group)) + geom_bar(stat = "identity")
+```
+
+
+- So why isn't the aesthetic argument for bar plots not also `color`?
+- Because geoms in ggplot2 have `fill` (the color of the inner part of the object), and a `color` (the color of the line with which they are drawn).
+
+- Points don't have a fill. (Don't ask me why.)
+- We can try, if you do not believe me. See that even though we specify a `fill` argument for geom_point, `color` argument overwrites it. 
+ 
+
+```{r, error=T}
+ggplot(df, aes(a, a_sq, color = my_group)) + geom_point(size=10, fill = "black")
+```
+- If points had a fill, we would expect the argument that comes last to overwrite the previous one. 
+- Bars have both fill and color arguments. 
+
+```{r, error=T}
+ggplot(df, aes(a, a_sq, fill = my_group)) + geom_bar(stat="identity", color = "black")
+```
+```{r, error=T}
+ggplot(df, aes(a, a_sq, color = my_group)) + geom_bar(stat="identity", fill = "black")
+```
+
+## Grouping and facets
+
+- Color, fill, etc. implicitly group the data set into different subgroups.
+- You can see that better if you connect the points by lines.
+```{r, error=T}
+ggplot(df, aes(a, a_sq, color = my_group)) + geom_point()  + geom_line()
+```
+
+- This can be done explicitly as well.
+```{r, error=T}
+ggplot(df, aes(a, a_sq, group = my_group)) + geom_point()  + geom_line()
+```
+
+- Now it's very hard to see which line is which, so let's at least separate it into different **facets** (aka *'panels'*). 
+- We can introduce our new facets with the function `facet_wrap()`. Keep in mind that the grouping variable is introduced with `~`.
+- The name of the groups can be seen at the top of the plots. 
+
+```{r, error=T}
+ggplot(df, aes(a, a_sq, group = my_group)) + geom_point()  + geom_line() + facet_wrap(~my_group)
+```

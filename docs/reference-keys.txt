@@ -13,8 +13,6 @@ installing-packages
 plotting
 operators-and-functions-in-this-section
 operators-1
-operators-and-functions-in-this-section-1
-operators-2
 functions
 data-structures
 data-types-in-r
@@ -24,4 +22,17 @@ what-are-vectors-good-for
 data-frames
 working-with-data-frames
 functions-in-this-section
-introR
+working-with-data
+basic-dataframes
+tibbles
+beyond-toy-data
+reading-data-from-a-csv-file.
+reading-data-from-a-csv-file
+reading-data-from-r-data-packages
+summarizing-data
+plotting-1
+the-basics-of-ggplot2
+the-basics-of-ggplot2-1
+using-lines-in-plots
+color-and-fill
+grouping-and-facets

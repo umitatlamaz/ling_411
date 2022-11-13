@@ -346,9 +346,6 @@ ggplot(data=NULL, aes(x,y)) +
 
 ```
 
-## Operators and functions in this section
-
-### Operators
 
 ## Operators and functions in this section
 
