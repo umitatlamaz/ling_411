@@ -194,3 +194,123 @@ data%>%
 
 * There are a total of 822 instances of animate recipients.
 * 63% of the animate recipients are NPs.
+
+
+## Working with dplyr
+One of the packages in the `tidyverse` is `dplyr`. We use it to do various manipulations on the data frames. Check out the [dplyr cheatsheet](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf) for further details. 
+
+The `arrange` function will arrange your data in an ascending order. 
+
+```{r}
+arrange(data)
+```
+
+You can arrange the data based on a particular column. In that case, you need to provide the column name.
+
+```{r}
+arrange(data,LengthOfTheme)
+```
+
+
+```{r}
+arrange(data[1:10,], LengthOfTheme)
+```
+
+If you want to arrange things in a descending order, then you need to put the `desc()` function around the relevant column.
+
+```{r}
+arrange(data, desc(LengthOfTheme))
+```
+
+Another useful function is the `select()` function which allows you to create new dataframes using only columns you want. 
+
+```{r}
+#Create the new dataframe using select
+df <- select(data, Verb, LengthOfTheme)
+
+#print the head
+df
+```
+
+Another useful function is `sample_n()` which randomly samples some number of datapoints. 
+
+```{r}
+sample_n(data, 5)
+```
+
+
+Two other useful functions are `group_by()` and `ungroup()`. 
+
+```{r}
+#Let's group a small portion of the data by the realization of recipient
+group_by(data[1:5], RealizationOfRec)
+```
+
+Now let us group the data by verbs.
+
+
+```{r}
+data_grouped_by_verb <- group_by(data,Verb)
+```
+
+
+An important but complex function is the `summarize()` function.
+
+1. It divides a grouped data frame into subsets, with each subset corresponding to one value of the grouping variable (or a combination of values for several grouping variables).
+2. It computes one or several values we specify on each such subset.
+3. It creates a new data frame and puts everything together. The first column of this new data frame consists of levels of our grouping variable. In the following columns, the summarize() function prints the results of the computations we have specified.
+
+Try to guess the result of the following code. What will you see as an output? What will be the name of the columns?
+
+```{r}
+# summarize several variables
+summarize(data_grouped_by_verb, 
+          prop_animate_rec = mean( AnimacyOfRec == "animate" ),
+          prop_animate_theme = mean( AnimacyOfTheme == "animate" ),
+          N = n()
+          )
+```
+
+Try to interpret the output of the following code.
+
+```{r}
+
+# compute the averages of profit
+summarize(data_grouped_by_verb, 
+          prop_anim = mean(AnimacyOfRec == "animate"),
+          prop_inanim = 1-prop_anim,
+          prop_v_recip_anim = ifelse(prop_anim > 0.5, "high", "low")
+          )
+
+```
+
+The last line uses the function ifelse(condition, value1, value2), which, for each element of the condition vector returns the corresponding element of the value1 vector if the condition is true at that element, or an element of vector2 otherwise.
+
+mutate() proceeds similarly to summarize() in dividing a grouped dataset into subsets, but instead of computing one or several values for each subset, it creates or modifies a column.
+
+The main difference between mutate() and summarize() is the output. While mutate() modifies the original and returns a modified version of it, summarize() creates a brand new data frame with one row for every combination of the the grouping variable values.
+
+A very simple application of mutate() is to simply create a new column. In this case, we don’t even need to group.
+
+```{r}
+# these two lines performs exactly the same action, 
+# except the latter stores the result in df 
+data$is_realization_NP <- (data$RealizationOfRec == "NP" ) 
+df <- mutate(data, is_realization_NP = (RealizationOfRec == "NP") )
+
+head(df, 2)
+
+```
+
+
+One final useful function is the `filter()` function. It allows you to find rows by particular values of a column. 
+
+```{r}
+filter(data, is_realization_NP == FALSE)
+```
+
+
+```{r}
+filter(data, LengthOfTheme > 3.5)
+```
+

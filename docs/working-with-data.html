@@ -180,6 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.2" data-path="working-with-data.html"><a href="working-with-data.html#reading-data-from-r-data-packages"><i class="fa fa-check"></i><b>4.3.2</b> Reading data from R data packages</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="working-with-data.html"><a href="working-with-data.html#summarizing-data"><i class="fa fa-check"></i><b>4.4</b> Summarizing Data</a></li>
+<li class="chapter" data-level="4.5" data-path="working-with-data.html"><a href="working-with-data.html#working-with-dplyr"><i class="fa fa-check"></i><b>4.5</b> Working with dplyr</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="plotting-1.html"><a href="plotting-1.html"><i class="fa fa-check"></i><b>5</b> Plotting</a>
 <ul>
@@ -399,6 +400,210 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 <li>There are a total of 822 instances of animate recipients.</li>
 <li>63% of the animate recipients are NPs.</li>
 </ul>
+</div>
+<div id="working-with-dplyr" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Working with dplyr<a href="working-with-data.html#working-with-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One of the packages in the <code>tidyverse</code> is <code>dplyr</code>. We use it to do various manipulations on the data frames. Check out the <a href="https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf">dplyr cheatsheet</a> for further details.</p>
+<p>The <code>arrange</code> function will arrange your data in an ascending order.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="working-with-data.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(data)</span></code></pre></div>
+<pre><code>## # A tibble: 903 × 5
+##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
+##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
+##  1 NP               feed  animate      inanimate              2.64 
+##  2 NP               give  animate      inanimate              1.10 
+##  3 NP               give  animate      inanimate              2.56 
+##  4 NP               give  animate      inanimate              1.61 
+##  5 NP               offer animate      inanimate              1.10 
+##  6 NP               give  animate      inanimate              1.39 
+##  7 NP               pay   animate      inanimate              1.39 
+##  8 NP               bring animate      inanimate              0    
+##  9 NP               teach animate      inanimate              2.40 
+## 10 NP               give  animate      inanimate              0.693
+## # … with 893 more rows</code></pre>
+<p>You can arrange the data based on a particular column. In that case, you need to provide the column name.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="working-with-data.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(data,LengthOfTheme)</span></code></pre></div>
+<pre><code>## # A tibble: 903 × 5
+##    RealizationOfRec Verb   AnimacyOfRec AnimacyOfTheme LengthOfTheme
+##    &lt;fct&gt;            &lt;fct&gt;  &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
+##  1 NP               bring  animate      inanimate                  0
+##  2 NP               send   animate      inanimate                  0
+##  3 NP               bet    animate      inanimate                  0
+##  4 NP               tell   animate      inanimate                  0
+##  5 NP               tell   animate      inanimate                  0
+##  6 NP               give   inanimate    inanimate                  0
+##  7 NP               give   animate      inanimate                  0
+##  8 NP               charge animate      inanimate                  0
+##  9 NP               give   animate      inanimate                  0
+## 10 NP               pay    animate      inanimate                  0
+## # … with 893 more rows</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="working-with-data.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(data[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,], LengthOfTheme)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 5
+##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
+##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
+##  1 NP               bring animate      inanimate              0    
+##  2 NP               give  animate      inanimate              0.693
+##  3 NP               give  animate      inanimate              1.10 
+##  4 NP               offer animate      inanimate              1.10 
+##  5 NP               give  animate      inanimate              1.39 
+##  6 NP               pay   animate      inanimate              1.39 
+##  7 NP               give  animate      inanimate              1.61 
+##  8 NP               teach animate      inanimate              2.40 
+##  9 NP               give  animate      inanimate              2.56 
+## 10 NP               feed  animate      inanimate              2.64</code></pre>
+<p>If you want to arrange things in a descending order, then you need to put the <code>desc()</code> function around the relevant column.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="working-with-data.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(data, <span class="fu">desc</span>(LengthOfTheme))</span></code></pre></div>
+<pre><code>## # A tibble: 903 × 5
+##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
+##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
+##  1 NP               give  inanimate    inanimate               3.64
+##  2 NP               send  animate      inanimate               3.56
+##  3 NP               give  animate      inanimate               3.53
+##  4 NP               pay   animate      inanimate               3.50
+##  5 NP               give  animate      inanimate               3.50
+##  6 NP               give  animate      inanimate               3.47
+##  7 NP               give  animate      inanimate               3.47
+##  8 NP               give  animate      inanimate               3.40
+##  9 NP               send  animate      inanimate               3.40
+## 10 NP               give  animate      inanimate               3.37
+## # … with 893 more rows</code></pre>
+<p>Another useful function is the <code>select()</code> function which allows you to create new dataframes using only columns you want.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="working-with-data.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create the new dataframe using select</span></span>
+<span id="cb42-2"><a href="working-with-data.html#cb42-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">select</span>(data, Verb, LengthOfTheme)</span>
+<span id="cb42-3"><a href="working-with-data.html#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="working-with-data.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print the head</span></span>
+<span id="cb42-5"><a href="working-with-data.html#cb42-5" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 903 × 2
+##    Verb  LengthOfTheme
+##    &lt;fct&gt;         &lt;dbl&gt;
+##  1 feed          2.64 
+##  2 give          1.10 
+##  3 give          2.56 
+##  4 give          1.61 
+##  5 offer         1.10 
+##  6 give          1.39 
+##  7 pay           1.39 
+##  8 bring         0    
+##  9 teach         2.40 
+## 10 give          0.693
+## # … with 893 more rows</code></pre>
+<p>Another useful function is <code>sample_n()</code> which randomly samples some number of datapoints.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="working-with-data.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_n</span>(data, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 5
+##   RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
+##   &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
+## 1 NP               give  animate      inanimate              0.693
+## 2 NP               sell  animate      inanimate              0    
+## 3 PP               give  animate      inanimate              1.61 
+## 4 PP               pay   animate      inanimate              1.39 
+## 5 PP               offer inanimate    inanimate              1.95</code></pre>
+<p>Two other useful functions are <code>group_by()</code> and <code>ungroup()</code>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="working-with-data.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s group a small portion of the data by the realization of recipient</span></span>
+<span id="cb46-2"><a href="working-with-data.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], RealizationOfRec)</span></code></pre></div>
+<pre><code>## # A tibble: 903 × 5
+## # Groups:   RealizationOfRec [2]
+##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
+##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
+##  1 NP               feed  animate      inanimate              2.64 
+##  2 NP               give  animate      inanimate              1.10 
+##  3 NP               give  animate      inanimate              2.56 
+##  4 NP               give  animate      inanimate              1.61 
+##  5 NP               offer animate      inanimate              1.10 
+##  6 NP               give  animate      inanimate              1.39 
+##  7 NP               pay   animate      inanimate              1.39 
+##  8 NP               bring animate      inanimate              0    
+##  9 NP               teach animate      inanimate              2.40 
+## 10 NP               give  animate      inanimate              0.693
+## # … with 893 more rows</code></pre>
+<p>Now let us group the data by verbs.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="working-with-data.html#cb48-1" aria-hidden="true" tabindex="-1"></a>data_grouped_by_verb <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data,Verb)</span></code></pre></div>
+<p>An important but complex function is the <code>summarize()</code> function.</p>
+<ol style="list-style-type: decimal">
+<li>It divides a grouped data frame into subsets, with each subset corresponding to one value of the grouping variable (or a combination of values for several grouping variables).</li>
+<li>It computes one or several values we specify on each such subset.</li>
+<li>It creates a new data frame and puts everything together. The first column of this new data frame consists of levels of our grouping variable. In the following columns, the summarize() function prints the results of the computations we have specified.</li>
+</ol>
+<p>Try to guess the result of the following code. What will you see as an output? What will be the name of the columns?</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="working-with-data.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarize several variables</span></span>
+<span id="cb49-2"><a href="working-with-data.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(data_grouped_by_verb, </span>
+<span id="cb49-3"><a href="working-with-data.html#cb49-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">prop_animate_rec =</span> <span class="fu">mean</span>( AnimacyOfRec <span class="sc">==</span> <span class="st">&quot;animate&quot;</span> ),</span>
+<span id="cb49-4"><a href="working-with-data.html#cb49-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">prop_animate_theme =</span> <span class="fu">mean</span>( AnimacyOfTheme <span class="sc">==</span> <span class="st">&quot;animate&quot;</span> ),</span>
+<span id="cb49-5"><a href="working-with-data.html#cb49-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">N =</span> <span class="fu">n</span>()</span>
+<span id="cb49-6"><a href="working-with-data.html#cb49-6" aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div>
+<pre><code>## # A tibble: 65 × 4
+##    Verb     prop_animate_rec prop_animate_theme     N
+##    &lt;fct&gt;               &lt;dbl&gt;              &lt;dbl&gt; &lt;int&gt;
+##  1 accord              1                      0     1
+##  2 allocate            0                      0     3
+##  3 allow               0.833                  0     6
+##  4 assess              1                      0     1
+##  5 assure              1                      0     2
+##  6 award               0.944                  0    18
+##  7 bequeath            1                      0     1
+##  8 bet                 1                      0     1
+##  9 bring               0.818                  0    11
+## 10 carry               1                      0     1
+## # … with 55 more rows</code></pre>
+<p>Try to interpret the output of the following code.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="working-with-data.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the averages of profit</span></span>
+<span id="cb51-2"><a href="working-with-data.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(data_grouped_by_verb, </span>
+<span id="cb51-3"><a href="working-with-data.html#cb51-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">prop_anim =</span> <span class="fu">mean</span>(AnimacyOfRec <span class="sc">==</span> <span class="st">&quot;animate&quot;</span>),</span>
+<span id="cb51-4"><a href="working-with-data.html#cb51-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">prop_inanim =</span> <span class="dv">1</span><span class="sc">-</span>prop_anim,</span>
+<span id="cb51-5"><a href="working-with-data.html#cb51-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">prop_v_recip_anim =</span> <span class="fu">ifelse</span>(prop_anim <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low&quot;</span>)</span>
+<span id="cb51-6"><a href="working-with-data.html#cb51-6" aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div>
+<pre><code>## # A tibble: 65 × 4
+##    Verb     prop_anim prop_inanim prop_v_recip_anim
+##    &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;            
+##  1 accord       1          0      high             
+##  2 allocate     0          1      low              
+##  3 allow        0.833      0.167  high             
+##  4 assess       1          0      high             
+##  5 assure       1          0      high             
+##  6 award        0.944      0.0556 high             
+##  7 bequeath     1          0      high             
+##  8 bet          1          0      high             
+##  9 bring        0.818      0.182  high             
+## 10 carry        1          0      high             
+## # … with 55 more rows</code></pre>
+<p>The last line uses the function ifelse(condition, value1, value2), which, for each element of the condition vector returns the corresponding element of the value1 vector if the condition is true at that element, or an element of vector2 otherwise.</p>
+<p>mutate() proceeds similarly to summarize() in dividing a grouped dataset into subsets, but instead of computing one or several values for each subset, it creates or modifies a column.</p>
+<p>The main difference between mutate() and summarize() is the output. While mutate() modifies the original and returns a modified version of it, summarize() creates a brand new data frame with one row for every combination of the the grouping variable values.</p>
+<p>A very simple application of mutate() is to simply create a new column. In this case, we don’t even need to group.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="working-with-data.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># these two lines performs exactly the same action, </span></span>
+<span id="cb53-2"><a href="working-with-data.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># except the latter stores the result in df </span></span>
+<span id="cb53-3"><a href="working-with-data.html#cb53-3" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>is_realization_NP <span class="ot">&lt;-</span> (data<span class="sc">$</span>RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span> ) </span>
+<span id="cb53-4"><a href="working-with-data.html#cb53-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(data, <span class="at">is_realization_NP =</span> (RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span>
+<span id="cb53-5"><a href="working-with-data.html#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-6"><a href="working-with-data.html#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 6
+##   RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme is_realizat…¹
+##   &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt; &lt;lgl&gt;        
+## 1 NP               feed  animate      inanimate               2.64 TRUE         
+## 2 NP               give  animate      inanimate               1.10 TRUE         
+## # … with abbreviated variable name ¹​is_realization_NP</code></pre>
+<p>One final useful function is the <code>filter()</code> function. It allows you to find rows by particular values of a column.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="working-with-data.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(data, is_realization_NP <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 348 × 6
+##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme is_realiza…¹
+##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt; &lt;lgl&gt;       
+##  1 PP               give  animate      inanimate              0     FALSE       
+##  2 PP               give  inanimate    inanimate              1.79  FALSE       
+##  3 PP               give  animate      inanimate              1.39  FALSE       
+##  4 PP               give  animate      inanimate              1.39  FALSE       
+##  5 PP               sell  animate      inanimate              1.79  FALSE       
+##  6 PP               give  inanimate    inanimate              0.693 FALSE       
+##  7 PP               give  inanimate    inanimate              0.693 FALSE       
+##  8 PP               give  animate      inanimate              1.39  FALSE       
+##  9 PP               send  animate      inanimate              2.56  FALSE       
+## 10 PP               offer animate      inanimate              1.95  FALSE       
+## # … with 338 more rows, and abbreviated variable name ¹​is_realization_NP</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="working-with-data.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(data, LengthOfTheme <span class="sc">&gt;</span> <span class="fl">3.5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 6
+##   RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme is_realizat…¹
+##   &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt; &lt;lgl&gt;        
+## 1 NP               send  animate      inanimate               3.56 TRUE         
+## 2 NP               give  animate      inanimate               3.53 TRUE         
+## 3 NP               give  inanimate    inanimate               3.64 TRUE         
+## # … with abbreviated variable name ¹​is_realization_NP</code></pre>
 
 </div>
 </div>

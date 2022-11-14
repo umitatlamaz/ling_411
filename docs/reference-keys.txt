@@ -26,7 +26,6 @@ working-with-data
 basic-dataframes
 tibbles
 beyond-toy-data
-reading-data-from-a-csv-file.
 reading-data-from-a-csv-file
 reading-data-from-r-data-packages
 summarizing-data
@@ -36,3 +35,7 @@ the-basics-of-ggplot2-1
 using-lines-in-plots
 color-and-fill
 grouping-and-facets
+working-with-dplyr
+compute-the-averages-of-profit
+these-two-lines-performs-exactly-the-same-action
+except-the-latter-stores-the-result-in-df
