@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="working-with-data.html"/>
-
+<link rel="next" href="descriptive-statistics.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -181,6 +181,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="working-with-data.html"><a href="working-with-data.html#summarizing-data"><i class="fa fa-check"></i><b>4.4</b> Summarizing Data</a></li>
 <li class="chapter" data-level="4.5" data-path="working-with-data.html"><a href="working-with-data.html#working-with-dplyr"><i class="fa fa-check"></i><b>4.5</b> Working with dplyr</a></li>
+<li class="chapter" data-level="4.6" data-path="working-with-data.html"><a href="working-with-data.html#pipes"><i class="fa fa-check"></i><b>4.6</b> Pipes</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="working-with-data.html"><a href="working-with-data.html#the-problem"><i class="fa fa-check"></i><b>4.6.1</b> The problem</a></li>
+<li class="chapter" data-level="4.6.2" data-path="working-with-data.html"><a href="working-with-data.html#pipes-1"><i class="fa fa-check"></i><b>4.6.2</b> Pipes</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="plotting-1.html"><a href="plotting-1.html"><i class="fa fa-check"></i><b>5</b> Plotting</a>
 <ul>
@@ -189,6 +194,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="plotting-1.html"><a href="plotting-1.html#using-lines-in-plots"><i class="fa fa-check"></i><b>5.3</b> Using lines in plots</a></li>
 <li class="chapter" data-level="5.4" data-path="plotting-1.html"><a href="plotting-1.html#color-and-fill"><i class="fa fa-check"></i><b>5.4</b> Color and fill</a></li>
 <li class="chapter" data-level="5.5" data-path="plotting-1.html"><a href="plotting-1.html#grouping-and-facets"><i class="fa fa-check"></i><b>5.5</b> Grouping and facets</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions"><i class="fa fa-check"></i><b>6.1</b> Distributions</a></li>
+<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#centraltendency"><i class="fa fa-check"></i><b>6.2</b> Measures of central tendency</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean"><i class="fa fa-check"></i><b>6.2.1</b> The mean</a></li>
+<li class="chapter" data-level="6.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#calculating-the-mean-in-r"><i class="fa fa-check"></i><b>6.2.2</b> Calculating the mean in R</a></li>
+<li class="chapter" data-level="6.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#median"><i class="fa fa-check"></i><b>6.2.3</b> The median</a></li>
+<li class="chapter" data-level="6.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>6.2.4</b> Mean or median? What’s the difference?</a></li>
+<li class="chapter" data-level="6.2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#housingpriceexample"><i class="fa fa-check"></i><b>6.2.5</b> A real life example</a></li>
+<li class="chapter" data-level="6.2.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#trimmedmean"><i class="fa fa-check"></i><b>6.2.6</b> Trimmed mean</a></li>
+<li class="chapter" data-level="6.2.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>6.2.7</b> Mode</a></li>
+<li class="chapter" data-level="6.2.8" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summary"><i class="fa fa-check"></i><b>6.2.8</b> Summary</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -212,7 +232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="plotting-1" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Plotting<a href="plotting-1.html#plotting-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>(14 November, 2022, 09:52)</p>
+<p>(21 November, 2022, 09:53)</p>
 <style type="text/css">
 .r-output {
   font-weight: bold;
@@ -230,19 +250,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Create a synthetic data set and load the <code>ggplot2</code> package to access the plotting functionality.</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="plotting-1.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="plotting-1.html#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">a_sq=</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)<span class="sc">^</span><span class="dv">2</span>, <span class="at">my_group =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>))</span>
+<span id="cb1-2"><a href="plotting-1.html#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">a_sq=</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)<span class="sc">^</span><span class="dv">2</span>, <span class="at">my_group =</span> <span class="fu">c</span>(<span class="st">&quot;weekday&quot;</span>,<span class="st">&quot;weekend&quot;</span>))</span>
 <span id="cb1-3"><a href="plotting-1.html#cb1-3" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre class="r-output"><code>##     a a_sq my_group
-## 1   1    1        a
-## 2   2    4        b
-## 3   3    9        a
-## 4   4   16        b
-## 5   5   25        a
-## 6   6   36        b
-## 7   7   49        a
-## 8   8   64        b
-## 9   9   81        a
-## 10 10  100        b</code></pre>
+## 1   1    1  weekday
+## 2   2    4  weekend
+## 3   3    9  weekday
+## 4   4   16  weekend
+## 5   5   25  weekday
+## 6   6   36  weekend
+## 7   7   49  weekday
+## 8   8   64  weekend
+## 9   9   81  weekday
+## 10 10  100  weekend</code></pre>
 <ul>
 <li>Take a look at the following code and the resulting plots. Can you tell what parts that start with geom_… does?</li>
 </ul>
@@ -360,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>We can introduce our new facets with the function <code>facet_wrap()</code>. Keep in mind that the grouping variable is introduced with <code>~</code>.</li>
 <li>The name of the groups can be seen at the top of the plots.</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="plotting-1.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(a, a_sq, <span class="at">group =</span> my_group)) <span class="sc">+</span> <span class="fu">geom_point</span>()  <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>my_group)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="plotting-1.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(a, a_sq, <span class="at">color =</span> my_group)) <span class="sc">+</span> <span class="fu">geom_point</span>()  <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>my_group)</span></code></pre></div>
 <p><img src="main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 
 </div>
@@ -370,8 +390,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="working-with-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="working-with-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="descriptive-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

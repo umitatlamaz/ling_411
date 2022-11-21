@@ -33,7 +33,7 @@ source("./source/r_functions.R")
 - Create a synthetic data set and load the `ggplot2` package to access the plotting functionality.
 ```{r, error=T}
 library(ggplot2)
-df <- data.frame(a=1:10, a_sq=(1:10)^2, my_group = c("a","b"))
+df <- data.frame(a=1:10, a_sq=(1:10)^2, my_group = c("weekday","weekend"))
 df
 ```
 
@@ -166,5 +166,5 @@ ggplot(df, aes(a, a_sq, group = my_group)) + geom_point()  + geom_line()
 - The name of the groups can be seen at the top of the plots. 
 
 ```{r, error=T}
-ggplot(df, aes(a, a_sq, group = my_group)) + geom_point()  + geom_line() + facet_wrap(~my_group)
+ggplot(df, aes(a, a_sq, color = my_group)) + geom_point()  + geom_line() + facet_wrap(~my_group)
 ```

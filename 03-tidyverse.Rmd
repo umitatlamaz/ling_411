@@ -275,7 +275,7 @@ Try to interpret the output of the following code.
 
 ```{r}
 
-# compute the averages of profit
+# compute the averages
 summarize(data_grouped_by_verb, 
           prop_anim = mean(AnimacyOfRec == "animate"),
           prop_inanim = 1-prop_anim,
@@ -314,3 +314,104 @@ filter(data, is_realization_NP == FALSE)
 filter(data, LengthOfTheme > 3.5)
 ```
 
+## Pipes
+
+### The problem
+
+- The code below is really hard to read, even harder to maintain, and `dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme` is a terribly long variable name.
+```{r, error=T}
+dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme <-
+      group_by(dativeSimplified, AnimacyOfRec, AnimacyOfTheme)
+df <- summarize(dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme, 
+                  perc_NP = mean(RealizationOfRec == "NP") )
+df
+```
+
+- This alternative is also quite bad. To read this code, you need to know which bracket matches which other bracket.
+```{r, error=T}
+df <- summarize(group_by(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), 
+                  perc_NP = mean(RealizationOfRec == "NP") )
+df
+```
+
+- One nested function call may be OK. But try to read this.
+```{r, error=T}
+df <- dplyr::summarize(group_by(mutate(dativeSimplified, long_theme = ifelse(LengthOfTheme > 1.6, "long", "short") ), long_theme),
+              perc_NP = mean(RealizationOfRec == "NP")
+              )
+```
+
+- Or consider this expression (`sqrt` is the square root.)
+```{r, error=T}
+sqrt(divide_by(sum(divide_by(2,3), multiply_by(2,3)), sum(3,4)))
+```
+
+- Luckily, there a better way to write this expression.
+
+### Pipes
+- The problem is that we have too many levels of embedding.
+- In natural language we avoid multiple embeddings of that sort by making shorter sentences, and using anaphors to refer to previous discourse.
+- The packages **dplyr** and **magrittr** provide a limited version of such functionality, and we'll need to use **pipe** operators (`%>%` and `%<>%`) to link expressions with an 'anaphoric dependency'.
+- Whenever you see `%>%`, you can think about it as the following: "Take whatever is on the left side, and use it in the function that is on the right side."
+```{r, error=T}
+library(dplyr)
+library(magrittr)
+# Typical notation. Read as "Divide 10 by 2."
+divide_by(10, 2)
+
+# Equivalent pipe notation. Read as "Take 10, and divide it by 2."
+10 %>% divide_by(., 2)
+
+# Equivalent pipe notation. Read as "Take 2, and divide 10 by it."
+2 %>% divide_by(10, .)
+```
+
+- If the dot operator occurs in the first argument slot, it can be omitted. (R has pro-drop.)
+```{r, error=T}
+# pipe notation with omission of '.'
+10 %>% divide_by(2)
+```
+
+- Let's see how it can resolve the mess below. (Repetition of previous example.)
+```{r, error=T}
+df <- mutate(group_by(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), 
+                  perc_NP = mean(RealizationOfRec == "NP") )
+df
+```
+
+- And here is the much more readable version of this code:
+```{r, error=T}
+df <-  dativeSimplified %>%
+          mutate(., long_theme = ifelse(LengthOfTheme > 1.6, "long", "short") ) %>% 
+          group_by(., long_theme) %>% 
+          dplyr::summarize(., perc_NP = mean(RealizationOfRec == "NP") )
+```
+- We don't actually need the dot:
+```{r, error=T}
+df <-  dativeSimplified %>%
+          mutate(long_theme = ifelse(LengthOfTheme > 1.6, "long", "short") ) %>% 
+          group_by(long_theme) %>% 
+          dplyr::summarize(perc_NP = mean(RealizationOfRec == "NP") )
+```
+
+
+- The `%<>%` operator is a convenient combination of `%>%` and `<-` which you can use to directly modify an object.
+
+```{r, error=T}
+# load the package magrittr in order to access the assignment pipe operator
+library(magrittr)
+
+# create a vector with numbers from 1 to 10
+x <- 1:10
+# keep only numbers < 5:
+#   (i) without %<>%
+x <- x[x<5]
+#   (i) with %<>%
+x %<>% .[.<5]
+```
+
+```{r, error=T}
+# lets add several columns to 'dativeSimplified'
+dativeSimplified %<>% mutate(A=1, B=2, C=3, D=4)
+head(dativeSimplified)
+```
