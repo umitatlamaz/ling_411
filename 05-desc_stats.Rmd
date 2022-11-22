@@ -56,7 +56,7 @@ uniform
 
 ```
 
-Let us plot the uniform data using a histogram. 
+Let us plot the uniformly distributed data using a histogram. 
 
 ```{r histogram2, fig.cap="Histogram of a uniform distribution.", echo=TRUE}
 ggplot(uniform, aes(value)) +
@@ -75,7 +75,7 @@ normal <- as_tibble(rnorm(160))
 
 ```
 
-Let us plot the uniform data using a histogram. 
+Let us plot the normally distributed data using a histogram. 
 
 ```{r histogram3, fig.cap="Histogram of a normal distribution.", echo=TRUE}
 ggplot(normal, aes(value)) +
@@ -92,7 +92,7 @@ normal2 <- as_tibble(rnorm(160, mean = 8, sd= 0.5))
 
 ```
 
-Let us plot the uniform data using a histogram. 
+Let us plot the seconf normally distributed data using a histogram. 
 
 ```{r histogram4, fig.cap="Histogram of a normal distribution.", echo=TRUE}
 ggplot(normal2, aes(value)) +
@@ -101,6 +101,8 @@ ggplot(normal2, aes(value)) +
                        fill = 'steelblue')
 ```
 
+
+Finally, let us plot both of the normally distributed data on the same plot to see them side by side.
 
 ```{r histogram5, fig.cap="Histogram of two normal distributions side by side.", echo=TRUE}
 ggplot(normal, aes(value)) +
@@ -111,6 +113,19 @@ ggplot(normal, aes(value)) +
                        color = 'black',
                        fill = 'steelblue')
 ```
+
+
+
+```{r normaldatadistributions, echo=FALSE, fig.cap="Distributions with different means and standard deviations."}
+knitr::include_graphics("./img/descriptives2/data_distribution.png")
+
+```
+
+```{r normalparameterdistributions, echo=FALSE, fig.cap="Distributions with different means and standard deviations. The light gray area covers the 68% of the data and the total of the gray areas cover the 95% of the data."}
+knitr::include_graphics("./img/descriptives2/normal_distribution.png")
+
+```
+
 
 ## Measures of central tendency{#centraltendency}
 
@@ -231,6 +246,15 @@ knitr::include_graphics("./img/descriptives2/meanmedian.png")
 - One consequence is that there's systematic differences between the mean and the median when the histogram is asymmetric (skewed; see Section \@ref(skewandkurtosis)). This is illustrated in Figure \@ref(fig:meanmedian) notice that the median (right hand side) is located closer to the "body" of the histogram, whereas the mean (left hand side) gets dragged towards the "tail" (where the extreme values are). 
 - To give a concrete example, suppose Bob (income \$50,000), Kate (income \$60,000) and Jane (income \$65,000) are sitting at a table: the average income at the table is \$58,333 and the median income is \$60,000. Then Bill sits down with them (income \$100,000,000). The average income has now jumped to \$25,043,750 but the median rises only to \$62,500. If you're interested in looking at the overall income at the table, the mean might be the right answer; but if you're interested in what counts as a typical income at the table, the median would be a better choice here.
 
+
+
+```{r meanmedian2, echo=FALSE, fig.cap="Another example of mean and median where mean is moved by the outliers but median is constant."}
+knitr::include_graphics("./img/descriptives2/mean_median.png")
+
+```
+
+
+
 <!--
 ### A real life example{#housingpriceexample}
 - Income example
@@ -293,7 +317,7 @@ library(engsoccerdata)
 table(champs$tiewinner) %>% sort(decreasing=T) %>% .[1:25]
 
 ```
-- It appears that the mode of the winning team is 'Real Madrid'. That doesn't come as a surprise even to me.
+- It appears that the mode of the winning team is 'Real Madrid'.
 - Of course, the mode is the right (and only) summary for nominal variables.
 
 - But we can compute a mode for all types of variables. For example, let's take a look at the mean, median, and mode of the total number of goals per game.
@@ -319,13 +343,13 @@ mean_goals <- mean(champs$total_goals)
 median_goals <- median(champs$total_goals)
 mode_goals <- modeOf(champs$total_goals)
 
-ggplot(champs, aes(total_goals)) + geom_histogram() + 
-    geom_vline(xintercept = mean_goals, color = "red") + 
-    geom_vline(xintercept = median_goals, color = "blue") + 
-    geom_vline(xintercept = mode_goals, color = "green") + 
-    geom_text(data=NULL, x = mean_goals-.6, y=1470, label = "mean", color = "red") +
-    geom_text(data=NULL, x = median_goals+.75, y=1500, label = "median", color = "blue") +
-    geom_text(data=NULL, x = mode_goals-.6, y=1530, label = "mode", color = "green")
+ggplot(champs, aes(total_goals)) + geom_histogram(fill= 'dimgrey') + 
+    geom_vline(xintercept = mean_goals, color = "indianred") + 
+    geom_vline(xintercept = median_goals, color = "steelblue") + 
+    geom_vline(xintercept = mode_goals, color = "yellowgreen") + 
+    geom_text(data=NULL, x = mean_goals-.6, y=1470, label = "mean", color = "indianred") +
+    geom_text(data=NULL, x = median_goals+.75, y=1500, label = "median", color = "steelblue") +
+    geom_text(data=NULL, x = mode_goals-.6, y=1530, label = "mode", color = "yellowgreen")
 
 ```
 
@@ -342,3 +366,584 @@ median: "What is the income of the middle household?"
 mode: "If we choose a household at random, what is its income most likely to be?"
 trimmed mean: "What is the mean income of those who have work? (i.e., how much *can* one expect to earn *if* one finds a job)"
 -->
+
+## Measures of variability{#var}
+
+- The statistics that we've discussed so far all relate to *central tendency*. That is, they all talk about which values are "in the middle" or "popular" in the data. 
+- The second thing that we really want is a measure of the **_variability_** of the data. 
+  * That is, how "spread out" are the data? 
+  * In other words, how 'representative' is our measure of central tendency of most data points.
+- Let's consider interval and ratio scale data.
+
+### Range{#range}
+
+- The **_range_** of a variable is very simple: it's the biggest value minus the smallest value. For the sleep data, the maximum value is 20, and the minimum value is 2. We can calculate these values in R using the `max()` and `min()` functions:
+```{r}
+max( mammalian_sleep$sleep_total_h )
+min( mammalian_sleep$sleep_total_h )
+```
+where I've omitted the output because it's not interesting. 
+
+- The other possibility is to use the `range()` function; which outputs both the minimum value and the maximum value in a vector, like this:
+```{r}
+range( mammalian_sleep$sleep_total_h )
+
+```
+
+- Although the range is the simplest way to quantify the notion of "variability", it's one of the worst. Recall from our discussion of the mean that we want our summary measure to be robust. If the data set has one or two extremely bad values in it, we'd like our statistics not to be unduly influenced by these cases. If we look once again at our toy example of a data set containing very extreme outliers...
+$$
+-100,2,3,4,5,6,7,8,9,10
+$$
+... it is clear that the range is not robust, since this has a range of 110, but if the outlier were removed we would have a range of only 8.
+
+### Quantiles and percentile
+
+- A key concept we will need to build on to conceptualize several other measures of variability are **_quantiles_** or **_percentiles_**.
+- A **_percentile_** is the smallest value in a dataset such that a set percentage is smaller than it. (A **_quantile_** does pretty much the same but is more generic.)
+- For example, if the 10-th percentile (i.e., the $0.1$ quantile) of a list of values is 73, this means that 10 percent of the values are smaller than or equal to 73.
+
+- Let's take a look at the 20 shortest sorted sleep durations and determine the 10-th percentile ($0.1$ quantile), 30-th percentile ($0.3$ quantile), 50-th percentile ($0.5$ quantile), and the 90-th percentile ($0.9$ quantile).
+
+- Here are the values:
+
+```{r}
+sort(mammalian_sleep$sleep_total_h)[1:20]
+```
+
+- And here is a sorted plot of the 20 smallest values:
+
+```{r}
+quantile <- c(0.1,0.3,0.5,0.9)
+quantile_points <- c(0.1,0.3,0.5,0.9)*20
+quantile_labels <- sprintf("%0.1f quantile\n(point %d of 20)", quantile, quantile_points)
+ggplot(data=NULL, aes(x=1:20, y=sort(mammalian_sleep$sleep_total_h)[1:20])) + 
+    geom_point() + 
+    geom_vline(xintercept = quantile_points) + 
+    geom_label(aes(x=quantile_points, y=6.5, label=quantile_labels )) +
+    scale_x_continuous(breaks = 1:20) + xlab("Position in ordered vector") + ylab("Sleep (hours)")
+```
+
+- As you can see:
+  * 10-th percentile ($0.1$ quantile): 3 [to be found at position 2, since 2 data points constitute 10 percent of the data] 
+  * 30-th percentile ($0.3$ quantile): 3 [to be found at position 6, since 6 data points constitute 30 percent of the data]
+  * 50-th percentile ($0.5$ quantile): 4 [to be found at position 10, since 10 data points constitute 50 percent of the data]
+  * 90-th percentile ($0.9$ quantile): 6 [to be found at position 18, since 18 data points constitute 90 percent of the data]
+- The 50-th percentile is the median.
+
+
+
+### Interquartile range
+
+- The **_interquartile range_** (IQR) is like the range, but instead of calculating the difference between the biggest and smallest value, it calculates the difference between the 25th quantile and the 75th quantile. 
+- R provides you with a way of calculating quantiles, using the (surprise, surprise) `quantile()` function. Let's use it to calculate the median sleep durations:
+```{r}
+quantile( x = mammalian_sleep$sleep_total_h, probs = .5)
+```
+- And not surprisingly, this agrees with the answer that we saw earlier with the `median()` function. Now, we can actually input lots of quantiles at once, by specifying a vector for the `probs` argument. So lets do that, and get the 25th and 75th percentile:
+```{r}
+quantile( x = mammalian_sleep$sleep_total_h, probs = c(.25,.75) )
+```
+- And, by noting that $14 - 8 = 6$, we can see that the interquartile range for the sleep durations is 6. Of course, that seems like too much work to do all that typing, so R has a built in function called `IQR()` that we can use:
+```{r}
+IQR( x = mammalian_sleep$sleep_total_h )
+```
+- While it's obvious how to interpret the range, it's a little less obvious how to interpret the IQR. The simplest way to think about it is like this: the interquartile range is the range spanned by the "middle half" of the data. That is, one quarter of the data falls below the 25th percentile, one quarter of the data is above the 75th percentile, leaving the "middle half" of the data lying in between the two. And the IQR is the range covered by that middle half.
+
+
+### Mean absolute deviation{#aad}
+
+- The range and the interquartile range, both rely on the idea that we can measure the spread of the data by looking at the quantiles of the data.
+- However, this isn't the only way to think about the problem. A different approach is to select a meaningful reference point (usually the mean or the median) and then report the **_"typical" deviations_** from that reference point. 
+<!--
+- What do we mean by "typical" deviation? Usually, the mean or median value of these deviations! In practice, this leads to two different measures, the "mean absolute deviation (from the mean)" and the "median absolute deviation (from the median)". From what I've read, the measure based on the median seems to be used in statistics, and does seem to be the better of the two, but to be honest I don't think I've seen it used much in psychology. The measure based on the mean does occasionally show up in psychology though. In this section I'll talk about the first one, and I'll come back to talk about the second one later.
+-->
+
+- Let's go through the **_mean absolute deviation_** (AAD for average absolute deviation, since MAD is reserved for the median absolute deviation) from the mean a little more slowly. One useful thing about this measure is that the name actually tells you exactly how to calculate it:
+$$
+AAD(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}|
+$$
+
+
+- Let's compute the AAD for the first data points in the sleep data:
+$$
+12, 17, 14, 15, 4
+$$
+- The mean of the dataset is 12.4. That is, $\bar{X} = 12.4$
+- The deviations $X_i - \bar{X}$ are:
+$$
+-0.4, 4.6, 1.6, 2.6, -8.4
+$$
+- The absolute deviations $|X_i - \bar{X}|$ are:
+$$
+0.4, 4.6, 1.6, 2.6, 8.4
+$$
+- The sum of the absolute deviations $\sum_{i = 1}^N |X_i - \bar{X}|$ is 17.6.
+
+- And $N=5$, which means, that, in our case: $AAD(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}| = 3.52$
+
+- In R, we can compute it for the entire vector. 
+
+```{r}
+mean_sleep <- mean(mammalian_sleep$sleep_total_h)
+deviation_sleep <- mean_sleep - mammalian_sleep$sleep_total_h
+mean( abs(deviation_sleep) )
+```
+
+- An alternative, more compact way to write it is using (lots) pipes:
+
+```{r}
+mammalian_sleep$sleep_total_h %>% subtract(., mean(.)) %>% abs() %>% mean()
+```
+
+
+- The interpretation of the AAD is quite straightforward: It is the average distance from the average. When it's big, the values are quite spread out. When it's small, they are close. The units are the same (hours in our case).
+
+<!--
+and once again we'll start by pretending that there's only 5 games in total, with winning margins of 56, 31, 56, 8 and 32. Since our calculations rely on an examination of the deviation from some reference point (in this case the mean), the first thing we need to calculate is the mean, $\bar{X}$. For these five observations, our mean is $\bar{X} = 36.6$. The next step is to convert each of our observations $X_i$ into a deviation score. 
+
+We do this by calculating the difference between the observation $X_i$ and the mean $\bar{X}$. That is, the deviation score is defined to be $X_i - \bar{X}$. For the first observation in our sample, this is equal to $56 - 36.6 = 19.4$. Okay, that's simple enough. The next step in the process is to convert these deviations to absolute deviations. As we discussed earlier when talking about  the `abs()` function in R (Section \@ref(usingfunctions)), we do this by converting any negative values to positive ones. Mathematically, we would denote the absolute value of $-3$ as $|-3|$, and so we say that $|-3| = 3$. We use the absolute value function here because we don't really care whether the value is higher than the mean or lower than the mean, we're just interested in how *close* it is to the mean. To help make this process as obvious as possible, the table below shows these calculations for all five observations:
+
+
+
+```{r echo=FALSE}
+knitr::kable(rbind(
+              c("winning margin, game 1", "$X_1$", "56 points"),
+              c("winning margin, game 2", "$X_2$", "31 points"),
+              c("winning margin, game 3", "$X_3$", "56 points"),
+              c("winning margin, game 4", "$X_4$", "8 points"),
+              c("winning margin, game 5", "$X_5$", "32 points")),
+col.names = c("the observation", "its symbol", "the observed value"),
+  booktabs = TRUE)
+
+```
+
+Now that we have calculated the absolute deviation score for every observation in the data set, all that we have to do to calculate the mean of these scores. Let's do that:
+$$
+\frac{19.4 + 5.6 + 19.4 + 28.6 + 4.6}{5} = 15.52
+$$
+And we're done. The mean absolute deviation for these five scores is 15.52. 
+
+However, while our calculations for this little example are at an end, we do have a couple of things left to talk about. Firstly, we should really try to write down a proper mathematical formula. But in order do to this I need some mathematical notation to refer to the mean absolute deviation. Irritatingly, "mean absolute deviation" and "median absolute deviation" have the same acronym (MAD), which leads to a certain amount of ambiguity, and since R tends to use MAD to refer to the median absolute deviation, I'd better come up with something different for the mean absolute deviation. Sigh. What I'll do is use AAD instead, short for *average* absolute deviation. Now that we have some unambiguous notation, here's the formula that describes what we just calculated:
+$$
+\mbox{}(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}|
+$$
+
+The last thing we need to talk about is how to calculate AAD in R. One possibility would be to do everything using low level commands, laboriously following the same steps that I used when describing the calculations above. However, that's pretty tedious. You'd end up with a series of commands that might look like this:
+```{r}
+X <- c(56, 31,56,8,32)   # enter the data
+X.bar <- mean( X )       # step 1. the mean of the data
+AD <- abs( X - X.bar )   # step 2. the absolute deviations from the mean
+AAD <- mean( AD )        # step 3. the mean absolute deviations
+print( AAD )             # print the results
+
+```
+
+Each of those commands is pretty simple, but there's just too many of them. And because I find that to be too much typing, the `lsr` package has a very simple function called `aad()` that does the calculations for you. If we apply the `aad()` function to our data, we get this:
+```{r}
+library(lsr)
+aad( X )
+
+```
+No suprises there.
+-->
+
+
+### Variance 
+
+- Although the mean absolute deviation measure has its uses, it's not the best measure of variability to use. 
+
+- For a number of practical reasons, there are some solid reasons to prefer squared deviations rather than absolute deviations. A measure of variability based on *squared deviations* has a number of useful properties in *inferential statistics* and *statistical modeling*.^[I will very briefly mention the one that I think is coolest, for a very particular definition of "cool", that is. Variances are *additive*. Here's what that means: suppose I have two variables $X$ and $Y$, whose variances are $\mbox{Var}(X)$ and $\mbox{Var}(Y)$ respectively. Now imagine I want to define a new variable $Z$ that is the sum of the two, $Z = X+Y$. As it turns out, the variance of $Z$ is equal to $\mbox{Var}(X) + \mbox{Var}(Y)$. This is a *very* useful property, but it's not true of the other measures that I talk about in this section.]
+
+
+- If we do that, we obtain a measure is called the **_variance_**, which for a specific set of observations $X$ is written $\mbox{s}_X^2$. It is the most wide-spread measure of variability because it is a key concept in *inferential statistics*.
+
+- The formula that we use to calculate the variance of a set of observations is as follows:
+$$
+\mbox{s}_X^2 = \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2
+$$
+
+- As you can see, it's basically the same formula that we used to calculate the mean absolute deviation, except that:
+  1. Instead of using "absolute deviations" we use "squared deviations".
+  2. Instead of dividing by $N$ (which gives us the average deviation), we divide by $N-1$ (which gives us *'sort-of-the-average'*). [We will talk about this in a little while.]
+  
+<!--
+  . It is for this reason that the variance is sometimes referred to as the "mean square deviation".
+-->
+
+- Now that we've got the basic idea, let's have a look at a concrete example. Once again, let's use the first five sleep durations. If we follow the same approach that we took last time, we end up with the following table:
+
+```{r echo=FALSE}
+knitr::kable(rbind(c("",1 , 12 , -0.4 , 0.16),
+                   c("",2 , 17 , 4.6 , 21.16),
+                   c("",3 , 14 , 1.6 , 2.56),
+                   c("",4 , 15, 2.6  , 6.76),
+                   c("",5 , 4,  -8.4 , 70.56)),
+caption = 'Regular, abssolute, and squared deviations',col.names = c("Notation [English]", 
+                                                       "$i$ [animal]",
+                                                       "$X_i$ [value]",
+                                                       "$X_i - \\bar{X}$ [deviation from mean]",
+                                                       "$(X_i - \\bar{X})^2$ [squared deviation]"),
+  booktabs = TRUE)
+```
+
+- That last column contains all of our squared deviations, so all we have to do is average them. If we do that by typing all the numbers into R by hand...
+```{r}
+( 0.16+21.16+2.56+6.76+70.56 ) / (5-1)
+
+```
+
+- We end up with a variance of 25.3. Exciting, isn't it? For the moment, let's ignore the burning question that you're all probably thinking (i.e., what the heck does a variance of 25.3 actually mean?) and instead talk a bit more about how to do the calculations in R.
+
+- As always, we want to avoid having to type in a whole lot of numbers ourselves. And as it happens, we have the vector `X` lying around, which we created in the previous section. With this in mind, we can calculate the variance of `X` by using the following command,
+```{r}
+X <- mammalian_sleep$sleep_total_h[1:5]
+(X - mean(X) )^2 / (length(X) - 1)
+
+```
+and as usual we get the same answer as the one that we got when we did everything by hand. However, I *still* think that this is too much typing. Fortunately, R has a built in function called `var()` which does calculate variances. So we could also do this...
+```{r}
+var(X)
+```
+and you get the same answer. Great.
+
+
+### Standard deviation{#sd}
+
+- One problem with the variance is that it is expressed in odd units. In the case above it's $h^2$ (*hours squared*). I know what $m^2$ is, but what are $h^2$? No idea.
+- Suppose that you'd like to have a measure that is expressed in the same units as the data itself (i.e., points, not points-squared). What should you do? 
+- The solution to the problem is obvious: take the square root of the variance, known as the **_standard deviation_**, also called the "root mean squared deviation", or RMSD. This solves out problem fairly neatly.
+- While nobody has a clue what *"a variance of 19.95 hours-squared"* really means, it's much easier to understand *"a standard deviation of 4.5 hours"*, since it's expressed in the original units. 
+- It is traditional to refer to the standard deviation of a sample of data as $s_x$, though "sd" and "std dev." are also used at times. Because the standard deviation is equal to the square root of the variance, you probably won't be surprised to see that the formula is:
+$$
+s_x = \sqrt{ \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2 }
+$$
+<!--
+and the R function that we use to calculate it is `sd()`. 
+However, as you might have guessed from our discussion of the variance, what R actually calculates is slightly different to the formula given above. Just like the we saw with the variance, what R calculates is a version that divides by $N-1$ rather than $N$. 
+For reasons that will make sense when we return to this topic in Chapter@refch:estimation I'll refer to this new quantity as $\hat\sigma$ (read as: "sigma hat"), and the formula for this is
+$$
+\hat\sigma = \sqrt{ \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2 }
+$$
+With that in mind, calculating standard deviations in R is simple:
+```{r}
+sd( mammalian_sleep$sleep_total_h ) 
+
+```
+-->
+
+- Interpreting standard deviations is slightly more complex. Because the standard deviation is derived from the variance, and the variance is a quantity that has little to no meaning that makes sense to us humans, the standard deviation doesn't have a simple interpretation. 
+- As a consequence, most of us just rely on a **simple rule of thumb**: **"in general, you should expect 68% of the data to fall within 1 standard deviation of the mean, 95% of the data to fall within 2 standard deviation of the mean, and 99.7% of the data to fall within 3 standard deviations of the mean"**. This rule tends to work pretty well most of the time, but it's not exact: it's actually calculated based on an *assumption* that the histogram is symmetric and "bell shaped". (Strictly, the assumption is that the data are *normally* distributed, which is an important concept that we'll discuss more later).
+
+<!-- , applied to the AFL winning margins data. The shaded bars in the histogram show how much of the data fall within one standard deviation of the mean. In this case, 65.3% of the data set lies within this range, which is pretty consistent with the \"approximately 68% rule\" discussed in the main text -->
+```{r aflsd, echo=T, fig.cap="An illustration of the standard deviation."}
+
+  p <- mammalian_sleep %>% 
+        ggplot(aes(sleep_total_h)) + 
+        geom_histogram(binwidth = 1, 
+                       color = "black", 
+                       fill = "lightgrey")
+
+  sleep_sd <- sd(mammalian_sleep$sleep_total_h)
+  sleep_mean <- mean(mammalian_sleep$sleep_total_h)
+  bars <- c(sleep_mean-sleep_sd, sleep_mean, sleep_mean+sleep_sd)
+  bar_labels <- c("mean-1*sd", "mean", "mean+1*sd")
+  p <- p + geom_vline(xintercept = bars, color = "red") + 
+      geom_label(data=NULL, aes(x=bars[1], y= 10, label = bar_labels[1])) + 
+      geom_label(data=NULL, aes(x=bars[2], y= 10, label = bar_labels[2])) + 
+      geom_label(data=NULL, aes(x=bars[3], y= 10, label = bar_labels[3]))
+  p
+```
+
+```{r}
+
+  with(mammalian_sleep, mean(sleep_total_h>(sleep_mean-sleep_sd) & sleep_total_h<(sleep_mean+sleep_sd) ))
+```
+
+
+#### Bessel's correction: What's up with all those $N-1$s in the denominator?
+
+- Now, what's going on with that $N-1$, and why do I still call the sample variance a *'sort-of-the-average'* of the squared deviations? Let's address these questions in turn.
+
+- The important thing to note about variance and standard deviation is they serve *two* purposes: They are used to (i) describe a **sample**, but also to (ii) tentatively characterize the larger population from which the sample is.  
+
+- You are *usually* not really interested in the variance of a particular set of numbers, but rather in what they represent. So function number (ii) is the far more dominant use. 
+
+- In our case, when I want to quantify the variability of the sleep durations dataset, it is not these 83 specific mammals I am interested in -- I want to get a sense of the variability among mammals in general. That is, I want to know -- how much do mammals vary *in general*.  These just happen to be a **_sample_** (83 mammals) from the **_population_** (all mammals).
+
+- What I actually want to compute are not the (squared) deviations from the **sample mean** ($\bar{X}$; the average sleep duration of **these** mammals), but from the actual **population mean** ($\mu$; the average sleep duration of **all** mammals). That is, I don't want $( X_i - \bar{X})^2$, I want $( X_i - \mu)^2$.
+
+- But I don't know $\mu$, and the *best guess* I have about it is $\bar{X}$. And this has consequences: $( X_i - \bar{X})^2$ underestimates the distance between $X_i$ and $\mu$ because we use the same data points ($X_i$) to compute the mean ($\bar{X}$) and then determine the distance to them.
+
+<!--
+- Consider what happens to $( X_i - \bar{X})^2$ in the rather extreme cases of
+  * $N=1$? -- The distance is zero.
+  * $N=2$? -- If both points happen to be equidistant to the mean.
+-->
+  
+- The problem becomes smaller as $N$ increases, because it becomes less and less likely that all $N$ points are squarely on one side of the mean.
+
+- Dividing by $N-1$ *'corrects'* this underestimation problem: 
+  * Dividing by a smaller number makes the estimate of the variance bigger.
+  * As $N$ increases the difference between dividing by $N$ and $N-1$ becomes less and less important, and ultimately negligible.
+
+##### Summary
+- To recap, these are the two estimators of the variance, but the second one requires knowledge of the true population mean $\mu$, which we don't know. 
+- Therefore, we use the first one ($s_X^2$), and divide by $N-1$ to avoid underestimating the 'true variance'.
+
+$$
+\mbox{s}_X^2 = \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2
+$$
+
+$$
+\mbox{Var}_X = \frac{1}{N} \sum_{i=1}^N \left( X_i - \mu \right)^2
+$$
+
+<!--
+---
+- Let's simulate this with the sleep data:
+
+```{r}
+n = 5 # sample size
+k = 10 # number of samples
+
+draw_one_sample <- function(idx) {
+  current_sample <- sample(mammalian_sleep$sleep_total_h, size = n)
+  data.frame(sample_index=idx, sleep_total_h = current_sample, sample_mean = mean(current_sample))
+}
+
+set.seed(1234)
+samples_of_5 <- plyr::ldply(1:k, draw_one_sample)
+
+p_all_83_mammals <- ggplot(mammalian_sleep, aes(sleep_total_h)) + geom_histogram(binwidth = 2, color="black") + geom_vline(aes(xintercept = mean(sleep_total_h) ), color = "red")
+
+p_samples <- ggplot(samples_of_5, aes(sleep_total_h)) + geom_histogram(binwidth = 2, color="black") + facet_wrap(~paste("sample", sample_index), nrow=1) + geom_vline(aes(xintercept = sample_mean ), color = "blue") + geom_vline(xintercept = mean(mammalian_sleep$sleep_total_h), color = "red") + scale_x_continuous(breaks=c(0,10,20))
+
+library(ggpubr)
+ggarrange(p_all_83_mammals, p_samples, ncol=1, nrow=2, labels = c("'Population'", "Samples"))
+
+```
+-->
+
+<!--
+
+- The real question is *why* R is dividing by $N-1$ and not by $N$. After all, the variance is supposed to be the *mean* squared deviation, right? So shouldn't we be dividing by $N$, the actual number of observations in the sample? Well, yes, we should. However, there's a subtle distinction between "describing a sample" and "making guesses about the population from which the sample came". Up to this point, it's been a distinction without a difference. Regardless of whether you're describing a sample or drawing inferences about the population, the mean is calculated exactly the same way. Not so for the variance, or the standard deviation, or for many other measures besides. What I outlined to you initially (i.e., take the actual average, and thus divide by $N$) assumes that you literally intend to calculate the variance of the sample. Most of the time, however, you're not terribly interested in the sample *in and of itself*. Rather, the sample exists to tell you something about the world. If so, you're actually starting to move away from calculating a "sample statistic", and towards the idea of estimating a "population parameter". 
+
+Okay, one last thing. This section so far has read a bit like a mystery novel. I've shown you how to calculate the variance, described the weird "$N-1$" thing that R does and hinted at the reason why it's there, but I haven't mentioned the single most important thing... how do you *interpret* the variance? Descriptive statistics are supposed to describe things, after all, and right now the variance is really just a gibberish number. Unfortunately, the reason why I haven't given you the human-friendly interpretation of the variance is that there really isn't one. This is the most serious problem with the variance. Although it has some elegant mathematical properties that suggest that it really is a fundamental quantity for expressing variation, it's completely useless if you want to communicate with an actual human... variances are completely uninterpretable in terms of the original variable! All the numbers have been squared, and they don't mean anything anymore. This is a huge issue. For instance, according to the table I presented earlier, the margin in game 1 was "376.36 points-squared higher than the average margin". This is *exactly* as stupid as it sounds; and so when we calculate a variance of 324.64, we're in the same situation. I've watched a lot of footy games, and never has anyone referred to "points squared". It's *not* a real unit of measurement, and since the variance is expressed in terms of this gibberish unit, it is totally meaningless to a human.
+-->
+
+<!--
+### Median absolute deviation{#mad}
+
+The last measure of variability that I want to talk about is the **_median absolute deviation_** (MAD). The basic idea behind MAD is very simple, and is pretty much identical to the idea behind the mean absolute deviation (Section \@ref(aad)). The difference is that you use the median everywhere. If we were to frame this idea as a pair of R commands, they would look like this:
+
+```{r}
+# mean absolute deviation from the mean:
+#mean( abs(afl.margins - mean(afl.margins)) )
+
+
+# *median* absolute deviation from the *median*:
+#median( abs(afl.margins - median(afl.margins)) )
+```
+This has a straightforward interpretation: every observation in the data set lies some distance away from the typical value (the median). So the MAD is an attempt to describe a *typical deviation from a typical value* in the data set. It wouldn't be unreasonable to interpret the MAD value of 19.5 for our AFL data by saying something like this:
+
+>The median winning margin in 2010 was 30.5, indicating that a typical game involved a winning margin of about 30 points. However, there was a fair amount of variation from game to game: the MAD value was 19.5, indicating that a typical winning margin would differ from this median value by about 19-20 points.
+
+As you'd expect, R has a built in function for calculating MAD, and you will be shocked no doubt to hear that it's called `mad()`. However, it's a little bit more complicated than the functions that we've been using previously. If you want to use it to calculate MAD in the exact same way that I have described it above, the command that you need to use specifies two arguments: the data set itself `x`, and a `constant` that I'll explain in a moment. For our purposes, the constant is 1, so our command becomes
+```{r}
+#mad( x = afl.margins, constant = 1 )
+
+```
+Apart from the weirdness of having to type that `constant = 1` part, this is pretty straightforward.
+
+Okay, so what exactly is this `constant = 1` argument? I won't go into all the details here, but here's the gist. Although the "raw" MAD value that I've described above is completely interpretable on its own terms, that's not actually how it's used in a lot of real world contexts. Instead, what happens a lot is that the researcher *actually* wants to calculate the standard deviation. However, in the same way that the mean is very sensitive to extreme values, the standard deviation is vulnerable to the exact same issue. So, in much the same way that people sometimes use the median as a "robust" way of calculating "something that is like the mean", it's not uncommon to use MAD as a method for calculating "something that is like the standard deviation". Unfortunately, the *raw* MAD value doesn't do this. Our raw MAD value is 19.5, and our standard deviation was 26.07. However, what some clever person has shown is that, under certain assumptions^[The assumption again being that the data are normally-distributed!], you can multiply the raw MAD value by 1.4826 and obtain a number that is directly comparable to the standard deviation. As a consequence, the default value of `constant` is 1.4826, and so when you use the `mad()` command without manually setting a value, here's what you get:
+```{r}
+#mad( afl.margins )
+
+```
+I should point out, though, that if you want to use this "corrected" MAD value as a robust version of the standard deviation, you really are relying on the assumption that the data are (or at least, are "supposed to be" in some sense) symmetric and basically shaped like a bell curve. That's really *not* true for our `afl.margins` data, so in this case I wouldn't try to use the MAD value this way.
+-->
+
+### Which measure to use?
+
+We've discussed quite a few measures of spread (range, IQR, variance and standard deviation). Below is a quick summary. 
+In short, the IQR and the standard deviation are easily the two most common measures used to report the variability of the data.
+
+- *Range*. Gives you the full spread of the data. It's very vulnerable to outliers, and as a consequence it isn't often used unless you have good reasons to care about the extremes in the data.
+- *Interquartile range*. Tells you where the "middle half" of the data sits. It's pretty robust, and complements the median nicely. This is used a lot.
+<!-- 
+- *Mean absolute deviation*. Tells you how far "on average" the observations are from the mean. It's very interpretable, but has a few minor issues (not discussed here) that make it less attractive to statisticians than the standard deviation. Used sometimes, but not often.
+-->
+- *Variance*. Tells you the average squared deviation from the mean. It's mathematically elegant, and is probably the "right" way to describe variation around the mean, but it's completely uninterpretable because it doesn't use the same units as the data. Almost never used except as a mathematical tool; but it's buried "under the hood" of a very large number of statistical tools.
+- *Standard deviation*. This is the square root of the variance. It's fairly elegant mathematically, and it's expressed in the same units as the data so it can be interpreted pretty well. In situations where the mean is the measure of central tendency, this is the default. This is by far the most popular measure of variation. 
+
+
+
+<!--
+## Skew and kurtosis{#skewandkurtosis}
+
+There are two more descriptive statistics that you will sometimes see reported in the psychological literature, known as skew and kurtosis. In practice, neither one is used anywhere near as frequently as the measures of central tendency and variability that we've been talking about. Skew is pretty important, so you do see it mentioned a fair bit; but I've actually never seen kurtosis reported in a scientific article to date. 
+
+```{r eval=F, skewness, fig.cap="An illustration of skewness. On the left we have a negatively skewed data set (skewness $= -.93$), in the middle we have a data set with no skew (technically, skewness $= -.006$), and on the right we have a positively skewed data set (skewness $= .93$).", echo=FALSE}
+library(psych)
+
+	x1 <- rbeta(n = 100000, shape1= 10, shape2 = 2)
+	x2 <- rbeta(n = 100000, shape1= 10, shape2 = 10)
+	x3 <- rbeta(n = 100000, shape1= 2, shape2 = 10)
+	X <- list(x1,x2,x3)
+
+	plot.new()
+	old <- par(no.readonly = TRUE)
+	par(mfrow=c(1,3))
+
+	ttl = c("Negative Skew", "No Skew", "Positive Skew")
+
+	for (i in 1:3) {
+
+	  hist(x = X[[i]],
+	       breaks = seq(0,1,.05),
+	       xlab = "",
+	       ylab = "",
+	       main = ttl[i],
+	       axes = FALSE,
+	       col = "cornflowerblue",
+	       border = "white",
+			font.main = 1
+	       )
+
+	  print(skew(X[[i]]))
+
+	}
+	par( old )
+```
+
+
+Since it's the more interesting of the two, let's start by talking about the **_skewness_**. Skewness is basically a measure of asymmetry, and the easiest way to explain it is by drawing some pictures. As Figure \@ref(fig:skewness) illustrates, if the data tend to have a lot of extreme small values (i.e., the lower tail is "longer" than the upper tail) and not so many extremely large values (left panel), then we say that the data are *negatively skewed*. On the other hand, if there are more extremely large values than extremely small ones (right panel) we say that the data are *positively skewed*. That's the qualitative idea behind skewness. The actual formula for the skewness of a data set is as follows
+$$
+\mbox{skewness}(X) = \frac{1}{N \hat{\sigma}^3} \sum_{i=1}^N (X_i - \bar{X})^3
+$$
+where $N$ is the number of observations, $\bar{X}$ is the sample mean, and $\hat{\sigma}$ is the standard deviation (the "divide by $N-1$" version, that is). Perhaps more helpfully, it might be useful to point out that the `psych` package contains a `skew()` function that you can use to calculate skewness. So if we wanted to use this function to calculate the skewness of the `afl.margins` data, we'd first need to load the package
+```{r eval=F}
+library( psych )
+```
+which now makes it possible to use the following command:
+```{r eval=F}
+skew( x = afl.margins )
+```
+Not surprisingly, it turns out that the AFL winning margins data is fairly skewed.
+
+
+The final measure that is sometimes referred to, though very rarely in practice, is the **_kurtosis_** of a data set. Put simply, kurtosis is a measure of the "pointiness" of a data set, as illustrated in Figure \@ref(fig:kurtosis). 
+
+```{r eval=F, kurtosis, fig.cap="An illustration of kurtosis. On the left, we have a \"platykurtic\" data set (kurtosis = $-.95$), meaning that the data set is \"too flat\". In the middle we have a \"mesokurtic\" data set (kurtosis is almost exactly 0), which means that the pointiness of the data is just about right. Finally, on the right, we have a \"leptokurtic\" data set (kurtosis $= 2.12$) indicating that the data set is \"too pointy\". Note that kurtosis is measured with respect to a normal curve (black line)", echo=FALSE}
+
+	#x1 <- c(rexp(n = 5000, rate =2), -rexp(n = 5000, rate =2) )
+	x3 <- c(rnorm(n = 50000, mean =0, sd = 1), (runif(n = 50000)-.5)+rnorm(50000,0,.1) )*1.6
+	x2 <- rnorm(n = 100000, mean = 0, sd = 1)*1.2
+	x1 <- (runif(n = 100000) + rnorm(100000, mean =0, sd = .1) -.5)*4
+	X <- list(x1,x2,x3)
+
+	plot.new()
+	old <- par(no.readonly = TRUE)
+	par(mfrow=c(1,3))
+
+	ttl = c( 'Platykurtic\n("too flat")','Mesokurtic', 'Leptokurtic\n("too pointy")')
+
+	for (i in 1:3) {
+
+
+		hist(x = X[[i]],
+			breaks = seq(-20.5,20.5,.5),
+			ylim =c(0,.45),
+			xlim = c(-5,5),
+			xlab = "",
+			ylab = "",
+			main = ttl[i],
+			axes = FALSE,
+			freq = FALSE,
+	    col = "cornflowerblue",
+			font.main=1,
+			border = "white"
+		)
+
+		lines(x <- seq(-4,4,.01), y = dnorm(x, mean(X[[i]]), sd(X[[i]])), 
+			lwd = 2, lty = 1, col = "black")
+
+
+		print(kurtosi(X[[i]]))
+
+	}
+	par( old )
+
+```
+
+
+By convention, we say that the "normal curve" (black lines) has zero kurtosis, so the pointiness of a data set is assessed relative to this curve. In this Figure, the data on the left are not pointy enough, so the kurtosis is negative and we call the data *platykurtic*. The data on the right are too pointy, so the kurtosis is positive and we say that the data is *leptokurtic*. But the data in the middle are just pointy enough, so we say that it is *mesokurtic* and has kurtosis zero. This is summarised in the table below:
+
+```{r eval=F, echo=FALSE}
+knitr::kable(rbind(
+                  c("too flat" , "platykurtic", "negative"),
+                  c("just pointy enough", "mesokurtic", "zero"),
+                  c("too pointy", "leptokurtic", "positive")),
+
+col.names = c("informal term", "technical name", "kurtosis value"),
+  booktabs = TRUE)
+```
+
+The equation for kurtosis is pretty similar in spirit to the formulas we've seen already for the variance and the skewness; except that where the variance involved squared deviations and the skewness involved cubed deviations, the kurtosis involves raising the deviations to the fourth power:^[The "$-3$" part is something that statisticians tack on to ensure that the normal curve has kurtosis zero. It looks a bit stupid, just sticking a "-3" at the end of the formula, but there are good mathematical reasons for doing this.]
+$$
+\mbox{kurtosis}(X) = \frac{1}{N \hat\sigma^4} \sum_{i=1}^N \left( X_i - \bar{X} \right)^4  - 3
+$$
+I know, it's not terribly interesting to me either. More to the point, the `psych` package has a function called `kurtosi()` that you can use to calculate the kurtosis of your data. For instance, if we were to do this for the AFL margins, 
+```{r eval=FALSE}
+kurtosi( x = afl.margins )
+
+```
+we discover that the AFL winning margins data are just pointy enough.
+-->
+
+## Getting an overall summary of a variable{#summary}
+
+- It's kind of annoying to have to separately calculate means, medians, standard deviations, etc. Wouldn't it be nice if R had some helpful functions that would do all these tedious calculations at once? Something like `summary()`, perhaps? 
+- The basic idea behind the `summary()` function is that it prints out some useful information about whatever object it receives (e.g., a vector or data frame).
+- Let's take a look at some examples:
+
+### Summarising a vector
+
+#### Numerical vectors
+
+- For numeric variables, we get a whole bunch of useful descriptive statistics. It gives us the minimum and maximum values (and thus the range), the first and third quartiles (25th and 75th percentiles; and thus the IQR), the mean and the median. 
+- In sum, it gives us a pretty good collection of descriptive statistics related to the central tendency and the spread of the data.
+
+```{r eval=T}
+summary( mammalian_sleep$sleep_total_h )  
+```
+
+#### Logical vectors
+- Returns the number of `TRUE` and `FALSE` values.  
+
+```{r eval=T}
+summary( mammalian_sleep$sleep_total_h > 10 )  
+```
+
+#### Factors vectors
+- Returns the number of observations for each factor level.
+
+```{r eval=T}
+summary( as.factor(mammalian_sleep$name[1:10]) )
+```
+
+#### Character vectors
+- Returns almost no useful information except for length.
+
+```{r eval=T}
+summary( mammalian_sleep$name )  
+```
+
+
+### Summarising a data frame
+
+- `summary()` can also be called on a data frame, in which case it returns summaries of all variables.
+
+```{r eval=T}
+summary( mammalian_sleep )  
+```
