@@ -3,9 +3,13 @@ fig:histogram2
 fig:histogram3
 fig:histogram4
 fig:histogram5
+fig:normaldatadistributions
+fig:normalparameterdistributions
 fig:meanmedian
-tab:unnamed-chunk-32
+fig:meanmedian2
+tab:unnamed-chunk-33
 fig:aflsd
+fig:correlations
 getting-started
 disclaimer
 some-great-resources
@@ -73,9 +77,5 @@ logical-vectors
 factors-vectors
 character-vectors
 summarising-a-data-frame
-fig:meanmedian2
-fig:normaldatadistributions
-fig:normalparameterdistributions
+correlations
 housingpriceexample
-mad
-skewandkurtosis

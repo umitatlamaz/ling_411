@@ -223,6 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarising-a-vector"><i class="fa fa-check"></i><b>6.4.1</b> Summarising a vector</a></li>
 <li class="chapter" data-level="6.4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarising-a-data-frame"><i class="fa fa-check"></i><b>6.4.2</b> Summarising a data frame</a></li>
 </ul></li>
+<li class="chapter" data-level="6.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#correlations"><i class="fa fa-check"></i><b>6.5</b> Correlations</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -317,25 +318,25 @@ Figure 6.1: A histogram of the average amount of sleep by animal (the <code>slee
 <div id="distributions" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Distributions<a href="descriptive-statistics.html#distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let us see a couple more data examples to get a sense of what data might look like in the wild. First, let us generate some random data with a <strong>uniform distribution</strong> using the <code>runif()</code> function.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="descriptive-statistics.html#cb12-1" aria-hidden="true" tabindex="-1"></a>uniform <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">runif</span>(<span class="dv">120</span>, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">6</span>))</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="descriptive-statistics.html#cb12-1" aria-hidden="true" tabindex="-1"></a>uniform <span class="ot">&lt;-</span> <span class="fu">as_tibble_col</span>(<span class="fu">runif</span>(<span class="dv">120</span>, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">6</span>),<span class="at">column_name =</span> <span class="st">&quot;some_value&quot;</span>)</span>
 <span id="cb12-2"><a href="descriptive-statistics.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="descriptive-statistics.html#cb12-3" aria-hidden="true" tabindex="-1"></a>uniform</span></code></pre></div>
 <pre><code>## # A tibble: 120 × 1
-##    value
-##    &lt;dbl&gt;
-##  1  1.52
-##  2  1.84
-##  3  2.97
-##  4  4.35
-##  5  2.58
-##  6  4.59
-##  7  3.99
-##  8  5.68
-##  9  4.00
-## 10  4.76
+##    some_value
+##         &lt;dbl&gt;
+##  1       2.05
+##  2       2.79
+##  3       3.75
+##  4       3.38
+##  5       1.92
+##  6       5.02
+##  7       5.98
+##  8       4.35
+##  9       2.27
+## 10       1.04
 ## # … with 110 more rows</code></pre>
 <p>Let us plot the uniformly distributed data using a histogram.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="descriptive-statistics.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(uniform, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="descriptive-statistics.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(uniform, <span class="fu">aes</span>(some_value)) <span class="sc">+</span></span>
 <span id="cb14-2"><a href="descriptive-statistics.html#cb14-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.5</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
 <span id="cb14-3"><a href="descriptive-statistics.html#cb14-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
 <span id="cb14-4"><a href="descriptive-statistics.html#cb14-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
@@ -345,13 +346,37 @@ Figure 6.1: A histogram of the average amount of sleep by animal (the <code>slee
 Figure 6.2: Histogram of a uniform distribution.
 </p>
 </div>
+<p>This looks good but it doesn’t make as much intuitive sense as we’d like. Let us tweak this slightly. Assume that you have a fair dice with 6 sides. So, whenever we roll the dice, each side has an equal probability (i.e. 1/6). Let us simulate this. The data is going to be very similar, except that this time we will need <strong>discrete</strong> values rather than <strong>continuous</strong> values. For that, we need to use the <code>rdunif()</code> function which generates random values with a discrete uniform distribution.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="descriptive-statistics.html#cb15-1" aria-hidden="true" tabindex="-1"></a>uniform <span class="ot">&lt;-</span> <span class="fu">as_tibble_col</span>(<span class="fu">rdunif</span>(<span class="dv">120</span>, <span class="dv">6</span>, <span class="dv">1</span>), <span class="at">column_name=</span><span class="st">&quot;dice_value&quot;</span>)</span>
+<span id="cb15-2"><a href="descriptive-statistics.html#cb15-2" aria-hidden="true" tabindex="-1"></a>uniform</span></code></pre></div>
+<pre><code>## # A tibble: 120 × 1
+##    dice_value
+##         &lt;dbl&gt;
+##  1          4
+##  2          2
+##  3          4
+##  4          1
+##  5          6
+##  6          3
+##  7          1
+##  8          3
+##  9          6
+## 10          2
+## # … with 110 more rows</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="descriptive-statistics.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(uniform, <span class="fu">aes</span>(dice_value)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="descriptive-statistics.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb17-3"><a href="descriptive-statistics.html#cb17-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre><code>Just a quick point to think about. Why did we use a histogram for the 
+continuous uniform distribution and a bar graph for a discrete one? 
+Also, why didn&#39;t we use the **stat=&quot;identity&quot;** argument in the bar graph?</code></pre>
 <p>Now, let us generate some random data with a <strong>normal distribution</strong> using the <code>rnorm</code>()` function.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="descriptive-statistics.html#cb15-1" aria-hidden="true" tabindex="-1"></a>normal <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">rnorm</span>(<span class="dv">160</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="descriptive-statistics.html#cb19-1" aria-hidden="true" tabindex="-1"></a>normal <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">rnorm</span>(<span class="dv">160</span>))</span></code></pre></div>
 <p>Let us plot the normally distributed data using a histogram.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="descriptive-statistics.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(normal, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="descriptive-statistics.html#cb16-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
-<span id="cb16-3"><a href="descriptive-statistics.html#cb16-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb16-4"><a href="descriptive-statistics.html#cb16-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="descriptive-statistics.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(normal, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="descriptive-statistics.html#cb20-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
+<span id="cb20-3"><a href="descriptive-statistics.html#cb20-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb20-4"><a href="descriptive-statistics.html#cb20-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:histogram3"></span>
 <img src="main_files/figure-html/histogram3-1.png" alt="Histogram of a normal distribution." width="672" />
 <p class="caption">
@@ -359,12 +384,12 @@ Figure 6.3: Histogram of a normal distribution.
 </p>
 </div>
 <p>Here’s another one where we provide the <strong>mean</strong> and <strong>standard deviation</strong> parameteres.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="descriptive-statistics.html#cb17-1" aria-hidden="true" tabindex="-1"></a>normal2 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">rnorm</span>(<span class="dv">160</span>, <span class="at">mean =</span> <span class="dv">8</span>, <span class="at">sd=</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="descriptive-statistics.html#cb21-1" aria-hidden="true" tabindex="-1"></a>normal2 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">rnorm</span>(<span class="dv">160</span>, <span class="at">mean =</span> <span class="dv">8</span>, <span class="at">sd=</span> <span class="fl">0.5</span>))</span></code></pre></div>
 <p>Let us plot the seconf normally distributed data using a histogram.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="descriptive-statistics.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(normal2, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="descriptive-statistics.html#cb18-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
-<span id="cb18-3"><a href="descriptive-statistics.html#cb18-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb18-4"><a href="descriptive-statistics.html#cb18-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;steelblue&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="descriptive-statistics.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(normal2, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="descriptive-statistics.html#cb22-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
+<span id="cb22-3"><a href="descriptive-statistics.html#cb22-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb22-4"><a href="descriptive-statistics.html#cb22-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;steelblue&#39;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:histogram4"></span>
 <img src="main_files/figure-html/histogram4-1.png" alt="Histogram of a normal distribution." width="672" />
 <p class="caption">
@@ -372,13 +397,13 @@ Figure 6.4: Histogram of a normal distribution.
 </p>
 </div>
 <p>Finally, let us plot both of the normally distributed data on the same plot to see them side by side.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="descriptive-statistics.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(normal, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="descriptive-statistics.html#cb19-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
-<span id="cb19-3"><a href="descriptive-statistics.html#cb19-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb19-4"><a href="descriptive-statistics.html#cb19-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>) <span class="sc">+</span></span>
-<span id="cb19-5"><a href="descriptive-statistics.html#cb19-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_histogram</span>(<span class="at">data=</span>normal2, <span class="at">binwidth=</span><span class="fl">0.2</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
-<span id="cb19-6"><a href="descriptive-statistics.html#cb19-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb19-7"><a href="descriptive-statistics.html#cb19-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;steelblue&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="descriptive-statistics.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(normal, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="descriptive-statistics.html#cb23-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
+<span id="cb23-3"><a href="descriptive-statistics.html#cb23-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb23-4"><a href="descriptive-statistics.html#cb23-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="descriptive-statistics.html#cb23-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_histogram</span>(<span class="at">data=</span>normal2, <span class="at">binwidth=</span><span class="fl">0.2</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
+<span id="cb23-6"><a href="descriptive-statistics.html#cb23-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb23-7"><a href="descriptive-statistics.html#cb23-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;steelblue&#39;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:histogram5"></span>
 <img src="main_files/figure-html/histogram5-1.png" alt="Histogram of two normal distributions side by side." width="672" />
 <p class="caption">
@@ -471,16 +496,16 @@ Figure 6.7: Distributions with different means and standard deviations. The ligh
 <div id="calculating-the-mean-in-r" class="section level3 hasAnchor" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Calculating the mean in R<a href="descriptive-statistics.html#calculating-the-mean-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Okay that’s the maths, how do we get the magic computing box to do the work for us? If you really wanted to, you could do this calculation directly in R. For the first numbers, do this just by typing it in as if R were a calculator…</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="descriptive-statistics.html#cb20-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">12</span> <span class="sc">+</span> <span class="dv">17</span> <span class="sc">+</span> <span class="dv">14</span> <span class="sc">+</span> <span class="dv">15</span> <span class="sc">+</span> <span class="dv">4</span>) <span class="sc">/</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="descriptive-statistics.html#cb24-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">12</span> <span class="sc">+</span> <span class="dv">17</span> <span class="sc">+</span> <span class="dv">14</span> <span class="sc">+</span> <span class="dv">15</span> <span class="sc">+</span> <span class="dv">4</span>) <span class="sc">/</span> <span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 12.4</code></pre>
 <p>… in which case R outputs the answer 12.4, just as if it were a calculator.</p>
 <ul>
 <li>However, we learned quicker ways of doing that</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="descriptive-statistics.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] )<span class="sc">/</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="descriptive-statistics.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] )<span class="sc">/</span> <span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 12.4</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="descriptive-statistics.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or:</span></span>
-<span id="cb24-2"><a href="descriptive-statistics.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] )</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="descriptive-statistics.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or:</span></span>
+<span id="cb28-2"><a href="descriptive-statistics.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] )</span></code></pre></div>
 <pre><code>## [1] 12.4</code></pre>
 </div>
 <div id="median" class="section level3 hasAnchor" number="6.2.3">
@@ -491,7 +516,7 @@ Figure 6.7: Distributions with different means and standard deviations. The ligh
 <span class="math display">\[
 4, 12, \color{red}{14}, 15, 17
 \]</span></p></li>
-<li><p>From inspection, it’s obvious that the median value of these 5 observations is 32, since that’s the middle one in the sorted list (I’ve put it in red to make it even more obvious). Easy stuff.</p></li>
+<li><p>From inspection, it’s obvious that the median value of these 5 observations is 14, since that’s the middle one in the sorted list (I’ve put it in red to make it even more obvious). Easy stuff.</p></li>
 <li><p>But what should we do if we were interested in the first 6 animals rather than the first 5? Since the sixth animal sleeps for 14 hours, our sorted list is now:
 <span class="math display">\[
 4, 12, \color{red}{14}, \color{red}{14}, 15, 17
@@ -505,7 +530,7 @@ Figure 6.7: Distributions with different means and standard deviations. The ligh
 <li><p>To understand why, think of the median as the value that divides the sorted list of numbers into two halves – those on its left, and those on its right.</p></li>
 <li><p>As before, it’s very tedious to do this by hand when you’ve got lots of numbers. To illustrate this, here’s what happens when you use R to sort all the sleep durations. First, I’ll use the <code>sort()</code> function to display the 83 numbers in increasing numerical order:</p></li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="descriptive-statistics.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="descriptive-statistics.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre><code>##  [1]  2  3  3  3  3  3  4  4  4  4  4  5  5  5  5  6  6  6  6  7  8  8  8  8  8
 ## [26]  9  9  9  9  9  9  9  9 10 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11
 ## [51] 11 12 12 12 12 12 12 13 13 13 14 14 14 14 14 14 14 14 15 15 15 16 16 16 16
@@ -513,7 +538,7 @@ Figure 6.7: Distributions with different means and standard deviations. The ligh
 <ul>
 <li>Because the vector is 83 elements long, the middle value is at position 42. This means that the median of this vector is 10. In real life, of course, no-one actually calculates the median by sorting the data and then looking for the middle value. In real life, we use the median command:</li>
 </ul>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="descriptive-statistics.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="descriptive-statistics.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <p>which outputs the median value of 10.</p>
 </div>
@@ -564,16 +589,16 @@ Figure 6.9: Another example of mean and median where mean is moved by the outlie
 <li><p>Not surprisingly, the 0% trimmed mean is just the regular mean, and the 50% trimmed mean is the median. In that sense, trimmed means provide a whole family of central tendency measures that span the range from the mean to the median.</p></li>
 <li><p>For our toy example above, we have 10 observations, and so a 10% trimmed mean is calculated by ignoring the largest value (i.e., <code>12</code>) and the smallest value (i.e., <code>-15</code>) and taking the mean of the remaining values. First, let’s enter the data</p></li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="descriptive-statistics.html#cb30-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="sc">-</span><span class="dv">15</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">12</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="descriptive-statistics.html#cb34-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="sc">-</span><span class="dv">15</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">12</span> )</span></code></pre></div>
 <p>Next, let’s calculate means and medians:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="descriptive-statistics.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>( dataset )</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="descriptive-statistics.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>( dataset )</span></code></pre></div>
 <pre><code>## [1] 4.1</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="descriptive-statistics.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>( dataset )</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="descriptive-statistics.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>( dataset )</span></code></pre></div>
 <pre><code>## [1] 5.5</code></pre>
 <ul>
 <li>That’s a fairly substantial difference, but I’m tempted to think that the mean is being influenced a bit too much by the extreme values at either end of the data set, especially the <span class="math inline">\(-15\)</span> one. So let’s just try trimming the mean a bit. If I take a 10% trimmed mean, we’ll drop the extreme values on either side, and take the mean of the rest:</li>
 </ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="descriptive-statistics.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>( dataset, <span class="at">trim =</span> .<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="descriptive-statistics.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>( dataset, <span class="at">trim =</span> .<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 5.5</code></pre>
 <ul>
 <li>In this case it gives exactly the same answer as the median. Note that, to get a 10% trimmed mean you write <code>trim = .1</code>, not <code>trim = 10</code>.</li>
@@ -586,9 +611,9 @@ Figure 6.9: Another example of mean and median where mean is moved by the outlie
 <li><p>Let’s look at the some soccer data: specifically, the European Cup and Champions League results in the time from 1955-2016.</p></li>
 <li><p>Lets find out which team has won the most matches. The command below tells R we just want the first 25 rows of the data.frame.</p></li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="descriptive-statistics.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(engsoccerdata)</span>
-<span id="cb37-2"><a href="descriptive-statistics.html#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="descriptive-statistics.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(champs<span class="sc">$</span>tiewinner) <span class="sc">%&gt;%</span> <span class="fu">sort</span>(<span class="at">decreasing=</span>T) <span class="sc">%&gt;%</span> .[<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="descriptive-statistics.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(engsoccerdata)</span>
+<span id="cb41-2"><a href="descriptive-statistics.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="descriptive-statistics.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(champs<span class="sc">$</span>tiewinner) <span class="sc">%&gt;%</span> <span class="fu">sort</span>(<span class="at">decreasing=</span>T) <span class="sc">%&gt;%</span> .[<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>]</span></code></pre></div>
 <pre><code>## 
 ##       Real Madrid     Bayern Munich        SL Benfica          AC Milan 
 ##               183               134               110               103 
@@ -609,26 +634,26 @@ Figure 6.9: Another example of mean and median where mean is moved by the outlie
 <li><p>Of course, the mode is the right (and only) summary for nominal variables.</p></li>
 <li><p>But we can compute a mode for all types of variables. For example, let’s take a look at the mean, median, and mode of the total number of goals per game.</p></li>
 </ul>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="descriptive-statistics.html#cb39-1" aria-hidden="true" tabindex="-1"></a>champs <span class="sc">%&lt;&gt;%</span> <span class="fu">mutate</span>(<span class="at">total_goals =</span> hgoal <span class="sc">+</span> vgoal) <span class="co"># total goals is home team goals + visitor goals</span></span></code></pre></div>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="descriptive-statistics.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(champs<span class="sc">$</span>total_goals)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" aria-hidden="true" tabindex="-1"></a>champs <span class="sc">%&lt;&gt;%</span> <span class="fu">mutate</span>(<span class="at">total_goals =</span> hgoal <span class="sc">+</span> vgoal) <span class="co"># total goals is home team goals + visitor goals</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="descriptive-statistics.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(champs<span class="sc">$</span>total_goals)</span></code></pre></div>
 <pre><code>## [1] 2.81642</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="descriptive-statistics.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(champs<span class="sc">$</span>total_goals)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="descriptive-statistics.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(champs<span class="sc">$</span>total_goals)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="descriptive-statistics.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modeOf</span>(champs<span class="sc">$</span>total_goals)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="descriptive-statistics.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modeOf</span>(champs<span class="sc">$</span>total_goals)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="descriptive-statistics.html#cb46-1" aria-hidden="true" tabindex="-1"></a>mean_goals <span class="ot">&lt;-</span> <span class="fu">mean</span>(champs<span class="sc">$</span>total_goals)</span>
-<span id="cb46-2"><a href="descriptive-statistics.html#cb46-2" aria-hidden="true" tabindex="-1"></a>median_goals <span class="ot">&lt;-</span> <span class="fu">median</span>(champs<span class="sc">$</span>total_goals)</span>
-<span id="cb46-3"><a href="descriptive-statistics.html#cb46-3" aria-hidden="true" tabindex="-1"></a>mode_goals <span class="ot">&lt;-</span> <span class="fu">modeOf</span>(champs<span class="sc">$</span>total_goals)</span>
-<span id="cb46-4"><a href="descriptive-statistics.html#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-5"><a href="descriptive-statistics.html#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(champs, <span class="fu">aes</span>(total_goals)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">fill=</span> <span class="st">&#39;dimgrey&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb46-6"><a href="descriptive-statistics.html#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_goals, <span class="at">color =</span> <span class="st">&quot;indianred&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb46-7"><a href="descriptive-statistics.html#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> median_goals, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb46-8"><a href="descriptive-statistics.html#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mode_goals, <span class="at">color =</span> <span class="st">&quot;yellowgreen&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb46-9"><a href="descriptive-statistics.html#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="at">x =</span> mean_goals<span class="fl">-.6</span>, <span class="at">y=</span><span class="dv">1470</span>, <span class="at">label =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">color =</span> <span class="st">&quot;indianred&quot;</span>) <span class="sc">+</span></span>
-<span id="cb46-10"><a href="descriptive-statistics.html#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="at">x =</span> median_goals<span class="fl">+.75</span>, <span class="at">y=</span><span class="dv">1500</span>, <span class="at">label =</span> <span class="st">&quot;median&quot;</span>, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb46-11"><a href="descriptive-statistics.html#cb46-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="at">x =</span> mode_goals<span class="fl">-.6</span>, <span class="at">y=</span><span class="dv">1530</span>, <span class="at">label =</span> <span class="st">&quot;mode&quot;</span>, <span class="at">color =</span> <span class="st">&quot;yellowgreen&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="descriptive-statistics.html#cb50-1" aria-hidden="true" tabindex="-1"></a>mean_goals <span class="ot">&lt;-</span> <span class="fu">mean</span>(champs<span class="sc">$</span>total_goals)</span>
+<span id="cb50-2"><a href="descriptive-statistics.html#cb50-2" aria-hidden="true" tabindex="-1"></a>median_goals <span class="ot">&lt;-</span> <span class="fu">median</span>(champs<span class="sc">$</span>total_goals)</span>
+<span id="cb50-3"><a href="descriptive-statistics.html#cb50-3" aria-hidden="true" tabindex="-1"></a>mode_goals <span class="ot">&lt;-</span> <span class="fu">modeOf</span>(champs<span class="sc">$</span>total_goals)</span>
+<span id="cb50-4"><a href="descriptive-statistics.html#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="descriptive-statistics.html#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(champs, <span class="fu">aes</span>(total_goals)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">fill=</span> <span class="st">&#39;dimgrey&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb50-6"><a href="descriptive-statistics.html#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_goals, <span class="at">color =</span> <span class="st">&quot;indianred&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb50-7"><a href="descriptive-statistics.html#cb50-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> median_goals, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb50-8"><a href="descriptive-statistics.html#cb50-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mode_goals, <span class="at">color =</span> <span class="st">&quot;yellowgreen&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb50-9"><a href="descriptive-statistics.html#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="at">x =</span> mean_goals<span class="fl">-.6</span>, <span class="at">y=</span><span class="dv">1470</span>, <span class="at">label =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">color =</span> <span class="st">&quot;indianred&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-10"><a href="descriptive-statistics.html#cb50-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="at">x =</span> median_goals<span class="fl">+.75</span>, <span class="at">y=</span><span class="dv">1500</span>, <span class="at">label =</span> <span class="st">&quot;median&quot;</span>, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-11"><a href="descriptive-statistics.html#cb50-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="at">x =</span> mode_goals<span class="fl">-.6</span>, <span class="at">y=</span><span class="dv">1530</span>, <span class="at">label =</span> <span class="st">&quot;mode&quot;</span>, <span class="at">color =</span> <span class="st">&quot;yellowgreen&quot;</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>
 <div id="summary" class="section level3 hasAnchor" number="6.2.7">
 <h3><span class="header-section-number">6.2.7</span> Summary<a href="descriptive-statistics.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -665,15 +690,15 @@ trimmed mean: "What is the mean income of those who have work? (i.e., how much *
 <ul>
 <li>The <strong><em>range</em></strong> of a variable is very simple: it’s the biggest value minus the smallest value. For the sleep data, the maximum value is 20, and the minimum value is 2. We can calculate these values in R using the <code>max()</code> and <code>min()</code> functions:</li>
 </ul>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="descriptive-statistics.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="descriptive-statistics.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="descriptive-statistics.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="descriptive-statistics.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>where I’ve omitted the output because it’s not interesting.</p>
 <ul>
 <li>The other possibility is to use the <code>range()</code> function; which outputs both the minimum value and the maximum value in a vector, like this:</li>
 </ul>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="descriptive-statistics.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="descriptive-statistics.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre><code>## [1]  2 20</code></pre>
 <ul>
 <li>Although the range is the simplest way to quantify the notion of “variability”, it’s one of the worst. Recall from our discussion of the mean that we want our summary measure to be robust. If the data set has one or two extremely bad values in it, we’d like our statistics not to be unduly influenced by these cases. If we look once again at our toy example of a data set containing very extreme outliers…
@@ -692,20 +717,20 @@ trimmed mean: "What is the mean income of those who have work? (i.e., how much *
 <li><p>Let’s take a look at the 20 shortest sorted sleep durations and determine the 10-th percentile (<span class="math inline">\(0.1\)</span> quantile), 30-th percentile (<span class="math inline">\(0.3\)</span> quantile), 50-th percentile (<span class="math inline">\(0.5\)</span> quantile), and the 90-th percentile (<span class="math inline">\(0.9\)</span> quantile).</p></li>
 <li><p>Here are the values:</p></li>
 </ul>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="descriptive-statistics.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="descriptive-statistics.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
 <pre><code>##  [1] 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 6 6 6 6 7</code></pre>
 <ul>
 <li>And here is a sorted plot of the 20 smallest values:</li>
 </ul>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="descriptive-statistics.html#cb56-1" aria-hidden="true" tabindex="-1"></a>quantile <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>)</span>
-<span id="cb56-2"><a href="descriptive-statistics.html#cb56-2" aria-hidden="true" tabindex="-1"></a>quantile_points <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>)<span class="sc">*</span><span class="dv">20</span></span>
-<span id="cb56-3"><a href="descriptive-statistics.html#cb56-3" aria-hidden="true" tabindex="-1"></a>quantile_labels <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;%0.1f quantile</span><span class="sc">\n</span><span class="st">(point %d of 20)&quot;</span>, quantile, quantile_points)</span>
-<span id="cb56-4"><a href="descriptive-statistics.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">y=</span><span class="fu">sort</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>])) <span class="sc">+</span> </span>
-<span id="cb56-5"><a href="descriptive-statistics.html#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb56-6"><a href="descriptive-statistics.html#cb56-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> quantile_points) <span class="sc">+</span> </span>
-<span id="cb56-7"><a href="descriptive-statistics.html#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x=</span>quantile_points, <span class="at">y=</span><span class="fl">6.5</span>, <span class="at">label=</span>quantile_labels )) <span class="sc">+</span></span>
-<span id="cb56-8"><a href="descriptive-statistics.html#cb56-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position in ordered vector&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Sleep (hours)&quot;</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="descriptive-statistics.html#cb60-1" aria-hidden="true" tabindex="-1"></a>quantile <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>)</span>
+<span id="cb60-2"><a href="descriptive-statistics.html#cb60-2" aria-hidden="true" tabindex="-1"></a>quantile_points <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>)<span class="sc">*</span><span class="dv">20</span></span>
+<span id="cb60-3"><a href="descriptive-statistics.html#cb60-3" aria-hidden="true" tabindex="-1"></a>quantile_labels <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;%0.1f quantile</span><span class="sc">\n</span><span class="st">(point %d of 20)&quot;</span>, quantile, quantile_points)</span>
+<span id="cb60-4"><a href="descriptive-statistics.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">y=</span><span class="fu">sort</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>])) <span class="sc">+</span></span>
+<span id="cb60-5"><a href="descriptive-statistics.html#cb60-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb60-6"><a href="descriptive-statistics.html#cb60-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> quantile_points) <span class="sc">+</span></span>
+<span id="cb60-7"><a href="descriptive-statistics.html#cb60-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x=</span>quantile_points, <span class="at">y=</span><span class="fl">6.5</span>, <span class="at">label=</span>quantile_labels )) <span class="sc">+</span></span>
+<span id="cb60-8"><a href="descriptive-statistics.html#cb60-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position in ordered vector&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Sleep (hours)&quot;</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <ul>
 <li>As you can see:
 <ul>
@@ -723,22 +748,23 @@ trimmed mean: "What is the mean income of those who have work? (i.e., how much *
 <li>The <strong><em>interquartile range</em></strong> (IQR) is like the range, but instead of calculating the difference between the biggest and smallest value, it calculates the difference between the 25th quantile and the 75th quantile.</li>
 <li>R provides you with a way of calculating quantiles, using the (surprise, surprise) <code>quantile()</code> function. Let’s use it to calculate the median sleep durations:</li>
 </ul>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="descriptive-statistics.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>( <span class="at">x =</span> mammalian_sleep<span class="sc">$</span>sleep_total_h, <span class="at">probs =</span> .<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="descriptive-statistics.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>( <span class="at">x =</span> mammalian_sleep<span class="sc">$</span>sleep_total_h, <span class="at">probs =</span> .<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## 50% 
 ##  10</code></pre>
 <ul>
 <li>And not surprisingly, this agrees with the answer that we saw earlier with the <code>median()</code> function. Now, we can actually input lots of quantiles at once, by specifying a vector for the <code>probs</code> argument. So lets do that, and get the 25th and 75th percentile:</li>
 </ul>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="descriptive-statistics.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>( <span class="at">x =</span> mammalian_sleep<span class="sc">$</span>sleep_total_h, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">75</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="descriptive-statistics.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>( <span class="at">x =</span> mammalian_sleep<span class="sc">$</span>sleep_total_h, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">75</span>) )</span></code></pre></div>
 <pre><code>## 25% 75% 
 ##   8  14</code></pre>
 <ul>
 <li>And, by noting that <span class="math inline">\(14 - 8 = 6\)</span>, we can see that the interquartile range for the sleep durations is 6. Of course, that seems like too much work to do all that typing, so R has a built in function called <code>IQR()</code> that we can use:</li>
 </ul>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="descriptive-statistics.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>( <span class="at">x =</span> mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="descriptive-statistics.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>( <span class="at">x =</span> mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <ul>
-<li>While it’s obvious how to interpret the range, it’s a little less obvious how to interpret the IQR. The simplest way to think about it is like this: the interquartile range is the range spanned by the “middle half” of the data. That is, one quarter of the data falls below the 25th percentile, one quarter of the data is above the 75th percentile, leaving the “middle half” of the data lying in between the two. And the IQR is the range covered by that middle half.</li>
+<li><p>While it’s obvious how to interpret the range, it’s a little less obvious how to interpret the IQR. The simplest way to think about it is like this: the interquartile range is the range spanned by the “middle half” of the data. That is, one quarter of the data falls below the 25th percentile, one quarter of the data is above the 75th percentile, leaving the “middle half” of the data lying in between the two. And the IQR is the range covered by that middle half.</p></li>
+<li><p>IQR is used to identify the outliers (i.e. extreme values). Any value above <code>Q3 + IQR *1.5</code> or below <code>Q1 - IQR*1.5</code> is considered to be an outlier.</p></li>
 </ul>
 </div>
 <div id="aad" class="section level3 hasAnchor" number="6.3.4">
@@ -770,20 +796,20 @@ AAD(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}|
 <li><p>And <span class="math inline">\(N=5\)</span>, which means, that, in our case: <span class="math inline">\(AAD(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}| = 3.52\)</span></p></li>
 <li><p>In R, we can compute it for the entire vector.</p></li>
 </ul>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="descriptive-statistics.html#cb63-1" aria-hidden="true" tabindex="-1"></a>mean_sleep <span class="ot">&lt;-</span> <span class="fu">mean</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span>
-<span id="cb63-2"><a href="descriptive-statistics.html#cb63-2" aria-hidden="true" tabindex="-1"></a>deviation_sleep <span class="ot">&lt;-</span> mean_sleep <span class="sc">-</span> mammalian_sleep<span class="sc">$</span>sleep_total_h</span>
-<span id="cb63-3"><a href="descriptive-statistics.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>( <span class="fu">abs</span>(deviation_sleep) )</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="descriptive-statistics.html#cb67-1" aria-hidden="true" tabindex="-1"></a>mean_sleep <span class="ot">&lt;-</span> <span class="fu">mean</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span>
+<span id="cb67-2"><a href="descriptive-statistics.html#cb67-2" aria-hidden="true" tabindex="-1"></a>deviation_sleep <span class="ot">&lt;-</span> mean_sleep <span class="sc">-</span> mammalian_sleep<span class="sc">$</span>sleep_total_h</span>
+<span id="cb67-3"><a href="descriptive-statistics.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>( <span class="fu">abs</span>(deviation_sleep) )</span></code></pre></div>
 <pre><code>## [1] 3.576717</code></pre>
 <ul>
 <li>An alternative, more compact way to write it is using (lots) pipes:</li>
 </ul>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="descriptive-statistics.html#cb65-1" aria-hidden="true" tabindex="-1"></a>mammalian_sleep<span class="sc">$</span>sleep_total_h <span class="sc">%&gt;%</span> <span class="fu">subtract</span>(., <span class="fu">mean</span>(.)) <span class="sc">%&gt;%</span> <span class="fu">abs</span>() <span class="sc">%&gt;%</span> <span class="fu">mean</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="descriptive-statistics.html#cb69-1" aria-hidden="true" tabindex="-1"></a>mammalian_sleep<span class="sc">$</span>sleep_total_h <span class="sc">%&gt;%</span> <span class="fu">subtract</span>(., <span class="fu">mean</span>(.)) <span class="sc">%&gt;%</span> <span class="fu">abs</span>() <span class="sc">%&gt;%</span> <span class="fu">mean</span>()</span></code></pre></div>
 <pre><code>## [1] 3.576717</code></pre>
 <ul>
 <li>The interpretation of the AAD is quite straightforward: It is the average distance from the average. When it’s big, the values are quite spread out. When it’s small, they are close. The units are the same (hours in our case).</li>
 </ul>
 <!--
-and once again we'll start by pretending that there's only 5 games in total, with winning margins of 56, 31, 56, 8 and 32. Since our calculations rely on an examination of the deviation from some reference point (in this case the mean), the first thing we need to calculate is the mean, $\bar{X}$. For these five observations, our mean is $\bar{X} = 36.6$. The next step is to convert each of our observations $X_i$ into a deviation score. 
+and once again we'll start by pretending that there's only 5 games in total, with winning margins of 56, 31, 56, 8 and 32. Since our calculations rely on an examination of the deviation from some reference point (in this case the mean), the first thing we need to calculate is the mean, $\bar{X}$. For these five observations, our mean is $\bar{X} = 36.6$. The next step is to convert each of our observations $X_i$ into a deviation score.
 
 We do this by calculating the difference between the observation $X_i$ and the mean $\bar{X}$. That is, the deviation score is defined to be $X_i - \bar{X}$. For the first observation in our sample, this is equal to $56 - 36.6 = 19.4$. Okay, that's simple enough. The next step in the process is to convert these deviations to absolute deviations. As we discussed earlier when talking about  the `abs()` function in R (Section \@ref(usingfunctions)), we do this by converting any negative values to positive ones. Mathematically, we would denote the absolute value of $-3$ as $|-3|$, and so we say that $|-3| = 3$. We use the absolute value function here because we don't really care whether the value is higher than the mean or lower than the mean, we're just interested in how *close* it is to the mean. To help make this process as obvious as possible, the table below shows these calculations for all five observations:
 
@@ -802,7 +828,7 @@ Now that we have calculated the absolute deviation score for every observation i
 $$
 \frac{19.4 + 5.6 + 19.4 + 28.6 + 4.6}{5} = 15.52
 $$
-And we're done. The mean absolute deviation for these five scores is 15.52. 
+And we're done. The mean absolute deviation for these five scores is 15.52.
 
 However, while our calculations for this little example are at an end, we do have a couple of things left to talk about. Firstly, we should really try to write down a proper mathematical formula. But in order do to this I need some mathematical notation to refer to the mean absolute deviation. Irritatingly, "mean absolute deviation" and "median absolute deviation" have the same acronym (MAD), which leads to a certain amount of ambiguity, and since R tends to use MAD to refer to the median absolute deviation, I'd better come up with something different for the mean absolute deviation. Sigh. What I'll do is use AAD instead, short for *average* absolute deviation. Now that we have some unambiguous notation, here's the formula that describes what we just calculated:
 $$
@@ -859,7 +885,7 @@ No suprises there.
 <li>Now that we’ve got the basic idea, let’s have a look at a concrete example. Once again, let’s use the first five sleep durations. If we follow the same approach that we took last time, we end up with the following table:</li>
 </ul>
 <table>
-<caption><span id="tab:unnamed-chunk-32">Table 6.1: </span>Regular, abssolute, and squared deviations</caption>
+<caption><span id="tab:unnamed-chunk-33">Table 6.1: </span>Regular, abssolute, and squared deviations</caption>
 <colgroup>
 <col width="15%" />
 <col width="10%" />
@@ -917,17 +943,17 @@ No suprises there.
 <ul>
 <li>That last column contains all of our squared deviations, so all we have to do is average them. If we do that by typing all the numbers into R by hand…</li>
 </ul>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="descriptive-statistics.html#cb67-1" aria-hidden="true" tabindex="-1"></a>( <span class="fl">0.16+21.16+2.56+6.76+70.56</span> ) <span class="sc">/</span> (<span class="dv">5-1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="descriptive-statistics.html#cb71-1" aria-hidden="true" tabindex="-1"></a>( <span class="fl">0.16+21.16+2.56+6.76+70.56</span> ) <span class="sc">/</span> (<span class="dv">5-1</span>)</span></code></pre></div>
 <pre><code>## [1] 25.3</code></pre>
 <ul>
 <li><p>We end up with a variance of 25.3. Exciting, isn’t it? For the moment, let’s ignore the burning question that you’re all probably thinking (i.e., what the heck does a variance of 25.3 actually mean?) and instead talk a bit more about how to do the calculations in R.</p></li>
 <li><p>As always, we want to avoid having to type in a whole lot of numbers ourselves. And as it happens, we have the vector <code>X</code> lying around, which we created in the previous section. With this in mind, we can calculate the variance of <code>X</code> by using the following command,</p></li>
 </ul>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="descriptive-statistics.html#cb69-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> mammalian_sleep<span class="sc">$</span>sleep_total_h[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
-<span id="cb69-2"><a href="descriptive-statistics.html#cb69-2" aria-hidden="true" tabindex="-1"></a>(X <span class="sc">-</span> <span class="fu">mean</span>(X) )<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (<span class="fu">length</span>(X) <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="descriptive-statistics.html#cb73-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> mammalian_sleep<span class="sc">$</span>sleep_total_h[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb73-2"><a href="descriptive-statistics.html#cb73-2" aria-hidden="true" tabindex="-1"></a>(X <span class="sc">-</span> <span class="fu">mean</span>(X) )<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (<span class="fu">length</span>(X) <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1]  0.04  5.29  0.64  1.69 17.64</code></pre>
 <p>and as usual we get the same answer as the one that we got when we did everything by hand. However, I <em>still</em> think that this is too much typing. Fortunately, R has a built in function called <code>var()</code> which does calculate variances. So we could also do this…</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="descriptive-statistics.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="descriptive-statistics.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(X)</span></code></pre></div>
 <pre><code>## [1] 25.3</code></pre>
 <p>and you get the same answer. Great.</p>
 </div>
@@ -943,8 +969,8 @@ No suprises there.
 s_x = \sqrt{ \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2 }
 \]</span>
 <!--
-and the R function that we use to calculate it is `sd()`. 
-However, as you might have guessed from our discussion of the variance, what R actually calculates is slightly different to the formula given above. Just like the we saw with the variance, what R calculates is a version that divides by $N-1$ rather than $N$. 
+and the R function that we use to calculate it is `sd()`.
+However, as you might have guessed from our discussion of the variance, what R actually calculates is slightly different to the formula given above. Just like the we saw with the variance, what R calculates is a version that divides by $N-1$ rather than $N$.
 For reasons that will make sense when we return to this topic in Chapter@refch:estimation I'll refer to this new quantity as $\hat\sigma$ (read as: "sigma hat"), and the formula for this is
 $$
 \hat\sigma = \sqrt{ \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2 }
@@ -952,7 +978,7 @@ $$
 With that in mind, calculating standard deviations in R is simple:
 
 ```r
-sd( mammalian_sleep$sleep_total_h ) 
+sd( mammalian_sleep$sleep_total_h )
 ```
 
 ```
@@ -963,28 +989,28 @@ sd( mammalian_sleep$sleep_total_h )
 <li><p>As a consequence, most of us just rely on a <strong>simple rule of thumb</strong>: <strong>“in general, you should expect 68% of the data to fall within 1 standard deviation of the mean, 95% of the data to fall within 2 standard deviation of the mean, and 99.7% of the data to fall within 3 standard deviations of the mean”</strong>. This rule tends to work pretty well most of the time, but it’s not exact: it’s actually calculated based on an <em>assumption</em> that the histogram is symmetric and “bell shaped”. (Strictly, the assumption is that the data are <em>normally</em> distributed, which is an important concept that we’ll discuss more later).</p></li>
 </ul>
 <!-- , applied to the AFL winning margins data. The shaded bars in the histogram show how much of the data fall within one standard deviation of the mean. In this case, 65.3% of the data set lies within this range, which is pretty consistent with the \"approximately 68% rule\" discussed in the main text -->
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="descriptive-statistics.html#cb73-1" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> mammalian_sleep <span class="sc">%&gt;%</span> </span>
-<span id="cb73-2"><a href="descriptive-statistics.html#cb73-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(sleep_total_h)) <span class="sc">+</span> </span>
-<span id="cb73-3"><a href="descriptive-statistics.html#cb73-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, </span>
-<span id="cb73-4"><a href="descriptive-statistics.html#cb73-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, </span>
-<span id="cb73-5"><a href="descriptive-statistics.html#cb73-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>)</span>
-<span id="cb73-6"><a href="descriptive-statistics.html#cb73-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-7"><a href="descriptive-statistics.html#cb73-7" aria-hidden="true" tabindex="-1"></a>  sleep_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span>
-<span id="cb73-8"><a href="descriptive-statistics.html#cb73-8" aria-hidden="true" tabindex="-1"></a>  sleep_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span>
-<span id="cb73-9"><a href="descriptive-statistics.html#cb73-9" aria-hidden="true" tabindex="-1"></a>  bars <span class="ot">&lt;-</span> <span class="fu">c</span>(sleep_mean<span class="sc">-</span>sleep_sd, sleep_mean, sleep_mean<span class="sc">+</span>sleep_sd)</span>
-<span id="cb73-10"><a href="descriptive-statistics.html#cb73-10" aria-hidden="true" tabindex="-1"></a>  bar_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mean-1*sd&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;mean+1*sd&quot;</span>)</span>
-<span id="cb73-11"><a href="descriptive-statistics.html#cb73-11" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> bars, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb73-12"><a href="descriptive-statistics.html#cb73-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>bars[<span class="dv">1</span>], <span class="at">y=</span> <span class="dv">10</span>, <span class="at">label =</span> bar_labels[<span class="dv">1</span>])) <span class="sc">+</span> </span>
-<span id="cb73-13"><a href="descriptive-statistics.html#cb73-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>bars[<span class="dv">2</span>], <span class="at">y=</span> <span class="dv">10</span>, <span class="at">label =</span> bar_labels[<span class="dv">2</span>])) <span class="sc">+</span> </span>
-<span id="cb73-14"><a href="descriptive-statistics.html#cb73-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>bars[<span class="dv">3</span>], <span class="at">y=</span> <span class="dv">10</span>, <span class="at">label =</span> bar_labels[<span class="dv">3</span>]))</span>
-<span id="cb73-15"><a href="descriptive-statistics.html#cb73-15" aria-hidden="true" tabindex="-1"></a>  p</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="descriptive-statistics.html#cb77-1" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> mammalian_sleep <span class="sc">%&gt;%</span></span>
+<span id="cb77-2"><a href="descriptive-statistics.html#cb77-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(sleep_total_h)) <span class="sc">+</span></span>
+<span id="cb77-3"><a href="descriptive-statistics.html#cb77-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>,</span>
+<span id="cb77-4"><a href="descriptive-statistics.html#cb77-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb77-5"><a href="descriptive-statistics.html#cb77-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>)</span>
+<span id="cb77-6"><a href="descriptive-statistics.html#cb77-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-7"><a href="descriptive-statistics.html#cb77-7" aria-hidden="true" tabindex="-1"></a>  sleep_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span>
+<span id="cb77-8"><a href="descriptive-statistics.html#cb77-8" aria-hidden="true" tabindex="-1"></a>  sleep_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span>
+<span id="cb77-9"><a href="descriptive-statistics.html#cb77-9" aria-hidden="true" tabindex="-1"></a>  bars <span class="ot">&lt;-</span> <span class="fu">c</span>(sleep_mean<span class="sc">-</span>sleep_sd, sleep_mean, sleep_mean<span class="sc">+</span>sleep_sd)</span>
+<span id="cb77-10"><a href="descriptive-statistics.html#cb77-10" aria-hidden="true" tabindex="-1"></a>  bar_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mean-1*sd&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;mean+1*sd&quot;</span>)</span>
+<span id="cb77-11"><a href="descriptive-statistics.html#cb77-11" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> bars, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb77-12"><a href="descriptive-statistics.html#cb77-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>bars[<span class="dv">1</span>], <span class="at">y=</span> <span class="dv">10</span>, <span class="at">label =</span> bar_labels[<span class="dv">1</span>])) <span class="sc">+</span></span>
+<span id="cb77-13"><a href="descriptive-statistics.html#cb77-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>bars[<span class="dv">2</span>], <span class="at">y=</span> <span class="dv">10</span>, <span class="at">label =</span> bar_labels[<span class="dv">2</span>])) <span class="sc">+</span></span>
+<span id="cb77-14"><a href="descriptive-statistics.html#cb77-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>bars[<span class="dv">3</span>], <span class="at">y=</span> <span class="dv">10</span>, <span class="at">label =</span> bar_labels[<span class="dv">3</span>]))</span>
+<span id="cb77-15"><a href="descriptive-statistics.html#cb77-15" aria-hidden="true" tabindex="-1"></a>  p</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:aflsd"></span>
 <img src="main_files/figure-html/aflsd-1.png" alt="An illustration of the standard deviation." width="672" />
 <p class="caption">
 Figure 6.10: An illustration of the standard deviation.
 </p>
 </div>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="descriptive-statistics.html#cb74-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(mammalian_sleep, <span class="fu">mean</span>(sleep_total_h<span class="sc">&gt;</span>(sleep_mean<span class="sc">-</span>sleep_sd) <span class="sc">&amp;</span> sleep_total_h<span class="sc">&lt;</span>(sleep_mean<span class="sc">+</span>sleep_sd) ))</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="descriptive-statistics.html#cb78-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(mammalian_sleep, <span class="fu">mean</span>(sleep_total_h<span class="sc">&gt;</span>(sleep_mean<span class="sc">-</span>sleep_sd) <span class="sc">&amp;</span> sleep_total_h<span class="sc">&lt;</span>(sleep_mean<span class="sc">+</span>sleep_sd) ))</span></code></pre></div>
 <pre><code>## [1] 0.6385542</code></pre>
 <div id="bessels-correction-whats-up-with-all-those-n-1s-in-the-denominator" class="section level4 hasAnchor" number="6.3.6.1">
 <h4><span class="header-section-number">6.3.6.1</span> Bessel’s correction: What’s up with all those <span class="math inline">\(N-1\)</span>s in the denominator?<a href="descriptive-statistics.html#bessels-correction-whats-up-with-all-those-n-1s-in-the-denominator" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1046,46 +1072,37 @@ library(ggpubr)
 ggarrange(p_all_83_mammals, p_samples, ncol=1, nrow=2, labels = c("'Population'", "Samples"))
 ```
 
-<img src="main_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+<img src="main_files/figure-html/unnamed-chunk-39-1.png" width="672" />
 -->
 <!--
 
-- The real question is *why* R is dividing by $N-1$ and not by $N$. After all, the variance is supposed to be the *mean* squared deviation, right? So shouldn't we be dividing by $N$, the actual number of observations in the sample? Well, yes, we should. However, there's a subtle distinction between "describing a sample" and "making guesses about the population from which the sample came". Up to this point, it's been a distinction without a difference. Regardless of whether you're describing a sample or drawing inferences about the population, the mean is calculated exactly the same way. Not so for the variance, or the standard deviation, or for many other measures besides. What I outlined to you initially (i.e., take the actual average, and thus divide by $N$) assumes that you literally intend to calculate the variance of the sample. Most of the time, however, you're not terribly interested in the sample *in and of itself*. Rather, the sample exists to tell you something about the world. If so, you're actually starting to move away from calculating a "sample statistic", and towards the idea of estimating a "population parameter". 
-
-Okay, one last thing. This section so far has read a bit like a mystery novel. I've shown you how to calculate the variance, described the weird "$N-1$" thing that R does and hinted at the reason why it's there, but I haven't mentioned the single most important thing... how do you *interpret* the variance? Descriptive statistics are supposed to describe things, after all, and right now the variance is really just a gibberish number. Unfortunately, the reason why I haven't given you the human-friendly interpretation of the variance is that there really isn't one. This is the most serious problem with the variance. Although it has some elegant mathematical properties that suggest that it really is a fundamental quantity for expressing variation, it's completely useless if you want to communicate with an actual human... variances are completely uninterpretable in terms of the original variable! All the numbers have been squared, and they don't mean anything anymore. This is a huge issue. For instance, according to the table I presented earlier, the margin in game 1 was "376.36 points-squared higher than the average margin". This is *exactly* as stupid as it sounds; and so when we calculate a variance of 324.64, we're in the same situation. I've watched a lot of footy games, and never has anyone referred to "points squared". It's *not* a real unit of measurement, and since the variance is expressed in terms of this gibberish unit, it is totally meaningless to a human.
--->
-<!--
-### Median absolute deviation{#mad}
-
-The last measure of variability that I want to talk about is the **_median absolute deviation_** (MAD). The basic idea behind MAD is very simple, and is pretty much identical to the idea behind the mean absolute deviation (Section \@ref(aad)). The difference is that you use the median everywhere. If we were to frame this idea as a pair of R commands, they would look like this:
-
-
-```r
-# mean absolute deviation from the mean:
-#mean( abs(afl.margins - mean(afl.margins)) )
-
-
-# *median* absolute deviation from the *median*:
-#median( abs(afl.margins - median(afl.margins)) )
-```
-This has a straightforward interpretation: every observation in the data set lies some distance away from the typical value (the median). So the MAD is an attempt to describe a *typical deviation from a typical value* in the data set. It wouldn't be unreasonable to interpret the MAD value of 19.5 for our AFL data by saying something like this:
-
->The median winning margin in 2010 was 30.5, indicating that a typical game involved a winning margin of about 30 points. However, there was a fair amount of variation from game to game: the MAD value was 19.5, indicating that a typical winning margin would differ from this median value by about 19-20 points.
-
-As you'd expect, R has a built in function for calculating MAD, and you will be shocked no doubt to hear that it's called `mad()`. However, it's a little bit more complicated than the functions that we've been using previously. If you want to use it to calculate MAD in the exact same way that I have described it above, the command that you need to use specifies two arguments: the data set itself `x`, and a `constant` that I'll explain in a moment. For our purposes, the constant is 1, so our command becomes
-
-```r
-#mad( x = afl.margins, constant = 1 )
-```
-Apart from the weirdness of having to type that `constant = 1` part, this is pretty straightforward.
-
-Okay, so what exactly is this `constant = 1` argument? I won't go into all the details here, but here's the gist. Although the "raw" MAD value that I've described above is completely interpretable on its own terms, that's not actually how it's used in a lot of real world contexts. Instead, what happens a lot is that the researcher *actually* wants to calculate the standard deviation. However, in the same way that the mean is very sensitive to extreme values, the standard deviation is vulnerable to the exact same issue. So, in much the same way that people sometimes use the median as a "robust" way of calculating "something that is like the mean", it's not uncommon to use MAD as a method for calculating "something that is like the standard deviation". Unfortunately, the *raw* MAD value doesn't do this. Our raw MAD value is 19.5, and our standard deviation was 26.07. However, what some clever person has shown is that, under certain assumptions^[The assumption again being that the data are normally-distributed!], you can multiply the raw MAD value by 1.4826 and obtain a number that is directly comparable to the standard deviation. As a consequence, the default value of `constant` is 1.4826, and so when you use the `mad()` command without manually setting a value, here's what you get:
-
-```r
-#mad( afl.margins )
-```
-I should point out, though, that if you want to use this "corrected" MAD value as a robust version of the standard deviation, you really are relying on the assumption that the data are (or at least, are "supposed to be" in some sense) symmetric and basically shaped like a bell curve. That's really *not* true for our `afl.margins` data, so in this case I wouldn't try to use the MAD value this way.
--->
+<!-- - The real question is *why* R is dividing by $N-1$ and not by $N$. After all, the variance is supposed to be the *mean* squared deviation, right? So shouldn't we be dividing by $N$, the actual number of observations in the sample? Well, yes, we should. However, there's a subtle distinction between "describing a sample" and "making guesses about the population from which the sample came". Up to this point, it's been a distinction without a difference. Regardless of whether you're describing a sample or drawing inferences about the population, the mean is calculated exactly the same way. Not so for the variance, or the standard deviation, or for many other measures besides. What I outlined to you initially (i.e., take the actual average, and thus divide by $N$) assumes that you literally intend to calculate the variance of the sample. Most of the time, however, you're not terribly interested in the sample *in and of itself*. Rather, the sample exists to tell you something about the world. If so, you're actually starting to move away from calculating a "sample statistic", and towards the idea of estimating a "population parameter".  -->
+<!-- Okay, one last thing. This section so far has read a bit like a mystery novel. I've shown you how to calculate the variance, described the weird "$N-1$" thing that R does and hinted at the reason why it's there, but I haven't mentioned the single most important thing... how do you *interpret* the variance? Descriptive statistics are supposed to describe things, after all, and right now the variance is really just a gibberish number. Unfortunately, the reason why I haven't given you the human-friendly interpretation of the variance is that there really isn't one. This is the most serious problem with the variance. Although it has some elegant mathematical properties that suggest that it really is a fundamental quantity for expressing variation, it's completely useless if you want to communicate with an actual human... variances are completely uninterpretable in terms of the original variable! All the numbers have been squared, and they don't mean anything anymore. This is a huge issue. For instance, according to the table I presented earlier, the margin in game 1 was "376.36 points-squared higher than the average margin". This is *exactly* as stupid as it sounds; and so when we calculate a variance of 324.64, we're in the same situation. I've watched a lot of footy games, and never has anyone referred to "points squared". It's *not* a real unit of measurement, and since the variance is expressed in terms of this gibberish unit, it is totally meaningless to a human. -->
+<!-- -->
+<p>–&gt;</p>
+<!-- <!-- -->
+<!-- ### Median absolute deviation{#mad} -->
+<!-- The last measure of variability that I want to talk about is the **_median absolute deviation_** (MAD). The basic idea behind MAD is very simple, and is pretty much identical to the idea behind the mean absolute deviation (Section \@ref(aad)). The difference is that you use the median everywhere. If we were to frame this idea as a pair of R commands, they would look like this: -->
+<!-- ```{r} -->
+<!-- # mean absolute deviation from the mean: -->
+<!-- #mean( abs(afl.margins - mean(afl.margins)) ) -->
+<!-- # *median* absolute deviation from the *median*: -->
+<!-- #median( abs(afl.margins - median(afl.margins)) ) -->
+<!-- ``` -->
+<!-- This has a straightforward interpretation: every observation in the data set lies some distance away from the typical value (the median). So the MAD is an attempt to describe a *typical deviation from a typical value* in the data set. It wouldn't be unreasonable to interpret the MAD value of 19.5 for our AFL data by saying something like this: -->
+<!-- >The median winning margin in 2010 was 30.5, indicating that a typical game involved a winning margin of about 30 points. However, there was a fair amount of variation from game to game: the MAD value was 19.5, indicating that a typical winning margin would differ from this median value by about 19-20 points. -->
+<!-- As you'd expect, R has a built in function for calculating MAD, and you will be shocked no doubt to hear that it's called `mad()`. However, it's a little bit more complicated than the functions that we've been using previously. If you want to use it to calculate MAD in the exact same way that I have described it above, the command that you need to use specifies two arguments: the data set itself `x`, and a `constant` that I'll explain in a moment. For our purposes, the constant is 1, so our command becomes -->
+<!-- ```{r} -->
+<!-- #mad( x = afl.margins, constant = 1 ) -->
+<!-- ``` -->
+<!-- Apart from the weirdness of having to type that `constant = 1` part, this is pretty straightforward. -->
+<!-- Okay, so what exactly is this `constant = 1` argument? I won't go into all the details here, but here's the gist. Although the "raw" MAD value that I've described above is completely interpretable on its own terms, that's not actually how it's used in a lot of real world contexts. Instead, what happens a lot is that the researcher *actually* wants to calculate the standard deviation. However, in the same way that the mean is very sensitive to extreme values, the standard deviation is vulnerable to the exact same issue. So, in much the same way that people sometimes use the median as a "robust" way of calculating "something that is like the mean", it's not uncommon to use MAD as a method for calculating "something that is like the standard deviation". Unfortunately, the *raw* MAD value doesn't do this. Our raw MAD value is 19.5, and our standard deviation was 26.07. However, what some clever person has shown is that, under certain assumptions^[The assumption again being that the data are normally-distributed!], you can multiply the raw MAD value by 1.4826 and obtain a number that is directly comparable to the standard deviation. As a consequence, the default value of `constant` is 1.4826, and so when you use the `mad()` command without manually setting a value, here's what you get: -->
+<!-- ```{r} -->
+<!-- #mad( afl.margins ) -->
+<!-- ``` -->
+<!-- I should point out, though, that if you want to use this "corrected" MAD value as a robust version of the standard deviation, you really are relying on the assumption that the data are (or at least, are "supposed to be" in some sense) symmetric and basically shaped like a bell curve. That's really *not* true for our `afl.margins` data, so in this case I wouldn't try to use the MAD value this way. -->
+<!-- -->
+<p>–&gt;</p>
 </div>
 </div>
 </div>
@@ -1096,57 +1113,104 @@ In short, the IQR and the standard deviation are easily the two most common meas
 <ul>
 <li><em>Range</em>. Gives you the full spread of the data. It’s very vulnerable to outliers, and as a consequence it isn’t often used unless you have good reasons to care about the extremes in the data.</li>
 <li><em>Interquartile range</em>. Tells you where the “middle half” of the data sits. It’s pretty robust, and complements the median nicely. This is used a lot.
-<!-- 
+<!--
 - *Mean absolute deviation*. Tells you how far "on average" the observations are from the mean. It's very interpretable, but has a few minor issues (not discussed here) that make it less attractive to statisticians than the standard deviation. Used sometimes, but not often.
 --></li>
 <li><em>Variance</em>. Tells you the average squared deviation from the mean. It’s mathematically elegant, and is probably the “right” way to describe variation around the mean, but it’s completely uninterpretable because it doesn’t use the same units as the data. Almost never used except as a mathematical tool; but it’s buried “under the hood” of a very large number of statistical tools.</li>
 <li><em>Standard deviation</em>. This is the square root of the variance. It’s fairly elegant mathematically, and it’s expressed in the same units as the data so it can be interpreted pretty well. In situations where the mean is the measure of central tendency, this is the default. This is by far the most popular measure of variation.</li>
 </ul>
-<!--
-## Skew and kurtosis{#skewandkurtosis}
-
-There are two more descriptive statistics that you will sometimes see reported in the psychological literature, known as skew and kurtosis. In practice, neither one is used anywhere near as frequently as the measures of central tendency and variability that we've been talking about. Skew is pretty important, so you do see it mentioned a fair bit; but I've actually never seen kurtosis reported in a scientific article to date. 
-
-
-
-
-Since it's the more interesting of the two, let's start by talking about the **_skewness_**. Skewness is basically a measure of asymmetry, and the easiest way to explain it is by drawing some pictures. As Figure \@ref(fig:skewness) illustrates, if the data tend to have a lot of extreme small values (i.e., the lower tail is "longer" than the upper tail) and not so many extremely large values (left panel), then we say that the data are *negatively skewed*. On the other hand, if there are more extremely large values than extremely small ones (right panel) we say that the data are *positively skewed*. That's the qualitative idea behind skewness. The actual formula for the skewness of a data set is as follows
-$$
-\mbox{skewness}(X) = \frac{1}{N \hat{\sigma}^3} \sum_{i=1}^N (X_i - \bar{X})^3
-$$
-where $N$ is the number of observations, $\bar{X}$ is the sample mean, and $\hat{\sigma}$ is the standard deviation (the "divide by $N-1$" version, that is). Perhaps more helpfully, it might be useful to point out that the `psych` package contains a `skew()` function that you can use to calculate skewness. So if we wanted to use this function to calculate the skewness of the `afl.margins` data, we'd first need to load the package
-
-```r
-library( psych )
-```
-which now makes it possible to use the following command:
-
-```r
-skew( x = afl.margins )
-```
-Not surprisingly, it turns out that the AFL winning margins data is fairly skewed.
-
-
-The final measure that is sometimes referred to, though very rarely in practice, is the **_kurtosis_** of a data set. Put simply, kurtosis is a measure of the "pointiness" of a data set, as illustrated in Figure \@ref(fig:kurtosis). 
-
-
-
-
-By convention, we say that the "normal curve" (black lines) has zero kurtosis, so the pointiness of a data set is assessed relative to this curve. In this Figure, the data on the left are not pointy enough, so the kurtosis is negative and we call the data *platykurtic*. The data on the right are too pointy, so the kurtosis is positive and we say that the data is *leptokurtic*. But the data in the middle are just pointy enough, so we say that it is *mesokurtic* and has kurtosis zero. This is summarised in the table below:
-
-
-
-The equation for kurtosis is pretty similar in spirit to the formulas we've seen already for the variance and the skewness; except that where the variance involved squared deviations and the skewness involved cubed deviations, the kurtosis involves raising the deviations to the fourth power:^[The "$-3$" part is something that statisticians tack on to ensure that the normal curve has kurtosis zero. It looks a bit stupid, just sticking a "-3" at the end of the formula, but there are good mathematical reasons for doing this.]
-$$
-\mbox{kurtosis}(X) = \frac{1}{N \hat\sigma^4} \sum_{i=1}^N \left( X_i - \bar{X} \right)^4  - 3
-$$
-I know, it's not terribly interesting to me either. More to the point, the `psych` package has a function called `kurtosi()` that you can use to calculate the kurtosis of your data. For instance, if we were to do this for the AFL margins, 
-
-```r
-kurtosi( x = afl.margins )
-```
-we discover that the AFL winning margins data are just pointy enough.
--->
+<!-- <!-- -->
+<!-- ## Skew and kurtosis{#skewandkurtosis} -->
+<!-- There are two more descriptive statistics that you will sometimes see reported in the psychological literature, known as skew and kurtosis. In practice, neither one is used anywhere near as frequently as the measures of central tendency and variability that we've been talking about. Skew is pretty important, so you do see it mentioned a fair bit; but I've actually never seen kurtosis reported in a scientific article to date.  -->
+<!-- ```{r eval=F, skewness, fig.cap="An illustration of skewness. On the left we have a negatively skewed data set (skewness $= -.93$), in the middle we have a data set with no skew (technically, skewness $= -.006$), and on the right we have a positively skewed data set (skewness $= .93$).", echo=FALSE} -->
+<!-- library(psych) -->
+<!--    x1 <- rbeta(n = 100000, shape1= 10, shape2 = 2) -->
+<!--    x2 <- rbeta(n = 100000, shape1= 10, shape2 = 10) -->
+<!--    x3 <- rbeta(n = 100000, shape1= 2, shape2 = 10) -->
+<!--    X <- list(x1,x2,x3) -->
+<!--    plot.new() -->
+<!--    old <- par(no.readonly = TRUE) -->
+<!--    par(mfrow=c(1,3)) -->
+<!--    ttl = c("Negative Skew", "No Skew", "Positive Skew") -->
+<!--    for (i in 1:3) { -->
+<!--      hist(x = X[[i]], -->
+<!--           breaks = seq(0,1,.05), -->
+<!--           xlab = "", -->
+<!--           ylab = "", -->
+<!--           main = ttl[i], -->
+<!--           axes = FALSE, -->
+<!--           col = "cornflowerblue", -->
+<!--           border = "white", -->
+<!--            font.main = 1 -->
+<!--           ) -->
+<!--      print(skew(X[[i]])) -->
+<!--    } -->
+<!--    par( old ) -->
+<!-- ``` -->
+<!-- Since it's the more interesting of the two, let's start by talking about the **_skewness_**. Skewness is basically a measure of asymmetry, and the easiest way to explain it is by drawing some pictures. As Figure \@ref(fig:skewness) illustrates, if the data tend to have a lot of extreme small values (i.e., the lower tail is "longer" than the upper tail) and not so many extremely large values (left panel), then we say that the data are *negatively skewed*. On the other hand, if there are more extremely large values than extremely small ones (right panel) we say that the data are *positively skewed*. That's the qualitative idea behind skewness. The actual formula for the skewness of a data set is as follows -->
+<!-- $$ -->
+<!-- \mbox{skewness}(X) = \frac{1}{N \hat{\sigma}^3} \sum_{i=1}^N (X_i - \bar{X})^3 -->
+<!-- $$ -->
+<!-- where $N$ is the number of observations, $\bar{X}$ is the sample mean, and $\hat{\sigma}$ is the standard deviation (the "divide by $N-1$" version, that is). Perhaps more helpfully, it might be useful to point out that the `psych` package contains a `skew()` function that you can use to calculate skewness. So if we wanted to use this function to calculate the skewness of the `afl.margins` data, we'd first need to load the package -->
+<!-- ```{r eval=F} -->
+<!-- library( psych ) -->
+<!-- ``` -->
+<!-- which now makes it possible to use the following command: -->
+<!-- ```{r eval=F} -->
+<!-- skew( x = afl.margins ) -->
+<!-- ``` -->
+<!-- Not surprisingly, it turns out that the AFL winning margins data is fairly skewed. -->
+<!-- The final measure that is sometimes referred to, though very rarely in practice, is the **_kurtosis_** of a data set. Put simply, kurtosis is a measure of the "pointiness" of a data set, as illustrated in Figure \@ref(fig:kurtosis).  -->
+<!-- ```{r eval=F, kurtosis, fig.cap="An illustration of kurtosis. On the left, we have a \"platykurtic\" data set (kurtosis = $-.95$), meaning that the data set is \"too flat\". In the middle we have a \"mesokurtic\" data set (kurtosis is almost exactly 0), which means that the pointiness of the data is just about right. Finally, on the right, we have a \"leptokurtic\" data set (kurtosis $= 2.12$) indicating that the data set is \"too pointy\". Note that kurtosis is measured with respect to a normal curve (black line)", echo=FALSE} -->
+<!--    #x1 <- c(rexp(n = 5000, rate =2), -rexp(n = 5000, rate =2) ) -->
+<!--    x3 <- c(rnorm(n = 50000, mean =0, sd = 1), (runif(n = 50000)-.5)+rnorm(50000,0,.1) )*1.6 -->
+<!--    x2 <- rnorm(n = 100000, mean = 0, sd = 1)*1.2 -->
+<!--    x1 <- (runif(n = 100000) + rnorm(100000, mean =0, sd = .1) -.5)*4 -->
+<!--    X <- list(x1,x2,x3) -->
+<!--    plot.new() -->
+<!--    old <- par(no.readonly = TRUE) -->
+<!--    par(mfrow=c(1,3)) -->
+<!--    ttl = c( 'Platykurtic\n("too flat")','Mesokurtic', 'Leptokurtic\n("too pointy")') -->
+<!--    for (i in 1:3) { -->
+<!--        hist(x = X[[i]], -->
+<!--            breaks = seq(-20.5,20.5,.5), -->
+<!--            ylim =c(0,.45), -->
+<!--            xlim = c(-5,5), -->
+<!--            xlab = "", -->
+<!--            ylab = "", -->
+<!--            main = ttl[i], -->
+<!--            axes = FALSE, -->
+<!--            freq = FALSE, -->
+<!--        col = "cornflowerblue", -->
+<!--            font.main=1, -->
+<!--            border = "white" -->
+<!--        ) -->
+<!--        lines(x <- seq(-4,4,.01), y = dnorm(x, mean(X[[i]]), sd(X[[i]])),  -->
+<!--            lwd = 2, lty = 1, col = "black") -->
+<!--        print(kurtosi(X[[i]])) -->
+<!--    } -->
+<!--    par( old ) -->
+<!-- ``` -->
+<!-- By convention, we say that the "normal curve" (black lines) has zero kurtosis, so the pointiness of a data set is assessed relative to this curve. In this Figure, the data on the left are not pointy enough, so the kurtosis is negative and we call the data *platykurtic*. The data on the right are too pointy, so the kurtosis is positive and we say that the data is *leptokurtic*. But the data in the middle are just pointy enough, so we say that it is *mesokurtic* and has kurtosis zero. This is summarised in the table below: -->
+<!-- ```{r eval=F, echo=FALSE} -->
+<!-- knitr::kable(rbind( -->
+<!--                   c("too flat" , "platykurtic", "negative"), -->
+<!--                   c("just pointy enough", "mesokurtic", "zero"), -->
+<!--                   c("too pointy", "leptokurtic", "positive")), -->
+<!-- col.names = c("informal term", "technical name", "kurtosis value"), -->
+<!--   booktabs = TRUE) -->
+<!-- ``` -->
+<!-- The equation for kurtosis is pretty similar in spirit to the formulas we've seen already for the variance and the skewness; except that where the variance involved squared deviations and the skewness involved cubed deviations, the kurtosis involves raising the deviations to the fourth power:^[The "$-3$" part is something that statisticians tack on to ensure that the normal curve has kurtosis zero. It looks a bit stupid, just sticking a "-3" at the end of the formula, but there are good mathematical reasons for doing this.] -->
+<!-- $$ -->
+<!-- \mbox{kurtosis}(X) = \frac{1}{N \hat\sigma^4} \sum_{i=1}^N \left( X_i - \bar{X} \right)^4  - 3 -->
+<!-- $$ -->
+<!-- I know, it's not terribly interesting to me either. More to the point, the `psych` package has a function called `kurtosi()` that you can use to calculate the kurtosis of your data. For instance, if we were to do this for the AFL margins,  -->
+<!-- ```{r eval=FALSE} -->
+<!-- kurtosi( x = afl.margins ) -->
+<!-- ``` -->
+<!-- we discover that the AFL winning margins data are just pointy enough. -->
+<!-- -->
+<p>–&gt;</p>
 </div>
 </div>
 <div id="summary" class="section level2 hasAnchor" number="6.4">
@@ -1164,7 +1228,7 @@ we discover that the AFL winning margins data are just pointy enough.
 <li>For numeric variables, we get a whole bunch of useful descriptive statistics. It gives us the minimum and maximum values (and thus the range), the first and third quartiles (25th and 75th percentiles; and thus the IQR), the mean and the median.</li>
 <li>In sum, it gives us a pretty good collection of descriptive statistics related to the central tendency and the spread of the data.</li>
 </ul>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="descriptive-statistics.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )  </span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="descriptive-statistics.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    2.00    8.00   10.00   10.41   14.00   20.00</code></pre>
 </div>
@@ -1173,7 +1237,7 @@ we discover that the AFL winning margins data are just pointy enough.
 <ul>
 <li>Returns the number of <code>TRUE</code> and <code>FALSE</code> values.</li>
 </ul>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="descriptive-statistics.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h <span class="sc">&gt;</span> <span class="dv">10</span> )  </span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="descriptive-statistics.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h <span class="sc">&gt;</span> <span class="dv">10</span> )</span></code></pre></div>
 <pre><code>##    Mode   FALSE    TRUE 
 ## logical      45      38</code></pre>
 </div>
@@ -1182,7 +1246,7 @@ we discover that the AFL winning margins data are just pointy enough.
 <ul>
 <li>Returns the number of observations for each factor level.</li>
 </ul>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="descriptive-statistics.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( <span class="fu">as.factor</span>(mammalian_sleep<span class="sc">$</span>name[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]) )</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="descriptive-statistics.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( <span class="fu">as.factor</span>(mammalian_sleep<span class="sc">$</span>name[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]) )</span></code></pre></div>
 <pre><code>##                    Cheetah                        Cow 
 ##                          1                          1 
 ##                        Dog Greater short-tailed shrew 
@@ -1199,7 +1263,7 @@ we discover that the AFL winning margins data are just pointy enough.
 <ul>
 <li>Returns almost no useful information except for length.</li>
 </ul>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="descriptive-statistics.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep<span class="sc">$</span>name )  </span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="descriptive-statistics.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep<span class="sc">$</span>name )</span></code></pre></div>
 <pre><code>##    Length     Class      Mode 
 ##        83 character character</code></pre>
 </div>
@@ -1209,7 +1273,7 @@ we discover that the AFL winning margins data are just pointy enough.
 <ul>
 <li><code>summary()</code> can also be called on a data frame, in which case it returns summaries of all variables.</li>
 </ul>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="descriptive-statistics.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep )  </span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="descriptive-statistics.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep )</span></code></pre></div>
 <pre><code>##      name           sleep_total_h     bodywt_kg       
 ##  Length:83          Min.   : 2.00   Min.   :   0.005  
 ##  Class :character   1st Qu.: 8.00   1st Qu.:   0.174  
@@ -1217,8 +1281,27 @@ we discover that the AFL winning margins data are just pointy enough.
 ##                     Mean   :10.41   Mean   : 166.136  
 ##                     3rd Qu.:14.00   3rd Qu.:  41.750  
 ##                     Max.   :20.00   Max.   :6654.000</code></pre>
-
 </div>
+</div>
+<div id="correlations" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Correlations<a href="descriptive-statistics.html#correlations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The descriptive statistics we discussed so far were all about a single variable. Sometimes, we want to describe the relation between two variables. For this we need to calculate <strong>correlations</strong>. Correlations range between -1 and 1. 0 means no no correlation, 1 means strong positive correlation and -1 means strong negative correlation. Correlation is indicated by the letter <code>r</code>.</p>
+<div class="figure"><span style="display:block;" id="fig:correlations"></span>
+<img src="img/corr-1.png" alt="Different correlations."  />
+<p class="caption">
+Figure 6.11: Different correlations.
+</p>
+</div>
+<p>In R, we can calculate the correlations of two variables using the <code>cor()</code> function. Consider the following example.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="descriptive-statistics.html#cb90-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb90-2"><a href="descriptive-statistics.html#cb90-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> (x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb90-3"><a href="descriptive-statistics.html#cb90-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-4"><a href="descriptive-statistics.html#cb90-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y=</span>y)) <span class="sc">+</span></span>
+<span id="cb90-5"><a href="descriptive-statistics.html#cb90-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="descriptive-statistics.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x,y)</span></code></pre></div>
+<pre><code>## [1] 0.9713482</code></pre>
+
 </div>
 </div>
 
