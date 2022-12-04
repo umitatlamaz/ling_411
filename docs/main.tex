@@ -3182,7 +3182,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(04 December, 2022, 13:18)
+(04 December, 2022, 17:17)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -4939,6 +4939,255 @@ In R, we can calculate the correlations of two variables using the \texttt{cor()
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{linear-regression}{%
+\chapter{Linear Regression}\label{linear-regression}}
+
+In the previous section, we looked at some descriptive statistics about data. In all of these cases, we looked at the descriptive statistics of a \textbf{single variable}. For example, we looked at the mean and standard deviation of total sleep hours for various animals. The variable we considered was \texttt{total\_sleep\_hours}. This is also called \textbf{univariate statistics} because we were interested in the statistics of a \textbf{single variable}.
+
+Now, we are moving onto \textbf{bivariate statistics}. In other words, we will analyze the relationship between two variables. Instead of calculating the \textbf{mean} of a single variable, we will calculate the \textbf{conditional mean} of a variable based on some other variable. For example, we could try calculating the relationship between \texttt{total\_sleep\_hours} and \texttt{bodyweight}.
+
+\hypertarget{word-frequency-effects}{%
+\section{Word Frequency Effects}\label{word-frequency-effects}}
+
+Instead of looking at animal sleep hours, this time let's look at something more relevant for linguistics. Earlier, we discussed the role of frequency in processing.
+
+\begin{itemize}
+\tightlist
+\item
+  Our hypothesis was that more frequent words will be processed more easily.
+\item
+  We operationalized this hypothesis by picking
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{word frequency} as our \textbf{independent variable} (also called a \textbf{predictor})
+  \item
+    \textbf{reaction time} as our \textbf{dependent variable} (also called \textbf{response} or \textbf{outcome variable})
+  \end{itemize}
+\end{itemize}
+
+The typical dataset we will be working with has a structure similar to the one below:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2174}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2174}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2609}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3043}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+dependent var.(\(Y\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+predictor 1(\(X_1\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+predictor 2(\(X_2\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+(other predictors)
+\end{minipage} \\
+\midrule()
+\endhead
+705 & 1.2 & 2.2 & (\ldots) \\
+209 & 8.3 & -4.0 & (\ldots) \\
+334 & 7.2 & -1.4 & (\ldots) \\
+\ldots{} & \ldots{} & \ldots{} & (\ldots) \\
+\bottomrule()
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  What the variables represent will depend on the problem you're studying and the question you're asking
+
+  \begin{itemize}
+  \tightlist
+  \item
+    dependent variable (e.g., reaction time)
+  \item
+    predictor 1 (e.g., frequency)
+  \item
+    predictor 2 (e.g., familiarity)
+  \end{itemize}
+\end{itemize}
+
+Let us take a look at a linear regression model where \texttt{x\ =\ frequency} and \texttt{y=response\ time}.
+
+\begin{figure}
+\centering
+\includegraphics{./img/lr/lr1.png}
+\caption{\label{fig:linearregression1}Response duration as a function of word frequency. The frequencies are not raw frequencies. Instead, log frequencies are used. We'll talk more about this.}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  Each point on the plot above indicates the average response time of multiple participants.
+\item
+  The somewhat diagonal line is called the \textbf{regression line}.
+\end{itemize}
+
+\hypertarget{simple-linear-regression}{%
+\section{Simple Linear Regression}\label{simple-linear-regression}}
+
+In simple regression, our goal is to find the \textbf{regression line} as IT IS our model. The line extends to infinity and makes predictions about every point on its path. For example, our \textbf{model} can make a prediction about the reaction time if I were to find a word that has the log frequency 7. It would tell me that the reaction time would be a little below 400 miliseconds.
+
+An important point regarding simple linear regression is that it can be used for data where the dependent variable is \textbf{continuous} (e.g.~436 miliseconds) but not \textbf{categorial} (e.g.~grammatical/ungrammatical).
+
+\hypertarget{finding-the-regression-line}{%
+\subsection{Finding the Regression Line}\label{finding-the-regression-line}}
+
+In simple linear regression, the value for a \textbf{dependent variable} is a \textbf{linear function of} the \textbf{predictor variable}. A linear function looks like the following.
+
+\[y = a + b * x\]
+
+Let us try to understand these values a bit.
+
+\[ \underbrace{Y}_{\text{dependent variable}} =
+            \overbrace{\underbrace{a}_{\text{intercept}}}^{\text{additive term}} + 
+            \overbrace{\underbrace{b}_{\text{slope}} * \underbrace{X}_{\text{predictor}}}^{\text{additive term}} \]
+
+Mathematically, a line is defined in terms of an \textbf{intercept} and \textbf{slope}.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Slope} can be defined as the amount of change in \texttt{y} as \texttt{x} changes one unit.
+  \[ slope = \frac{\Delta y}{\Delta x}  \]
+\item
+  A rising slope will have a positive value whereas a descending slope will have a positive value.
+\item
+  For example, the slope in the Response Duration Model above is -70. This means that for each unit of increase in frequency, we observe a 70ms decrease in reaction time.
+\end{itemize}
+
+A slope is not enough to define a line on a plot. There can be an infinite number of lines that have the same slope. We also need the \textbf{intercept}. Intercept determines the value predicted for y when x is 0. Consider the following graphs.
+
+\begin{figure}
+\centering
+\includegraphics{./img/lr/lr2.png}
+\caption{\label{fig:interceptslope}Lines with different intercept and slope values.}
+\end{figure}
+
+The intercept for the data Response Duration Model above is 880ms. So, our Response Duration Model is:
+
+\[response\ duration = 880ms + (-70 \frac{ms}{freq}) * word\ frequecny   \]
+
+A good way to remember the intercept and the slope and a linear model is to remember the \textbf{taxi fares}. The taxi fares will usually start with a constant fee (a minimum fee). This is your intercept. It's the 0th kilometers and it already costs you 7 TLs. Then the cost for each kilometer is your slope. At the time of writing these notes, it is 6TLs.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{distance }\OtherTok{=} \DecValTok{1}\SpecialCharTok{:}\DecValTok{20}
+\NormalTok{cost }\OtherTok{=} \DecValTok{7}\SpecialCharTok{+}\NormalTok{(}\DecValTok{6}\SpecialCharTok{*}\NormalTok{distance)}
+
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\ConstantTok{NULL}\NormalTok{, }\FunctionTok{aes}\NormalTok{(distance,cost)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{20}\NormalTok{, }\AttributeTok{by =}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{125}\NormalTok{, }\AttributeTok{by =} \DecValTok{5}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{, }\AttributeTok{formula =}\NormalTok{y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x }\SpecialCharTok{+} \FunctionTok{I}\NormalTok{(}\DecValTok{7}\SpecialCharTok{+}\DecValTok{6}\SpecialCharTok{*}\NormalTok{x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in predict.lm(model, newdata = new_data_frame(list(x = xseq)), se.fit =
+## se, : prediction from a rank-deficient fit may be misleading
+\end{verbatim}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-201-1.pdf}
+
+\textbf{Slope} and \textbf{intercept} are the \textbf{coefficients} of our linear regression model. Our task is to find the \textbf{coefficients} from the data.
+
+\hypertarget{estimating-the-coefficients}{%
+\section{Estimating the Coefficients}\label{estimating-the-coefficients}}
+
+A Linear Regression analysis of a particular data is essentially all about \textbf{estimating coefficients} and \textbf{interpreting the results}. In the \textbf{taxi model}, we already knew the coefficients. So, we had a model about the world and we can use the model to make predictions about taxi costs. In the Response Duration Model, the coefficients were learnt from the data but I gave them to you directly. So, how are we going to estimate the coefficients when what we have is just data but nothing else?
+
+Let's not get into the weeds of how to find the right linear regression model. Instead, let's just use R to estimate the coefficients. This is called \textbf{fitting a model}. So, let's fit a linear model on the taxi model and interpret its results. We'll start with the taxi model simply because we already know the coefficients. We'll let R estimate some coefficients for us and then compare them with the coefficients we used to generate the \texttt{cost} data above from the \texttt{distance} variables and our coefficients.
+
+The simplest way to fit a linear model on some data is the \texttt{lm()} function. \texttt{lm()} takes two variables \texttt{x} (predictor) and \texttt{y} (dependent variable) and fits a model by modeling \texttt{y} as a linear function of \texttt{x}. The tilde \texttt{\textasciitilde{}} means: element on the left as a function of element on the right.
+
+For our taxi model, we will model cost as a function of duration. The following lines of code does that.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# fit a linear regression model of cost as a function of distance}
+\NormalTok{taxi\_model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(cost }\SpecialCharTok{\textasciitilde{}}\NormalTok{ distance)}
+
+\CommentTok{\# print the model coefficients}
+\NormalTok{taxi\_model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = cost \textasciitilde{} distance)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\# (Intercept)     distance  }
+\NormalTok{\#\#           7            6}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Unbelievable!} The model estimated the intercept (start cost) as 7 and the slope (cost per km) as 6. Simple as that. Notice that the model estimated these coefficients simply from the data but nothing else.
+
+The model object that we stored in the variable \texttt{taxi\_model} has a lot more information. Let us take a look at the results of our model. To do this, we'll take use the \texttt{glance()} function from the \texttt{broom} package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(broom)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{glance}\NormalTok{(taxi\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable
+
+## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 1 x 12}
+\NormalTok{\#\#   r.squ\textasciitilde{}1 adj.r\textasciitilde{}2    sigma stati\textasciitilde{}3   p.value    df logLik    AIC    BIC deviance}
+\NormalTok{\#\#     \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1       1       1 4.66e{-}15 1.10e33 1.51e{-}287     1   633. {-}1259. {-}1256. 3.90e{-}28}
+\NormalTok{\#\# \# ... with 2 more variables: df.residual \textless{}int\textgreater{}, nobs \textless{}int\textgreater{}, and abbreviated}
+\NormalTok{\#\# \#   variable names 1: r.squared, 2: adj.r.squared, 3: statistic}
+\end{Highlighting}
+\end{Shaded}
+
+There are a lot of details. For now, we'll focus on only two values \textbf{R2} and the \textbf{p value}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{results }\OtherTok{\textless{}{-}} \FunctionTok{glance}\NormalTok{(taxi\_model) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(r.squared, p.value)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable
+
+## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{results}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 1 x 2}
+\NormalTok{\#\#   r.squared   p.value}
+\NormalTok{\#\#       \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1         1 1.51e{-}287}
+\end{Highlighting}
+\end{Shaded}
+
+Without going into any detail yet, I can tell you that we got an excellent model. Our \textbf{R2} is 1, which is perfect and our p value is very small \texttt{1.51e-287} (This means that there are 286 zeroes after 0. and before 151. So, a very small number). When the p value is so small, we can conclude that the relation between distance and cost is \textbf{statistically significant} (i.e.~not random).
 
   \bibliography{book.bib,packages.bib}
 

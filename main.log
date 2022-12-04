@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  4 DEC 2022 13:18
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  4 DEC 2022 17:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1059,9 +1059,48 @@ File: main_files/figure-latex/unnamed-chunk-200-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 1412) has occurred while \output is active []
 
-[106] [107]
+[106] [107] [108]
+Chapter 7.
+[109
+
+]
+File: ./img/lr/lr1.png Graphic file (type bmp)
+<./img/lr/lr1.png>
+[110]
+File: ./img/lr/lr2.png Graphic file (type bmp)
+<./img/lr/lr2.png>
+[111]
+Overfull \hbox (85.5pt too wide) in paragraph at lines 5092--5092
+[]\TU/lmtt/m/n/10 ## Warning in predict.lm(model, newdata = new_data_frame(list(x = xseq)), se.fit =[] 
+ []
+
+File: main_files/figure-latex/unnamed-chunk-201-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-201-1.pdf>
+
+Underfull \vbox (badness 3780) has occurred while \output is active []
+
+[112] [113]
+Overfull \hbox (69.75pt too wide) in paragraph at lines 5147--5147
+[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 5147--5147
+[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
+ []
+
+[114]
+Overfull \hbox (69.75pt too wide) in paragraph at lines 5173--5173
+[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 5173--5173
+[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
+ []
+
 No file main.bbl.
-[108] (./main.aux)
+[115] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1069,15 +1108,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8C034D529C312787EEE2F1207ED17095;5733.
+(rerunfilecheck)             Checksum: BD938DE826C3A94970E178AA19B085E5;6413.
  ) 
 Here is how much of TeX's memory you used:
- 17883 strings out of 477743
- 337089 string characters out of 5843158
- 815994 words of memory out of 5000000
- 38640 multiletter control sequences out of 15000+600000
- 475766 words of font info for 88 fonts, out of 8000000 for 9000
+ 17920 strings out of 477743
+ 338079 string characters out of 5843158
+ 816582 words of memory out of 5000000
+ 38671 multiletter control sequences out of 15000+600000
+ 475774 words of font info for 89 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,8n,121p,941b,484s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (108 pages).
+Output written on main.pdf (115 pages).
