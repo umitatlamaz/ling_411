@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Ling 411 - Fall 2022</title>
+  <title>Chapter 7 Linear Regression | Ling 411 - Fall 2022</title>
   <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Ling 411 - Fall 2022" />
+  <meta property="og:title" content="Chapter 7 Linear Regression | Ling 411 - Fall 2022" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
   <meta name="github-repo" content="rstudio/ling_411" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Ling 411 - Fall 2022" />
+  <meta name="twitter:title" content="Chapter 7 Linear Regression | Ling 411 - Fall 2022" />
   
   <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
+<link rel="prev" href="descriptive-statistics.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -253,18 +253,189 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="linear-regression" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Linear Regression<a href="linear-regression.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the previous section, we looked at some descriptive statistics about data. In all of these cases, we looked at the descriptive statistics of a <strong>single variable</strong>. For example, we looked at the mean and standard deviation of total sleep hours for various animals. The variable we considered was <code>total_sleep_hours</code>. This is also called <strong>univariate statistics</strong> because we were interested in the statistics of a <strong>single variable</strong>.</p>
+<p>Now, we are moving onto <strong>bivariate statistics</strong>. In other words, we will analyze the relationship between two variables. Instead of calculating the <strong>mean</strong> of a single variable, we will calculate the <strong>conditional mean</strong> of a variable based on some other variable. For example, we could try calculating the relationship between <code>total_sleep_hours</code> and <code>bodyweight</code>.</p>
+<div id="word-frequency-effects" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Word Frequency Effects<a href="linear-regression.html#word-frequency-effects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Instead of looking at animal sleep hours, this time let’s look at something more relevant for linguistics. Earlier, we discussed the role of frequency in processing.</p>
+<ul>
+<li>Our hypothesis was that more frequent words will be processed more easily.</li>
+<li>We operationalized this hypothesis by picking
+<ul>
+<li><strong>word frequency</strong> as our <strong>independent variable</strong> (also called a <strong>predictor</strong>)</li>
+<li><strong>reaction time</strong> as our <strong>dependent variable</strong> (also called <strong>response</strong> or <strong>outcome variable</strong>)</li>
+</ul></li>
+</ul>
+<p>The typical dataset we will be working with has a structure similar to the one below:</p>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="21%" />
+<col width="26%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>dependent var.<br>(<span class="math inline">\(Y\)</span>)</th>
+<th align="left">predictor 1<br>(<span class="math inline">\(X_1\)</span>)</th>
+<th align="left">predictor 2<br>(<span class="math inline">\(X_2\)</span>)</th>
+<th align="left">(other predictors)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>705</td>
+<td align="left">1.2</td>
+<td align="left">2.2</td>
+<td align="left">(…)</td>
+</tr>
+<tr class="even">
+<td>209</td>
+<td align="left">8.3</td>
+<td align="left">-4.0</td>
+<td align="left">(…)</td>
+</tr>
+<tr class="odd">
+<td>334</td>
+<td align="left">7.2</td>
+<td align="left">-1.4</td>
+<td align="left">(…)</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td align="left">…</td>
+<td align="left">…</td>
+<td align="left">(…)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>What the variables represent will depend on the problem you’re studying and the question you’re asking
+<ul>
+<li>dependent variable (e.g., reaction time)</li>
+<li>predictor 1 (e.g., frequency)</li>
+<li>predictor 2 (e.g., familiarity)</li>
+</ul></li>
+</ul>
+<p>Let us take a look at a linear regression model where <code>x = frequency</code> and <code>y=response time</code>.</p>
+<div class="figure"><span style="display:block;" id="fig:linearregression1"></span>
+<img src="img/lr/lr1.png" alt="Response duration as a function of word frequency. The frequencies are not raw frequencies. Instead, log frequencies are used. We'll talk more about this."  />
+<p class="caption">
+Figure 7.1: Response duration as a function of word frequency. The frequencies are not raw frequencies. Instead, log frequencies are used. We’ll talk more about this.
+</p>
+</div>
+<ul>
+<li>Each point on the plot above indicates the average response time of multiple participants.</li>
+<li>The somewhat diagonal line is called the <strong>regression line</strong>.</li>
+</ul>
+</div>
+<div id="simple-linear-regression" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Simple Linear Regression<a href="linear-regression.html#simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In simple regression, our goal is to find the <strong>regression line</strong> as IT IS our model. The line extends to infinity and makes predictions about every point on its path. For example, our <strong>model</strong> can make a prediction about the reaction time if I were to find a word that has the log frequency 7. It would tell me that the reaction time would be a little below 400 miliseconds.</p>
+<p>An important point regarding simple linear regression is that it can be used for data where the dependent variable is <strong>continuous</strong> (e.g. 436 miliseconds) but not <strong>categorial</strong> (e.g. grammatical/ungrammatical).</p>
+</div>
+<div id="finding-the-regression-line" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Finding the Regression Line<a href="linear-regression.html#finding-the-regression-line" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In simple linear regression, the value for a <strong>dependent variable</strong> is a <strong>linear function of</strong> the <strong>predictor variable</strong>. A linear function looks like the following.</p>
+<p><span class="math display">\[y = a + b * x\]</span></p>
+<p>Let us try to understand these values a bit.</p>
+<p><span class="math display">\[ \underbrace{Y}_{\text{dependent variable}} =
+            \overbrace{\underbrace{a}_{\text{intercept}}}^{\text{additive term}} +
+            \overbrace{\underbrace{b}_{\text{slope}} * \underbrace{X}_{\text{predictor}}}^{\text{additive term}} \]</span></p>
+<p>Mathematically, a line is defined in terms of an <strong>intercept</strong> and <strong>slope</strong>.</p>
+<ul>
+<li><strong>Slope</strong> can be defined as the amount of change in <code>y</code> as <code>x</code> changes one unit.
+<span class="math display">\[ slope = \frac{\Delta y}{\Delta x}  \]</span></li>
+<li>A rising slope will have a positive value whereas a descending slope will have a positive value.</li>
+<li>For example, the slope in the Response Duration Model above is -70. This means that for each unit of increase in frequency, we observe a 70ms decrease in reaction time.</li>
+</ul>
+<p>A slope is not enough to define a line on a plot. There can be an infinite number of lines that have the same slope. We also need the <strong>intercept</strong>. Intercept determines the value predicted for y when x is 0. Consider the following graphs.</p>
+<div class="figure"><span style="display:block;" id="fig:interceptslope"></span>
+<img src="img/lr/lr2.png" alt="Lines with different intercept and slope values."  />
+<p class="caption">
+Figure 7.2: Lines with different intercept and slope values.
+</p>
+</div>
+<p>The intercept for the data Response Duration Model above is 880ms. So, our Response Duration Model is:</p>
+<p><span class="math display">\[response\ duration = 880ms + (-70 \frac{ms}{freq}) * word\ frequecny   \]</span></p>
+<p>A good way to remember the intercept and the slope and a linear model is to remember the <strong>taxi fares</strong>. The taxi fares will usually start with a constant fee (a minimum fee). This is your intercept. It’s the 0th kilometers and it already costs you 7 TLs. Then the cost for each kilometer is your slope. At the time of writing these notes, it is 6TLs.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="linear-regression.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="linear-regression.html#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="linear-regression.html#cb1-3" aria-hidden="true" tabindex="-1"></a>distance <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb1-4"><a href="linear-regression.html#cb1-4" aria-hidden="true" tabindex="-1"></a>cost <span class="ot">=</span> <span class="dv">7</span><span class="sc">+</span>(<span class="dv">6</span><span class="sc">*</span>distance)</span>
+<span id="cb1-5"><a href="linear-regression.html#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="linear-regression.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(distance,cost)) <span class="sc">+</span></span>
+<span id="cb1-7"><a href="linear-regression.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb1-8"><a href="linear-regression.html#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">125</span>, <span class="at">by =</span> <span class="dv">5</span>)) <span class="sc">+</span> </span>
+<span id="cb1-9"><a href="linear-regression.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span>y<span class="sc">~</span>x <span class="sc">+</span> <span class="fu">I</span>(<span class="dv">7</span><span class="sc">+</span><span class="dv">6</span><span class="sc">*</span>x))</span></code></pre></div>
+<pre><code>## Warning in predict.lm(model, newdata = new_data_frame(list(x = xseq)), se.fit =
+## se, : prediction from a rank-deficient fit may be misleading</code></pre>
+<p><img src="main_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><strong>Slope</strong> and <strong>intercept</strong> are the <strong>coefficients</strong> of our linear regression model. Our task is to find the <strong>coefficients</strong> from the data.</p>
+</div>
+<div id="estimating-the-coefficients" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Estimating the Coefficients<a href="linear-regression.html#estimating-the-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A Linear Regression analysis of a particular data is essentially all about <strong>estimating coefficients</strong> and <strong>interpreting the results</strong>. In the <strong>taxi model</strong>, we already knew the coefficients. So, we had a model about the world and we can use the model to make predictions about taxi costs. In the Response Duration Model, the coefficients were learnt from the data but I gave them to you directly. So, how are we going to estimate the coefficients when what we have is just data but nothing else?</p>
+<p>Let’s not get into the weeds of how to find the right linear regression model. Instead, let’s just use R to estimate the coefficients. This is called <strong>fitting a model</strong>. So, let’s fit a linear model on the taxi model and interpret its results. We’ll start with the taxi model simply because we already know the coefficients. We’ll let R estimate some coefficients for us and then compare them with the coefficients we used to generate the <code>cost</code> data above from the <code>distance</code> variables and our coefficients.</p>
+<p>The simplest way to fit a linear model on some data is the <code>lm()</code> function. <code>lm()</code> takes two variables <code>x</code> (predictor) and <code>y</code> (dependent variable) and fits a model by modeling <code>y</code> as a linear function of <code>x</code>. The tilde <code>~</code> means: element on the left as a function of element on the right.</p>
+<p>For our taxi model, we will model cost as a function of duration. The following lines of code does that.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="linear-regression.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit a linear regression model of cost as a function of distance</span></span>
+<span id="cb3-2"><a href="linear-regression.html#cb3-2" aria-hidden="true" tabindex="-1"></a>taxi_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(cost <span class="sc">~</span> distance)</span>
+<span id="cb3-3"><a href="linear-regression.html#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="linear-regression.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># print the model coefficients</span></span>
+<span id="cb3-5"><a href="linear-regression.html#cb3-5" aria-hidden="true" tabindex="-1"></a>taxi_model</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = cost ~ distance)
+## 
+## Coefficients:
+## (Intercept)     distance  
+##           7            6</code></pre>
+<p><strong>Unbelievable!</strong> The model estimated the intercept (start cost) as 7 and the slope (cost per km) as 6. Simple as that. Notice that the model estimated these coefficients simply from the data but nothing else.</p>
+<p>The model object that we stored in the variable <code>taxi_model</code> has a lot more information. Let us take a look at the results of our model. To do this, we’ll take use the <code>glance()</code> function from the <code>broom</code> package.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="linear-regression.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb5-2"><a href="linear-regression.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ✔ purrr   0.3.4      
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="linear-regression.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(taxi_model)</span></code></pre></div>
+<pre><code>## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable
+
+## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable</code></pre>
+<pre><code>## # A tibble: 1 × 12
+##   r.squ…¹ adj.r…²    sigma stati…³   p.value    df logLik    AIC    BIC deviance
+##     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+## 1       1       1 4.66e-15 1.10e33 1.51e-287     1   633. -1259. -1256. 3.90e-28
+## # … with 2 more variables: df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated
+## #   variable names ¹​r.squared, ²​adj.r.squared, ³​statistic</code></pre>
+<p>There are a lot of details. For now, we’ll focus on only two values <strong>R<sup>2</sup></strong> and the <strong>p value</strong>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="linear-regression.html#cb10-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">glance</span>(taxi_model) <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="linear-regression.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(r.squared, p.value)</span></code></pre></div>
+<pre><code>## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable
+
+## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="linear-regression.html#cb12-1" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##   r.squared   p.value
+##       &lt;dbl&gt;     &lt;dbl&gt;
+## 1         1 1.51e-287</code></pre>
+<p>Without going into any detail yet, I can tell you that we got an excellent model. Our <strong>R<sup>2</sup></strong> is 1, which is perfect and our p value is very small <code>1.51e-287</code> (This means that there are 286 zeroes after 0. and before 151. So, a very small number). When the p value is so small, we can conclude that the relation between distance and cost is <strong>statistically significant</strong> (i.e. not random).</p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
+<a href="descriptive-statistics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -296,7 +467,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/%s",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-linear_regression.Rmd",
 "text": "Edit"
 },
 "history": {

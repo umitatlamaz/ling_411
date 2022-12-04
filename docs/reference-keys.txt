@@ -1,15 +1,5 @@
-fig:histogram1
-fig:histogram2
-fig:histogram3
-fig:histogram4
-fig:histogram5
-fig:normaldatadistributions
-fig:normalparameterdistributions
-fig:meanmedian
-fig:meanmedian2
-tab:unnamed-chunk-188
-fig:aflsd
-fig:correlations
+fig:linearregression1
+fig:interceptslope
 getting-started
 disclaimer
 some-great-resources
@@ -58,6 +48,7 @@ mean
 calculating-the-mean-in-r
 median
 mean-or-median-whats-the-difference
+housingpriceexample
 trimmedmean
 mode
 summary
@@ -78,3 +69,8 @@ factors-vectors
 character-vectors
 summarising-a-data-frame
 correlations
+linear-regression
+word-frequency-effects
+simple-linear-regression
+finding-the-regression-line
+estimating-the-coefficients
