@@ -1,25 +1,3 @@
-
-```{r z3, include = FALSE}
-# Seed for random number generation
-set.seed(42)
-knitr::opts_chunk$set(cache.extra = knitr::rand_seed, class.output="r-output")
-source("./source/r_functions.R")
-```
-
-(`r format(Sys.time(), '%d %B, %Y, %H:%M')`)
-
-```{css echo=FALSE}
-.r-output {
-  font-weight: bold;
-}
-.function {
-  background-color: lightgrey;
-  padding: 0.5em 0.5em 0.5em 4em;
-  border: 1px solid black;
-}
-```
-
-
 # Basics
 
 You can think of R as a fancy calculator. We could do almost all of the operations we do in R on a calculator. However, that would take a lot of time and effort when we are dealing with a large amount of data. That's (partly) why we're using R. I hope this helps those who might have a bit of anxiety about coding. 
