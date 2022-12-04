@@ -7,7 +7,7 @@ fig:normaldatadistributions
 fig:normalparameterdistributions
 fig:meanmedian
 fig:meanmedian2
-tab:unnamed-chunk-33
+tab:unnamed-chunk-188
 fig:aflsd
 fig:correlations
 getting-started
@@ -78,4 +78,3 @@ factors-vectors
 character-vectors
 summarising-a-data-frame
 correlations
-housingpriceexample

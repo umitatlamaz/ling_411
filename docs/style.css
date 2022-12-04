@@ -12,3 +12,8 @@ pre {
 pre code {
   white-space: inherit;
 }
+.function {
+  background-color: lightgrey;
+  padding: 0.5em 0.5em 0.5em 4em;
+  border: 1px solid black;
+}

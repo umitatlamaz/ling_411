@@ -1,13 +1,3 @@
----
-title: "desc_stats"
-output: html_document
-date: "2022-11-21"
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Descriptive Statistics
 
 Anytime you have some data, one of the first tasks you need to do is to find ways to summarize your data neatly. Raw data by itself will not make much sense. So, you want to calculate some summary statistics that describes your data. This is  **descriptive statistics** (as opposed to **inferential statistics**). 

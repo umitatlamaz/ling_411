@@ -1,33 +1,3 @@
----
-title: "02-data-structures"
-output: html_document
-date: "2022-11-07"
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-
-```{r z, include = T}
-# Seed for random number generation
-set.seed(42)
-knitr::opts_chunk$set(cache.extra = knitr::rand_seed, class.output="r-output")
-source("./source/r_functions.R")
-```
-
-```{css echo=FALSE}
-.r-output {
-  font-weight: bold;
-}
-.function {
-  background-color: lightgrey;
-  padding: 0.5em 0.5em 0.5em 4em;
-  border: 1px solid black;
-}
-```
-
-
 # Data Structures
 
 ## Data Types in R
