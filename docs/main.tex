@@ -117,7 +117,7 @@
 
 \title{Ling 411 - Fall 2022}
 \author{Ümit Atlamaz}
-\date{2022-12-04}
+\date{2022-12-05}
 
 \begin{document}
 \maketitle
@@ -3182,7 +3182,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(04 December, 2022, 17:17)
+(05 December, 2022, 09:44)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -5033,7 +5033,7 @@ In simple regression, our goal is to find the \textbf{regression line} as IT IS 
 An important point regarding simple linear regression is that it can be used for data where the dependent variable is \textbf{continuous} (e.g.~436 miliseconds) but not \textbf{categorial} (e.g.~grammatical/ungrammatical).
 
 \hypertarget{finding-the-regression-line}{%
-\subsection{Finding the Regression Line}\label{finding-the-regression-line}}
+\section{Finding the Regression Line}\label{finding-the-regression-line}}
 
 In simple linear regression, the value for a \textbf{dependent variable} is a \textbf{linear function of} the \textbf{predictor variable}. A linear function looks like the following.
 
@@ -5188,6 +5188,300 @@ There are a lot of details. For now, we'll focus on only two values \textbf{R2} 
 \end{Shaded}
 
 Without going into any detail yet, I can tell you that we got an excellent model. Our \textbf{R2} is 1, which is perfect and our p value is very small \texttt{1.51e-287} (This means that there are 286 zeroes after 0. and before 151. So, a very small number). When the p value is so small, we can conclude that the relation between distance and cost is \textbf{statistically significant} (i.e.~not random).
+
+\hypertarget{data-is-messy}{%
+\section{Data is messy}\label{data-is-messy}}
+
+In the taxi model above, we worked with a very simplistic and ideal dataset. We know that in theory that is what a tax fare should look like. However, İstanbul is a crowded city and there are lots of traffic jams and traffic is quite unpredictable as there are so many random variables. Since the taxi charges you not only for the distance but also the duration you wait at the lights, there is always going to be some random addition to the fare. Let us incorporate that randomness to our taxi cost data and rerun our model to see what it looks like.
+
+All we are going to do is to add some random values to our taxi prices. Let's generate some random numbers and bind it to a new cost variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hidden\_cost }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{20}\NormalTok{, }\AttributeTok{mean=}\FloatTok{7.5}\NormalTok{, }\AttributeTok{sd=}\FloatTok{4.5}\NormalTok{)}
+\NormalTok{total\_cost }\OtherTok{\textless{}{-}}\NormalTok{ cost }\SpecialCharTok{+}\NormalTok{ hidden\_cost}
+\end{Highlighting}
+\end{Shaded}
+
+Let us plot the theoretical costs and the total costs side by side. We'll use the \texttt{gridExtra} package to plot two plots side by side.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(gridExtra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'gridExtra'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     combine
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\ConstantTok{NULL}\NormalTok{, }\FunctionTok{aes}\NormalTok{(distance,cost)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{20}\NormalTok{, }\AttributeTok{by =}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{125}\NormalTok{, }\AttributeTok{by =} \DecValTok{5}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Taxi cost without traffic"}\NormalTok{)}
+
+\NormalTok{plot2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\ConstantTok{NULL}\NormalTok{, }\FunctionTok{aes}\NormalTok{(distance,total\_cost)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{20}\NormalTok{, }\AttributeTok{by =}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{125}\NormalTok{, }\AttributeTok{by =} \DecValTok{5}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Taxi cost with traffic"}\NormalTok{)}
+
+\FunctionTok{grid.arrange}\NormalTok{(plot1, plot2, }\AttributeTok{ncol=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-206-1.pdf}
+
+OK, now it looks like we have some more realistic data. Let us rerun our linear model to see what the coefficients look like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{better\_taxi\_model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(total\_cost}\SpecialCharTok{\textasciitilde{}}\NormalTok{distance)}
+
+\NormalTok{better\_taxi\_model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = total\_cost \textasciitilde{} distance)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\# (Intercept)     distance  }
+\NormalTok{\#\#      14.838        5.916}
+\end{Highlighting}
+\end{Shaded}
+
+Notice that we got a new intercept and slope. It's kinda weird. We know that the taxi start fare is 7TL. However, our intercept is a lot higher (this will differ as each time you run your code as the traffic cost we calculated is random). In a few instances where I ran the model I got a number between 14-18. This is quite off given our original intercept.
+
+Notice that the slope is a little off too. It's not exactly 6 but it's not way off like the intercept. So, did our linear model do well? Before answering this question more formally, I'll draw your attention to one point. Our model predicts that your initial taxi fare will be a little higher at the beginning and it will sort of even out as your distance increases. Even though our model doesn't guess the intercept correctly, it still does a very decent job in modeling the real life taxi costs (or a simulation of it). Just add up the intercept and slope and that should give you around the minimum cost you'll pay for a taxi ride.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{coef}\NormalTok{(better\_taxi\_model)[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{+} \FunctionTok{coef}\NormalTok{(better\_taxi\_model)[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# (Intercept) }
+\NormalTok{\#\#    20.75445}
+\end{Highlighting}
+\end{Shaded}
+
+At this point, I want to remind you that taxi rides in İstanbul have a minimum of 20TLs for short distance trips (2km or less). So, our model does pretty good for a real life scenario.
+
+\hypertarget{simplified-frequency-data}{%
+\section{Simplified Frequency Data}\label{simplified-frequency-data}}
+
+Let us use a simple frequency data. Go ahead and download the \texttt{log10ELP\_frequency.csv} file from Moodle. This is the sam data in Bodo Winter's ELP\_frequency.csv file with an added column for log10 normalization. We will plot the data using a scatterplot with geom\_point and also draw a regression line.
+
+We will use log normal values as the x axis and the reaction time as the y axis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggrepel)}
+
+
+\NormalTok{freq\_data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"/Users/umit/Desktop/log10ELP\_frequency.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 12 Columns: 4
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (1): Word
+## dbl (3): RT, Freq, log10freq
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(freq\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{log10freq, }\AttributeTok{y=}\NormalTok{RT)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{5}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text\_repel}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Word)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{,}\AttributeTok{se=}\NormalTok{F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-209-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{freq\_model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(freq\_data}\SpecialCharTok{$}\NormalTok{RT }\SpecialCharTok{\textasciitilde{}}\NormalTok{ freq\_data}\SpecialCharTok{$}\NormalTok{log10freq)}
+\end{Highlighting}
+\end{Shaded}
+
+OK, let us also get a glace at our model. We'll first take a look at the slope and the intercept and then \textbf{R2} and the \textbf{p value}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{coef}\NormalTok{(freq\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#         (Intercept) freq\_data$log10freq }
+\NormalTok{\#\#           870.90539           {-}70.27646}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glance}\NormalTok{(freq\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 1 x 12}
+\NormalTok{\#\#   r.squ\textasciitilde{}1 adj.r\textasciitilde{}2 sigma stati\textasciitilde{}3 p.value    df logLik   AIC   BIC devia\textasciitilde{}4 df.re\textasciitilde{}5}
+\NormalTok{\#\#     \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}int\textgreater{}}
+\NormalTok{\#\# 1   0.737   0.711  63.3    28.1 3.48e{-}4     1  {-}65.7  137.  139.  40115.      10}
+\NormalTok{\#\# \# ... with 1 more variable: nobs \textless{}int\textgreater{}, and abbreviated variable names}
+\NormalTok{\#\# \#   1: r.squared, 2: adj.r.squared, 3: statistic, 4: deviance, 5: df.residual}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{residuals}{%
+\section{Residuals}\label{residuals}}
+
+So far, we built and plotted linear models by estimating the intercept and slope of a line that seems to best describe our data. In the simple taxi model, we were in a perfect position. Our model had a \textbf{perfect fit} on our data. However, once we introduced some \textbf{random noise} (e.g.~random traffic jams) into our data, our linear model still did a decent job but it was not a perfect fit.
+
+Next, we tried modeling the simple frequency data and we got a decent model that describes the trend in our data but the fit is not perfect. Can we find a way to quantify how good our model fits our data (``goodness of fit''). That's what we will do here. Let us reconsider the frequency data plot. This time, we'll draw lines from the data points to the regression line. The distance for each data point is called a \textbf{residual}. It describes the amount by which our model missed the actual value.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{freq\_model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(freq\_data}\SpecialCharTok{$}\NormalTok{RT }\SpecialCharTok{\textasciitilde{}}\NormalTok{ freq\_data}\SpecialCharTok{$}\NormalTok{log10freq)}
+\FunctionTok{ggplot}\NormalTok{(freq\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{log10freq, }\AttributeTok{y=}\NormalTok{RT)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{5}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text\_repel}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Word)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{,}\AttributeTok{se=}\NormalTok{F)}\SpecialCharTok{+}
+  \FunctionTok{geom\_segment}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ log10freq, }\AttributeTok{y =}\NormalTok{ RT,}
+                   \AttributeTok{xend =}\NormalTok{ log10freq, }\AttributeTok{yend =} \FunctionTok{fitted}\NormalTok{(freq\_model)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-212-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(freq\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{log10freq, }\AttributeTok{y=}\NormalTok{RT)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{5}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text\_repel}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Word)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \DecValTok{680}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_segment}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ log10freq, }\AttributeTok{y =}\NormalTok{ RT,}
+                   \AttributeTok{xend =}\NormalTok{ log10freq, }\AttributeTok{yend =} \DecValTok{700}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-213-1.pdf}
+
+Now, we have two models:
+
+\begin{itemize}
+\tightlist
+\item
+  A model where there is a relation between frequency and reaction time
+\item
+  A null model where there is no relation between frequency and reaction time (reaction time is independent of frequency)
+\end{itemize}
+
+\hypertarget{sum-of-squared-errors}{%
+\subsection{Sum of Squared Errors}\label{sum-of-squared-errors}}
+
+One way to describe the errors of the model is to sum the squares of each error value. This is called the Sum of Squared Errors.
+
+To do this, we need to get the residuals of the model, square them and then sum them. Let us do this for the linear model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SSE\_freq\_model }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((}\FunctionTok{residuals}\NormalTok{(freq\_model))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{SSE\_freq\_model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 40114.97}
+\end{Highlighting}
+\end{Shaded}
+
+Let us also calculate it for the null model. The intercept for the null model was 680 I found this value by taking the average reaction time. This will be my null model. The mean was 679.9167. So, we'll deduce the the mean from the actual values to find the residuals. The rest is just the same.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{null\_model\_residuals }\OtherTok{\textless{}{-}}\NormalTok{ freq\_data}\SpecialCharTok{$}\NormalTok{RT }\SpecialCharTok{{-}} \DecValTok{680}
+\NormalTok{SSE\_null\_model }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(null\_model\_residuals}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{SSE\_null\_model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 152743.3}
+\end{Highlighting}
+\end{Shaded}
+
+These numbers are very similar to what Bodo Winter reports in his chapter. He might not have done the rounding I did. We use the null model to calculate a \textbf{standardized measure of fit}. One measure is \textbf{R2} and it is calculated as follows.
+
+\[R^2 = 1 - \frac{SSE_{model}}{SSE_{null}} \]
+Let's calculate \textbf{R2}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r\_squared }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ (SSE\_freq\_model}\SpecialCharTok{/}\NormalTok{SSE\_null\_model)}
+
+\NormalTok{r\_squared}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.73737}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Excellent!} We've calculated \textbf{R2} and it is the same as what we found earlier when we took at a look at the model report using the \texttt{glance()} function.
+
+So, what is this \textbf{R2}? When we interpret \textbf{R2}, we say ``n'' amount of the variance in the dependent variable (RT) can be accounted for by incorporating the independent variable (word frequency). In this case, 73\% of the variance is due to word frequency. The remaining 27\% is due to chance or some other factors we didn't consider.
 
   \bibliography{book.bib,packages.bib}
 
