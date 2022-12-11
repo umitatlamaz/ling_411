@@ -250,6 +250,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#fitting-two-linear-models"><i class="fa fa-check"></i><b>8.1</b> Fitting two Linear Models</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html"><i class="fa fa-check"></i><b>9</b> Linear &amp; Non-Linear Transformations</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#centering"><i class="fa fa-check"></i><b>9.1</b> Centering</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -682,8 +686,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="data-structures.html#cb173-1" aria-hidden="true" tabindex="-1"></a>df_gambling <span class="sc">%&gt;%</span> </span>
 <span id="cb173-2"><a href="data-structures.html#cb173-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(game, wday) <span class="sc">%&gt;%</span> </span>
 <span id="cb173-3"><a href="data-structures.html#cb173-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_profit =</span> <span class="fu">mean</span>(profit))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;game&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;game&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <pre class="r-output"><code>## # A tibble: 4 × 3
 ## # Groups:   game [2]
 ##   game       wday  avg_profit
@@ -698,8 +702,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="data-structures.html#cb176-1" aria-hidden="true" tabindex="-1"></a>df_gambling <span class="sc">%&gt;%</span> </span>
 <span id="cb176-2"><a href="data-structures.html#cb176-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(game, wday) <span class="sc">%&gt;%</span> </span>
 <span id="cb176-3"><a href="data-structures.html#cb176-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_proportion_wins =</span> <span class="fu">mean</span>(profit<span class="sc">&gt;</span><span class="dv">0</span>) )</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;game&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;game&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <pre class="r-output"><code>## # A tibble: 4 × 3
 ## # Groups:   game [2]
 ##   game       wday  avg_proportion_wins
@@ -720,8 +724,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb180-2"><a href="data-structures.html#cb180-2" aria-hidden="true" tabindex="-1"></a>  df_gambling <span class="sc">%&gt;%</span> </span>
 <span id="cb180-3"><a href="data-structures.html#cb180-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(game, wday) <span class="sc">%&gt;%</span> </span>
 <span id="cb180-4"><a href="data-structures.html#cb180-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">avg_profit =</span> <span class="fu">mean</span>(profit))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;game&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;game&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <ul>
 <li>We will also need yet another package (for plotting): <code>ggplot2</code>.</li>
 </ul>

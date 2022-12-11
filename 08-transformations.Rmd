@@ -1,0 +1,91 @@
+# Linear & Non-Linear Transformations
+A **linear transformation** of a value is addition, subtraction, multiplication, or division with a constant value. Consider the following data:
+
+* [2, 4, 6, 8]
+
+Each of the number on the right is 2 more than the number on the left. Adding 1 to each of the values is a linear transformation of this data.
+
+* [3, 5, 7, 9]
+
+While the numbers themselves change, the relationship among them does not. 
+
+Linear transformations are especially useful in describing data at a level of measurement that is useful to you. For example, the following descriptions are equal and they are linear transformations of each other. 
+
+|**Measured Value**| **Metric 1** | **Metric 2**  | 
+|:-----|:----|:-----|
+| Distance  | 700m | 0.7km |
+| Time | 2100ms | 2.1s |
+
+The crucial point in linear transformations is that they won't change the relationship among your data point and thus won't impact your models significantly. There are many different types of linear transformations. For our purposes we will focus on two linear transformations **centering** and **standardizing**. 
+
+## Centering
+Let us consider one of our previous examples. 
+
+```{r message=FALSE}
+library(tidyverse)
+library(ggrepel)
+
+```
+
+
+
+```{r message=FALSE}
+freq_data <- read_csv("/Users/umit/ling_411/data/log10ELP_frequency.csv")
+
+ggplot(freq_data, aes(x=log10freq, y=RT)) +
+  scale_x_continuous(limits = c(0,5)) +
+  geom_text_repel(aes(label = Word)) +
+  geom_point()+
+  geom_smooth(method="lm",se=F, fullrange=TRUE)+
+  geom_vline(xintercept = 0, linetype = "dashed")+
+  geom_label(data=NULL, aes(x=0, y= 870, label="870"))
+```
+
+Overall, our model does a decent job in showing us that there is a trend in our data. As the frequency of a word increases, reaction time decreases. However, the model also makes some hard to interpret prediction. Our model predicts that when the frequency of a word is 0, RT is expected to be 870. But that's kinda odd. What does it mean for a word to have 0 frequency. If a word has 0 frequency, does it even exist? 
+
+At this point, we can step back and ask ourselves a question regarding the **intercept**. When we defined the intercept, we defined it as the value y takes when x is 0. We mentioned that this was the way to define a line mathematically. But why x=0? 
+
+Maybe setting the intercept as the value y takes when x=0 is mathematically meaningful. We can assume that x=0 is the **center** of the positive and negative integers both of which go to infinity.  However, our data are usually finite and their center is usually not 0. We have talked about various measures of **central tendency** to identify the center of our data (e.g. mean, median, mode). How about we take the **mean** as the center of our data. In other words, how about we take the mean to be our x=0 point? This is called **centering**. 
+
+When you **center** your data, your intercept becomes the value y assumes when x = mean(x). Thus, everything is interpreted relative to the mean. In other words, instead of measuring the distance from the absolute 0, we measure the distance from the mean. 
+
+**To center a predictor variable**, we subtract the mean from each of the predictor variables. Let us center the log frequency data and plot it again. 
+
+```{r}
+centered_freq_data <- mutate(freq_data, centered_log_freq = log10freq - mean(log10freq))
+
+centered_freq_data
+```
+
+We can see that the centered data has smaller values compared to the log frequencies. We also observe that there are negative values. What does a negative value mean? How can the frequency of a word be negative? In this case, the negative value is relative to the mean. Thus, it means that it is less than the mean (but still above 0).
+
+```{r message=FALSE}
+
+ggplot(centered_freq_data, aes(x=centered_log_freq, y=RT)) +
+  scale_x_continuous(limits = c(-3,3), n.breaks=6) +
+  geom_text_repel(aes(label = Word)) +
+  geom_point()+
+  geom_smooth(method="lm",se=F, fullrange=TRUE)+
+  geom_vline(xintercept = 0, linetype = "dashed")+
+  geom_label(data=NULL, aes(x=mean(centered_log_freq), y= 675, label="680"))
+```
+
+Let us take a look at the intercept and slope values of the two models as well as their **R<sup>2</sup>** values to see if centering has any effect on the model and its interpretation. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(broom)
+uncentered_model <- lm(freq_data$RT~freq_data$log10freq)
+centered_model <- lm(centered_freq_data$RT ~centered_freq_data$centered_log_freq)
+
+
+tidy(coefficients(uncentered_model))
+tidy(coefficients(centered_model))
+
+glance(uncentered_model)$r.squared
+glance(centered_model)$r.squared
+
+```
+
+You can see that both the slope and the **R<sup>2</sup>** values remain unchanged. This shows that the model is remaining the same in all the crucial aspects except that it's now treating its 0 point as the mean. This is more meaningful for most measurements. In addition, centering helps interpreting the coefficients especially when multiple predictors interact (to be discussed later). 
+
+<!-- ## Standardizing -->
