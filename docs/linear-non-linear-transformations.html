@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Ling 411 - Fall 2022</title>
+  <title>Chapter 9 Linear &amp; Non-Linear Transformations | Ling 411 - Fall 2022</title>
   <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Ling 411 - Fall 2022" />
+  <meta property="og:title" content="Chapter 9 Linear &amp; Non-Linear Transformations | Ling 411 - Fall 2022" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
   <meta name="github-repo" content="rstudio/ling_411" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Ling 411 - Fall 2022" />
+  <meta name="twitter:title" content="Chapter 9 Linear &amp; Non-Linear Transformations | Ling 411 - Fall 2022" />
   
   <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="linear-regression-with-many-predictors.html"/>
 
-<link rel="next" href="basics.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -274,99 +274,120 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Ling 411 - Fall 2022</h1>
-<p class="author"><em>Ümit Atlamaz</em></p>
-<p class="date"><em>2022-12-11</em></p>
-</div>
-<div id="getting-started" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Getting Started<a href="index.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<style type="text/css">
-.r-output {
-  font-weight: bold;
-}
-.function {
-  background-color: lightgrey;
-  padding: 0.5em 0.5em 0.5em 4em;
-  border: 1px solid black;
-}
-</style>
-<p>Welcome to the R tutorial for Ling 411. The purpose of these lecture notes is to help remind you some of the R related material we covered in the class. The material here is not intended to be complete and self-contained. These are just lecture notes. You need to attend the classes and Problem Sessions to get a full grasp of the concepts.</p>
-<div id="disclaimer" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Disclaimer<a href="index.html#disclaimer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Some of the material in this book are from <a href="https://scholar.google.com/citations?user=fhbdTJIAAAAJ&amp;hl=tr">Pavel Logaçev</a>’s class notes for LING 411. I’m indebted to Pavel for his friendship, guidance and support. Without him LING 411 could not exist in its current form.</p>
-</div>
-<div id="some-great-resources" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Some great resources<a href="index.html#some-great-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="linear-non-linear-transformations" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Linear &amp; Non-Linear Transformations<a href="linear-non-linear-transformations.html#linear-non-linear-transformations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A <strong>linear transformation</strong> of a value is addition, subtraction, multiplication, or division with a constant value. Consider the following data:</p>
 <ul>
-<li>Throughout the semester, I will draw on from the following resources. These are just useful resources and feel free to take a look at them as you wish.
-<ul>
-<li>Bodo Winter’s excellent book: <a href="https://www.routledge.com/Statistics-for-Linguists-An-Introduction-Using-R/Winter/p/book/9781138056091">Statistics for Linguists: An Introduction Using R</a></li>
-<li>The great introduction materials developed at the University of Glasgow: <a href="https://psyteachr.github.io/" class="uri">https://psyteachr.github.io/</a>, in particular <a href="https://psyteachr.github.io/msc-data-skills/">‘Data Skills for Reproducible Science’</a>.</li>
-<li>The also pretty great introduction to R and statistics by Danielle Navarro available <a href="https://learningstatisticswithr.com">here</a>.</li>
-<li>Matt Crump’s <a href="https://crumplab.github.io/statistics/">‘Answering Questions with Data’</a>.</li>
-<li>Primers on a variety of topics: <a href="https://rstudio.cloud/learn/primers" class="uri">https://rstudio.cloud/learn/primers</a></li>
-<li>Cheat sheets on a variety of topics: <a href="https://rstudio.cloud/learn/cheat-sheets" class="uri">https://rstudio.cloud/learn/cheat-sheets</a></li>
-</ul></li>
-<li>The following tutorials are great too.
-<ul>
-<li><a href="https://rstudio-education.github.io/tidyverse-cookbook/">‘The Tidyverse Cookbook’</a></li>
-<li><a href="https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/">‘A Ggplot2 Tutorial for Beautiful Plotting in R’</a></li>
-<li><a href="https://r-graphics.org/">‘R Graphics Cookbook, 2nd edition’</a></li>
-</ul></li>
+<li>[2, 4, 6, 8]</li>
 </ul>
-</div>
-<div id="blocks" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Blocks<a href="index.html#blocks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Code, output, and special functions will be shown in designated boxes. The first box below illustrates a <strong>code block</strong>. The code block contains code that you can type in your R interpreter as the source code. You can simply copy and paste it in your R code. The second box indicates the <strong>output</strong> of R given the code in the first box.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
-<pre class="r-output"><code>## [1] 4</code></pre>
-<p>Functions will be introduced in grey boxes. The following grey box describes the <code>summary()</code> function.</p>
-<div class="function">
-<p><code>summary(x)</code></p>
-<p>Returns the summary statistics of a dataframe.</p>
+<p>Each of the number on the right is 2 more than the number on the left. Adding 1 to each of the values is a linear transformation of this data.</p>
 <ul>
-<li><code>x</code> A dataframe.</li>
+<li>[3, 5, 7, 9]</li>
 </ul>
-</div>
-<p><br />
-<br />
-The following code block uses the <code>summary()</code> function on the <code>mtcars</code> dataframe that comes pre-installed with R.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code></pre></div>
-<pre class="r-output"><code>##       mpg             cyl             disp             hp       
-##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
-##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
-##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
-##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
-##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
-##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
-##       drat             wt             qsec             vs        
-##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
-##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
-##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
-##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
-##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
-##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
-##        am              gear            carb      
-##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
-##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
-##  Median :0.0000   Median :4.000   Median :2.000  
-##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
-##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
-##  Max.   :1.0000   Max.   :5.000   Max.   :8.000</code></pre>
-<p><br />
-If you want to learn more about the <code>mtcars</code> dataset, you can simply put a question mark in front of its name, which will show the documentation for the dataset. The documentation will pop up in the <code>Help</code> tab on the bottom right window in RStudio.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a>?mtcars</span></code></pre></div>
+<p>While the numbers themselves change, the relationship among them does not.</p>
+<p>Linear transformations are especially useful in describing data at a level of measurement that is useful to you. For example, the following descriptions are equal and they are linear transformations of each other.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Measured Value</strong></th>
+<th align="left"><strong>Metric 1</strong></th>
+<th align="left"><strong>Metric 2</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Distance</td>
+<td align="left">700m</td>
+<td align="left">0.7km</td>
+</tr>
+<tr class="even">
+<td align="left">Time</td>
+<td align="left">2100ms</td>
+<td align="left">2.1s</td>
+</tr>
+</tbody>
+</table>
+<p>The crucial point in linear transformations is that they won’t change the relationship among your data point and thus won’t impact your models significantly. There are many different types of linear transformations. For our purposes we will focus on two linear transformations <strong>centering</strong> and <strong>standardizing</strong>.</p>
+<div id="centering" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Centering<a href="linear-non-linear-transformations.html#centering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let us consider one of our previous examples.</p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="linear-non-linear-transformations.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb447-2"><a href="linear-non-linear-transformations.html#cb447-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="linear-non-linear-transformations.html#cb448-1" aria-hidden="true" tabindex="-1"></a>freq_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;/Users/umit/ling_411/data/log10ELP_frequency.csv&quot;</span>)</span>
+<span id="cb448-2"><a href="linear-non-linear-transformations.html#cb448-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb448-3"><a href="linear-non-linear-transformations.html#cb448-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(freq_data, <span class="fu">aes</span>(<span class="at">x=</span>log10freq, <span class="at">y=</span>RT)) <span class="sc">+</span></span>
+<span id="cb448-4"><a href="linear-non-linear-transformations.html#cb448-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb448-5"><a href="linear-non-linear-transformations.html#cb448-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> Word)) <span class="sc">+</span></span>
+<span id="cb448-6"><a href="linear-non-linear-transformations.html#cb448-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb448-7"><a href="linear-non-linear-transformations.html#cb448-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span>F, <span class="at">fullrange=</span><span class="cn">TRUE</span>)<span class="sc">+</span></span>
+<span id="cb448-8"><a href="linear-non-linear-transformations.html#cb448-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb448-9"><a href="linear-non-linear-transformations.html#cb448-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span> <span class="dv">870</span>, <span class="at">label=</span><span class="st">&quot;870&quot;</span>))</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
+<p>Overall, our model does a decent job in showing us that there is a trend in our data. As the frequency of a word increases, reaction time decreases. However, the model also makes some hard to interpret prediction. Our model predicts that when the frequency of a word is 0, RT is expected to be 870. But that’s kinda odd. What does it mean for a word to have 0 frequency. If a word has 0 frequency, does it even exist?</p>
+<p>At this point, we can step back and ask ourselves a question regarding the <strong>intercept</strong>. When we defined the intercept, we defined it as the value y takes when x is 0. We mentioned that this was the way to define a line mathematically. But why x=0?</p>
+<p>Maybe setting the intercept as the value y takes when x=0 is mathematically meaningful. We can assume that x=0 is the <strong>center</strong> of the positive and negative integers both of which go to infinity. However, our data are usually finite and their center is usually not 0. We have talked about various measures of <strong>central tendency</strong> to identify the center of our data (e.g. mean, median, mode). How about we take the <strong>mean</strong> as the center of our data. In other words, how about we take the mean to be our x=0 point? This is called <strong>centering</strong>.</p>
+<p>When you <strong>center</strong> your data, your intercept becomes the value y assumes when x = mean(x). Thus, everything is interpreted relative to the mean. In other words, instead of measuring the distance from the absolute 0, we measure the distance from the mean.</p>
+<p><strong>To center a predictor variable</strong>, we subtract the mean from each of the predictor variables. Let us center the log frequency data and plot it again.</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="linear-non-linear-transformations.html#cb449-1" aria-hidden="true" tabindex="-1"></a>centered_freq_data <span class="ot">&lt;-</span> <span class="fu">mutate</span>(freq_data, <span class="at">centered_log_freq =</span> log10freq <span class="sc">-</span> <span class="fu">mean</span>(log10freq))</span>
+<span id="cb449-2"><a href="linear-non-linear-transformations.html#cb449-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb449-3"><a href="linear-non-linear-transformations.html#cb449-3" aria-hidden="true" tabindex="-1"></a>centered_freq_data</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 12 × 5
+##    Word        RT  Freq log10freq centered_log_freq
+##    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;             &lt;dbl&gt;
+##  1 thing     622. 55522     4.74              2.03 
+##  2 life      520. 40629     4.61              1.89 
+##  3 door      507. 14895     4.17              1.46 
+##  4 angel     637.  3992     3.60              0.884
+##  5 beer      587.  3850     3.59              0.868
+##  6 disgrace  705    409     2.61             -0.106
+##  7 kitten    611.   241     2.38             -0.336
+##  8 bloke     794.   238     2.38             -0.341
+##  9 mocha     725.    66     1.82             -0.898
+## 10 gnome     810.    32     1.51             -1.21 
+## 11 nihilism  764.     4     0.602            -2.12 
+## 12 puffball  878.     4     0.602            -2.12</code></pre>
+<p>We can see that the centered data has smaller values compared to the log frequencies. We also observe that there are negative values. What does a negative value mean? How can the frequency of a word be negative? In this case, the negative value is relative to the mean. Thus, it means that it is less than the mean (but still above 0).</p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="linear-non-linear-transformations.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(centered_freq_data, <span class="fu">aes</span>(<span class="at">x=</span>centered_log_freq, <span class="at">y=</span>RT)) <span class="sc">+</span></span>
+<span id="cb451-2"><a href="linear-non-linear-transformations.html#cb451-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>), <span class="at">n.breaks=</span><span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb451-3"><a href="linear-non-linear-transformations.html#cb451-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> Word)) <span class="sc">+</span></span>
+<span id="cb451-4"><a href="linear-non-linear-transformations.html#cb451-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb451-5"><a href="linear-non-linear-transformations.html#cb451-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span>F, <span class="at">fullrange=</span><span class="cn">TRUE</span>)<span class="sc">+</span></span>
+<span id="cb451-6"><a href="linear-non-linear-transformations.html#cb451-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb451-7"><a href="linear-non-linear-transformations.html#cb451-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">mean</span>(centered_log_freq), <span class="at">y=</span> <span class="dv">675</span>, <span class="at">label=</span><span class="st">&quot;680&quot;</span>))</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<p>Let us take a look at the intercept and slope values of the two models as well as their <strong>R<sup>2</sup></strong> values to see if centering has any effect on the model and its interpretation.</p>
+<pre class="r-output"><code>## # A tibble: 2 × 2
+##   names                   x
+##   &lt;chr&gt;               &lt;dbl&gt;
+## 1 (Intercept)         871. 
+## 2 freq_data$log10freq -70.3</code></pre>
+<pre class="r-output"><code>## # A tibble: 2 × 2
+##   names                                    x
+##   &lt;chr&gt;                                &lt;dbl&gt;
+## 1 (Intercept)                          680. 
+## 2 centered_freq_data$centered_log_freq -70.3</code></pre>
+<pre class="r-output"><code>## [1] 0.7373698</code></pre>
+<pre class="r-output"><code>## [1] 0.7373698</code></pre>
+<p>You can see that both the slope and the <strong>R<sup>2</sup></strong> values remain unchanged. This shows that the model is remaining the same in all the crucial aspects except that it’s now treating its 0 point as the mean. This is more meaningful for most measurements. In addition, centering helps interpreting the coefficients especially when multiple predictors interact (to be discussed later).</p>
+<!-- ## Standardizing -->
 
 </div>
 </div>
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
+<a href="linear-regression-with-many-predictors.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="basics.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -397,7 +418,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/08-transformations.Rmd",
 "text": "Edit"
 },
 "history": {

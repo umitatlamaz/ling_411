@@ -117,7 +117,7 @@
 
 \title{Ling 411 - Fall 2022}
 \author{Ümit Atlamaz}
-\date{2022-12-05}
+\date{2022-12-11}
 
 \begin{document}
 \maketitle
@@ -155,6 +155,8 @@ Some of the material in this book are from \href{https://scholar.google.com/cita
 
   \begin{itemize}
   \tightlist
+  \item
+    Bodo Winter's excellent book: \href{https://www.routledge.com/Statistics-for-Linguists-An-Introduction-Using-R/Winter/p/book/9781138056091}{Statistics for Linguists: An Introduction Using R}
   \item
     The great introduction materials developed at the University of Glasgow: \url{https://psyteachr.github.io/}, in particular \href{https://psyteachr.github.io/msc-data-skills/}{`Data Skills for Reproducible Science'}.
   \item
@@ -752,10 +754,10 @@ Once you install a package, you need to load it before you can use its functions
 
 \begin{verbatim}
 ## -- Attaching packages --------------------------------------- tidyverse 1.3.2 --
-## v ggplot2 3.3.6      v purrr   0.3.4 
+## v ggplot2 3.4.0      v purrr   0.3.5 
 ## v tibble  3.1.8      v dplyr   1.0.10
 ## v tidyr   1.2.1      v stringr 1.4.1 
-## v readr   2.1.2      v forcats 0.5.2 
+## v readr   2.1.3      v forcats 0.5.2 
 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
@@ -836,7 +838,7 @@ Notice that playing with the scale sizes will yield dramatic changes in the effe
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-38-1.pdf}
@@ -2320,7 +2322,7 @@ To read in data from a csv to a tibble, we will use the \texttt{read\_csv()} fun
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#Let\textquotesingle{}s read in the data}
-\NormalTok{nettle }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}/Users/umit/Desktop/materials/data/nettle\_1999\_climate.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{nettle }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}data/nettle\_1999\_climate.csv\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3182,7 +3184,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(05 December, 2022, 09:44)
+(11 December, 2022, 22:34)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -4939,8 +4941,8 @@ In R, we can calculate the correlations of two variables using the \texttt{cor()
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{linear-regression}{%
-\chapter{Linear Regression}\label{linear-regression}}
+\hypertarget{linear-regression-with-one-predictor}{%
+\chapter{Linear Regression with one Predictor}\label{linear-regression-with-one-predictor}}
 
 In the previous section, we looked at some descriptive statistics about data. In all of these cases, we looked at the descriptive statistics of a \textbf{single variable}. For example, we looked at the mean and standard deviation of total sleep hours for various animals. The variable we considered was \texttt{total\_sleep\_hours}. This is also called \textbf{univariate statistics} because we were interested in the statistics of a \textbf{single variable}.
 
@@ -5087,8 +5089,8 @@ A good way to remember the intercept and the slope and a linear model is to reme
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in predict.lm(model, newdata = new_data_frame(list(x = xseq)), se.fit =
-## se, : prediction from a rank-deficient fit may be misleading
+## Warning in predict.lm(model, newdata = data_frame0(x = xseq), se.fit = se, :
+## prediction from a rank-deficient fit may be misleading
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-201-1.pdf}
@@ -5243,11 +5245,11 @@ Let us plot the theoretical costs and the total costs side by side. We'll use th
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-206-1.pdf}
@@ -5305,7 +5307,7 @@ We will use log normal values as the x axis and the reaction time as the y axis.
 \FunctionTok{library}\NormalTok{(ggrepel)}
 
 
-\NormalTok{freq\_data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"/Users/umit/Desktop/log10ELP\_frequency.csv"}\NormalTok{)}
+\NormalTok{freq\_data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"/Users/umit/ling\_411/data/log10ELP\_frequency.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5331,7 +5333,7 @@ We will use log normal values as the x axis and the reaction time as the y axis.
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-209-1.pdf}
@@ -5395,7 +5397,7 @@ Next, we tried modeling the simple frequency data and we got a decent model that
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-212-1.pdf}
@@ -5482,6 +5484,439 @@ Let's calculate \textbf{R2}.
 \textbf{Excellent!} We've calculated \textbf{R2} and it is the same as what we found earlier when we took at a look at the model report using the \texttt{glance()} function.
 
 So, what is this \textbf{R2}? When we interpret \textbf{R2}, we say ``n'' amount of the variance in the dependent variable (RT) can be accounted for by incorporating the independent variable (word frequency). In this case, 73\% of the variance is due to word frequency. The remaining 27\% is due to chance or some other factors we didn't consider.
+
+\hypertarget{linear-regression-with-many-predictors}{%
+\chapter{Linear Regression with Many Predictors}\label{linear-regression-with-many-predictors}}
+
+In the previous section, we built linear models with \textbf{one predictor}. In other words, we had only one dependent variable and one independent variable.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule()
+\textbf{Model} & \textbf{Dependent Variable} & \textbf{Predictor} \\
+\midrule()
+\endhead
+Taxi & Cost & Travel Distance \\
+Processing & Reaction Time & Word Frequency \\
+\bottomrule()
+\end{longtable}
+
+In many real life scenarios, multiple factors will be involved in the outcome of a particular experiments. In other words, a particular dependent variable will be the outcome of more than one independent variable (predictors).
+
+Let us consider our taxi example again. While our taxi model is primarily based on the distance we travel, sometimes we need to cross bridges or toll roads. These factors will obviously increase the cost as they get added to our total cost. The following is a simple example. You can download the data from Moodle or by just clicking this \href{\textquotesingle{}https://github.com/umitatlamaz/ling_411/blob/main/cab_fares.csv\textquotesingle{}}{data link}.
+
+Let us see if there is any relationship between the number of bridges and the cost when we travel only 3 kilometers.
+
+\includegraphics{main_files/figure-latex/carsPerfect2A-1.pdf}
+
+It looks like there is a decent positive correlation between the fare and the number of bridges crossed. So, we need to find a way to incorporate this into our linear model. The nice thing about linear models is that they allow us to incorporate multiple predictors each with its own slope.
+
+\[ \underbrace{Y}_{\text{dependent variable}} =
+            \overbrace{\underbrace{a}_{\text{intercept}}}^{\text{additive term}} + 
+            \overbrace{\underbrace{b_1}_{\text{slope}} * \underbrace{X_{1}}_{\text{predictor}}}^{\text{additive term}} + 
+            \overbrace{\underbrace{b_2}_{\text{slope}} * \underbrace{X_{2} }_{\text{predictor}}}^{\text{additive term}} +  
+            \ldots\]
+
+In R, fitting a linear model with multiple predictors is quite simple. All we have to do is to add the predictors with a \texttt{+} in the \texttt{lm()} function as in \texttt{lm(dependent\ variable\ \textasciitilde{}\ Predictor\ 1\ +\ Predictor\ 2\ +\ ...)}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{taxi\_model\_two\_preds }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(cab\_fares}\SpecialCharTok{$}\NormalTok{taxi\_fare }\SpecialCharTok{\textasciitilde{}}\NormalTok{ cab\_fares}\SpecialCharTok{$}\NormalTok{distance\_km }\SpecialCharTok{+}\NormalTok{ cab\_fares}\SpecialCharTok{$}\NormalTok{n\_bridges)}
+
+\NormalTok{taxi\_model\_two\_preds}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = cab\_fares$taxi\_fare \textasciitilde{} cab\_fares$distance\_km + cab\_fares$n\_bridges)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\#           (Intercept)  cab\_fares$distance\_km    cab\_fares$n\_bridges  }
+\NormalTok{\#\#                14.366                  5.991                 13.024}
+\end{Highlighting}
+\end{Shaded}
+
+The model is doing pretty well. The data coefficients I used to generate the data are as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  intercept = 7
+\item
+  distance slope = 6
+\item
+  bridge slope = 13
+\end{itemize}
+
+I also added some random noise with the mean=7.5, sd=4.5. Let us also glance at the \textbf{R2} and the \textbf{p.values} using the summary function. Alternatively, we could use the \texttt{glance()} function from the \texttt{broom} package. Give it a shot to see if you obsrve any differences.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(taxi\_model\_two\_preds)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = cab\_fares$taxi\_fare \textasciitilde{} cab\_fares$distance\_km + cab\_fares$n\_bridges)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Residuals:}
+\NormalTok{\#\#      Min       1Q   Median       3Q      Max }
+\NormalTok{\#\# {-}15.0456  {-}2.9538   0.0829   3.0946  15.9076 }
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\#                       Estimate Std. Error t value Pr(\textgreater{}|t|)    }
+\NormalTok{\#\# (Intercept)           14.36644    0.42465   33.83   \textless{}2e{-}16 ***}
+\NormalTok{\#\# cab\_fares$distance\_km  5.99074    0.02746  218.16   \textless{}2e{-}16 ***}
+\NormalTok{\#\# cab\_fares$n\_bridges   13.02431    0.04447  292.89   \textless{}2e{-}16 ***}
+\NormalTok{\#\# {-}{-}{-}}
+\NormalTok{\#\# Signif. codes:  0 \textquotesingle{}***\textquotesingle{} 0.001 \textquotesingle{}**\textquotesingle{} 0.01 \textquotesingle{}*\textquotesingle{} 0.05 \textquotesingle{}.\textquotesingle{} 0.1 \textquotesingle{} \textquotesingle{} 1}
+\NormalTok{\#\# }
+\NormalTok{\#\# Residual standard error: 4.515 on 997 degrees of freedom}
+\NormalTok{\#\# Multiple R{-}squared:  0.9923, Adjusted R{-}squared:  0.9923 }
+\NormalTok{\#\# F{-}statistic: 6.414e+04 on 2 and 997 DF,  p{-}value: \textless{} 2.2e{-}16}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(broom)}
+\FunctionTok{tidy}\NormalTok{(taxi\_model\_two\_preds)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 3 x 5}
+\NormalTok{\#\#   term                  estimate std.error statistic   p.value}
+\NormalTok{\#\#   \textless{}chr\textgreater{}                    \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 (Intercept)              14.4     0.425       33.8 1.04e{-}167}
+\NormalTok{\#\# 2 cab\_fares$distance\_km     5.99    0.0275     218.  0        }
+\NormalTok{\#\# 3 cab\_fares$n\_bridges      13.0     0.0445     293.  0}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fitting-two-linear-models}{%
+\section{Fitting two Linear Models}\label{fitting-two-linear-models}}
+
+In the previous section, we fir a linear model with two variables. The \textbf{R2} we got was quite high. Let us run two models with one variable and see how the \textbf{R2} values change.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{distance\_model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(cab\_fares}\SpecialCharTok{$}\NormalTok{taxi\_fare }\SpecialCharTok{\textasciitilde{}}\NormalTok{ cab\_fares}\SpecialCharTok{$}\NormalTok{distance\_km)}
+\NormalTok{bridge\_model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(cab\_fares}\SpecialCharTok{$}\NormalTok{taxi\_fare }\SpecialCharTok{\textasciitilde{}}\NormalTok{ cab\_fares}\SpecialCharTok{$}\NormalTok{n\_bridges)}
+
+\NormalTok{distance\_model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = cab\_fares$taxi\_fare \textasciitilde{} cab\_fares$distance\_km)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\#           (Intercept)  cab\_fares$distance\_km  }
+\NormalTok{\#\#                85.194                  5.656}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bridge\_model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = cab\_fares$taxi\_fare \textasciitilde{} cab\_fares$n\_bridges)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\#         (Intercept)  cab\_fares$n\_bridges  }
+\NormalTok{\#\#               85.99                12.62}
+\end{Highlighting}
+\end{Shaded}
+
+It looks like the models are still doing pretty well in identifying the slopes. Let us now take a look at their \textbf{R2} values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glance}\NormalTok{(distance\_model)}\SpecialCharTok{$}\NormalTok{r.squared}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.328751}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glance}\NormalTok{(bridge\_model)}\SpecialCharTok{$}\NormalTok{r.squared}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.6241472}
+\end{Highlighting}
+\end{Shaded}
+
+The results are very interesting. It looks like the number of bridges explains the cost more than the distance. Let us add the two \textbf{R2} values to see if they add up to the same value as our multiple regression model did.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glance}\NormalTok{(taxi\_model\_two\_preds)}\SpecialCharTok{$}\NormalTok{r.squared}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.9922884}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glance}\NormalTok{(distance\_model)}\SpecialCharTok{$}\NormalTok{r.squared }\SpecialCharTok{+}\FunctionTok{glance}\NormalTok{(bridge\_model)}\SpecialCharTok{$}\NormalTok{r.squared}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.9528982}
+\end{Highlighting}
+\end{Shaded}
+
+Very close. Not too bad. It looks like when both of the predictors are taken into account, we might be able to explain even more variance but the difference is not huge.
+
+What is \textbf{kinda weird} is that the bridge costs seem to be more important factor than the distance in this model. Consider the same kind of data except now the distances are longer and the number of bridges are still the same. It looks like the coefficients are still the same but the \textbf{R2} values change. This is an important point to stop and think a bit about how your data impacts your results and what kind of conclusions you'll draw from the data. It also shows the importance of the \textbf{representativeness} of your data. The key point is to get data that represents a \textbf{typical} taxi ride for a particular area (population)**. In most cases, we don't cross that many paid bridges. Nor do we ride such long distances either.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{distance\_model\_2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(cab\_fares\_2}\SpecialCharTok{$}\NormalTok{taxi\_fare\_2 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ cab\_fares\_2}\SpecialCharTok{$}\NormalTok{distance\_km)}
+\NormalTok{bridge\_model\_2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(cab\_fares\_2}\SpecialCharTok{$}\NormalTok{taxi\_fare\_2 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ cab\_fares\_2}\SpecialCharTok{$}\NormalTok{n\_bridges)}
+
+\CommentTok{\#Print coefficients}
+\NormalTok{distance\_model\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = cab\_fares\_2$taxi\_fare\_2 \textasciitilde{} cab\_fares\_2$distance\_km)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\#             (Intercept)  cab\_fares\_2$distance\_km  }
+\NormalTok{\#\#                  85.369                    5.862}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bridge\_model\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = cab\_fares\_2$taxi\_fare\_2 \textasciitilde{} cab\_fares\_2$n\_bridges)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\#           (Intercept)  cab\_fares\_2$n\_bridges  }
+\NormalTok{\#\#                199.86                  12.19}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Print R squared.}
+\FunctionTok{glance}\NormalTok{(distance\_model\_2)}\SpecialCharTok{$}\NormalTok{r.squared}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.7322066}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glance}\NormalTok{(bridge\_model\_2)}\SpecialCharTok{$}\NormalTok{r.squared}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.2322919}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{linear-non-linear-transformations}{%
+\chapter{Linear \& Non-Linear Transformations}\label{linear-non-linear-transformations}}
+
+A \textbf{linear transformation} of a value is addition, subtraction, multiplication, or division with a constant value. Consider the following data:
+
+\begin{itemize}
+\tightlist
+\item
+  {[}2, 4, 6, 8{]}
+\end{itemize}
+
+Each of the number on the right is 2 more than the number on the left. Adding 1 to each of the values is a linear transformation of this data.
+
+\begin{itemize}
+\tightlist
+\item
+  {[}3, 5, 7, 9{]}
+\end{itemize}
+
+While the numbers themselves change, the relationship among them does not.
+
+Linear transformations are especially useful in describing data at a level of measurement that is useful to you. For example, the following descriptions are equal and they are linear transformations of each other.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule()
+\textbf{Measured Value} & \textbf{Metric 1} & \textbf{Metric 2} \\
+\midrule()
+\endhead
+Distance & 700m & 0.7km \\
+Time & 2100ms & 2.1s \\
+\bottomrule()
+\end{longtable}
+
+The crucial point in linear transformations is that they won't change the relationship among your data point and thus won't impact your models significantly. There are many different types of linear transformations. For our purposes we will focus on two linear transformations \textbf{centering} and \textbf{standardizing}.
+
+\hypertarget{centering}{%
+\section{Centering}\label{centering}}
+
+Let us consider one of our previous examples.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(ggrepel)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{freq\_data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"/Users/umit/ling\_411/data/log10ELP\_frequency.csv"}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(freq\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{log10freq, }\AttributeTok{y=}\NormalTok{RT)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{5}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text\_repel}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Word)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{,}\AttributeTok{se=}\NormalTok{F, }\AttributeTok{fullrange=}\ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_label}\NormalTok{(}\AttributeTok{data=}\ConstantTok{NULL}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\DecValTok{0}\NormalTok{, }\AttributeTok{y=} \DecValTok{870}\NormalTok{, }\AttributeTok{label=}\StringTok{"870"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-227-1.pdf}
+
+Overall, our model does a decent job in showing us that there is a trend in our data. As the frequency of a word increases, reaction time decreases. However, the model also makes some hard to interpret prediction. Our model predicts that when the frequency of a word is 0, RT is expected to be 870. But that's kinda odd. What does it mean for a word to have 0 frequency. If a word has 0 frequency, does it even exist?
+
+At this point, we can step back and ask ourselves a question regarding the \textbf{intercept}. When we defined the intercept, we defined it as the value y takes when x is 0. We mentioned that this was the way to define a line mathematically. But why x=0?
+
+Maybe setting the intercept as the value y takes when x=0 is mathematically meaningful. We can assume that x=0 is the \textbf{center} of the positive and negative integers both of which go to infinity. However, our data are usually finite and their center is usually not 0. We have talked about various measures of \textbf{central tendency} to identify the center of our data (e.g.~mean, median, mode). How about we take the \textbf{mean} as the center of our data. In other words, how about we take the mean to be our x=0 point? This is called \textbf{centering}.
+
+When you \textbf{center} your data, your intercept becomes the value y assumes when x = mean(x). Thus, everything is interpreted relative to the mean. In other words, instead of measuring the distance from the absolute 0, we measure the distance from the mean.
+
+\textbf{To center a predictor variable}, we subtract the mean from each of the predictor variables. Let us center the log frequency data and plot it again.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{centered\_freq\_data }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(freq\_data, }\AttributeTok{centered\_log\_freq =}\NormalTok{ log10freq }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(log10freq))}
+
+\NormalTok{centered\_freq\_data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 12 x 5}
+\NormalTok{\#\#    Word        RT  Freq log10freq centered\_log\_freq}
+\NormalTok{\#\#    \textless{}chr\textgreater{}    \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}             \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 thing     622. 55522     4.74              2.03 }
+\NormalTok{\#\#  2 life      520. 40629     4.61              1.89 }
+\NormalTok{\#\#  3 door      507. 14895     4.17              1.46 }
+\NormalTok{\#\#  4 angel     637.  3992     3.60              0.884}
+\NormalTok{\#\#  5 beer      587.  3850     3.59              0.868}
+\NormalTok{\#\#  6 disgrace  705    409     2.61             {-}0.106}
+\NormalTok{\#\#  7 kitten    611.   241     2.38             {-}0.336}
+\NormalTok{\#\#  8 bloke     794.   238     2.38             {-}0.341}
+\NormalTok{\#\#  9 mocha     725.    66     1.82             {-}0.898}
+\NormalTok{\#\# 10 gnome     810.    32     1.51             {-}1.21 }
+\NormalTok{\#\# 11 nihilism  764.     4     0.602            {-}2.12 }
+\NormalTok{\#\# 12 puffball  878.     4     0.602            {-}2.12}
+\end{Highlighting}
+\end{Shaded}
+
+We can see that the centered data has smaller values compared to the log frequencies. We also observe that there are negative values. What does a negative value mean? How can the frequency of a word be negative? In this case, the negative value is relative to the mean. Thus, it means that it is less than the mean (but still above 0).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(centered\_freq\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{centered\_log\_freq, }\AttributeTok{y=}\NormalTok{RT)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{), }\AttributeTok{n.breaks=}\DecValTok{6}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text\_repel}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Word)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{"lm"}\NormalTok{,}\AttributeTok{se=}\NormalTok{F, }\AttributeTok{fullrange=}\ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_label}\NormalTok{(}\AttributeTok{data=}\ConstantTok{NULL}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\FunctionTok{mean}\NormalTok{(centered\_log\_freq), }\AttributeTok{y=} \DecValTok{675}\NormalTok{, }\AttributeTok{label=}\StringTok{"680"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-229-1.pdf}
+
+Let us take a look at the intercept and slope values of the two models as well as their \textbf{R2} values to see if centering has any effect on the model and its interpretation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 2}
+\NormalTok{\#\#   names                   x}
+\NormalTok{\#\#   \textless{}chr\textgreater{}               \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 (Intercept)         871. }
+\NormalTok{\#\# 2 freq\_data$log10freq {-}70.3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 2}
+\NormalTok{\#\#   names                                    x}
+\NormalTok{\#\#   \textless{}chr\textgreater{}                                \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 (Intercept)                          680. }
+\NormalTok{\#\# 2 centered\_freq\_data$centered\_log\_freq {-}70.3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.7373698}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.7373698}
+\end{Highlighting}
+\end{Shaded}
+
+You can see that both the slope and the \textbf{R2} values remain unchanged. This shows that the model is remaining the same in all the crucial aspects except that it's now treating its 0 point as the mean. This is more meaningful for most measurements. In addition, centering helps interpreting the coefficients especially when multiple predictors interact (to be discussed later).
 
   \bibliography{book.bib,packages.bib}
 

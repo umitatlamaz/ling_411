@@ -100,7 +100,7 @@ To read in data from a csv to a tibble, we will use the `read_csv()` function. A
 ```{r}
 
 #Let's read in the data
-nettle <- read_csv('/Users/umit/Desktop/materials/data/nettle_1999_climate.csv')
+nettle <- read_csv('data/nettle_1999_climate.csv')
 
 #Let's print the head of the data to see what it looks like
 nettle

@@ -3,6 +3,7 @@ title: "Ling 411 - Fall 2022"
 author: "Ümit Atlamaz"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+always_allow_html: true
 documentclass: book
 bibliography:
 - book.bib
@@ -42,6 +43,7 @@ Some of the material in this book are from [Pavel Logaçev](https://scholar.goog
 
 ## Some great resources
 - Throughout the semester, I will draw on from the following resources. These are just useful resources and feel free to take a look at them as you wish.
+  - Bodo Winter's excellent book: [Statistics for Linguists: An Introduction Using R](https://www.routledge.com/Statistics-for-Linguists-An-Introduction-Using-R/Winter/p/book/9781138056091)
   - The great introduction materials developed at the University of Glasgow: <https://psyteachr.github.io/>, in particular ['Data Skills for Reproducible Science'](https://psyteachr.github.io/msc-data-skills/).
   - The also pretty great introduction to R and statistics by Danielle Navarro available [here](https://learningstatisticswithr.com).
   - Matt Crump's ['Answering Questions with Data'](https://crumplab.github.io/statistics/).

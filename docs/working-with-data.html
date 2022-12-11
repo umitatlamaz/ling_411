@@ -250,6 +250,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#fitting-two-linear-models"><i class="fa fa-check"></i><b>8.1</b> Fitting two Linear Models</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html"><i class="fa fa-check"></i><b>9</b> Linear &amp; Non-Linear Transformations</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#centering"><i class="fa fa-check"></i><b>9.1</b> Centering</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -338,9 +342,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this course, we will use some of the data sets from Bodo Winter’s book. Go to <a href="https://osf.io/34mq9/">this website</a> to download the <code>materials</code> folder. Once your data has been downloaded, navigate to the <code>materials/data</code> folder and locate the <code>nettle_1999_climate.csv</code> file.</p>
 <p>To read in data from a csv to a tibble, we will use the <code>read_csv()</code> function. All we need to do is to provide the path to the csv file we want to read in. If your csv file is in the same folder as your script, you can simply give its name. Otherwise, you need to provide the relevant directory information as well in your path.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="working-with-data.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s read in the data</span></span>
-<span id="cb205-2"><a href="working-with-data.html#cb205-2" aria-hidden="true" tabindex="-1"></a>nettle <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;/Users/umit/Desktop/materials/data/nettle_1999_climate.csv&#39;</span>)</span></code></pre></div>
+<span id="cb205-2"><a href="working-with-data.html#cb205-2" aria-hidden="true" tabindex="-1"></a>nettle <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/nettle_1999_climate.csv&#39;</span>)</span></code></pre></div>
 <pre><code>## Rows: 74 Columns: 5
-## ── Column specification ────────────────────────────────────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): Country
 ## dbl (4): Population, Area, MGS, Langs
