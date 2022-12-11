@@ -80,7 +80,7 @@ factors-vectors
 character-vectors
 summarising-a-data-frame
 correlations
-linear-regression
+linear-regression-with-one-predictor
 word-frequency-effects
 simple-linear-regression
 finding-the-regression-line
@@ -89,7 +89,5 @@ data-is-messy
 simplified-frequency-data
 residuals
 sum-of-squared-errors
-housingpriceexample
-linear-regression-with-one-predictor
 linear-regression-with-many-predictors
 fitting-two-linear-models
