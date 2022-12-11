@@ -89,3 +89,7 @@ data-is-messy
 simplified-frequency-data
 residuals
 sum-of-squared-errors
+housingpriceexample
+linear-regression-with-one-predictor
+linear-regression-with-many-predictors
+fitting-two-linear-models

@@ -1,0 +1,126 @@
+# Linear Regression with Many Predictors
+
+In the previous section, we built linear models with **one predictor**. In other words, we had only one dependent variable and one independent variable. 
+
+|**Model**| **Dependent Variable** | **Predictor**  | 
+|:-----|:----|:-----|
+| Taxi  | Cost | Travel Distance |
+| Processing | Reaction Time | Word Frequency |
+
+
+In many real life scenarios, multiple factors will be involved in the outcome of a particular experiments. In other words, a particular dependent variable will be the outcome of more than one independent variable (predictors). 
+
+Let us consider our taxi example again. While our taxi model is primarily based on the distance we travel, sometimes we need to cross bridges or toll roads. These factors will obviously increase the cost as they get added to our total cost. The following is a simple example. You can download the data from Moodle or by just clicking this [data link]('https://github.com/umitatlamaz/ling_411/blob/main/cab_fares.csv'). 
+
+
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
+library(dplyr)
+source("cab_data.R")
+DT::datatable(cab_fares %>% dplyr::rename(fare=taxi_fare) %>% dplyr::select(fare, distance_km, n_bridges), options = list(searching = FALSE), rownames = FALSE)
+```
+
+
+Let us see if there is any relationship between the number of bridges and the cost when we travel only 3 kilometers. 
+
+
+```{r carsPerfect2A, fig.height=2.5, echo=FALSE}
+
+cab_fares %>% subset(distance_km==3) %>% ggplot(aes(n_bridges, taxi_fare)) + geom_point() + xlab("Number of bridges crossed") + ylab("fare (3kms)")
+```
+
+It looks like there is a decent positive correlation between the fare and the number of bridges crossed. So, we need to find a way to incorporate this into our linear model. The nice thing about linear models is that they allow us to incorporate multiple predictors each with its own slope.
+
+
+$$ \underbrace{Y}_{\text{dependent variable}} =
+            \overbrace{\underbrace{a}_{\text{intercept}}}^{\text{additive term}} + 
+            \overbrace{\underbrace{b_1}_{\text{slope}} * \underbrace{X_{1}}_{\text{predictor}}}^{\text{additive term}} + 
+            \overbrace{\underbrace{b_2}_{\text{slope}} * \underbrace{X_{2} }_{\text{predictor}}}^{\text{additive term}} +  
+            \ldots$$
+
+In R, fitting a linear model with multiple predictors is quite simple. All we have to do is to add the predictors with a `+` in the `lm()` function as in `lm(dependent variable ~ Predictor 1 + Predictor 2 + ...)`.
+
+
+```{r}
+
+taxi_model_two_preds <- lm(cab_fares$taxi_fare ~ cab_fares$distance_km + cab_fares$n_bridges)
+
+taxi_model_two_preds
+
+```
+
+The model is doing pretty well. The data coefficients I used to generate the data are as follows:
+
+* intercept = 7
+* distance slope = 6
+* bridge slope = 13
+
+I also added some random noise with the mean=7.5, sd=4.5. Let us also glance at the **R<sup>2</sup>** and the **p.values** using the summary function. Alternatively, we could use the `glance()` function from the `broom` package. Give it a shot to see if you obsrve any differences. 
+
+```{r}
+summary(taxi_model_two_preds)
+```
+
+
+
+```{r}
+library(broom)
+tidy(taxi_model_two_preds)
+```
+
+## Fitting two Linear Models
+In the previous section, we fir a linear model with two variables. The **R<sup>2</sup>** we got was quite high. Let us run two models with one variable and see how the **R<sup>2</sup>** values change.
+
+```{r}
+distance_model <- lm(cab_fares$taxi_fare ~ cab_fares$distance_km)
+bridge_model <- lm(cab_fares$taxi_fare ~ cab_fares$n_bridges)
+
+distance_model
+bridge_model
+
+```
+
+
+It looks like the models are still doing pretty well in identifying the slopes. Let us now take a look at their **R<sup>2</sup>** values. 
+
+```{r}
+glance(distance_model)$r.squared
+glance(bridge_model)$r.squared
+```
+
+The results are very interesting. It looks like the number of bridges explains the cost more than the distance. Let us add the two **R<sup>2</sup>** values to see if they add up to the same value as our multiple regression model did. 
+
+```{r}
+
+glance(taxi_model_two_preds)$r.squared
+glance(distance_model)$r.squared +glance(bridge_model)$r.squared
+```
+
+Very close. Not too bad. It looks like when both of the predictors are taken into account, we might be able to explain even more variance but the difference is not huge. 
+
+What is **kinda weird**  is that the bridge costs seem to be more important factor than the distance in this model. Consider the same kind of data except now the distances are longer and the number of bridges are still the same. It looks like the coefficients are still the same but the **R<sup>2</sup>** values change. This is an important point to stop and think a bit about how your data impacts your results and what kind of conclusions you'll draw from the data. It also shows the importance of the **representativeness** of your data. The key point is to get data that represents a **typical** taxi ride for a particular area (population)**. In most cases, we don't cross that many paid bridges. Nor do we ride such long distances either. 
+
+
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
+library(dplyr)
+source("cab_data_2.R")
+DT::datatable(cab_fares_2 %>% dplyr::rename(fare=taxi_fare_2) %>% dplyr::select(fare, distance_km, n_bridges), options = list(searching = FALSE), rownames = FALSE)
+```
+
+
+```{r}
+
+distance_model_2 <- lm(cab_fares_2$taxi_fare_2 ~ cab_fares_2$distance_km)
+bridge_model_2 <- lm(cab_fares_2$taxi_fare_2 ~ cab_fares_2$n_bridges)
+
+#Print coefficients
+distance_model_2
+bridge_model_2
+
+#Print R squared.
+glance(distance_model_2)$r.squared
+glance(bridge_model_2)$r.squared
+
+
+```

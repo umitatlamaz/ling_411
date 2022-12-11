@@ -1,4 +1,4 @@
-# Linear Regression
+# Linear Regression with one Predictor
 
 In the previous section, we looked at some descriptive statistics about data. In all of these cases, we looked at the descriptive statistics of a **single variable**. For example, we looked at the mean and standard deviation of total sleep hours for various animals. The variable we considered was `total_sleep_hours`. This is also called **univariate statistics** because we were interested in the statistics of a **single variable**.
 
@@ -194,7 +194,7 @@ We will use log normal values as the x axis and the reaction time as the y axis.
 library(ggrepel)
 
 
-freq_data <- read_csv("/Users/umit/Desktop/log10ELP_frequency.csv")
+freq_data <- read_csv("/Users/umit/ling_411/data/log10ELP_frequency.csv")
 
 
 ggplot(freq_data, aes(x=log10freq, y=RT)) +
@@ -291,3 +291,5 @@ r_squared
 **Excellent!** We've calculated **R<sup>2</sup>** and it is the same as what we found earlier when we took at a look at the model report using the `glance()` function. 
 
 So, what is this **R<sup>2</sup>**? When we interpret **R<sup>2</sup>**, we say "n" amount of the variance in the dependent variable (RT) can be accounted for by incorporating the independent variable (word frequency). In this case, 73% of the variance is due to word frequency. The remaining 27% is due to chance or some other factors we didn't consider. 
+
+
