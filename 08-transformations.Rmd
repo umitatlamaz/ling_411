@@ -88,4 +88,70 @@ glance(centered_model)$r.squared
 
 You can see that both the slope and the **R<sup>2</sup>** values remain unchanged. This shows that the model is remaining the same in all the crucial aspects except that it's now treating its 0 point as the mean. This is more meaningful for most measurements. In addition, centering helps interpreting the coefficients especially when multiple predictors interact (to be discussed later). 
 
-<!-- ## Standardizing -->
+## Standardizing
+The second type of linear transformation that is very common is **standardizing** a.k.a. **z-scoring**.  Standardizing also helps identifying a **standard scale** that helps us define a metric in terms of the sample mean and standard deviation. This is a little counter-intuitive but helps a lot especially when we are interpreting models with multiple predictor variables. 
+
+Imagine that you have your taxi data set with the fare and distance variables. One very basic question you have to answer is what metric to use to report the distance. Should you use kilometers, miles, yards, meters, etc. Now, further imagine that you're comparing two data sets with different reported distance measures (e.g. mile vs km). This is actually a relatively simple problem as you can transform miles to kms and vice versa. However, what if you are trying to measure the relative impact of distance and the number of bridges you pass. These are two different variables with two different measurement units. We cannot directly compare kilometers with the number of bridges. They're not on the same scale. Standardizing helps us make such comparisons (sometimes).
+
+To standardize a variable, we divide the centered values by the standard deviation of the (sample) values. 
+
+```{r}
+centered_freq_data <- mutate(centered_freq_data, z_log_freq = centered_log_freq/sd(log10freq))
+
+centered_freq_data
+```
+
+Let us plot a histogram of z scores to see what they look like. 
+
+```{r message=FALSE}
+ggplot(centered_freq_data, aes(z_log_freq)) +
+    scale_x_continuous(limits = c(-3,3), n.breaks=6)+
+        geom_histogram(binwidth=0.1,
+                       color = 'black',
+                       fill = 'lightblue')
+```
+
+
+## Scaling and Standardizing in R
+In the previous sections, we calculated the centered values and the standardized values by hand. R has a dedicated function `scale()`  which does both. 
+
+```{r message=FALSE}
+library(tidyverse)
+cab_fares <- read_csv('data/cab_fares.csv')
+cab_fares
+
+# only centering
+cab_fares <- mutate(cab_fares, distance_c = scale(distance_km, scale = FALSE))
+
+# centering and standardizing
+cab_fares <- mutate(cab_fares, distance_c_z = scale(distance_km))
+
+#printing the dataframe
+cab_fares
+```
+
+Let us plot a histogram of the raw, centered and the z_scored data. 
+
+```{r message=FALSE}
+library(gridExtra)
+ggplot(cab_fares, aes(distance_km)) +
+        geom_histogram(binwidth=0.3,boundary=0,
+                       color = 'black',
+                       fill = 'lightblue')
+
+ggplot(cab_fares, aes(distance_c)) +
+        geom_histogram(binwidth=0.3,boundary=0,
+                       color = 'black',
+                       fill = 'lightblue')
+
+
+ggplot(cab_fares, aes(distance_c_z)) +
+        geom_histogram(binwidth=0.1,boundary=0,
+                       color = 'black',
+                       fill = 'lightblue')
+
+
+
+```
+
+**Important** A z-score above 3 or below -3 is usually interpreted as an extreme value. 

@@ -23,7 +23,7 @@
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2022-12-11" />
+<meta name="date" content="2022-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -253,6 +253,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html"><i class="fa fa-check"></i><b>9</b> Linear &amp; Non-Linear Transformations</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#centering"><i class="fa fa-check"></i><b>9.1</b> Centering</a></li>
+<li class="chapter" data-level="9.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#standardizing"><i class="fa fa-check"></i><b>9.2</b> Standardizing</a></li>
+<li class="chapter" data-level="9.3" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#scaling-and-standardizing-in-r"><i class="fa fa-check"></i><b>9.3</b> Scaling and Standardizing in R</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -325,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="main_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
 <p>Overall, our model does a decent job in showing us that there is a trend in our data. As the frequency of a word increases, reaction time decreases. However, the model also makes some hard to interpret prediction. Our model predicts that when the frequency of a word is 0, RT is expected to be 870. But that’s kinda odd. What does it mean for a word to have 0 frequency. If a word has 0 frequency, does it even exist?</p>
 <p>At this point, we can step back and ask ourselves a question regarding the <strong>intercept</strong>. When we defined the intercept, we defined it as the value y takes when x is 0. We mentioned that this was the way to define a line mathematically. But why x=0?</p>
-<p>Maybe setting the intercept as the value y takes when x=0 is mathematically meaningful. We can assume that x=0 is the <strong>center</strong> of the positive and negative integers both of which go to infinity. However, our data are usually finite and their center is usually not 0. We have talked about various measures of <strong>central tendency</strong> to identify the center of our data (e.g., mean, median, mode). How about we take the <strong>mean</strong> as the center of our data. In other words, how about we take the mean to be our x=0 point? This is called <strong>centering</strong>.</p>
+<p>Maybe setting the intercept as the value y takes when x=0 is mathematically meaningful. We can assume that x=0 is the <strong>center</strong> of the positive and negative integers both of which go to infinity. However, our data are usually finite and their center is usually not 0. We have talked about various measures of <strong>central tendency</strong> to identify the center of our data (e.g. mean, median, mode). How about we take the <strong>mean</strong> as the center of our data. In other words, how about we take the mean to be our x=0 point? This is called <strong>centering</strong>.</p>
 <p>When you <strong>center</strong> your data, your intercept becomes the value y assumes when x = mean(x). Thus, everything is interpreted relative to the mean. In other words, instead of measuring the distance from the absolute 0, we measure the distance from the mean.</p>
 <p><strong>To center a predictor variable</strong>, we subtract the mean from each of the predictor variables. Let us center the log frequency data and plot it again.</p>
 <div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="linear-non-linear-transformations.html#cb449-1" aria-hidden="true" tabindex="-1"></a>centered_freq_data <span class="ot">&lt;-</span> <span class="fu">mutate</span>(freq_data, <span class="at">centered_log_freq =</span> log10freq <span class="sc">-</span> <span class="fu">mean</span>(log10freq))</span>
@@ -369,7 +371,99 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="r-output"><code>## [1] 0.7373698</code></pre>
 <pre class="r-output"><code>## [1] 0.7373698</code></pre>
 <p>You can see that both the slope and the <strong>R<sup>2</sup></strong> values remain unchanged. This shows that the model is remaining the same in all the crucial aspects except that it’s now treating its 0 point as the mean. This is more meaningful for most measurements. In addition, centering helps interpreting the coefficients especially when multiple predictors interact (to be discussed later).</p>
-<!-- ## Standardizing -->
+</div>
+<div id="standardizing" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Standardizing<a href="linear-non-linear-transformations.html#standardizing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The second type of linear transformation that is very common is <strong>standardizing</strong> a.k.a. <strong>z-scoring</strong>. Standardizing also helps identifying a <strong>standard scale</strong> that helps us define a metric in terms of the sample mean and standard deviation. This is a little counter-intuitive but helps a lot especially when we are interpreting models with multiple predictor variables.</p>
+<p>Imagine that you have your taxi data set with the fare and distance variables. One very basic question you have to answer is what metric to use to report the distance. Should you use kilometers, miles, yards, meters, etc. Now, further imagine that you’re comparing two data sets with different reported distance measures (e.g. mile vs km). This is actually a relatively simple problem as you can transform miles to kms and vice versa. However, what if you are trying to measure the relative impact of distance and the number of bridges you pass. These are two different variables with two different measurement units. We cannot directly compare kilometers with the number of bridges. They’re not on the same scale. Standardizing helps us make such comparisons (sometimes).</p>
+<p>To standardize a variable, we divide the centered values by the standard deviation of the (sample) values.</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="linear-non-linear-transformations.html#cb456-1" aria-hidden="true" tabindex="-1"></a>centered_freq_data <span class="ot">&lt;-</span> <span class="fu">mutate</span>(centered_freq_data, <span class="at">z_log_freq =</span> centered_log_freq<span class="sc">/</span><span class="fu">sd</span>(log10freq))</span>
+<span id="cb456-2"><a href="linear-non-linear-transformations.html#cb456-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb456-3"><a href="linear-non-linear-transformations.html#cb456-3" aria-hidden="true" tabindex="-1"></a>centered_freq_data</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 12 × 6
+##    Word        RT  Freq log10freq centered_log_freq z_log_freq
+##    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;             &lt;dbl&gt;      &lt;dbl&gt;
+##  1 thing     622. 55522     4.74              2.03      1.41  
+##  2 life      520. 40629     4.61              1.89      1.31  
+##  3 door      507. 14895     4.17              1.46      1.01  
+##  4 angel     637.  3992     3.60              0.884     0.614 
+##  5 beer      587.  3850     3.59              0.868     0.603 
+##  6 disgrace  705    409     2.61             -0.106    -0.0736
+##  7 kitten    611.   241     2.38             -0.336    -0.233 
+##  8 bloke     794.   238     2.38             -0.341    -0.237 
+##  9 mocha     725.    66     1.82             -0.898    -0.624 
+## 10 gnome     810.    32     1.51             -1.21     -0.842 
+## 11 nihilism  764.     4     0.602            -2.12     -1.47  
+## 12 puffball  878.     4     0.602            -2.12     -1.47</code></pre>
+<p>Let us plot a histogram of z scores to see what they look like.</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="linear-non-linear-transformations.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(centered_freq_data, <span class="fu">aes</span>(z_log_freq)) <span class="sc">+</span></span>
+<span id="cb458-2"><a href="linear-non-linear-transformations.html#cb458-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>), <span class="at">n.breaks=</span><span class="dv">6</span>)<span class="sc">+</span></span>
+<span id="cb458-3"><a href="linear-non-linear-transformations.html#cb458-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.1</span>,</span>
+<span id="cb458-4"><a href="linear-non-linear-transformations.html#cb458-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb458-5"><a href="linear-non-linear-transformations.html#cb458-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
+<p><img src="main_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
+</div>
+<div id="scaling-and-standardizing-in-r" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Scaling and Standardizing in R<a href="linear-non-linear-transformations.html#scaling-and-standardizing-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the previous sections, we calculated the centered values and the standardized values by hand. R has a dedicated function <code>scale()</code> which does both.</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="linear-non-linear-transformations.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb460-2"><a href="linear-non-linear-transformations.html#cb460-2" aria-hidden="true" tabindex="-1"></a>cab_fares <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/cab_fares.csv&#39;</span>)</span>
+<span id="cb460-3"><a href="linear-non-linear-transformations.html#cb460-3" aria-hidden="true" tabindex="-1"></a>cab_fares</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 1,000 × 3
+##    distance_km n_bridges taxi_fare
+##          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1          20         3     180. 
+##  2          10        10     202. 
+##  3          15         4     158. 
+##  4          19         5     196. 
+##  5          18         1     137. 
+##  6          16         7     201. 
+##  7          14         8     209. 
+##  8          18         8     226. 
+##  9           5         2      79.6
+## 10           9         2      94.2
+## # … with 990 more rows</code></pre>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="linear-non-linear-transformations.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="co"># only centering</span></span>
+<span id="cb462-2"><a href="linear-non-linear-transformations.html#cb462-2" aria-hidden="true" tabindex="-1"></a>cab_fares <span class="ot">&lt;-</span> <span class="fu">mutate</span>(cab_fares, <span class="at">distance_c =</span> <span class="fu">scale</span>(distance_km, <span class="at">scale =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb462-3"><a href="linear-non-linear-transformations.html#cb462-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb462-4"><a href="linear-non-linear-transformations.html#cb462-4" aria-hidden="true" tabindex="-1"></a><span class="co"># centering and standardizing</span></span>
+<span id="cb462-5"><a href="linear-non-linear-transformations.html#cb462-5" aria-hidden="true" tabindex="-1"></a>cab_fares <span class="ot">&lt;-</span> <span class="fu">mutate</span>(cab_fares, <span class="at">distance_c_z =</span> <span class="fu">scale</span>(distance_km))</span>
+<span id="cb462-6"><a href="linear-non-linear-transformations.html#cb462-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb462-7"><a href="linear-non-linear-transformations.html#cb462-7" aria-hidden="true" tabindex="-1"></a><span class="co">#printing the dataframe</span></span>
+<span id="cb462-8"><a href="linear-non-linear-transformations.html#cb462-8" aria-hidden="true" tabindex="-1"></a>cab_fares</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 1,000 × 5
+##    distance_km n_bridges taxi_fare distance_c[,1] distance_c_z[,1]
+##          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
+##  1          20         3     180.            8.39            1.61 
+##  2          10        10     202.           -1.61           -0.309
+##  3          15         4     158.            3.39            0.651
+##  4          19         5     196.            7.39            1.42 
+##  5          18         1     137.            6.39            1.23 
+##  6          16         7     201.            4.39            0.843
+##  7          14         8     209.            2.39            0.459
+##  8          18         8     226.            6.39            1.23 
+##  9           5         2      79.6          -6.61           -1.27 
+## 10           9         2      94.2          -2.61           -0.501
+## # … with 990 more rows</code></pre>
+<p>Let us plot a histogram of the raw, centered and the z_scored data.</p>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="linear-non-linear-transformations.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb464-2"><a href="linear-non-linear-transformations.html#cb464-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cab_fares, <span class="fu">aes</span>(distance_km)) <span class="sc">+</span></span>
+<span id="cb464-3"><a href="linear-non-linear-transformations.html#cb464-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.3</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
+<span id="cb464-4"><a href="linear-non-linear-transformations.html#cb464-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb464-5"><a href="linear-non-linear-transformations.html#cb464-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="linear-non-linear-transformations.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cab_fares, <span class="fu">aes</span>(distance_c)) <span class="sc">+</span></span>
+<span id="cb465-2"><a href="linear-non-linear-transformations.html#cb465-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.3</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
+<span id="cb465-3"><a href="linear-non-linear-transformations.html#cb465-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb465-4"><a href="linear-non-linear-transformations.html#cb465-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-234-2.png" width="672" /></p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="linear-non-linear-transformations.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cab_fares, <span class="fu">aes</span>(distance_c_z)) <span class="sc">+</span></span>
+<span id="cb466-2"><a href="linear-non-linear-transformations.html#cb466-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.1</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
+<span id="cb466-3"><a href="linear-non-linear-transformations.html#cb466-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb466-4"><a href="linear-non-linear-transformations.html#cb466-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-234-3.png" width="672" /></p>
+<p><strong>Important</strong> A z-score above 3 or below -3 is usually interpreted as an extreme value.</p>
 
 </div>
 </div>

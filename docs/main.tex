@@ -117,7 +117,7 @@
 
 \title{Ling 411 - Fall 2022}
 \author{Ümit Atlamaz}
-\date{2022-12-11}
+\date{2022-12-12}
 
 \begin{document}
 \maketitle
@@ -754,10 +754,10 @@ Once you install a package, you need to load it before you can use its functions
 
 \begin{verbatim}
 ## -- Attaching packages --------------------------------------- tidyverse 1.3.2 --
-## v ggplot2 3.4.0      v purrr   0.3.5 
+## v ggplot2 3.3.6      v purrr   0.3.4 
 ## v tibble  3.1.8      v dplyr   1.0.10
 ## v tidyr   1.2.1      v stringr 1.4.1 
-## v readr   2.1.3      v forcats 0.5.2 
+## v readr   2.1.2      v forcats 0.5.2 
 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
@@ -838,7 +838,7 @@ Notice that playing with the scale sizes will yield dramatic changes in the effe
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-38-1.pdf}
@@ -3184,7 +3184,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(11 December, 2022, 22:34)
+(12 December, 2022, 09:03)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -5089,8 +5089,8 @@ A good way to remember the intercept and the slope and a linear model is to reme
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in predict.lm(model, newdata = data_frame0(x = xseq), se.fit = se, :
-## prediction from a rank-deficient fit may be misleading
+## Warning in predict.lm(model, newdata = new_data_frame(list(x = xseq)), se.fit =
+## se, : prediction from a rank-deficient fit may be misleading
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-201-1.pdf}
@@ -5245,11 +5245,11 @@ Let us plot the theoretical costs and the total costs side by side. We'll use th
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
 \begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-206-1.pdf}
@@ -5333,7 +5333,7 @@ We will use log normal values as the x axis and the reaction time as the y axis.
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-209-1.pdf}
@@ -5397,7 +5397,7 @@ Next, we tried modeling the simple frequency data and we got a decent model that
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-212-1.pdf}
@@ -5917,6 +5917,163 @@ Let us take a look at the intercept and slope values of the two models as well a
 \end{Shaded}
 
 You can see that both the slope and the \textbf{R2} values remain unchanged. This shows that the model is remaining the same in all the crucial aspects except that it's now treating its 0 point as the mean. This is more meaningful for most measurements. In addition, centering helps interpreting the coefficients especially when multiple predictors interact (to be discussed later).
+
+\hypertarget{standardizing}{%
+\section{Standardizing}\label{standardizing}}
+
+The second type of linear transformation that is very common is \textbf{standardizing} a.k.a. \textbf{z-scoring}. Standardizing also helps identifying a \textbf{standard scale} that helps us define a metric in terms of the sample mean and standard deviation. This is a little counter-intuitive but helps a lot especially when we are interpreting models with multiple predictor variables.
+
+Imagine that you have your taxi data set with the fare and distance variables. One very basic question you have to answer is what metric to use to report the distance. Should you use kilometers, miles, yards, meters, etc. Now, further imagine that you're comparing two data sets with different reported distance measures (e.g.~mile vs km). This is actually a relatively simple problem as you can transform miles to kms and vice versa. However, what if you are trying to measure the relative impact of distance and the number of bridges you pass. These are two different variables with two different measurement units. We cannot directly compare kilometers with the number of bridges. They're not on the same scale. Standardizing helps us make such comparisons (sometimes).
+
+To standardize a variable, we divide the centered values by the standard deviation of the (sample) values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{centered\_freq\_data }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(centered\_freq\_data, }\AttributeTok{z\_log\_freq =}\NormalTok{ centered\_log\_freq}\SpecialCharTok{/}\FunctionTok{sd}\NormalTok{(log10freq))}
+
+\NormalTok{centered\_freq\_data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 12 x 6}
+\NormalTok{\#\#    Word        RT  Freq log10freq centered\_log\_freq z\_log\_freq}
+\NormalTok{\#\#    \textless{}chr\textgreater{}    \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}             \textless{}dbl\textgreater{}      \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 thing     622. 55522     4.74              2.03      1.41  }
+\NormalTok{\#\#  2 life      520. 40629     4.61              1.89      1.31  }
+\NormalTok{\#\#  3 door      507. 14895     4.17              1.46      1.01  }
+\NormalTok{\#\#  4 angel     637.  3992     3.60              0.884     0.614 }
+\NormalTok{\#\#  5 beer      587.  3850     3.59              0.868     0.603 }
+\NormalTok{\#\#  6 disgrace  705    409     2.61             {-}0.106    {-}0.0736}
+\NormalTok{\#\#  7 kitten    611.   241     2.38             {-}0.336    {-}0.233 }
+\NormalTok{\#\#  8 bloke     794.   238     2.38             {-}0.341    {-}0.237 }
+\NormalTok{\#\#  9 mocha     725.    66     1.82             {-}0.898    {-}0.624 }
+\NormalTok{\#\# 10 gnome     810.    32     1.51             {-}1.21     {-}0.842 }
+\NormalTok{\#\# 11 nihilism  764.     4     0.602            {-}2.12     {-}1.47  }
+\NormalTok{\#\# 12 puffball  878.     4     0.602            {-}2.12     {-}1.47}
+\end{Highlighting}
+\end{Shaded}
+
+Let us plot a histogram of z scores to see what they look like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(centered\_freq\_data, }\FunctionTok{aes}\NormalTok{(z\_log\_freq)) }\SpecialCharTok{+}
+    \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{), }\AttributeTok{n.breaks=}\DecValTok{6}\NormalTok{)}\SpecialCharTok{+}
+        \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.1}\NormalTok{,}
+                       \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+                       \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (geom_bar).
+\end{verbatim}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-232-1.pdf}
+
+\hypertarget{scaling-and-standardizing-in-r}{%
+\section{Scaling and Standardizing in R}\label{scaling-and-standardizing-in-r}}
+
+In the previous sections, we calculated the centered values and the standardized values by hand. R has a dedicated function \texttt{scale()} which does both.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{cab\_fares }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}data/cab\_fares.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{cab\_fares}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 1,000 x 3}
+\NormalTok{\#\#    distance\_km n\_bridges taxi\_fare}
+\NormalTok{\#\#          \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1          20         3     180. }
+\NormalTok{\#\#  2          10        10     202. }
+\NormalTok{\#\#  3          15         4     158. }
+\NormalTok{\#\#  4          19         5     196. }
+\NormalTok{\#\#  5          18         1     137. }
+\NormalTok{\#\#  6          16         7     201. }
+\NormalTok{\#\#  7          14         8     209. }
+\NormalTok{\#\#  8          18         8     226. }
+\NormalTok{\#\#  9           5         2      79.6}
+\NormalTok{\#\# 10           9         2      94.2}
+\NormalTok{\#\# \# ... with 990 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# only centering}
+\NormalTok{cab\_fares }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(cab\_fares, }\AttributeTok{distance\_c =} \FunctionTok{scale}\NormalTok{(distance\_km, }\AttributeTok{scale =} \ConstantTok{FALSE}\NormalTok{))}
+
+\CommentTok{\# centering and standardizing}
+\NormalTok{cab\_fares }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(cab\_fares, }\AttributeTok{distance\_c\_z =} \FunctionTok{scale}\NormalTok{(distance\_km))}
+
+\CommentTok{\#printing the dataframe}
+\NormalTok{cab\_fares}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 1,000 x 5}
+\NormalTok{\#\#    distance\_km n\_bridges taxi\_fare distance\_c[,1] distance\_c\_z[,1]}
+\NormalTok{\#\#          \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}          \textless{}dbl\textgreater{}            \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1          20         3     180.            8.39            1.61 }
+\NormalTok{\#\#  2          10        10     202.           {-}1.61           {-}0.309}
+\NormalTok{\#\#  3          15         4     158.            3.39            0.651}
+\NormalTok{\#\#  4          19         5     196.            7.39            1.42 }
+\NormalTok{\#\#  5          18         1     137.            6.39            1.23 }
+\NormalTok{\#\#  6          16         7     201.            4.39            0.843}
+\NormalTok{\#\#  7          14         8     209.            2.39            0.459}
+\NormalTok{\#\#  8          18         8     226.            6.39            1.23 }
+\NormalTok{\#\#  9           5         2      79.6          {-}6.61           {-}1.27 }
+\NormalTok{\#\# 10           9         2      94.2          {-}2.61           {-}0.501}
+\NormalTok{\#\# \# ... with 990 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Let us plot a histogram of the raw, centered and the z\_scored data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(gridExtra)}
+\FunctionTok{ggplot}\NormalTok{(cab\_fares, }\FunctionTok{aes}\NormalTok{(distance\_km)) }\SpecialCharTok{+}
+        \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.3}\NormalTok{,}\AttributeTok{boundary=}\DecValTok{0}\NormalTok{,}
+                       \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+                       \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-234-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(cab\_fares, }\FunctionTok{aes}\NormalTok{(distance\_c)) }\SpecialCharTok{+}
+        \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.3}\NormalTok{,}\AttributeTok{boundary=}\DecValTok{0}\NormalTok{,}
+                       \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+                       \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-234-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(cab\_fares, }\FunctionTok{aes}\NormalTok{(distance\_c\_z)) }\SpecialCharTok{+}
+        \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.1}\NormalTok{,}\AttributeTok{boundary=}\DecValTok{0}\NormalTok{,}
+                       \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+                       \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-234-3.pdf}
+
+\textbf{Important} A z-score above 3 or below -3 is usually interpreted as an extreme value.
 
   \bibliography{book.bib,packages.bib}
 

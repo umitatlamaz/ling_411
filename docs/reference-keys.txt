@@ -93,3 +93,5 @@ linear-regression-with-many-predictors
 fitting-two-linear-models
 linear-non-linear-transformations
 centering
+standardizing
+scaling-and-standardizing-in-r
