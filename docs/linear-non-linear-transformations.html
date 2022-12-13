@@ -23,7 +23,7 @@
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2022-12-12" />
+<meta name="date" content="2022-12-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -252,9 +252,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html"><i class="fa fa-check"></i><b>9</b> Linear &amp; Non-Linear Transformations</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#centering"><i class="fa fa-check"></i><b>9.1</b> Centering</a></li>
-<li class="chapter" data-level="9.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#standardizing"><i class="fa fa-check"></i><b>9.2</b> Standardizing</a></li>
-<li class="chapter" data-level="9.3" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#scaling-and-standardizing-in-r"><i class="fa fa-check"></i><b>9.3</b> Scaling and Standardizing in R</a></li>
+<li class="chapter" data-level="9.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-transformations"><i class="fa fa-check"></i><b>9.1</b> Linear Transformations</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#centering"><i class="fa fa-check"></i><b>9.1.1</b> Centering</a></li>
+<li class="chapter" data-level="9.1.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#standardizing"><i class="fa fa-check"></i><b>9.1.2</b> Standardizing</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#scaling-and-standardizing-in-r"><i class="fa fa-check"></i><b>9.2</b> Scaling and Standardizing in R</a></li>
+<li class="chapter" data-level="9.3" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#non-linear-transformations"><i class="fa fa-check"></i><b>9.3</b> Non-linear Transformations</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#logarithms-log-transformation"><i class="fa fa-check"></i><b>9.3.1</b> Logarithms &amp; Log Transformation</a></li>
+<li class="chapter" data-level="9.3.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-regression-with-log-transformation"><i class="fa fa-check"></i><b>9.3.2</b> Linear Regression with Log Transformation</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -278,6 +286,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="linear-non-linear-transformations" class="section level1 hasAnchor" number="9">
 <h1><span class="header-section-number">Chapter 9</span> Linear &amp; Non-Linear Transformations<a href="linear-non-linear-transformations.html#linear-non-linear-transformations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="linear-transformations" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Linear Transformations<a href="linear-non-linear-transformations.html#linear-transformations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A <strong>linear transformation</strong> of a value is addition, subtraction, multiplication, or division with a constant value. Consider the following data:</p>
 <ul>
 <li>[2, 4, 6, 8]</li>
@@ -310,8 +320,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>The crucial point in linear transformations is that they won’t change the relationship among your data point and thus won’t impact your models significantly. There are many different types of linear transformations. For our purposes we will focus on two linear transformations <strong>centering</strong> and <strong>standardizing</strong>.</p>
-<div id="centering" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Centering<a href="linear-non-linear-transformations.html#centering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="centering" class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Centering<a href="linear-non-linear-transformations.html#centering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let us consider one of our previous examples.</p>
 <div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="linear-non-linear-transformations.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb447-2"><a href="linear-non-linear-transformations.html#cb447-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
@@ -372,8 +382,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="r-output"><code>## [1] 0.7373698</code></pre>
 <p>You can see that both the slope and the <strong>R<sup>2</sup></strong> values remain unchanged. This shows that the model is remaining the same in all the crucial aspects except that it’s now treating its 0 point as the mean. This is more meaningful for most measurements. In addition, centering helps interpreting the coefficients especially when multiple predictors interact (to be discussed later).</p>
 </div>
-<div id="standardizing" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> Standardizing<a href="linear-non-linear-transformations.html#standardizing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="standardizing" class="section level3 hasAnchor" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> Standardizing<a href="linear-non-linear-transformations.html#standardizing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The second type of linear transformation that is very common is <strong>standardizing</strong> a.k.a. <strong>z-scoring</strong>. Standardizing also helps identifying a <strong>standard scale</strong> that helps us define a metric in terms of the sample mean and standard deviation. This is a little counter-intuitive but helps a lot especially when we are interpreting models with multiple predictor variables.</p>
 <p>Imagine that you have your taxi data set with the fare and distance variables. One very basic question you have to answer is what metric to use to report the distance. Should you use kilometers, miles, yards, meters, etc. Now, further imagine that you’re comparing two data sets with different reported distance measures (e.g. mile vs km). This is actually a relatively simple problem as you can transform miles to kms and vice versa. However, what if you are trying to measure the relative impact of distance and the number of bridges you pass. These are two different variables with two different measurement units. We cannot directly compare kilometers with the number of bridges. They’re not on the same scale. Standardizing helps us make such comparisons (sometimes).</p>
 <p>To standardize a variable, we divide the centered values by the standard deviation of the (sample) values.</p>
@@ -404,8 +414,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
 <p><img src="main_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
 </div>
-<div id="scaling-and-standardizing-in-r" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> Scaling and Standardizing in R<a href="linear-non-linear-transformations.html#scaling-and-standardizing-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="scaling-and-standardizing-in-r" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Scaling and Standardizing in R<a href="linear-non-linear-transformations.html#scaling-and-standardizing-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the previous sections, we calculated the centered values and the standardized values by hand. R has a dedicated function <code>scale()</code> which does both.</p>
 <div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="linear-non-linear-transformations.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb460-2"><a href="linear-non-linear-transformations.html#cb460-2" aria-hidden="true" tabindex="-1"></a>cab_fares <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/cab_fares.csv&#39;</span>)</span>
@@ -449,22 +460,177 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let us plot a histogram of the raw, centered and the z_scored data.</p>
 <div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="linear-non-linear-transformations.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
 <span id="cb464-2"><a href="linear-non-linear-transformations.html#cb464-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cab_fares, <span class="fu">aes</span>(distance_km)) <span class="sc">+</span></span>
-<span id="cb464-3"><a href="linear-non-linear-transformations.html#cb464-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.3</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
-<span id="cb464-4"><a href="linear-non-linear-transformations.html#cb464-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb464-5"><a href="linear-non-linear-transformations.html#cb464-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<span id="cb464-3"><a href="linear-non-linear-transformations.html#cb464-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>), <span class="at">n.breaks=</span><span class="dv">10</span>)<span class="sc">+</span></span>
+<span id="cb464-4"><a href="linear-non-linear-transformations.html#cb464-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.3</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
+<span id="cb464-5"><a href="linear-non-linear-transformations.html#cb464-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb464-6"><a href="linear-non-linear-transformations.html#cb464-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_bar).</code></pre>
 <p><img src="main_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="linear-non-linear-transformations.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cab_fares, <span class="fu">aes</span>(distance_c)) <span class="sc">+</span></span>
-<span id="cb465-2"><a href="linear-non-linear-transformations.html#cb465-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.3</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
-<span id="cb465-3"><a href="linear-non-linear-transformations.html#cb465-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb465-4"><a href="linear-non-linear-transformations.html#cb465-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="linear-non-linear-transformations.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cab_fares, <span class="fu">aes</span>(distance_c)) <span class="sc">+</span></span>
+<span id="cb466-2"><a href="linear-non-linear-transformations.html#cb466-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">n.breaks=</span><span class="dv">10</span>)<span class="sc">+</span></span>
+<span id="cb466-3"><a href="linear-non-linear-transformations.html#cb466-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.3</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
+<span id="cb466-4"><a href="linear-non-linear-transformations.html#cb466-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb466-5"><a href="linear-non-linear-transformations.html#cb466-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
 <p><img src="main_files/figure-html/unnamed-chunk-234-2.png" width="672" /></p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="linear-non-linear-transformations.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cab_fares, <span class="fu">aes</span>(distance_c_z)) <span class="sc">+</span></span>
-<span id="cb466-2"><a href="linear-non-linear-transformations.html#cb466-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.1</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
-<span id="cb466-3"><a href="linear-non-linear-transformations.html#cb466-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb466-4"><a href="linear-non-linear-transformations.html#cb466-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="linear-non-linear-transformations.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cab_fares, <span class="fu">aes</span>(distance_c_z)) <span class="sc">+</span></span>
+<span id="cb468-2"><a href="linear-non-linear-transformations.html#cb468-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">n.breaks=</span><span class="dv">10</span>)<span class="sc">+</span></span>
+<span id="cb468-3"><a href="linear-non-linear-transformations.html#cb468-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.1</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
+<span id="cb468-4"><a href="linear-non-linear-transformations.html#cb468-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb468-5"><a href="linear-non-linear-transformations.html#cb468-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
 <p><img src="main_files/figure-html/unnamed-chunk-234-3.png" width="672" /></p>
 <p><strong>Important</strong> A z-score above 3 or below -3 is usually interpreted as an extreme value.</p>
+</div>
+<div id="non-linear-transformations" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Non-linear Transformations<a href="linear-non-linear-transformations.html#non-linear-transformations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="logarithms-log-transformation" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Logarithms &amp; Log Transformation<a href="linear-non-linear-transformations.html#logarithms-log-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One of the problems we often face in raw data is <strong>skewness</strong>. Technically, skewness is a measure of asymmetry in the data. In practice, it looks like the bulk of the data is rested on one side of a histogram plot with a long tail on the other side. When the tail of the data extends towards a positive value, data is <strong>positively skewed</strong>. When the tail extends towards a negative value, we call it <strong>negatively skewed</strong>.</p>
+<div class="figure"><span style="display:block;" id="fig:skewness"></span>
+<img src="img/skewness.jpg" alt="Skewness. Image by [Robert Keim](https://www.allaboutcircuits.com/technical-articles/understanding-the-normal-distribution-parametric-tests-skewness-and-kurtosis/)"  />
+<p class="caption">
+Figure 9.1: Skewness. Image by <a href="https://www.allaboutcircuits.com/technical-articles/understanding-the-normal-distribution-parametric-tests-skewness-and-kurtosis/">Robert Keim</a>
+</p>
+</div>
+<p>Many types of data in linguistics have a positive skew. For example, frequency data is highly skewed. Let us take a look at a frequency data for 50K words from Turkish. (I got this data from some corpus but I don’t remember where. Apologies for not being able to provide credit.)</p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="linear-non-linear-transformations.html#cb469-1" aria-hidden="true" tabindex="-1"></a>turkish_freq <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/tr_50k_freq.csv&quot;</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;word&quot;</span>, <span class="st">&quot;frequency&quot;</span>))</span></code></pre></div>
+<pre><code>## Rows: 50000 Columns: 2
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): word
+## dbl (1): frequency
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="linear-non-linear-transformations.html#cb471-1" aria-hidden="true" tabindex="-1"></a>turkish_freq</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 50,000 × 2
+##    word  frequency
+##    &lt;chr&gt;     &lt;dbl&gt;
+##  1 bir     6034903
+##  2 bu      3529532
+##  3 ne      2550646
+##  4 ve      2544175
+##  5 için    1795506
+##  6 mi      1713472
+##  7 de      1647867
+##  8 o       1639226
+##  9 ben     1597395
+## 10 çok     1572658
+## # … with 49,990 more rows</code></pre>
+<p>Let us now get a histogram to see what the data distribution looks like.</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="linear-non-linear-transformations.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(turkish_freq, <span class="fu">aes</span>(frequency)) <span class="sc">+</span></span>
+<span id="cb473-2"><a href="linear-non-linear-transformations.html#cb473-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0100</span>, <span class="dv">10000</span>), <span class="at">n.breaks=</span><span class="dv">10</span>)<span class="sc">+</span></span>
+<span id="cb473-3"><a href="linear-non-linear-transformations.html#cb473-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">150</span>,</span>
+<span id="cb473-4"><a href="linear-non-linear-transformations.html#cb473-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb473-5"><a href="linear-non-linear-transformations.html#cb473-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)<span class="sc">+</span></span>
+<span id="cb473-6"><a href="linear-non-linear-transformations.html#cb473-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(turkish_freq<span class="sc">$</span>frequency), <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span> )</span></code></pre></div>
+<pre><code>## Warning: Removed 2288 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
+<p><img src="main_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
+<p>It looks like most of the words are quite infrequent and a handful of words are very frequent. In fact, word frequencies are skewed in a very interesting way and they have a special distribution name called <strong>Zipfian</strong> distribution named after George Kingsley Zipf. But we’re not interested in that for now.</p>
+<p>The important point to notice is where the mean is in this distribution. The mean is shown with the dashed line and it does not in any way reflect the majority of the data. What is more important is that when the data is skewed, its linear modeling will usually result in <strong>residuals that are not normal</strong>. If the residuals are not normal, then the model will lose its validity. It is important that you notice what matters is the <strong>normality of the residuals</strong> not the normality of the data. Non-normal data is still fine for liner models as long as the residuals are normal.</p>
+<p><strong>So, what are logarithms and how do they help?</strong></p>
+<p>Logarithms are inverses of exponentiation.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Logatihm</strong></th>
+<th align="left"><strong>Exponentiation</strong></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">log<sub>10</sub>(1) =0</td>
+<td align="left">10<sup>0</sup> = 1</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">log<sub>10</sub>(10) =1</td>
+<td align="left">10<sup>1</sup> = 10</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">log<sub>10</sub>(100) =2</td>
+<td align="left">10<sup>2</sup> = 100</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">log<sub>10</sub>(1000) =3</td>
+<td align="left">10<sup>3</sup> = 1000</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">log<sub>10</sub>(10000) =4</td>
+<td align="left">10<sup>4</sup> = 10000</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>Transforming the data into a log space has a very interesting normalizing impact on your data. It shrinks your data in a non-linear fashion by reducing smaller numbers less than the big numbers. Consider the following example.</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Raw Value</strong></th>
+<th align="left"><strong>log<sub>10</sub> Value</strong></th>
+<th align="left"><strong>Difference</strong></th>
+<th align="left"><strong>% Shrunk</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">10</td>
+<td align="left">1</td>
+<td align="left">9</td>
+<td align="left">90%</td>
+</tr>
+<tr class="even">
+<td align="left">100</td>
+<td align="left">2</td>
+<td align="left">98</td>
+<td align="left">98%</td>
+</tr>
+<tr class="odd">
+<td align="left">1000</td>
+<td align="left">3</td>
+<td align="left">997</td>
+<td align="left">99.7%</td>
+</tr>
+</tbody>
+</table>
+<p>Log transformation keeps some of the relation among data points but removes a decent bit of information as well. When we log transform our data, it becomes <strong>more normal</strong> and <strong>less skewed</strong>. It doesn’t always become completely normal but it is more normal.</p>
+<p>Let us log<sub>10</sub> transform the frequency data for Turkish and plot a histogram to see what the data looks like now.</p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="linear-non-linear-transformations.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new column with the log10 frequency values</span></span>
+<span id="cb476-2"><a href="linear-non-linear-transformations.html#cb476-2" aria-hidden="true" tabindex="-1"></a>turkish_freq <span class="ot">&lt;-</span> <span class="fu">mutate</span>(turkish_freq, <span class="at">log10freq =</span> <span class="fu">log10</span>(frequency))</span>
+<span id="cb476-3"><a href="linear-non-linear-transformations.html#cb476-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb476-4"><a href="linear-non-linear-transformations.html#cb476-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb476-5"><a href="linear-non-linear-transformations.html#cb476-5" aria-hidden="true" tabindex="-1"></a><span class="co">#plot a histogram of the log10 frequency values</span></span>
+<span id="cb476-6"><a href="linear-non-linear-transformations.html#cb476-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(turkish_freq, <span class="fu">aes</span>(log10freq)) <span class="sc">+</span></span>
+<span id="cb476-7"><a href="linear-non-linear-transformations.html#cb476-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>), <span class="at">n.breaks=</span><span class="dv">8</span>)<span class="sc">+</span></span>
+<span id="cb476-8"><a href="linear-non-linear-transformations.html#cb476-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">150</span>,</span>
+<span id="cb476-9"><a href="linear-non-linear-transformations.html#cb476-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb476-10"><a href="linear-non-linear-transformations.html#cb476-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)<span class="sc">+</span></span>
+<span id="cb476-11"><a href="linear-non-linear-transformations.html#cb476-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(turkish_freq<span class="sc">$</span>log10freq), <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span> )</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
+<p>Notice that the data is still skewed but it’s not as bad as before and the mean is closer to the bulk of the data.</p>
+</div>
+<div id="linear-regression-with-log-transformation" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> Linear Regression with Log Transformation<a href="linear-non-linear-transformations.html#linear-regression-with-log-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You should run a linear model with and without log transformation to see how the model performs. You can do that by looking at various values.</p>
+<ul>
+<li>SSE</li>
+<li>R<sup>2</sup></li>
+<li>p value</li>
+</ul>
+<p>You can also fit a linear regression plot against a point plot to see how they differ. Let us do this for the <code>log10ELP_frequency</code> data. It’s the smaller dataset. You should also consider log10 transforming your dependent variable as well.</p>
 
+</div>
 </div>
 </div>
 

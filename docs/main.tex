@@ -117,7 +117,7 @@
 
 \title{Ling 411 - Fall 2022}
 \author{Ümit Atlamaz}
-\date{2022-12-12}
+\date{2022-12-13}
 
 \begin{document}
 \maketitle
@@ -3184,7 +3184,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(12 December, 2022, 09:03)
+(13 December, 2022, 10:31)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -5768,6 +5768,9 @@ What is \textbf{kinda weird} is that the bridge costs seem to be more important 
 \hypertarget{linear-non-linear-transformations}{%
 \chapter{Linear \& Non-Linear Transformations}\label{linear-non-linear-transformations}}
 
+\hypertarget{linear-transformations}{%
+\section{Linear Transformations}\label{linear-transformations}}
+
 A \textbf{linear transformation} of a value is addition, subtraction, multiplication, or division with a constant value. Consider the following data:
 
 \begin{itemize}
@@ -5801,7 +5804,7 @@ Time & 2100ms & 2.1s \\
 The crucial point in linear transformations is that they won't change the relationship among your data point and thus won't impact your models significantly. There are many different types of linear transformations. For our purposes we will focus on two linear transformations \textbf{centering} and \textbf{standardizing}.
 
 \hypertarget{centering}{%
-\section{Centering}\label{centering}}
+\subsection{Centering}\label{centering}}
 
 Let us consider one of our previous examples.
 
@@ -5919,7 +5922,7 @@ Let us take a look at the intercept and slope values of the two models as well a
 You can see that both the slope and the \textbf{R2} values remain unchanged. This shows that the model is remaining the same in all the crucial aspects except that it's now treating its 0 point as the mean. This is more meaningful for most measurements. In addition, centering helps interpreting the coefficients especially when multiple predictors interact (to be discussed later).
 
 \hypertarget{standardizing}{%
-\section{Standardizing}\label{standardizing}}
+\subsection{Standardizing}\label{standardizing}}
 
 The second type of linear transformation that is very common is \textbf{standardizing} a.k.a. \textbf{z-scoring}. Standardizing also helps identifying a \textbf{standard scale} that helps us define a metric in terms of the sample mean and standard deviation. This is a little counter-intuitive but helps a lot especially when we are interpreting models with multiple predictor variables.
 
@@ -6043,28 +6046,39 @@ Let us plot a histogram of the raw, centered and the z\_scored data.
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(gridExtra)}
 \FunctionTok{ggplot}\NormalTok{(cab\_fares, }\FunctionTok{aes}\NormalTok{(distance\_km)) }\SpecialCharTok{+}
+        \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{25}\NormalTok{), }\AttributeTok{n.breaks=}\DecValTok{10}\NormalTok{)}\SpecialCharTok{+}
         \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.3}\NormalTok{,}\AttributeTok{boundary=}\DecValTok{0}\NormalTok{,}
                        \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
                        \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values (geom_bar).
+\end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-234-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(cab\_fares, }\FunctionTok{aes}\NormalTok{(distance\_c)) }\SpecialCharTok{+}
+        \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{10}\NormalTok{, }\DecValTok{10}\NormalTok{), }\AttributeTok{n.breaks=}\DecValTok{10}\NormalTok{)}\SpecialCharTok{+}
         \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.3}\NormalTok{,}\AttributeTok{boundary=}\DecValTok{0}\NormalTok{,}
                        \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
                        \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (geom_bar).
+\end{verbatim}
+
 \includegraphics{main_files/figure-latex/unnamed-chunk-234-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(cab\_fares, }\FunctionTok{aes}\NormalTok{(distance\_c\_z)) }\SpecialCharTok{+}
+        \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{), }\AttributeTok{n.breaks=}\DecValTok{10}\NormalTok{)}\SpecialCharTok{+}
         \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.1}\NormalTok{,}\AttributeTok{boundary=}\DecValTok{0}\NormalTok{,}
                        \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
                        \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}
@@ -6074,6 +6088,174 @@ Let us plot a histogram of the raw, centered and the z\_scored data.
 \includegraphics{main_files/figure-latex/unnamed-chunk-234-3.pdf}
 
 \textbf{Important} A z-score above 3 or below -3 is usually interpreted as an extreme value.
+
+\hypertarget{non-linear-transformations}{%
+\section{Non-linear Transformations}\label{non-linear-transformations}}
+
+\hypertarget{logarithms-log-transformation}{%
+\subsection{Logarithms \& Log Transformation}\label{logarithms-log-transformation}}
+
+One of the problems we often face in raw data is \textbf{skewness}. Technically, skewness is a measure of asymmetry in the data. In practice, it looks like the bulk of the data is rested on one side of a histogram plot with a long tail on the other side. When the tail of the data extends towards a positive value, data is \textbf{positively skewed}. When the tail extends towards a negative value, we call it \textbf{negatively skewed}.
+
+\begin{figure}
+\centering
+\includegraphics{./img/skewness.jpg}
+\caption{\label{fig:skewness}Skewness. Image by \href{https://www.allaboutcircuits.com/technical-articles/understanding-the-normal-distribution-parametric-tests-skewness-and-kurtosis/}{Robert Keim}}
+\end{figure}
+
+Many types of data in linguistics have a positive skew. For example, frequency data is highly skewed. Let us take a look at a frequency data for 50K words from Turkish. (I got this data from some corpus but I don't remember where. Apologies for not being able to provide credit.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{turkish\_freq }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/tr\_50k\_freq.csv"}\NormalTok{, }\AttributeTok{col\_names =} \FunctionTok{c}\NormalTok{(}\StringTok{"word"}\NormalTok{, }\StringTok{"frequency"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 50000 Columns: 2
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (1): word
+## dbl (1): frequency
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{turkish\_freq}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 50,000 x 2}
+\NormalTok{\#\#    word  frequency}
+\NormalTok{\#\#    \textless{}chr\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 bir     6034903}
+\NormalTok{\#\#  2 bu      3529532}
+\NormalTok{\#\#  3 ne      2550646}
+\NormalTok{\#\#  4 ve      2544175}
+\NormalTok{\#\#  5 için    1795506}
+\NormalTok{\#\#  6 mi      1713472}
+\NormalTok{\#\#  7 de      1647867}
+\NormalTok{\#\#  8 o       1639226}
+\NormalTok{\#\#  9 ben     1597395}
+\NormalTok{\#\# 10 çok     1572658}
+\NormalTok{\#\# \# ... with 49,990 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Let us now get a histogram to see what the data distribution looks like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(turkish\_freq, }\FunctionTok{aes}\NormalTok{(frequency)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0100}\NormalTok{, }\DecValTok{10000}\NormalTok{), }\AttributeTok{n.breaks=}\DecValTok{10}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins=}\DecValTok{150}\NormalTok{,}
+                 \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+                 \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FunctionTok{mean}\NormalTok{(turkish\_freq}\SpecialCharTok{$}\NormalTok{frequency), }\AttributeTok{linetype=}\StringTok{"dashed"}\NormalTok{ )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 2288 rows containing non-finite values (stat_bin).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (geom_bar).
+\end{verbatim}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-236-1.pdf}
+
+It looks like most of the words are quite infrequent and a handful of words are very frequent. In fact, word frequencies are skewed in a very interesting way and they have a special distribution name called \textbf{Zipfian} distribution named after George Kingsley Zipf. But we're not interested in that for now.
+
+The important point to notice is where the mean is in this distribution. The mean is shown with the dashed line and it does not in any way reflect the majority of the data. What is more important is that when the data is skewed, its linear modeling will usually result in \textbf{residuals that are not normal}. If the residuals are not normal, then the model will lose its validity. It is important that you notice what matters is the \textbf{normality of the residuals} not the normality of the data. Non-normal data is still fine for liner models as long as the residuals are normal.
+
+\textbf{So, what are logarithms and how do they help?}
+
+Logarithms are inverses of exponentiation.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule()
+\textbf{Logatihm} & \textbf{Exponentiation} & \\
+\midrule()
+\endhead
+log10(1) =0 & 100 = 1 & \\
+log10(10) =1 & 101 = 10 & \\
+log10(100) =2 & 102 = 100 & \\
+log10(1000) =3 & 103 = 1000 & \\
+log10(10000) =4 & 104 = 10000 & \\
+\bottomrule()
+\end{longtable}
+
+Transforming the data into a log space has a very interesting normalizing impact on your data. It shrinks your data in a non-linear fashion by reducing smaller numbers less than the big numbers. Consider the following example.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Raw Value}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{log10 Value}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Difference}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{\% Shrunk}
+\end{minipage} \\
+\midrule()
+\endhead
+10 & 1 & 9 & 90\% \\
+100 & 2 & 98 & 98\% \\
+1000 & 3 & 997 & 99.7\% \\
+\bottomrule()
+\end{longtable}
+
+Log transformation keeps some of the relation among data points but removes a decent bit of information as well. When we log transform our data, it becomes \textbf{more normal} and \textbf{less skewed}. It doesn't always become completely normal but it is more normal.
+
+Let us log10 transform the frequency data for Turkish and plot a histogram to see what the data looks like now.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# create a new column with the log10 frequency values}
+\NormalTok{turkish\_freq }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(turkish\_freq, }\AttributeTok{log10freq =} \FunctionTok{log10}\NormalTok{(frequency))}
+
+
+\CommentTok{\#plot a histogram of the log10 frequency values}
+\FunctionTok{ggplot}\NormalTok{(turkish\_freq, }\FunctionTok{aes}\NormalTok{(log10freq)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{8}\NormalTok{), }\AttributeTok{n.breaks=}\DecValTok{8}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins=}\DecValTok{150}\NormalTok{,}
+                 \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+                 \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FunctionTok{mean}\NormalTok{(turkish\_freq}\SpecialCharTok{$}\NormalTok{log10freq), }\AttributeTok{linetype=}\StringTok{"dashed"}\NormalTok{ )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-237-1.pdf}
+
+Notice that the data is still skewed but it's not as bad as before and the mean is closer to the bulk of the data.
+
+\hypertarget{linear-regression-with-log-transformation}{%
+\subsection{Linear Regression with Log Transformation}\label{linear-regression-with-log-transformation}}
+
+You should run a linear model with and without log transformation to see how the model performs. You can do that by looking at various values.
+
+\begin{itemize}
+\tightlist
+\item
+  SSE
+\item
+  R2
+\item
+  p value
+\end{itemize}
+
+You can also fit a linear regression plot against a point plot to see how they differ. Let us do this for the \texttt{log10ELP\_frequency} data. It's the smaller dataset. You should also consider log10 transforming your dependent variable as well.
 
   \bibliography{book.bib,packages.bib}
 

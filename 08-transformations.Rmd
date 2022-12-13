@@ -1,4 +1,5 @@
 # Linear & Non-Linear Transformations
+## Linear Transformations
 A **linear transformation** of a value is addition, subtraction, multiplication, or division with a constant value. Consider the following data:
 
 * [2, 4, 6, 8]
@@ -18,7 +19,7 @@ Linear transformations are especially useful in describing data at a level of me
 
 The crucial point in linear transformations is that they won't change the relationship among your data point and thus won't impact your models significantly. There are many different types of linear transformations. For our purposes we will focus on two linear transformations **centering** and **standardizing**. 
 
-## Centering
+### Centering
 Let us consider one of our previous examples. 
 
 ```{r message=FALSE}
@@ -88,7 +89,7 @@ glance(centered_model)$r.squared
 
 You can see that both the slope and the **R<sup>2</sup>** values remain unchanged. This shows that the model is remaining the same in all the crucial aspects except that it's now treating its 0 point as the mean. This is more meaningful for most measurements. In addition, centering helps interpreting the coefficients especially when multiple predictors interact (to be discussed later). 
 
-## Standardizing
+### Standardizing
 The second type of linear transformation that is very common is **standardizing** a.k.a. **z-scoring**.  Standardizing also helps identifying a **standard scale** that helps us define a metric in terms of the sample mean and standard deviation. This is a little counter-intuitive but helps a lot especially when we are interpreting models with multiple predictor variables. 
 
 Imagine that you have your taxi data set with the fare and distance variables. One very basic question you have to answer is what metric to use to report the distance. Should you use kilometers, miles, yards, meters, etc. Now, further imagine that you're comparing two data sets with different reported distance measures (e.g. mile vs km). This is actually a relatively simple problem as you can transform miles to kms and vice versa. However, what if you are trying to measure the relative impact of distance and the number of bridges you pass. These are two different variables with two different measurement units. We cannot directly compare kilometers with the number of bridges. They're not on the same scale. Standardizing helps us make such comparisons (sometimes).
@@ -135,17 +136,20 @@ Let us plot a histogram of the raw, centered and the z_scored data.
 ```{r message=FALSE}
 library(gridExtra)
 ggplot(cab_fares, aes(distance_km)) +
+        scale_x_continuous(limits = c(0, 25), n.breaks=10)+
         geom_histogram(binwidth=0.3,boundary=0,
                        color = 'black',
                        fill = 'lightblue')
 
 ggplot(cab_fares, aes(distance_c)) +
+        scale_x_continuous(limits = c(-10, 10), n.breaks=10)+
         geom_histogram(binwidth=0.3,boundary=0,
                        color = 'black',
                        fill = 'lightblue')
 
 
 ggplot(cab_fares, aes(distance_c_z)) +
+        scale_x_continuous(limits = c(-4, 4), n.breaks=10)+
         geom_histogram(binwidth=0.1,boundary=0,
                        color = 'black',
                        fill = 'lightblue')
@@ -155,3 +159,89 @@ ggplot(cab_fares, aes(distance_c_z)) +
 ```
 
 **Important** A z-score above 3 or below -3 is usually interpreted as an extreme value. 
+
+## Non-linear Transformations
+
+### Logarithms & Log Transformation
+One of the problems we often face in raw data is **skewness**. Technically, skewness is a measure of asymmetry in the data. In practice, it looks like the bulk of the data is rested on one side of a histogram plot with a long tail on the other side. When the tail of the data extends towards a positive value, data is **positively skewed**. When the tail extends towards a negative value, we call it **negatively skewed**.
+
+```{r skewness, echo=FALSE, fig.cap="Skewness. Image by [Robert Keim](https://www.allaboutcircuits.com/technical-articles/understanding-the-normal-distribution-parametric-tests-skewness-and-kurtosis/)"}
+knitr::include_graphics("./img/skewness.jpg")
+```
+
+Many types of data in linguistics have a positive skew. For example, frequency data is highly skewed. Let us take a look at a frequency data for 50K words from Turkish. (I got this data from some corpus but I don't remember where. Apologies for not being able to provide credit.)
+
+```{r}
+turkish_freq <- read_csv("data/tr_50k_freq.csv", col_names = c("word", "frequency"))
+
+turkish_freq
+```
+
+Let us now get a histogram to see what the data distribution looks like. 
+
+
+```{r message=FALSE}
+ggplot(turkish_freq, aes(frequency)) +
+  scale_x_continuous(limits = c(0100, 10000), n.breaks=10)+
+  geom_histogram(bins=150,
+                 color = 'black',
+                 fill = 'lightblue')+
+  geom_vline(xintercept = mean(turkish_freq$frequency), linetype="dashed" )
+```
+
+It looks like most of the words are quite infrequent and a handful of words are very frequent. In fact, word frequencies are skewed in a very interesting way and they have a special distribution name called **Zipfian** distribution named after George Kingsley Zipf. But we're not interested in that for now. 
+
+The important point to notice is where the mean is in this distribution. The mean is shown with the dashed line and it does not in any way reflect the majority of the data. What is more important is that when the data is skewed, its linear modeling will usually result in **residuals that are not normal**. If the residuals are not normal, then the model will lose its validity. It is important that you notice what matters is the **normality of the residuals**  not the normality of the data. Non-normal data is still fine for liner models as long as the residuals are normal. 
+
+**So, what are logarithms and how do they help?**
+
+Logarithms are inverses of exponentiation. 
+
+|**Logatihm**| **Exponentiation** | 
+|:-----|:----|:-----|
+| log<sub>10</sub>(1) =0 | 10<sup>0</sup> = 1 |
+| log<sub>10</sub>(10) =1 | 10<sup>1</sup> = 10 |
+| log<sub>10</sub>(100) =2 | 10<sup>2</sup> = 100 |
+| log<sub>10</sub>(1000) =3 | 10<sup>3</sup> = 1000 |
+| log<sub>10</sub>(10000) =4 | 10<sup>4</sup> = 10000 |
+
+Transforming the data into a log space has a very interesting normalizing impact on your data. It shrinks your data in a non-linear fashion by reducing smaller numbers less than the big numbers. Consider the following example. 
+
+
+|**Raw Value**| **log<sub>10</sub> Value** | **Difference**  | **% Shrunk**  | 
+|:----|:----|:----| :----| 
+| 10 | 1 | 9 |90% |
+| 100 | 2 | 98 | 98% |
+| 1000 | 3 | 997 | 99.7% |
+
+
+Log transformation keeps some of the relation among data points but removes a decent bit of information as well. When we log transform our data, it becomes **more normal** and **less skewed**. It doesn't always become completely normal but it is more normal. 
+
+Let us log<sub>10</sub> transform the frequency data for Turkish and plot a histogram to see what the data looks like now. 
+
+```{r message=FALSE, warning=FALSE}
+# create a new column with the log10 frequency values
+turkish_freq <- mutate(turkish_freq, log10freq = log10(frequency))
+
+
+#plot a histogram of the log10 frequency values
+ggplot(turkish_freq, aes(log10freq)) +
+  scale_x_continuous(limits = c(0, 8), n.breaks=8)+
+  geom_histogram(bins=150,
+                 color = 'black',
+                 fill = 'lightblue')+
+  geom_vline(xintercept = mean(turkish_freq$log10freq), linetype="dashed" )
+```
+
+
+Notice that the data is still skewed but it's not as bad as before and the mean is closer to the bulk of the data. 
+
+### Linear Regression with Log Transformation
+
+You should run a linear model with and without log transformation to see how the model performs. You can do that by looking at various values. 
+
+* SSE
+* R<sup>2</sup>
+* p value
+
+You can also fit a linear regression plot against a point plot to see how they differ. Let us do this for the `log10ELP_frequency` data. It's the smaller dataset. You should also consider log10 transforming your dependent variable as well.
