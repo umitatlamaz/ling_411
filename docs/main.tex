@@ -117,7 +117,7 @@
 
 \title{Ling 411 - Fall 2022}
 \author{Ümit Atlamaz}
-\date{2022-12-13}
+\date{2022-12-18}
 
 \begin{document}
 \maketitle
@@ -754,10 +754,10 @@ Once you install a package, you need to load it before you can use its functions
 
 \begin{verbatim}
 ## -- Attaching packages --------------------------------------- tidyverse 1.3.2 --
-## v ggplot2 3.3.6      v purrr   0.3.4 
+## v ggplot2 3.4.0      v purrr   0.3.5 
 ## v tibble  3.1.8      v dplyr   1.0.10
 ## v tidyr   1.2.1      v stringr 1.4.1 
-## v readr   2.1.2      v forcats 0.5.2 
+## v readr   2.1.3      v forcats 0.5.2 
 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
@@ -838,7 +838,7 @@ Notice that playing with the scale sizes will yield dramatic changes in the effe
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-38-1.pdf}
@@ -3184,7 +3184,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(13 December, 2022, 10:31)
+(18 December, 2022, 14:35)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -5089,8 +5089,8 @@ A good way to remember the intercept and the slope and a linear model is to reme
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in predict.lm(model, newdata = new_data_frame(list(x = xseq)), se.fit =
-## se, : prediction from a rank-deficient fit may be misleading
+## Warning in predict.lm(model, newdata = data_frame0(x = xseq), se.fit = se, :
+## prediction from a rank-deficient fit may be misleading
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-201-1.pdf}
@@ -5245,11 +5245,11 @@ Let us plot the theoretical costs and the total costs side by side. We'll use th
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-206-1.pdf}
@@ -5333,7 +5333,7 @@ We will use log normal values as the x axis and the reaction time as the y axis.
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-209-1.pdf}
@@ -5397,7 +5397,7 @@ Next, we tried modeling the simple frequency data and we got a decent model that
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-212-1.pdf}
@@ -5971,7 +5971,7 @@ Let us plot a histogram of z scores to see what they look like.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 2 rows containing missing values (geom_bar).
+## Warning: Removed 2 rows containing missing values (`geom_bar()`).
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-232-1.pdf}
@@ -6054,7 +6054,7 @@ Let us plot a histogram of the raw, centered and the z\_scored data.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 1 rows containing missing values (geom_bar).
+## Warning: Removed 1 rows containing missing values (`geom_bar()`).
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-234-1.pdf}
@@ -6070,7 +6070,7 @@ Let us plot a histogram of the raw, centered and the z\_scored data.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 2 rows containing missing values (geom_bar).
+## Warning: Removed 2 rows containing missing values (`geom_bar()`).
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-234-2.pdf}
@@ -6161,11 +6161,11 @@ Let us now get a histogram to see what the data distribution looks like.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 2288 rows containing non-finite values (stat_bin).
+## Warning: Removed 2288 rows containing non-finite values (`stat_bin()`).
 \end{verbatim}
 
 \begin{verbatim}
-## Warning: Removed 2 rows containing missing values (geom_bar).
+## Warning: Removed 2 rows containing missing values (`geom_bar()`).
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-236-1.pdf}
@@ -6256,6 +6256,209 @@ You should run a linear model with and without log transformation to see how the
 \end{itemize}
 
 You can also fit a linear regression plot against a point plot to see how they differ. Let us do this for the \texttt{log10ELP\_frequency} data. It's the smaller dataset. You should also consider log10 transforming your dependent variable as well.
+
+\hypertarget{categorical-predictors}{%
+\chapter{Categorical Predictors}\label{categorical-predictors}}
+
+Remember that we talked about four basic types of models in terms of their dependent and independent variable types. Variables can assume \textbf{continuous} values (e.g.~reaction time, voicing duration, word count, etc.) or \textbf{categorical} values (e.g.~positive-negative, gender, agreement type, word order (SVO - SOV) etc.).
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Predictor Type (independent var.)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Outcome Type (dependent var.)}
+\end{minipage} \\
+\midrule()
+\endhead
+Continuous & Continuous \\
+\textbf{Categorical} & \textbf{Continuous} \\
+Continuous & Categorical \\
+Categorical & Categorical \\
+\bottomrule()
+\end{longtable}
+
+So far we built models where both the predictor and and the outcome are \textbf{continuous}. Now, we are moving to modeling data where the predictors are \textbf{categorical} and the outcomes are \textbf{continuous}.
+
+\hypertarget{categorical-predictor---continuous-outcome}{%
+\section{Categorical Predictor - Continuous Outcome}\label{categorical-predictor---continuous-outcome}}
+
+Models with categorical predictors are quite common in linguistics as well as in many fields that rely on data analytics. Here are some examples:
+
+\begin{itemize}
+\tightlist
+\item
+  What are the reaction times of children vs.~adults for a picture naming task?
+\item
+  How does pro-drop impact the acceptability ratings of clauses. (Assuming ratings are continuous).
+\item
+  How does NP ellipsis impact time to comprehend a linguistic expression?
+\end{itemize}
+
+Outside linguistics, especially in UX Research, people carry out a lot of A/B testing. For example, they check to see if a particular change to the UI has a significant impact on the user behavior. Here are some examples:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the impact of the background color on the length of stay on a webpage?
+\item
+  How much money do people from different cities spend on our platform?
+\item
+  How does the language of a campaign affect the amount of donations made by people?
+\end{itemize}
+
+Categorical predictors are used whenever you compare two or more groups based on some classification (e.g.~age, education level, native speaker status, and so on.).
+
+\hypertarget{taste-vs.-smell-words}{%
+\section{Taste vs.~Smell Words}\label{taste-vs.-smell-words}}
+
+The data and analysis for this section comes from Bodo Winter's Chapter 7.
+
+Smell words have been claimed to be more negative than taste words. I don't know if this is true for every language or not but Turkish presents some very nice data points in this direction. Consider the following two expressions.
+
+\begin{itemize}
+\tightlist
+\item
+  Burası (çok) kokuyor.
+\item
+  Bu (çok) tatlı.
+\end{itemize}
+
+Just the verb \emph{kok} ``smell'' seems to have a negative connotation. On the other hand, the adjective \emph{tatlı} ``tasty'' whose root \emph{tat} ``taste'' and the suffix \emph{-lı} simply means ``with'' has a positive connotation. Whle this is simply a hunch, we don't have enough evidence for Turkish to claim that this is in fact true. Let's hope that someone will run an experiment for Turkish and report the results. For now, we'll use the \textbf{senses\_valence} dataset from Bodo Winter's book.
+
+Let us read in the dataset and see what it looks like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Import tidyverse}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\CommentTok{\#Read in the data}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}data/winter\_2016\_senses\_valence.csv\textquotesingle{}}\NormalTok{)}
+\CommentTok{\#print the head to see what it looks like}
+\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 405 x 3}
+\NormalTok{\#\#    Word      Modality   Val}
+\NormalTok{\#\#    \textless{}chr\textgreater{}     \textless{}chr\textgreater{}    \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 abrasive  Touch     5.40}
+\NormalTok{\#\#  2 absorbent Sight     5.88}
+\NormalTok{\#\#  3 aching    Touch     5.23}
+\NormalTok{\#\#  4 acidic    Taste     5.54}
+\NormalTok{\#\#  5 acrid     Smell     5.17}
+\NormalTok{\#\#  6 adhesive  Touch     5.24}
+\NormalTok{\#\#  7 alcoholic Taste     5.56}
+\NormalTok{\#\#  8 alive     Sight     6.04}
+\NormalTok{\#\#  9 amber     Sight     5.72}
+\NormalTok{\#\# 10 angular   Sight     5.48}
+\NormalTok{\#\# \# ... with 395 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+The dataset consists of three variables:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Word}: A word associated with some sense.
+\item
+  \textbf{Modality}: Modality of the sense (touch, smell, etc.)
+\item
+  \textbf{Valence}: A numeric value representing the attractiveness-aversiveness of a word.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Higher Valence is better. See \href{https://en.wikipedia.org/wiki/Valence_(psychology)}{Wikipedia for more on valence}.
+  \end{itemize}
+\end{itemize}
+
+For now, we're only interested in \textbf{smell} and \textbf{taste}. Yet, it looks like the data has more than that. Let's print the unique values in the Modality column to see all the categories.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{unique}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{Modality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] "Touch" "Sight" "Taste" "Smell" "Sound"}
+\end{Highlighting}
+\end{Shaded}
+
+Let's now select the rows that have only \textbf{smell} and \textbf{taste} values. For this, we will use the filter function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Filter the data}
+\NormalTok{senses\_data }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(data, Modality }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Smell\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Taste\textquotesingle{}}\NormalTok{))}
+
+\CommentTok{\# Check the unique values to make sure}
+\FunctionTok{unique}\NormalTok{(senses\_data}\SpecialCharTok{$}\NormalTok{Modality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] "Taste" "Smell"}
+\end{Highlighting}
+\end{Shaded}
+
+Let us quickly get some summary statistics using the `summarize()' function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#pipe the data to a group\_by function}
+\CommentTok{\#then pipe the groupings to the summarize function}
+\CommentTok{\# create the summary variables for mean and sd}
+\NormalTok{senses\_data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(Modality) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{M =} \FunctionTok{mean}\NormalTok{(Val), }\AttributeTok{SD =} \FunctionTok{sd}\NormalTok{(Val))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 3}
+\NormalTok{\#\#   Modality     M    SD}
+\NormalTok{\#\#   \textless{}chr\textgreater{}    \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 Smell     5.47 0.336}
+\NormalTok{\#\# 2 Taste     5.81 0.303}
+\end{Highlighting}
+\end{Shaded}
+
+It looks like the mean valence for the two groups (smell and taste) are slightly different. Without fitting a model, we won't yet know if this difference is significant (i.e.~meaningful but not by chance).
+
+Before fitting a model though, let us visualize the data to see what it looks like. For categorical variables, it is often useful to plot a box-and-whiskers plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{senses\_data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Modality, }\AttributeTok{y =}\NormalTok{ Val, }\AttributeTok{fill =}\NormalTok{ Modality)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-242-1.pdf}
+
+An alternative way to plot the data is to use density graphs, which are essentially smoothed histograms.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{senses\_data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Val, }\AttributeTok{fill =}\NormalTok{ Modality, }\FunctionTok{after\_stat}\NormalTok{(scaled))) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha=}\FloatTok{0.5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-243-1.pdf}
+
+\hypertarget{contrasts-coding}{%
+\section{Contrasts \& Coding}\label{contrasts-coding}}
 
   \bibliography{book.bib,packages.bib}
 

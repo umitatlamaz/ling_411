@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Ling 411 - Fall 2022</title>
+  <title>Chapter 10 Categorical Predictors | Ling 411 - Fall 2022</title>
   <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Ling 411 - Fall 2022" />
+  <meta property="og:title" content="Chapter 10 Categorical Predictors | Ling 411 - Fall 2022" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
   <meta name="github-repo" content="rstudio/ling_411" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Ling 411 - Fall 2022" />
+  <meta name="twitter:title" content="Chapter 10 Categorical Predictors | Ling 411 - Fall 2022" />
   
   <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
+<link rel="prev" href="linear-non-linear-transformations.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -290,18 +290,146 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="categorical-predictors" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Categorical Predictors<a href="categorical-predictors.html#categorical-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Remember that we talked about four basic types of models in terms of their dependent and independent variable types. Variables can assume <strong>continuous</strong> values (e.g. reaction time, voicing duration, word count, etc.) or <strong>categorical</strong> values (e.g. positive-negative, gender, agreement type, word order (SVO - SOV) etc.).</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Predictor Type (independent var.)</strong></th>
+<th align="left"><strong>Outcome Type (dependent var.)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Continuous</td>
+<td align="left">Continuous</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Categorical</strong></td>
+<td align="left"><strong>Continuous</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">Continuous</td>
+<td align="left">Categorical</td>
+</tr>
+<tr class="even">
+<td align="left">Categorical</td>
+<td align="left">Categorical</td>
+</tr>
+</tbody>
+</table>
+<p>So far we built models where both the predictor and and the outcome are <strong>continuous</strong>. Now, we are moving to modeling data where the predictors are <strong>categorical</strong> and the outcomes are <strong>continuous</strong>.</p>
+<div id="categorical-predictor---continuous-outcome" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Categorical Predictor - Continuous Outcome<a href="categorical-predictors.html#categorical-predictor---continuous-outcome" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Models with categorical predictors are quite common in linguistics as well as in many fields that rely on data analytics. Here are some examples:</p>
+<ul>
+<li>What are the reaction times of children vs. adults for a picture naming task?</li>
+<li>How does pro-drop impact the acceptability ratings of clauses. (Assuming ratings are continuous).</li>
+<li>How does NP ellipsis impact time to comprehend a linguistic expression?</li>
+</ul>
+<p>Outside linguistics, especially in UX Research, people carry out a lot of A/B testing. For example, they check to see if a particular change to the UI has a significant impact on the user behavior. Here are some examples:</p>
+<ul>
+<li>What is the impact of the background color on the length of stay on a webpage?</li>
+<li>How much money do people from different cities spend on our platform?</li>
+<li>How does the language of a campaign affect the amount of donations made by people?</li>
+</ul>
+<p>Categorical predictors are used whenever you compare two or more groups based on some classification (e.g. age, education level, native speaker status, and so on.).</p>
 </div>
+<div id="taste-vs.-smell-words" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Taste vs. Smell Words<a href="categorical-predictors.html#taste-vs.-smell-words" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The data and analysis for this section comes from Bodo Winter’s Chapter 7.</p>
+<p>Smell words have been claimed to be more negative than taste words. I don’t know if this is true for every language or not but Turkish presents some very nice data points in this direction. Consider the following two expressions.</p>
+<ul>
+<li>Burası (çok) kokuyor.</li>
+<li>Bu (çok) tatlı.</li>
+</ul>
+<p>Just the verb <em>kok</em> “smell” seems to have a negative connotation. On the other hand, the adjective <em>tatlı</em> “tasty” whose root <em>tat</em> “taste” and the suffix <em>-lı</em> simply means “with” has a positive connotation. Whle this is simply a hunch, we don’t have enough evidence for Turkish to claim that this is in fact true. Let’s hope that someone will run an experiment for Turkish and report the results. For now, we’ll use the <strong>senses_valence</strong> dataset from Bodo Winter’s book.</p>
+<p>Let us read in the dataset and see what it looks like.</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="categorical-predictors.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Import tidyverse</span></span>
+<span id="cb477-2"><a href="categorical-predictors.html#cb477-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb477-3"><a href="categorical-predictors.html#cb477-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Read in the data</span></span>
+<span id="cb477-4"><a href="categorical-predictors.html#cb477-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/winter_2016_senses_valence.csv&#39;</span>)</span>
+<span id="cb477-5"><a href="categorical-predictors.html#cb477-5" aria-hidden="true" tabindex="-1"></a><span class="co">#print the head to see what it looks like</span></span>
+<span id="cb477-6"><a href="categorical-predictors.html#cb477-6" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 405 × 3
+##    Word      Modality   Val
+##    &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;
+##  1 abrasive  Touch     5.40
+##  2 absorbent Sight     5.88
+##  3 aching    Touch     5.23
+##  4 acidic    Taste     5.54
+##  5 acrid     Smell     5.17
+##  6 adhesive  Touch     5.24
+##  7 alcoholic Taste     5.56
+##  8 alive     Sight     6.04
+##  9 amber     Sight     5.72
+## 10 angular   Sight     5.48
+## # … with 395 more rows</code></pre>
+<p>The dataset consists of three variables:</p>
+<ul>
+<li><strong>Word</strong>: A word associated with some sense.</li>
+<li><strong>Modality</strong>: Modality of the sense (touch, smell, etc.)</li>
+<li><strong>Valence</strong>: A numeric value representing the attractiveness-aversiveness of a word.
+<ul>
+<li>Higher Valence is better. See <a href="https://en.wikipedia.org/wiki/Valence_(psychology)">Wikipedia for more on valence</a>.</li>
+</ul></li>
+</ul>
+<p>For now, we’re only interested in <strong>smell</strong> and <strong>taste</strong>. Yet, it looks like the data has more than that. Let’s print the unique values in the Modality column to see all the categories.</p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="categorical-predictors.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(data<span class="sc">$</span>Modality)</span></code></pre></div>
+<pre class="r-output"><code>## [1] &quot;Touch&quot; &quot;Sight&quot; &quot;Taste&quot; &quot;Smell&quot; &quot;Sound&quot;</code></pre>
+<p>Let’s now select the rows that have only <strong>smell</strong> and <strong>taste</strong> values. For this, we will use the filter function.</p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="categorical-predictors.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data</span></span>
+<span id="cb481-2"><a href="categorical-predictors.html#cb481-2" aria-hidden="true" tabindex="-1"></a>senses_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, Modality <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;Smell&#39;</span>, <span class="st">&#39;Taste&#39;</span>))</span>
+<span id="cb481-3"><a href="categorical-predictors.html#cb481-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb481-4"><a href="categorical-predictors.html#cb481-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the unique values to make sure</span></span>
+<span id="cb481-5"><a href="categorical-predictors.html#cb481-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(senses_data<span class="sc">$</span>Modality)</span></code></pre></div>
+<pre class="r-output"><code>## [1] &quot;Taste&quot; &quot;Smell&quot;</code></pre>
+<p>Let us quickly get some summary statistics using the `summarize()’ function.</p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="categorical-predictors.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pipe the data to a group_by function</span></span>
+<span id="cb483-2"><a href="categorical-predictors.html#cb483-2" aria-hidden="true" tabindex="-1"></a><span class="co">#then pipe the groupings to the summarize function</span></span>
+<span id="cb483-3"><a href="categorical-predictors.html#cb483-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create the summary variables for mean and sd</span></span>
+<span id="cb483-4"><a href="categorical-predictors.html#cb483-4" aria-hidden="true" tabindex="-1"></a>senses_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Modality) <span class="sc">%&gt;%</span></span>
+<span id="cb483-5"><a href="categorical-predictors.html#cb483-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">M =</span> <span class="fu">mean</span>(Val), <span class="at">SD =</span> <span class="fu">sd</span>(Val))</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 2 × 3
+##   Modality     M    SD
+##   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
+## 1 Smell     5.47 0.336
+## 2 Taste     5.81 0.303</code></pre>
+<p>It looks like the mean valence for the two groups (smell and taste) are slightly different. Without fitting a model, we won’t yet know if this difference is significant (i.e. meaningful but not by chance).</p>
+<p>Before fitting a model though, let us visualize the data to see what it looks like. For categorical variables, it is often useful to plot a box-and-whiskers plot.</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="categorical-predictors.html#cb485-1" aria-hidden="true" tabindex="-1"></a>senses_data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Modality, <span class="at">y =</span> Val, <span class="at">fill =</span> Modality)) <span class="sc">+</span> </span>
+<span id="cb485-2"><a href="categorical-predictors.html#cb485-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb485-3"><a href="categorical-predictors.html#cb485-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
+<p>An alternative way to plot the data is to use density graphs, which are essentially smoothed histograms.</p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="categorical-predictors.html#cb486-1" aria-hidden="true" tabindex="-1"></a>senses_data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Val, <span class="at">fill =</span> Modality, <span class="fu">after_stat</span>(scaled))) <span class="sc">+</span> </span>
+<span id="cb486-2"><a href="categorical-predictors.html#cb486-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) </span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
+</div>
+<div id="contrasts-coding" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Contrasts &amp; Coding<a href="categorical-predictors.html#contrasts-coding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-
+<a href="linear-non-linear-transformations.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -333,7 +461,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/%s",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/09-categorical_predictors.Rmd",
 "text": "Edit"
 },
 "history": {

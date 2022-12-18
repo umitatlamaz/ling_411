@@ -1,0 +1,100 @@
+# Categorical Predictors
+Remember that we talked about four basic types of models in terms of their dependent and independent  variable types. Variables can assume **continuous** values (e.g. reaction time,  voicing duration, word count, etc.) or **categorical** values (e.g. positive-negative, gender, agreement type, word order (SVO - SOV) etc.).
+
+|**Predictor Type (independent var.)**| **Outcome Type (dependent var.)** | 
+|:--|:--|
+| Continuous | Continuous | 
+| **Categorical** | **Continuous** |
+| Continuous | Categorical  |
+| Categorical | Categorical  |
+
+So far we built models where both the predictor and and the outcome are **continuous**. Now, we are moving to modeling data where the predictors are **categorical** and the outcomes are **continuous**. 
+
+## Categorical Predictor - Continuous Outcome
+Models with categorical predictors are quite common in linguistics as well as in many fields that rely on data analytics. Here are some examples:
+
+* What are the reaction times of children vs. adults for a picture naming task?
+* How does pro-drop impact the acceptability ratings of clauses. (Assuming ratings are continuous).
+* How does NP ellipsis impact time to comprehend a linguistic expression?
+
+
+Outside linguistics, especially in UX Research, people carry out a lot of A/B testing. For example, they check to see if a particular change to the UI has a significant impact on the user behavior. Here are some examples:
+
+* What is the impact of the background color on the length of stay on a webpage?
+* How much money do people from different cities spend on our platform?
+* How does the language of a campaign affect the amount of donations made by people?
+
+Categorical predictors are used whenever you compare two or more groups based on some classification (e.g. age, education level, native speaker status, and so on.).
+
+## Taste vs. Smell Words
+The data and analysis for this section comes from Bodo Winter's Chapter 7. 
+
+Smell words have been claimed to be more negative than taste words. I don't know if this is true for every language or not but Turkish presents some very nice data points in this direction. Consider the following two expressions. 
+
+* Burası (çok) kokuyor. 
+* Bu (çok) tatlı.
+
+Just the verb *kok* "smell" seems to have a negative connotation. On the other hand, the adjective *tatlı* "tasty"  whose root *tat*  "taste" and the suffix *-lı* simply means "with" has a positive connotation. Whle this is simply a hunch, we don't have enough evidence for Turkish to claim that this is in fact true. Let's hope that someone will run an experiment for Turkish and report the results. For now, we'll use the **senses_valence** dataset from Bodo Winter's book. 
+
+Let us read in the dataset and see what it looks like. 
+
+```{r message=FALSE}
+#Import tidyverse
+library(tidyverse)
+#Read in the data
+data <- read_csv('data/winter_2016_senses_valence.csv')
+#print the head to see what it looks like
+data
+```
+
+The dataset consists of three variables:
+
+* **Word**: A word associated with some sense.
+* **Modality**: Modality of the sense (touch, smell, etc.)
+* **Valence**: A numeric value representing the attractiveness-aversiveness of a word. 
+  * Higher Valence is better. See [Wikipedia for more on valence](https://en.wikipedia.org/wiki/Valence_(psychology)). 
+  
+For now, we're only interested in **smell** and **taste**. Yet, it looks like the data has more than that. Let's print the unique values in the Modality column to see all the categories. 
+  
+```{r}
+unique(data$Modality)
+```
+
+Let's now select the rows that have only **smell** and **taste** values. For this, we will use the filter function. 
+
+```{r message=FALSE}
+# Filter the data
+senses_data <- filter(data, Modality %in% c('Smell', 'Taste'))
+
+# Check the unique values to make sure
+unique(senses_data$Modality)
+```
+
+Let us quickly get some summary statistics using the `summarize()' function. 
+
+```{r}
+#pipe the data to a group_by function
+#then pipe the groupings to the summarize function
+# create the summary variables for mean and sd
+senses_data %>% group_by(Modality) %>%
+  summarize(M = mean(Val), SD = sd(Val))
+```
+
+It looks like the mean valence for the two groups (smell and taste) are slightly different. Without fitting a model, we won't yet know if this difference is significant (i.e. meaningful but not by chance). 
+
+Before fitting a model though, let us visualize the data to see what it looks like. For categorical variables, it is often useful to plot a box-and-whiskers plot. 
+
+```{r}
+senses_data %>% ggplot(aes(x = Modality, y = Val, fill = Modality)) + 
+  geom_boxplot()+
+  theme_minimal()
+```
+
+An alternative way to plot the data is to use density graphs, which are essentially smoothed histograms. 
+
+```{r}
+senses_data %>% ggplot(aes(x = Val, fill = Modality, after_stat(scaled))) + 
+  geom_density(alpha=0.5) 
+```
+
+## Contrasts & Coding
