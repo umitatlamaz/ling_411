@@ -117,7 +117,7 @@
 
 \title{Ling 411 - Fall 2022}
 \author{Ümit Atlamaz}
-\date{2022-12-18}
+\date{2022-12-19}
 
 \begin{document}
 \maketitle
@@ -754,10 +754,10 @@ Once you install a package, you need to load it before you can use its functions
 
 \begin{verbatim}
 ## -- Attaching packages --------------------------------------- tidyverse 1.3.2 --
-## v ggplot2 3.4.0      v purrr   0.3.5 
+## v ggplot2 3.3.6      v purrr   0.3.4 
 ## v tibble  3.1.8      v dplyr   1.0.10
 ## v tidyr   1.2.1      v stringr 1.4.1 
-## v readr   2.1.3      v forcats 0.5.2 
+## v readr   2.1.2      v forcats 0.5.2 
 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
@@ -838,7 +838,7 @@ Notice that playing with the scale sizes will yield dramatic changes in the effe
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-38-1.pdf}
@@ -3184,7 +3184,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(18 December, 2022, 14:35)
+(19 December, 2022, 09:10)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -5089,8 +5089,8 @@ A good way to remember the intercept and the slope and a linear model is to reme
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in predict.lm(model, newdata = data_frame0(x = xseq), se.fit = se, :
-## prediction from a rank-deficient fit may be misleading
+## Warning in predict.lm(model, newdata = new_data_frame(list(x = xseq)), se.fit =
+## se, : prediction from a rank-deficient fit may be misleading
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-201-1.pdf}
@@ -5245,11 +5245,11 @@ Let us plot the theoretical costs and the total costs side by side. We'll use th
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
 \begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-206-1.pdf}
@@ -5333,7 +5333,7 @@ We will use log normal values as the x axis and the reaction time as the y axis.
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-209-1.pdf}
@@ -5397,7 +5397,7 @@ Next, we tried modeling the simple frequency data and we got a decent model that
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-212-1.pdf}
@@ -5971,7 +5971,7 @@ Let us plot a histogram of z scores to see what they look like.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 2 rows containing missing values (`geom_bar()`).
+## Warning: Removed 2 rows containing missing values (geom_bar).
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-232-1.pdf}
@@ -6054,7 +6054,7 @@ Let us plot a histogram of the raw, centered and the z\_scored data.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 1 rows containing missing values (`geom_bar()`).
+## Warning: Removed 1 rows containing missing values (geom_bar).
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-234-1.pdf}
@@ -6070,7 +6070,7 @@ Let us plot a histogram of the raw, centered and the z\_scored data.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 2 rows containing missing values (`geom_bar()`).
+## Warning: Removed 2 rows containing missing values (geom_bar).
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-234-2.pdf}
@@ -6108,22 +6108,7 @@ Many types of data in linguistics have a positive skew. For example, frequency d
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{turkish\_freq }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/tr\_50k\_freq.csv"}\NormalTok{, }\AttributeTok{col\_names =} \FunctionTok{c}\NormalTok{(}\StringTok{"word"}\NormalTok{, }\StringTok{"frequency"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## Rows: 50000 Columns: 2
-## -- Column specification --------------------------------------------------------
-## Delimiter: ","
-## chr (1): word
-## dbl (1): frequency
-## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{turkish\_freq}
 \end{Highlighting}
 \end{Shaded}
@@ -6161,11 +6146,11 @@ Let us now get a histogram to see what the data distribution looks like.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 2288 rows containing non-finite values (`stat_bin()`).
+## Warning: Removed 2288 rows containing non-finite values (stat_bin).
 \end{verbatim}
 
 \begin{verbatim}
-## Warning: Removed 2 rows containing missing values (`geom_bar()`).
+## Warning: Removed 2 rows containing missing values (geom_bar).
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-236-1.pdf}
@@ -6459,6 +6444,426 @@ An alternative way to plot the data is to use density graphs, which are essentia
 
 \hypertarget{contrasts-coding}{%
 \section{Contrasts \& Coding}\label{contrasts-coding}}
+
+Linear models are essentially linear equations. This means that they are defined on numeric values (e.g.~5, 0.2, etc.) but not categorical values (e.g.~child-adult, SOV-VSO, etc.). To be able to use linear models with categorical values, we need to convert our categories into some numeric values that can be used in a linear equation. This conversion of categorical values into numeric values is called \textbf{contrast coding}. There are various ways in which this coding can be done and they have slightly different interpretations. While numbers are somewhat arbitrary, the interpretation of the coefficients depends on the choice of the coding technique.
+
+\hypertarget{treatment-coding.}{%
+\subsection{Treatment Coding.}\label{treatment-coding.}}
+
+One way of coding the difference between two categories is to convert them into ones and zeroes. This is called \textbf{treatment coding}. Sometimes it is also called \textbf{dummy coding}.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule()
+\textbf{Word} & \textbf{Category} & \textbf{Treatment Coding} \\
+\midrule()
+\endhead
+odor & smell & 0 \\
+sweet & taste & 1 \\
+acrid & smell & 0 \\
+\bottomrule()
+\end{longtable}
+
+Let us do this by hand before training a model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a new column with 0 for smell and 1 for taste}
+\NormalTok{senses\_data }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(senses\_data, }\AttributeTok{treatment =} \FunctionTok{ifelse}\NormalTok{(Modality }\SpecialCharTok{==} \StringTok{\textquotesingle{}Taste\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+
+\NormalTok{senses\_data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 72 x 4}
+\NormalTok{\#\#    Word       Modality   Val treatment}
+\NormalTok{\#\#    \textless{}chr\textgreater{}      \textless{}chr\textgreater{}    \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 acidic     Taste     5.54         1}
+\NormalTok{\#\#  2 acrid      Smell     5.17         0}
+\NormalTok{\#\#  3 alcoholic  Taste     5.56         1}
+\NormalTok{\#\#  4 antiseptic Smell     5.51         0}
+\NormalTok{\#\#  5 aromatic   Smell     5.95         0}
+\NormalTok{\#\#  6 astringent Taste     5.96         1}
+\NormalTok{\#\#  7 barbecued  Taste     6.05         1}
+\NormalTok{\#\#  8 beery      Taste     6.07         1}
+\NormalTok{\#\#  9 bitter     Taste     5.12         1}
+\NormalTok{\#\# 10 bland      Taste     5.75         1}
+\NormalTok{\#\# \# ... with 62 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Now that our categories are turned into numeric values, we can run a model. Let us fit a model where \textbf{valence} is a function of \textbf{modality} using our \textbf{treatment} codes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Val }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment, }\AttributeTok{data =}\NormalTok{ senses\_data)}
+
+\NormalTok{model\_1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = Val \textasciitilde{} treatment, data = senses\_data)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\# (Intercept)    treatment  }
+\NormalTok{\#\#      5.4710       0.3371}
+\end{Highlighting}
+\end{Shaded}
+
+In treatment coding, the intercept becomes the mean of one of your variables whereas the slope is the difference between the two means. You can see this clearly once you plot a linear function between the two variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(senses\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ treatment, }\AttributeTok{y=}\NormalTok{ Val))}\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{, }\AttributeTok{se=}\NormalTok{F)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-246-1.pdf}
+
+Let us now take a look at the usual numbers R2 and p-value to interpret how our model is doing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(model\_1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = Val \textasciitilde{} treatment, data = senses\_data)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Residuals:}
+\NormalTok{\#\#      Min       1Q   Median       3Q      Max }
+\NormalTok{\#\# {-}0.99315 {-}0.20870  0.04343  0.19115  0.62788 }
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\#             Estimate Std. Error t value Pr(\textgreater{}|t|)    }
+\NormalTok{\#\# (Intercept)  5.47101    0.06297  86.889  \textless{} 2e{-}16 ***}
+\NormalTok{\#\# treatment    0.33711    0.07793   4.326 4.95e{-}05 ***}
+\NormalTok{\#\# {-}{-}{-}}
+\NormalTok{\#\# Signif. codes:  0 \textquotesingle{}***\textquotesingle{} 0.001 \textquotesingle{}**\textquotesingle{} 0.01 \textquotesingle{}*\textquotesingle{} 0.05 \textquotesingle{}.\textquotesingle{} 0.1 \textquotesingle{} \textquotesingle{} 1}
+\NormalTok{\#\# }
+\NormalTok{\#\# Residual standard error: 0.3148 on 70 degrees of freedom}
+\NormalTok{\#\# Multiple R{-}squared:  0.2109, Adjusted R{-}squared:  0.1997 }
+\NormalTok{\#\# F{-}statistic: 18.71 on 1 and 70 DF,  p{-}value: 4.951e{-}05}
+\end{Highlighting}
+\end{Shaded}
+
+Normally, you don't have to do the treatment coding by hand. R will do it automatically for you. We did it manually to make sure we understand what's under the hood.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Val }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Modality, }\AttributeTok{data =}\NormalTok{ senses\_data)}
+
+\NormalTok{model\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = Val \textasciitilde{} Modality, data = senses\_data)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\#   (Intercept)  ModalityTaste  }
+\NormalTok{\#\#        5.4710         0.3371}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Interpreting the coefficients:} Our model is simply the following mathematical model.
+
+\[valence = 5.8 + (−0.3) * modality\]
+So, our model predicts only two values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Create a dataset consisting of categories in the data}
+\NormalTok{preds }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{Modality =} \FunctionTok{unique}\NormalTok{(senses\_data}\SpecialCharTok{$}\NormalTok{Modality))}
+\CommentTok{\# Print to see what they look like}
+\NormalTok{preds}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 1}
+\NormalTok{\#\#   Modality}
+\NormalTok{\#\#   \textless{}chr\textgreater{}   }
+\NormalTok{\#\# 1 Taste   }
+\NormalTok{\#\# 2 Smell}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# See the predictions}
+\FunctionTok{predict}\NormalTok{(model\_2, preds)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#        1        2 }
+\NormalTok{\#\# 5.808124 5.471012}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{sum-coding}{%
+\subsection{Sum Coding}\label{sum-coding}}
+
+Sum coding is a slightly different coding mechanism. Instead of using 0 and 1 as the coding scheme, we use -1 and 1 as the coding scheme. This has the benefit of having the mean of the means as the intercept. To be able to use R's coding functionality, we should convert our categorical values as \textbf{factors}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{senses\_data}\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(senses\_data, }\AttributeTok{Modality =} \FunctionTok{factor}\NormalTok{(Modality))}
+
+\NormalTok{senses\_data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 72 x 4}
+\NormalTok{\#\#    Word       Modality   Val treatment}
+\NormalTok{\#\#    \textless{}chr\textgreater{}      \textless{}fct\textgreater{}    \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 acidic     Taste     5.54         1}
+\NormalTok{\#\#  2 acrid      Smell     5.17         0}
+\NormalTok{\#\#  3 alcoholic  Taste     5.56         1}
+\NormalTok{\#\#  4 antiseptic Smell     5.51         0}
+\NormalTok{\#\#  5 aromatic   Smell     5.95         0}
+\NormalTok{\#\#  6 astringent Taste     5.96         1}
+\NormalTok{\#\#  7 barbecued  Taste     6.05         1}
+\NormalTok{\#\#  8 beery      Taste     6.07         1}
+\NormalTok{\#\#  9 bitter     Taste     5.12         1}
+\NormalTok{\#\# 10 bland      Taste     5.75         1}
+\NormalTok{\#\# \# ... with 62 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Next, we can use the contrasts function to see what the current coding scheme looks like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{contrasts}\NormalTok{(senses\_data}\SpecialCharTok{$}\NormalTok{Modality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#       Taste}
+\NormalTok{\#\# Smell     0}
+\NormalTok{\#\# Taste     1}
+\end{Highlighting}
+\end{Shaded}
+
+We can also use R's built in cont function to get various coding types.
+
+\textbf{For treatment coding:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Treatment coding with two variables}
+\FunctionTok{contr.treatment}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   2}
+\NormalTok{\#\# 1 0}
+\NormalTok{\#\# 2 1}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{For Sum coding:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Sum coding with two variables}
+\FunctionTok{contr.sum}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   [,1]}
+\NormalTok{\#\# 1    1}
+\NormalTok{\#\# 2   {-}1}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{More than 2 variables:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Treatment coding with 3 variables}
+\FunctionTok{contr.treatment}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   2 3}
+\NormalTok{\#\# 1 0 0}
+\NormalTok{\#\# 2 1 0}
+\NormalTok{\#\# 3 0 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Sum coding with 3 variables}
+\FunctionTok{contr.sum}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   [,1] [,2]}
+\NormalTok{\#\# 1    1    0}
+\NormalTok{\#\# 2    0    1}
+\NormalTok{\#\# 3   {-}1   {-}1}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{More than 2 variables:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Treatment coding with 5 variables}
+\FunctionTok{contr.treatment}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   2 3 4 5}
+\NormalTok{\#\# 1 0 0 0 0}
+\NormalTok{\#\# 2 1 0 0 0}
+\NormalTok{\#\# 3 0 1 0 0}
+\NormalTok{\#\# 4 0 0 1 0}
+\NormalTok{\#\# 5 0 0 0 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Sum coding with 5 variables}
+\FunctionTok{contr.sum}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   [,1] [,2] [,3] [,4]}
+\NormalTok{\#\# 1    1    0    0    0}
+\NormalTok{\#\# 2    0    1    0    0}
+\NormalTok{\#\# 3    0    0    1    0}
+\NormalTok{\#\# 4    0    0    0    1}
+\NormalTok{\#\# 5   {-}1   {-}1   {-}1   {-}1}
+\end{Highlighting}
+\end{Shaded}
+
+Let us use sum coding on our data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Create a new column by copying the modality factors (Taste and Smell)}
+\NormalTok{senses\_data }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(senses\_data, }\AttributeTok{sum\_coding=}\NormalTok{Modality)}
+\CommentTok{\#Use sum coding using contrasts() and contr.sum()}
+\FunctionTok{contrasts}\NormalTok{(senses\_data}\SpecialCharTok{$}\NormalTok{sum\_coding) }\OtherTok{\textless{}{-}} \FunctionTok{contr.sum}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\CommentTok{\#run constrasts to see if it worked}
+\FunctionTok{contrasts}\NormalTok{(senses\_data}\SpecialCharTok{$}\NormalTok{sum\_coding)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#       [,1]}
+\NormalTok{\#\# Smell    1}
+\NormalTok{\#\# Taste   {-}1}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can fit a linear model and see what the coefficients look like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_3 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Val }\SpecialCharTok{\textasciitilde{}}\NormalTok{ sum\_coding, }\AttributeTok{data=}\NormalTok{senses\_data)}
+
+\NormalTok{model\_3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = Val \textasciitilde{} sum\_coding, data = senses\_data)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\# (Intercept)  sum\_coding1  }
+\NormalTok{\#\#      5.6396      {-}0.1686}
+\end{Highlighting}
+\end{Shaded}
+
+The intercept is now the mean of the means. The slope is halved.
+
+Let us also plot the model to see where the intercept is.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(senses\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ sum\_coding, }\AttributeTok{y=}\NormalTok{ Val))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-258-1.pdf}
+
+\hypertarget{categorical-predictors-with-more-than-2-levels}{%
+\section{Categorical Predictors with more than 2 levels}\label{categorical-predictors-with-more-than-2-levels}}
+
+Remember that originally our data had 5 levels (``Touch'' ``Sight'' ``Taste'' ``Smell'' ``Sound''). Let us build a linear model that includes all of them.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_4 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Val }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Modality, }\AttributeTok{data=}\NormalTok{data)}
+\NormalTok{model\_4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = Val \textasciitilde{} Modality, data = data)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\#   (Intercept)  ModalitySmell  ModalitySound  ModalityTaste  ModalityTouch  }
+\NormalTok{\#\#       5.57966       {-}0.10865       {-}0.17447        0.22846       {-}0.04523}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ Modality, }\AttributeTok{y=}\NormalTok{ Val, }\AttributeTok{color=}\NormalTok{Modality))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{, }\AttributeTok{se=}\NormalTok{F)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-260-1.pdf}
 
   \bibliography{book.bib,packages.bib}
 

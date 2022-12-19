@@ -171,7 +171,7 @@ knitr::include_graphics("./img/skewness.jpg")
 
 Many types of data in linguistics have a positive skew. For example, frequency data is highly skewed. Let us take a look at a frequency data for 50K words from Turkish. (I got this data from some corpus but I don't remember where. Apologies for not being able to provide credit.)
 
-```{r}
+```{r message= FALSE}
 turkish_freq <- read_csv("data/tr_50k_freq.csv", col_names = c("word", "frequency"))
 
 turkish_freq

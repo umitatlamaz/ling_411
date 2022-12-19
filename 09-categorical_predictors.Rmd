@@ -98,3 +98,174 @@ senses_data %>% ggplot(aes(x = Val, fill = Modality, after_stat(scaled))) +
 ```
 
 ## Contrasts & Coding
+Linear models are essentially linear equations. This means that they are defined on numeric values (e.g. 5, 0.2, etc.) but not categorical values (e.g. child-adult, SOV-VSO, etc.). To be able to use linear models with categorical values, we need to convert our categories into some numeric values that can be used in a linear equation. This conversion of categorical values into numeric values is called **contrast coding**. There are various ways in which this coding can be done and they have slightly different interpretations. While numbers are somewhat arbitrary, the interpretation of the coefficients depends on the choice of the coding technique. 
+
+### Treatment Coding.
+One way of coding the difference between two categories is to convert them into ones and zeroes. This is called **treatment coding**. Sometimes it is also called **dummy coding**.
+
+|**Word**| **Category** | **Treatment Coding** | 
+|:--|:--|:--|
+| odor | smell | 0 |
+| sweet | taste | 1 |
+| acrid | smell | 0 |
+
+
+Let us do this by hand before training a model. 
+
+```{r message=FALSE}
+# Create a new column with 0 for smell and 1 for taste
+senses_data <- mutate(senses_data, treatment = ifelse(Modality == 'Taste', 1, 0))
+
+senses_data
+```
+
+Now that our categories are turned into numeric values, we can run a model. Let us fit a model where **valence** is a function of **modality** using our **treatment** codes.
+
+```{r message=FALSE}
+model_1 <- lm(Val ~ treatment, data = senses_data)
+
+model_1
+```
+
+In treatment coding, the intercept becomes the mean of one of your variables whereas the slope is the difference between the two means. You can see this clearly once you plot a linear function between the two variables. 
+
+
+```{r message=FALSE}
+ggplot(senses_data, aes(x= treatment, y= Val))+
+  scale_x_continuous(limits = c(-1,2)) +
+  geom_point()+
+  geom_smooth(method='lm', se=F)
+```
+
+Let us now take a look at the usual numbers R<sup>2</sup> and p-value to interpret how our model is doing. 
+
+```{r}
+summary(model_1)
+```
+
+Normally, you don't have to do the treatment coding by hand. R will do it automatically for you. We did it manually to make sure we understand what's under the hood. 
+
+```{r}
+model_2 <- lm(Val ~ Modality, data = senses_data)
+
+model_2
+```
+
+**Interpreting the coefficients:** Our model is simply the following mathematical model.
+
+$$valence = 5.8 + (−0.3) * modality$$
+So, our model predicts only two values. 
+
+```{r}
+#Create a dataset consisting of categories in the data
+preds <- tibble(Modality = unique(senses_data$Modality))
+# Print to see what they look like
+preds
+# See the predictions
+predict(model_2, preds)
+```
+
+
+### Sum Coding
+Sum coding is a slightly different coding mechanism. Instead of using 0 and 1 as the coding scheme, we use -1 and 1 as the coding scheme. This has the benefit of having the mean of the means as the intercept. To be able to use R's coding functionality, we should convert our categorical values as **factors**. 
+
+```{r}
+senses_data<- mutate(senses_data, Modality = factor(Modality))
+
+senses_data
+```
+
+
+Next, we can use the contrasts function to see what the current coding scheme looks like. 
+
+```{r}
+contrasts(senses_data$Modality)
+```
+
+
+We can also use R's built in cont function to get various coding types. 
+
+**For treatment coding:**
+
+```{r}
+#Treatment coding with two variables
+contr.treatment(2)
+```
+
+
+**For Sum coding:**
+
+```{r}
+#Sum coding with two variables
+contr.sum(2)
+```
+
+
+**More than 2 variables:**
+
+```{r}
+#Treatment coding with 3 variables
+contr.treatment(3)
+
+#Sum coding with 3 variables
+contr.sum(3)
+```
+
+
+**More than 2 variables:**
+
+```{r}
+#Treatment coding with 5 variables
+contr.treatment(5)
+
+#Sum coding with 5 variables
+contr.sum(5)
+```
+
+Let us use sum coding on our data. 
+
+```{r message=FALSE}
+#Create a new column by copying the modality factors (Taste and Smell)
+senses_data <- mutate(senses_data, sum_coding=Modality)
+#Use sum coding using contrasts() and contr.sum()
+contrasts(senses_data$sum_coding) <- contr.sum(2)
+#run constrasts to see if it worked
+contrasts(senses_data$sum_coding)
+```
+
+
+Now we can fit a linear model and see what the coefficients look like. 
+
+```{r}
+model_3 <- lm(Val ~ sum_coding, data=senses_data)
+
+model_3
+```
+
+The intercept is now the mean of the means. The slope is halved. 
+
+
+Let us also plot the model to see where the intercept is. 
+
+```{r message=FALSE}
+ggplot(senses_data, aes(x= sum_coding, y= Val))+
+  geom_point()
+```
+
+
+## Categorical Predictors with more than 2 levels
+Remember that originally our data had 5 levels ("Touch" "Sight" "Taste" "Smell" "Sound"). Let us build a linear model that includes all of them. 
+
+```{r}
+model_4 <- lm(Val ~ Modality, data=data)
+model_4
+```
+
+
+
+```{r message=FALSE}
+
+ggplot(data, aes(x= Modality, y= Val, color=Modality))+
+  geom_point()+
+  geom_smooth(method='lm', se=F)
+```

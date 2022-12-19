@@ -104,3 +104,6 @@ categorical-predictors
 categorical-predictor---continuous-outcome
 taste-vs.-smell-words
 contrasts-coding
+treatment-coding.
+sum-coding
+categorical-predictors-with-more-than-2-levels
