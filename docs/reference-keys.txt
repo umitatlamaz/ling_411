@@ -13,6 +13,7 @@ fig:correlations
 fig:linearregression1
 fig:interceptslope
 fig:skewness
+fig:cohens
 getting-started
 disclaimer
 some-great-resources
@@ -107,3 +108,8 @@ contrasts-coding
 treatment-coding.
 sum-coding
 categorical-predictors-with-more-than-2-levels
+effect-size-significance
+cohens-d
+standard-error
+standard-error-1
+confidence-interval

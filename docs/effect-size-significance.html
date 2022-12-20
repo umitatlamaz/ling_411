@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Ling 411 - Fall 2022</title>
+  <title>Chapter 11 Effect Size &amp; Significance | Ling 411 - Fall 2022</title>
   <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Ling 411 - Fall 2022" />
+  <meta property="og:title" content="Chapter 11 Effect Size &amp; Significance | Ling 411 - Fall 2022" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
   <meta name="github-repo" content="rstudio/ling_411" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Ling 411 - Fall 2022" />
+  <meta name="twitter:title" content="Chapter 11 Effect Size &amp; Significance | Ling 411 - Fall 2022" />
   
   <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="categorical-predictors.html"/>
 
-<link rel="next" href="basics.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -302,99 +302,210 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Ling 411 - Fall 2022</h1>
-<p class="author"><em>Ümit Atlamaz</em></p>
-<p class="date"><em>2022-12-20</em></p>
-</div>
-<div id="getting-started" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Getting Started<a href="index.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<style type="text/css">
-.r-output {
-  font-weight: bold;
-}
-.function {
-  background-color: lightgrey;
-  padding: 0.5em 0.5em 0.5em 4em;
-  border: 1px solid black;
-}
-</style>
-<p>Welcome to the R tutorial for Ling 411. The purpose of these lecture notes is to help remind you some of the R related material we covered in the class. The material here is not intended to be complete and self-contained. These are just lecture notes. You need to attend the classes and Problem Sessions to get a full grasp of the concepts.</p>
-<div id="disclaimer" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Disclaimer<a href="index.html#disclaimer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Some of the material in this book are from <a href="https://scholar.google.com/citations?user=fhbdTJIAAAAJ&amp;hl=tr">Pavel Logaçev</a>’s class notes for LING 411. I’m indebted to Pavel for his friendship, guidance and support. Without him LING 411 could not exist in its current form.</p>
-</div>
-<div id="some-great-resources" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Some great resources<a href="index.html#some-great-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="effect-size-significance" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Effect Size &amp; Significance<a href="effect-size-significance.html#effect-size-significance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Often times, we will observe a difference between the means of two groups. These groups could be variables of any factor. For example, age could be a factor an we could be investigating the difference in voice pitch between children and adults. Or, we could be looking at the difference between the frequency of using the word <strong>darlamak</strong> between members of Gen X and Gen Z. Yet another example would be looking at the difference between the average valence of smell and taste words.</p>
+<p>In all these cases, we are comparing two means. So, let’s say we collect data from 100 adults and 100 children and observe that on average children’s fundamental frequencies in their voice pitch is 100Hz higher than those of adults.</p>
+<p>What have we found? Is this a big difference? (As humans we are usually able to distinguish between and adult and a child when they speak. So, assuming that fundamental frequency is a predictor of adult vs child, then we know that some level of difference in Hertz is the source of this difference. But what is that level?)</p>
+<p>Let’s say we run another experiment with five children and 5 adults. Now, we find the average difference to be 200. So, once again, we face the same question. Is 100 big? Is 200 big? Obviously 200 is bigger than 100 but we don’t know if these are big numbers or not.</p>
+<p>Once again, we need to think of magnitude not in terms of absolute values but relative to a population (e.g. humans, children, adults, men, women, etc.). So, it would be great if we could figure out a way to calculate the <strong>effect size</strong> of a predictor (e.g. being adult or being a child) in a <strong>standardized way</strong>. If we have a standard definition of effect size, then we can compute this for any kind of metric.</p>
+<p>As we are trying to figure out a standardized effect size (and other values), we’ll keep three main points in mind:</p>
 <ul>
-<li>Throughout the semester, I will draw on from the following resources. These are just useful resources and feel free to take a look at them as you wish.
+<li><strong>Magnitude of difference</strong>
 <ul>
-<li>Bodo Winter’s excellent book: <a href="https://www.routledge.com/Statistics-for-Linguists-An-Introduction-Using-R/Winter/p/book/9781138056091">Statistics for Linguists: An Introduction Using R</a></li>
-<li>The great introduction materials developed at the University of Glasgow: <a href="https://psyteachr.github.io/" class="uri">https://psyteachr.github.io/</a>, in particular <a href="https://psyteachr.github.io/msc-data-skills/">‘Data Skills for Reproducible Science’</a>.</li>
-<li>The also pretty great introduction to R and statistics by Danielle Navarro available <a href="https://learningstatisticswithr.com">here</a>.</li>
-<li>Matt Crump’s <a href="https://crumplab.github.io/statistics/">‘Answering Questions with Data’</a>.</li>
-<li>Primers on a variety of topics: <a href="https://rstudio.cloud/learn/primers" class="uri">https://rstudio.cloud/learn/primers</a></li>
-<li>Cheat sheets on a variety of topics: <a href="https://rstudio.cloud/learn/cheat-sheets" class="uri">https://rstudio.cloud/learn/cheat-sheets</a></li>
+<li>The bigger the difference between (means of) two sample groups, the more you should expect to see a difference in the population.</li>
 </ul></li>
-<li>The following tutorials are great too.
+<li><strong>Variability in the data</strong>
 <ul>
-<li><a href="https://rstudio-education.github.io/tidyverse-cookbook/">‘The Tidyverse Cookbook’</a></li>
-<li><a href="https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/">‘A Ggplot2 Tutorial for Beautiful Plotting in R’</a></li>
-<li><a href="https://r-graphics.org/">‘R Graphics Cookbook, 2nd edition’</a></li>
+<li>The less variability in the data, the more certain you’ll be about the estimate.</li>
+</ul></li>
+<li><strong>Sample Size</strong>
+<ul>
+<li>The bigger the sample size, the more accurate is your measurement of the difference.</li>
 </ul></li>
 </ul>
-</div>
-<div id="blocks" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Blocks<a href="index.html#blocks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Code, output, and special functions will be shown in designated boxes. The first box below illustrates a <strong>code block</strong>. The code block contains code that you can type in your R interpreter as the source code. You can simply copy and paste it in your R code. The second box indicates the <strong>output</strong> of R given the code in the first box.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
-<pre class="r-output"><code>## [1] 4</code></pre>
-<p>Functions will be introduced in grey boxes. The following grey box describes the <code>summary()</code> function.</p>
-<div class="function">
-<p><code>summary(x)</code></p>
-<p>Returns the summary statistics of a dataframe.</p>
+<div id="cohens-d" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Cohen’s <em>d</em><a href="effect-size-significance.html#cohens-d" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cohen’s <em>d</em> is the measure used to quantify the <strong>strength</strong> of a difference between two means (m1 and m2). The formula for Cohen’s <em>d</em> is given below:</p>
+<p><span class="math display">\[d = \frac{m1-m2}{s}\]</span></p>
 <ul>
-<li><code>x</code> A dataframe.</li>
+<li>m1 = mean of group 1</li>
+<li>m2 mean of group 2</li>
+<li>s = standard deviation of all the data (group 1 and group 2)</li>
 </ul>
+<p>Let us try Cohen’s <em>d</em> for the Smell and Taste data.</p>
+<p>First, load the data and select the relevant data using the filter function.</p>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="effect-size-significance.html#cb522-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Import tidyverse</span></span>
+<span id="cb522-2"><a href="effect-size-significance.html#cb522-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb522-3"><a href="effect-size-significance.html#cb522-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Read in the data</span></span>
+<span id="cb522-4"><a href="effect-size-significance.html#cb522-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/winter_2016_senses_valence.csv&#39;</span>)</span>
+<span id="cb522-5"><a href="effect-size-significance.html#cb522-5" aria-hidden="true" tabindex="-1"></a><span class="co">#print the head to see what it looks like</span></span>
+<span id="cb522-6"><a href="effect-size-significance.html#cb522-6" aria-hidden="true" tabindex="-1"></a>senses_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, Modality <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;Taste&#39;</span>, <span class="st">&#39;Smell&#39;</span>))</span>
+<span id="cb522-7"><a href="effect-size-significance.html#cb522-7" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 405 × 3
+##    Word      Modality   Val
+##    &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;
+##  1 abrasive  Touch     5.40
+##  2 absorbent Sight     5.88
+##  3 aching    Touch     5.23
+##  4 acidic    Taste     5.54
+##  5 acrid     Smell     5.17
+##  6 adhesive  Touch     5.24
+##  7 alcoholic Taste     5.56
+##  8 alive     Sight     6.04
+##  9 amber     Sight     5.72
+## 10 angular   Sight     5.48
+## # … with 395 more rows</code></pre>
+<p>Let us get the means for each category.</p>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="effect-size-significance.html#cb524-1" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> senses_data <span class="sc">%&gt;%</span> </span>
+<span id="cb524-2"><a href="effect-size-significance.html#cb524-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Modality) <span class="sc">%&gt;%</span> </span>
+<span id="cb524-3"><a href="effect-size-significance.html#cb524-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(Val))</span></code></pre></div>
+<p>Now we can calculate Cohen’s <em>d</em>.</p>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="effect-size-significance.html#cb525-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> (means<span class="sc">$</span>avg[<span class="dv">1</span>] <span class="sc">-</span> means<span class="sc">$</span>avg[<span class="dv">2</span>]) <span class="sc">/</span> <span class="fu">sd</span>(senses_data<span class="sc">$</span>Val)</span>
+<span id="cb525-2"><a href="effect-size-significance.html#cb525-2" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
+<pre class="r-output"><code>## [1] -0.9579464</code></pre>
+<p>We can also use the package `effsize’ to calculate Cohen’s d. You’ll see observe a difference between our calculation and the calculation given by the effsize packgae. This is mainly because they use a slightly difference way of calculating variation in the data (the denominator). That’s not a huge difference.</p>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="effect-size-significance.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effsize)</span>
+<span id="cb527-2"><a href="effect-size-significance.html#cb527-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cohen.d</span>(Val <span class="sc">~</span> Modality, <span class="at">data =</span> senses_data)</span></code></pre></div>
+<pre class="r-output"><code>## 
+## Cohen&#39;s d
+## 
+## d estimate: -1.070784 (large)
+## 95 percent confidence interval:
+##      lower      upper 
+## -1.5955866 -0.5459824</code></pre>
+<p>How to interpret Cohen’s d?</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Cohen’s <em>d</em> </strong></th>
+<th align="left"><strong>Magnitude</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">|0.2|</td>
+<td align="left">small</td>
+</tr>
+<tr class="even">
+<td align="left">|0.5|</td>
+<td align="left">medium</td>
+</tr>
+<tr class="odd">
+<td align="left">|0.8|</td>
+<td align="left">large</td>
+</tr>
+</tbody>
+</table>
+<div class="figure"><span style="display:block;" id="fig:cohens"></span>
+<img src="img/cohens.png" alt="Cohen's *d*."  />
+<p class="caption">
+Figure 11.1: Cohen’s <em>d</em>.
+</p>
 </div>
-<p><br />
-<br />
-The following code block uses the <code>summary()</code> function on the <code>mtcars</code> dataframe that comes pre-installed with R.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code></pre></div>
-<pre class="r-output"><code>##       mpg             cyl             disp             hp       
-##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
-##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
-##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
-##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
-##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
-##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
-##       drat             wt             qsec             vs        
-##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
-##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
-##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
-##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
-##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
-##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
-##        am              gear            carb      
-##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
-##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
-##  Median :0.0000   Median :4.000   Median :2.000  
-##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
-##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
-##  Max.   :1.0000   Max.   :5.000   Max.   :8.000</code></pre>
-<p><br />
-If you want to learn more about the <code>mtcars</code> dataset, you can simply put a question mark in front of its name, which will show the documentation for the dataset. The documentation will pop up in the <code>Help</code> tab on the bottom right window in RStudio.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a>?mtcars</span></code></pre></div>
+</div>
+<div id="standard-error" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Standard Error<a href="effect-size-significance.html#standard-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cohen’s <em>d</em> is a standard measure of difference in magnitude between two samples. It does not care about the sample size though. Your sample size for each group could be 2, 200,2K, 2M.</p>
+<p>Although, Cohen’s <em>d</em> can tell us whether the difference between the two samples is large, it won’t tell us much about our population.</p>
+<p>Here’s a small example. I want to test if there is a difference between the voice pitch of people who wear blue shirts and people who wear red shirts. Assume that the following is my data.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Participant (by shirt color) </strong></th>
+<th align="left"><strong>Fudnamental Frequency</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Blue 1</td>
+<td align="left">175</td>
+</tr>
+<tr class="even">
+<td align="left">Blue 2</td>
+<td align="left">75</td>
+</tr>
+<tr class="odd">
+<td align="left">Red 1</td>
+<td align="left">312</td>
+</tr>
+<tr class="even">
+<td align="left">Red 2</td>
+<td align="left">190</td>
+</tr>
+</tbody>
+</table>
+<p>Let us run Cohen’s d on this data to see what the magnitude of the difference is.</p>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="effect-size-significance.html#cb529-1" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">175</span>,<span class="dv">75</span>)</span>
+<span id="cb529-2"><a href="effect-size-significance.html#cb529-2" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">312</span>,<span class="dv">190</span>)</span>
+<span id="cb529-3"><a href="effect-size-significance.html#cb529-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(blue) <span class="sc">-</span><span class="fu">mean</span>(red)</span></code></pre></div>
+<pre class="r-output"><code>## [1] -126</code></pre>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="effect-size-significance.html#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cohen.d</span>(blue,red)</span></code></pre></div>
+<pre class="r-output"><code>## 
+## Cohen&#39;s d
+## 
+## d estimate: -1.597498 (large)
+## 95 percent confidence interval:
+##     lower     upper 
+## -6.538998  3.344001</code></pre>
+<p>We get a large effect. However, there’s no way we can conclude that shirt color has anything to do with someone’s voice pitch. We cannot generalize to the population. We observe a difference but we probably have a decent error margin in our prediction. To quantify this error, we need to introduce a new mertric <strong>standard error</strong>.</p>
+</div>
+<div id="standard-error-1" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Standard Error<a href="effect-size-significance.html#standard-error-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Standard Error (SE) is a combination of the <strong>variability</strong> in the data and the <strong>sample size</strong></p>
+<p><span class="math display">\[SE = \frac{s}{\sqrt{N}}\]</span></p>
+<ul>
+<li>s = standard deviation</li>
+<li>N = sample size</li>
+</ul>
+<p>The bigger the standard error, the less accurate is your estimation of the population parameters. This means your estimation (of the parameters, i.e. mean and standard deviation) is less reliable. The smaller the SE, the more accurate is your calculation of the population parameter estimates.</p>
+<p>As you can see from the formula:</p>
+<ul>
+<li>SE will increase as your standard deviation grows (i.e. there is more variance in the data)</li>
+<li>SE will decrease as your sample size grows</li>
+</ul>
+<p>Let’s calculate the standard error for the little sample above. First we need to find s (which is the pooled standard deviation of the two groups.) The formula is</p>
+<p><span class="math display">\[s = \sqrt{\frac{sd1 + sd2}{2}}\]</span></p>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="effect-size-significance.html#cb533-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span>  <span class="fu">sqrt</span>(((<span class="fu">sd</span>(blue)<span class="sc">**</span><span class="dv">2</span>)<span class="sc">+</span>(<span class="fu">sd</span>(red)<span class="sc">**</span><span class="dv">2</span>))<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb533-2"><a href="effect-size-significance.html#cb533-2" aria-hidden="true" tabindex="-1"></a>s</span></code></pre></div>
+<pre class="r-output"><code>## [1] 78.87332</code></pre>
+<p>Now, we can calculate the standard error for the difference of the two means.</p>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="effect-size-significance.html#cb535-1" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">4</span>)</span>
+<span id="cb535-2"><a href="effect-size-significance.html#cb535-2" aria-hidden="true" tabindex="-1"></a>SE  </span></code></pre></div>
+<pre class="r-output"><code>## [1] 39.43666</code></pre>
+<p>Standard Error tells us how close or far away from the true population mean. In this simple example, we were trying to get the difference in average voice pitch between blue and red shirt wearers. We have a total of 4 data points. This is obviously going to return a big standard error.</p>
+</div>
+<div id="confidence-interval" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Confidence Interval<a href="effect-size-significance.html#confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Confidence interval is going to help us answer the following question. Confidence interval is a metric that helps you determine the level of confidence in your population parameter estimates. For example 95% confidence interval means the following.</p>
+<p>If I were to sample this data (2 blue, 2 red) 100 times. 95 times, the difference in their means would lay between two numbers (x and y). The smaller this interval, the better.</p>
+<p>The confidence interal formula for 95% is as follows:</p>
+<p><span class="math display">\[CI = [mean - 1.96*SE,mean + 1.96*SE ]\]</span></p>
+<p>As the name suggests, CI is an interval and the numbers returned define the range of possible values for 95% of the time.</p>
+<p>Let us calculate the 95% confidence interval for our mean difference for blue and red data.</p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="effect-size-significance.html#cb537-1" aria-hidden="true" tabindex="-1"></a>mean_diff <span class="ot">&lt;-</span> <span class="fu">mean</span>(red) <span class="sc">-</span> <span class="fu">mean</span>(blue)</span>
+<span id="cb537-2"><a href="effect-size-significance.html#cb537-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb537-3"><a href="effect-size-significance.html#cb537-3" aria-hidden="true" tabindex="-1"></a>CI <span class="ot">&lt;-</span> <span class="fu">c</span>(mean_diff <span class="sc">-</span> (<span class="fl">1.96</span><span class="sc">*</span>SE), mean_diff <span class="sc">+</span> (<span class="fl">1.96</span><span class="sc">*</span>SE))</span>
+<span id="cb537-4"><a href="effect-size-significance.html#cb537-4" aria-hidden="true" tabindex="-1"></a>CI</span></code></pre></div>
+<pre class="r-output"><code>## [1]  48.70415 203.29585</code></pre>
 
 </div>
 </div>
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
+<a href="categorical-predictors.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="basics.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -425,7 +536,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-significance.Rmd",
 "text": "Edit"
 },
 "history": {

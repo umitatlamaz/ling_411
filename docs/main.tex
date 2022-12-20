@@ -117,7 +117,7 @@
 
 \title{Ling 411 - Fall 2022}
 \author{Ümit Atlamaz}
-\date{2022-12-19}
+\date{2022-12-20}
 
 \begin{document}
 \maketitle
@@ -754,10 +754,10 @@ Once you install a package, you need to load it before you can use its functions
 
 \begin{verbatim}
 ## -- Attaching packages --------------------------------------- tidyverse 1.3.2 --
-## v ggplot2 3.3.6      v purrr   0.3.4 
+## v ggplot2 3.4.0      v purrr   0.3.5 
 ## v tibble  3.1.8      v dplyr   1.0.10
 ## v tidyr   1.2.1      v stringr 1.4.1 
-## v readr   2.1.2      v forcats 0.5.2 
+## v readr   2.1.3      v forcats 0.5.2 
 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
@@ -838,7 +838,7 @@ Notice that playing with the scale sizes will yield dramatic changes in the effe
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-38-1.pdf}
@@ -3184,7 +3184,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(19 December, 2022, 09:10)
+(20 December, 2022, 12:25)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -5089,8 +5089,8 @@ A good way to remember the intercept and the slope and a linear model is to reme
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in predict.lm(model, newdata = new_data_frame(list(x = xseq)), se.fit =
-## se, : prediction from a rank-deficient fit may be misleading
+## Warning in predict.lm(model, newdata = data_frame0(x = xseq), se.fit = se, :
+## prediction from a rank-deficient fit may be misleading
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-201-1.pdf}
@@ -5245,11 +5245,11 @@ Let us plot the theoretical costs and the total costs side by side. We'll use th
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-206-1.pdf}
@@ -5333,7 +5333,7 @@ We will use log normal values as the x axis and the reaction time as the y axis.
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-209-1.pdf}
@@ -5397,7 +5397,7 @@ Next, we tried modeling the simple frequency data and we got a decent model that
 \end{Shaded}
 
 \begin{verbatim}
-## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-212-1.pdf}
@@ -5971,7 +5971,7 @@ Let us plot a histogram of z scores to see what they look like.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 2 rows containing missing values (geom_bar).
+## Warning: Removed 2 rows containing missing values (`geom_bar()`).
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-232-1.pdf}
@@ -6054,7 +6054,7 @@ Let us plot a histogram of the raw, centered and the z\_scored data.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 1 rows containing missing values (geom_bar).
+## Warning: Removed 1 rows containing missing values (`geom_bar()`).
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-234-1.pdf}
@@ -6070,7 +6070,7 @@ Let us plot a histogram of the raw, centered and the z\_scored data.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 2 rows containing missing values (geom_bar).
+## Warning: Removed 2 rows containing missing values (`geom_bar()`).
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-234-2.pdf}
@@ -6146,11 +6146,11 @@ Let us now get a histogram to see what the data distribution looks like.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 2288 rows containing non-finite values (stat_bin).
+## Warning: Removed 2288 rows containing non-finite values (`stat_bin()`).
 \end{verbatim}
 
 \begin{verbatim}
-## Warning: Removed 2 rows containing missing values (geom_bar).
+## Warning: Removed 2 rows containing missing values (`geom_bar()`).
 \end{verbatim}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-236-1.pdf}
@@ -6864,6 +6864,315 @@ Remember that originally our data had 5 levels (``Touch'' ``Sight'' ``Taste'' ``
 \end{Shaded}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-260-1.pdf}
+
+\hypertarget{effect-size-significance}{%
+\chapter{Effect Size \& Significance}\label{effect-size-significance}}
+
+Often times, we will observe a difference between the means of two groups. These groups could be variables of any factor. For example, age could be a factor an we could be investigating the difference in voice pitch between children and adults. Or, we could be looking at the difference between the frequency of using the word \textbf{darlamak} between members of Gen X and Gen Z. Yet another example would be looking at the difference between the average valence of smell and taste words.
+
+In all these cases, we are comparing two means. So, let's say we collect data from 100 adults and 100 children and observe that on average children's fundamental frequencies in their voice pitch is 100Hz higher than those of adults.
+
+What have we found? Is this a big difference? (As humans we are usually able to distinguish between and adult and a child when they speak. So, assuming that fundamental frequency is a predictor of adult vs child, then we know that some level of difference in Hertz is the source of this difference. But what is that level?)
+
+Let's say we run another experiment with five children and 5 adults. Now, we find the average difference to be 200. So, once again, we face the same question. Is 100 big? Is 200 big? Obviously 200 is bigger than 100 but we don't know if these are big numbers or not.
+
+Once again, we need to think of magnitude not in terms of absolute values but relative to a population (e.g.~humans, children, adults, men, women, etc.). So, it would be great if we could figure out a way to calculate the \textbf{effect size} of a predictor (e.g.~being adult or being a child) in a \textbf{standardized way}. If we have a standard definition of effect size, then we can compute this for any kind of metric.
+
+As we are trying to figure out a standardized effect size (and other values), we'll keep three main points in mind:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Magnitude of difference}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The bigger the difference between (means of) two sample groups, the more you should expect to see a difference in the population.
+  \end{itemize}
+\item
+  \textbf{Variability in the data}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The less variability in the data, the more certain you'll be about the estimate.
+  \end{itemize}
+\item
+  \textbf{Sample Size}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The bigger the sample size, the more accurate is your measurement of the difference.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{cohens-d}{%
+\section{\texorpdfstring{Cohen's \emph{d}}{Cohen's d}}\label{cohens-d}}
+
+Cohen's \emph{d} is the measure used to quantify the \textbf{strength} of a difference between two means (m1 and m2). The formula for Cohen's \emph{d} is given below:
+
+\[d = \frac{m1-m2}{s}\]
+
+\begin{itemize}
+\tightlist
+\item
+  m1 = mean of group 1
+\item
+  m2 mean of group 2
+\item
+  s = standard deviation of all the data (group 1 and group 2)
+\end{itemize}
+
+Let us try Cohen's \emph{d} for the Smell and Taste data.
+
+First, load the data and select the relevant data using the filter function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Import tidyverse}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\CommentTok{\#Read in the data}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}data/winter\_2016\_senses\_valence.csv\textquotesingle{}}\NormalTok{)}
+\CommentTok{\#print the head to see what it looks like}
+\NormalTok{senses\_data }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(data, Modality }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Taste\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Smell\textquotesingle{}}\NormalTok{))}
+\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 405 x 3}
+\NormalTok{\#\#    Word      Modality   Val}
+\NormalTok{\#\#    \textless{}chr\textgreater{}     \textless{}chr\textgreater{}    \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 abrasive  Touch     5.40}
+\NormalTok{\#\#  2 absorbent Sight     5.88}
+\NormalTok{\#\#  3 aching    Touch     5.23}
+\NormalTok{\#\#  4 acidic    Taste     5.54}
+\NormalTok{\#\#  5 acrid     Smell     5.17}
+\NormalTok{\#\#  6 adhesive  Touch     5.24}
+\NormalTok{\#\#  7 alcoholic Taste     5.56}
+\NormalTok{\#\#  8 alive     Sight     6.04}
+\NormalTok{\#\#  9 amber     Sight     5.72}
+\NormalTok{\#\# 10 angular   Sight     5.48}
+\NormalTok{\#\# \# ... with 395 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Let us get the means for each category.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{means }\OtherTok{\textless{}{-}}\NormalTok{ senses\_data }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(Modality) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{avg =} \FunctionTok{mean}\NormalTok{(Val))}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can calculate Cohen's \emph{d}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d }\OtherTok{=}\NormalTok{ (means}\SpecialCharTok{$}\NormalTok{avg[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}}\NormalTok{ means}\SpecialCharTok{$}\NormalTok{avg[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{/} \FunctionTok{sd}\NormalTok{(senses\_data}\SpecialCharTok{$}\NormalTok{Val)}
+\NormalTok{d}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] {-}0.9579464}
+\end{Highlighting}
+\end{Shaded}
+
+We can also use the package `effsize' to calculate Cohen's d.~You'll see observe a difference between our calculation and the calculation given by the effsize packgae. This is mainly because they use a slightly difference way of calculating variation in the data (the denominator). That's not a huge difference.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(effsize)}
+\FunctionTok{cohen.d}\NormalTok{(Val }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Modality, }\AttributeTok{data =}\NormalTok{ senses\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Cohen\textquotesingle{}s d}
+\NormalTok{\#\# }
+\NormalTok{\#\# d estimate: {-}1.070784 (large)}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#      lower      upper }
+\NormalTok{\#\# {-}1.5955866 {-}0.5459824}
+\end{Highlighting}
+\end{Shaded}
+
+How to interpret Cohen's d?
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule()
+\textbf{Cohen's \emph{d} } & \textbf{Magnitude} \\
+\midrule()
+\endhead
+\textbar0.2\textbar{} & small \\
+\textbar0.5\textbar{} & medium \\
+\textbar0.8\textbar{} & large \\
+\bottomrule()
+\end{longtable}
+
+\begin{figure}
+\centering
+\includegraphics{./img/cohens.png}
+\caption{\label{fig:cohens}Cohen's \emph{d}.}
+\end{figure}
+
+\hypertarget{standard-error}{%
+\section{Standard Error}\label{standard-error}}
+
+Cohen's \emph{d} is a standard measure of difference in magnitude between two samples. It does not care about the sample size though. Your sample size for each group could be 2, 200,2K, 2M.
+
+Although, Cohen's \emph{d} can tell us whether the difference between the two samples is large, it won't tell us much about our population.
+
+Here's a small example. I want to test if there is a difference between the voice pitch of people who wear blue shirts and people who wear red shirts. Assume that the following is my data.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule()
+\textbf{Participant (by shirt color) } & \textbf{Fudnamental Frequency} \\
+\midrule()
+\endhead
+Blue 1 & 175 \\
+Blue 2 & 75 \\
+Red 1 & 312 \\
+Red 2 & 190 \\
+\bottomrule()
+\end{longtable}
+
+Let us run Cohen's d on this data to see what the magnitude of the difference is.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{blue }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{175}\NormalTok{,}\DecValTok{75}\NormalTok{)}
+\NormalTok{red }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{312}\NormalTok{,}\DecValTok{190}\NormalTok{)}
+\FunctionTok{mean}\NormalTok{(blue) }\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(red)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] {-}126}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cohen.d}\NormalTok{(blue,red)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Cohen\textquotesingle{}s d}
+\NormalTok{\#\# }
+\NormalTok{\#\# d estimate: {-}1.597498 (large)}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#     lower     upper }
+\NormalTok{\#\# {-}6.538998  3.344001}
+\end{Highlighting}
+\end{Shaded}
+
+We get a large effect. However, there's no way we can conclude that shirt color has anything to do with someone's voice pitch. We cannot generalize to the population. We observe a difference but we probably have a decent error margin in our prediction. To quantify this error, we need to introduce a new mertric \textbf{standard error}.
+
+\hypertarget{standard-error-1}{%
+\section{Standard Error}\label{standard-error-1}}
+
+Standard Error (SE) is a combination of the \textbf{variability} in the data and the \textbf{sample size}
+
+\[SE = \frac{s}{\sqrt{N}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  s = standard deviation
+\item
+  N = sample size
+\end{itemize}
+
+The bigger the standard error, the less accurate is your estimation of the population parameters. This means your estimation (of the parameters, i.e.~mean and standard deviation) is less reliable. The smaller the SE, the more accurate is your calculation of the population parameter estimates.
+
+As you can see from the formula:
+
+\begin{itemize}
+\tightlist
+\item
+  SE will increase as your standard deviation grows (i.e.~there is more variance in the data)
+\item
+  SE will decrease as your sample size grows
+\end{itemize}
+
+Let's calculate the standard error for the little sample above. First we need to find s (which is the pooled standard deviation of the two groups.) The formula is
+
+\[s = \sqrt{\frac{sd1 + sd2}{2}}\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s }\OtherTok{\textless{}{-}}  \FunctionTok{sqrt}\NormalTok{(((}\FunctionTok{sd}\NormalTok{(blue)}\SpecialCharTok{**}\DecValTok{2}\NormalTok{)}\SpecialCharTok{+}\NormalTok{(}\FunctionTok{sd}\NormalTok{(red)}\SpecialCharTok{**}\DecValTok{2}\NormalTok{))}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}
+\NormalTok{s}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 78.87332}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we can calculate the standard error for the difference of the two means.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SE }\OtherTok{\textless{}{-}}\NormalTok{ s }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\DecValTok{4}\NormalTok{)}
+\NormalTok{SE  }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 39.43666}
+\end{Highlighting}
+\end{Shaded}
+
+Standard Error tells us how close or far away from the true population mean. In this simple example, we were trying to get the difference in average voice pitch between blue and red shirt wearers. We have a total of 4 data points. This is obviously going to return a big standard error.
+
+\hypertarget{confidence-interval}{%
+\section{Confidence Interval}\label{confidence-interval}}
+
+Confidence interval is going to help us answer the following question. Confidence interval is a metric that helps you determine the level of confidence in your population parameter estimates. For example 95\% confidence interval means the following.
+
+If I were to sample this data (2 blue, 2 red) 100 times. 95 times, the difference in their means would lay between two numbers (x and y). The smaller this interval, the better.
+
+The confidence interal formula for 95\% is as follows:
+
+\[CI = [mean - 1.96*SE,mean + 1.96*SE ]\]
+
+As the name suggests, CI is an interval and the numbers returned define the range of possible values for 95\% of the time.
+
+Let us calculate the 95\% confidence interval for our mean difference for blue and red data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean\_diff }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(red) }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(blue)}
+
+\NormalTok{CI }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(mean\_diff }\SpecialCharTok{{-}}\NormalTok{ (}\FloatTok{1.96}\SpecialCharTok{*}\NormalTok{SE), mean\_diff }\SpecialCharTok{+}\NormalTok{ (}\FloatTok{1.96}\SpecialCharTok{*}\NormalTok{SE))}
+\NormalTok{CI}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1]  48.70415 203.29585}
+\end{Highlighting}
+\end{Shaded}
+
 
   \bibliography{book.bib,packages.bib}
 
