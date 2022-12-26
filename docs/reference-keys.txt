@@ -111,5 +111,8 @@ categorical-predictors-with-more-than-2-levels
 effect-size-significance
 cohens-d
 standard-error
-standard-error-1
 confidence-interval
+standard-error-of-the-difference-of-two-means
+hypothesis-testing
+calculating-the-t-score
+p-value

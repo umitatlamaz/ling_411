@@ -23,7 +23,7 @@
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2022-12-20" />
+<meta name="date" content="2022-12-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -279,8 +279,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#cohens-d"><i class="fa fa-check"></i><b>11.1</b> Cohen’s <em>d</em></a></li>
 <li class="chapter" data-level="11.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error"><i class="fa fa-check"></i><b>11.2</b> Standard Error</a></li>
-<li class="chapter" data-level="11.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error-1"><i class="fa fa-check"></i><b>11.3</b> Standard Error</a></li>
-<li class="chapter" data-level="11.4" data-path="effect-size-significance.html"><a href="effect-size-significance.html#confidence-interval"><i class="fa fa-check"></i><b>11.4</b> Confidence Interval</a></li>
+<li class="chapter" data-level="11.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#confidence-interval"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval</a></li>
+<li class="chapter" data-level="11.4" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error-of-the-difference-of-two-means"><i class="fa fa-check"></i><b>11.4</b> Standard Error of the difference of two means</a></li>
+<li class="chapter" data-level="11.5" data-path="effect-size-significance.html"><a href="effect-size-significance.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.5</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="11.6" data-path="effect-size-significance.html"><a href="effect-size-significance.html#calculating-the-t-score"><i class="fa fa-check"></i><b>11.6</b> Calculating the t-score</a></li>
+<li class="chapter" data-level="11.7" data-path="effect-size-significance.html"><a href="effect-size-significance.html#p-value"><i class="fa fa-check"></i><b>11.7</b> p-value</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -429,7 +432,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb458-3"><a href="linear-non-linear-transformations.html#cb458-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.1</span>,</span>
 <span id="cb458-4"><a href="linear-non-linear-transformations.html#cb458-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
 <span id="cb458-5"><a href="linear-non-linear-transformations.html#cb458-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing missing values (`geom_bar()`).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
 <p><img src="main_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
 </div>
 </div>
@@ -482,14 +485,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb464-4"><a href="linear-non-linear-transformations.html#cb464-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.3</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
 <span id="cb464-5"><a href="linear-non-linear-transformations.html#cb464-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
 <span id="cb464-6"><a href="linear-non-linear-transformations.html#cb464-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 1 rows containing missing values (`geom_bar()`).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_bar).</code></pre>
 <p><img src="main_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
 <div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="linear-non-linear-transformations.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cab_fares, <span class="fu">aes</span>(distance_c)) <span class="sc">+</span></span>
 <span id="cb466-2"><a href="linear-non-linear-transformations.html#cb466-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">n.breaks=</span><span class="dv">10</span>)<span class="sc">+</span></span>
 <span id="cb466-3"><a href="linear-non-linear-transformations.html#cb466-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.3</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
 <span id="cb466-4"><a href="linear-non-linear-transformations.html#cb466-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
 <span id="cb466-5"><a href="linear-non-linear-transformations.html#cb466-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing missing values (`geom_bar()`).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
 <p><img src="main_files/figure-html/unnamed-chunk-234-2.png" width="672" /></p>
 <div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="linear-non-linear-transformations.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cab_fares, <span class="fu">aes</span>(distance_c_z)) <span class="sc">+</span></span>
 <span id="cb468-2"><a href="linear-non-linear-transformations.html#cb468-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">n.breaks=</span><span class="dv">10</span>)<span class="sc">+</span></span>
@@ -535,8 +538,8 @@ Figure 9.1: Skewness. Image by <a href="https://www.allaboutcircuits.com/technic
 <span id="cb471-4"><a href="linear-non-linear-transformations.html#cb471-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
 <span id="cb471-5"><a href="linear-non-linear-transformations.html#cb471-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)<span class="sc">+</span></span>
 <span id="cb471-6"><a href="linear-non-linear-transformations.html#cb471-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(turkish_freq<span class="sc">$</span>frequency), <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span> )</span></code></pre></div>
-<pre><code>## Warning: Removed 2288 rows containing non-finite values (`stat_bin()`).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (`geom_bar()`).</code></pre>
+<pre><code>## Warning: Removed 2288 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
 <p><img src="main_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
 <p>It looks like most of the words are quite infrequent and a handful of words are very frequent. In fact, word frequencies are skewed in a very interesting way and they have a special distribution name called <strong>Zipfian</strong> distribution named after George Kingsley Zipf. But we’re not interested in that for now.</p>
 <p>The important point to notice is where the mean is in this distribution. The mean is shown with the dashed line and it does not in any way reflect the majority of the data. What is more important is that when the data is skewed, its linear modeling will usually result in <strong>residuals that are not normal</strong>. If the residuals are not normal, then the model will lose its validity. It is important that you notice what matters is the <strong>normality of the residuals</strong> not the normality of the data. Non-normal data is still fine for liner models as long as the residuals are normal.</p>

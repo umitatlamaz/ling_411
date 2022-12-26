@@ -23,7 +23,7 @@
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2022-12-20" />
+<meta name="date" content="2022-12-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -279,8 +279,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#cohens-d"><i class="fa fa-check"></i><b>11.1</b> Cohen’s <em>d</em></a></li>
 <li class="chapter" data-level="11.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error"><i class="fa fa-check"></i><b>11.2</b> Standard Error</a></li>
-<li class="chapter" data-level="11.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error-1"><i class="fa fa-check"></i><b>11.3</b> Standard Error</a></li>
-<li class="chapter" data-level="11.4" data-path="effect-size-significance.html"><a href="effect-size-significance.html#confidence-interval"><i class="fa fa-check"></i><b>11.4</b> Confidence Interval</a></li>
+<li class="chapter" data-level="11.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#confidence-interval"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval</a></li>
+<li class="chapter" data-level="11.4" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error-of-the-difference-of-two-means"><i class="fa fa-check"></i><b>11.4</b> Standard Error of the difference of two means</a></li>
+<li class="chapter" data-level="11.5" data-path="effect-size-significance.html"><a href="effect-size-significance.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.5</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="11.6" data-path="effect-size-significance.html"><a href="effect-size-significance.html#calculating-the-t-score"><i class="fa fa-check"></i><b>11.6</b> Calculating the t-score</a></li>
+<li class="chapter" data-level="11.7" data-path="effect-size-significance.html"><a href="effect-size-significance.html#p-value"><i class="fa fa-check"></i><b>11.7</b> p-value</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -419,8 +422,8 @@ Figure 7.2: Lines with different intercept and slope values.
 <span id="cb381-7"><a href="linear-regression-with-one-predictor.html#cb381-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span><span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb381-8"><a href="linear-regression-with-one-predictor.html#cb381-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">125</span>, <span class="at">by =</span> <span class="dv">5</span>)) <span class="sc">+</span> </span>
 <span id="cb381-9"><a href="linear-regression-with-one-predictor.html#cb381-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span>y<span class="sc">~</span>x <span class="sc">+</span> <span class="fu">I</span>(<span class="dv">7</span><span class="sc">+</span><span class="dv">6</span><span class="sc">*</span>x))</span></code></pre></div>
-<pre><code>## Warning in predict.lm(model, newdata = data_frame0(x = xseq), se.fit = se, :
-## prediction from a rank-deficient fit may be misleading</code></pre>
+<pre><code>## Warning in predict.lm(model, newdata = new_data_frame(list(x = xseq)), se.fit =
+## se, : prediction from a rank-deficient fit may be misleading</code></pre>
 <p><img src="main_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
 <p><strong>Slope</strong> and <strong>intercept</strong> are the <strong>coefficients</strong> of our linear regression model. Our task is to find the <strong>coefficients</strong> from the data.</p>
 </div>
@@ -497,8 +500,8 @@ Figure 7.2: Lines with different intercept and slope values.
 <span id="cb396-13"><a href="linear-regression-with-one-predictor.html#cb396-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Taxi cost with traffic&quot;</span>)</span>
 <span id="cb396-14"><a href="linear-regression-with-one-predictor.html#cb396-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb396-15"><a href="linear-regression-with-one-predictor.html#cb396-15" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(plot1, plot2, <span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="main_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
 <p>OK, now it looks like we have some more realistic data. Let us rerun our linear model to see what the coefficients look like.</p>
 <div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="linear-regression-with-one-predictor.html#cb399-1" aria-hidden="true" tabindex="-1"></a>better_taxi_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_cost<span class="sc">~</span>distance)</span>
@@ -539,7 +542,7 @@ Figure 7.2: Lines with different intercept and slope values.
 <span id="cb405-3"><a href="linear-regression-with-one-predictor.html#cb405-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> Word)) <span class="sc">+</span></span>
 <span id="cb405-4"><a href="linear-regression-with-one-predictor.html#cb405-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
 <span id="cb405-5"><a href="linear-regression-with-one-predictor.html#cb405-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span>F)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="main_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
 <div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="linear-regression-with-one-predictor.html#cb407-1" aria-hidden="true" tabindex="-1"></a>freq_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(freq_data<span class="sc">$</span>RT <span class="sc">~</span> freq_data<span class="sc">$</span>log10freq)</span></code></pre></div>
 <p>OK, let us also get a glace at our model. We’ll first take a look at the slope and the intercept and then <strong>R<sup>2</sup></strong> and the <strong>p value</strong>.</p>
@@ -566,7 +569,7 @@ Figure 7.2: Lines with different intercept and slope values.
 <span id="cb412-6"><a href="linear-regression-with-one-predictor.html#cb412-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span>F)<span class="sc">+</span></span>
 <span id="cb412-7"><a href="linear-regression-with-one-predictor.html#cb412-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> log10freq, <span class="at">y =</span> RT,</span>
 <span id="cb412-8"><a href="linear-regression-with-one-predictor.html#cb412-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">xend =</span> log10freq, <span class="at">yend =</span> <span class="fu">fitted</span>(freq_model)))</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="main_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
 <div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="linear-regression-with-one-predictor.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(freq_data, <span class="fu">aes</span>(<span class="at">x=</span>log10freq, <span class="at">y=</span>RT)) <span class="sc">+</span></span>
 <span id="cb414-2"><a href="linear-regression-with-one-predictor.html#cb414-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>

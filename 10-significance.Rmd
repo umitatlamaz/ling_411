@@ -1,11 +1,11 @@
 # Effect Size & Significance
-Often times, we will observe a difference between the means of two groups. These groups could be variables of any factor. For example, age could be a factor an we could be investigating the difference in voice pitch between children and adults. Or, we could be looking at the difference between the frequency of using the word **darlamak** between members of Gen X and Gen Z. Yet another example would be looking at the difference between the average valence of smell and taste words.
+Often times, we will observe a difference between the means of two groups. These groups could be variables of any factor. For example, age could be a factor an we are investigating the difference in voice pitch between children and adults. Or, we could be looking at the difference between the frequency of using the word **darlamak** between members of Gen X and Gen Z. Yet another example would be looking at the difference between the average valence of smell and taste words.
 
 In all these cases, we are comparing two means. So, let's say we collect data from 100 adults and 100 children and observe that on average children's fundamental frequencies in their voice pitch is 100Hz higher than those of adults. 
 
-What have we found? Is this a big difference? (As humans we are usually able to distinguish between and adult and a child when they speak. So, assuming that fundamental frequency is a predictor of adult vs child, then we know that some level of difference in Hertz is the source of this difference. But what is that level?)
+What have we found? Is this a big difference? (As humans we are usually able to distinguish between an adult and a child when they speak. So, assuming that fundamental frequency is a predictor of adult vs child, then we know that some level of difference in Hertz is the source of this difference. But what is that level?)
 
-Let's say we run another experiment with five children and 5 adults. Now, we find the average difference to be 200. So, once again, we face the same question. Is 100 big? Is 200 big? Obviously 200 is bigger than 100 but we don't know if these are big numbers or not. 
+Let's say we run another experiment with 5 children and 5 adults. Now, we find the average difference to be 200. So, once again, we face the same question. Is 100 big? Is 200 big? Obviously 200 is bigger than 100 but we don't know if these are big numbers or not. 
 
 Once again, we need to think of magnitude not in terms of absolute values but relative to a population (e.g. humans, children, adults, men, women, etc.). So, it would be great if we could figure out a way to calculate the **effect size** of a predictor (e.g. being adult or being a child) in a **standardized way**. If we have a standard definition of effect size, then we can compute this for any kind of metric.
 
@@ -30,8 +30,15 @@ $$d = \frac{m1-m2}{s}$$
 * m2 mean of group 2
 * s = standard deviation of all the data (group 1 and group 2)
 
+We'll calculate s using the formula below for **pooled** standard deviation.
 
-Let us try Cohen's *d* for the Smell and Taste data. 
+$$s = \sqrt{\frac{sd_1^2 + sd_2^2}{2}}$$
+
+The reason why we are calculating the **pooled** standard deviation is to make sure that our standard deviations that come from different means (i.e. groups of data) are weighted. Below, we'll see that the pooled standard deviation has a slightly different value than the standard deviation of the whole data. 
+
+
+
+**Let us try Cohen's *d* for the Smell and Taste data. **
 
 
 First, load the data and select the relevant data using the filter function. 
@@ -40,27 +47,52 @@ First, load the data and select the relevant data using the filter function.
 library(tidyverse)
 #Read in the data
 data <- read_csv('data/winter_2016_senses_valence.csv')
-#print the head to see what it looks like
+#filter in the data for the relevant conditions (Taste and Smell)
 senses_data <- filter(data, Modality %in% c('Taste', 'Smell'))
+#print the head to see what it looks like
 data
 ```
 
 Let us get the means for each category. 
 
 ```{r}
+#calculate means for each condition (Taste, Smell)
 means <- senses_data %>% 
   group_by(Modality) %>% 
   summarize(avg = mean(Val))
+
+#print means to see what it looks like
+means
 ```
+
+Let us now calculate s (pooled standard deviation).
+
+```{r}
+#calculate standard deviation for each condition (Taste, Smell)
+s_devs  <- senses_data %>% 
+  group_by(Modality) %>% 
+  summarize(s = sd(Val))
+
+#calculate pooled standard deviation using the formula above
+s <- sqrt((s_devs$s[1]^2 + s_devs$s[2]^2)/2)
+
+#print the pooled standard deviation
+s
+
+#calculate and print the standard deviation of the whole data for comparison
+sd(senses_data$Val)
+```
+
+
 
 Now we can calculate Cohen's *d*.
 
 ```{r}
-d = (means$avg[1] - means$avg[2]) / sd(senses_data$Val)
+d = (means$avg[1] - means$avg[2]) / s
 d
 ```
 
-We can also use the package `effsize' to calculate Cohen's d. You'll see observe a difference between our calculation and the calculation given by the effsize packgae. This is mainly because they use a slightly difference way of calculating variation in the data (the denominator). That's not a huge difference. 
+We can also use the package `effsize` to calculate Cohen's d. You'll see observe a difference between our calculation and the calculation given by the effsize package This is mainly because they use a slightly difference way of calculating variation in the data (the denominator). That's not a huge difference. 
 
 ```{r}
 library(effsize)
@@ -82,32 +114,31 @@ knitr::include_graphics("./img/cohens.png")
 ```
 
 ## Standard Error
-Cohen's *d* is a standard measure of difference in magnitude between two samples. It does not care about the sample size though. Your sample size for each group could be 2, 200,2K, 2M. 
+Cohen's *d* is a standard measure of difference in magnitude between two samples. It does not care about the sample size though. Your sample size for each group could be 2, 200, 2K, 2M, and so on. 
 
 Although, Cohen's *d* can tell us whether the difference between the two samples is large, it won't tell us much about our population. 
 
-Here's a small example. I want to test if there is a difference between the voice pitch of people who wear blue shirts and people who wear red shirts. Assume that the following is my data. 
+Here's a small example. I want to test if there is a difference between the voice pitch of people who wear **blue shirts** and people who wear **red shirts**. Assume that the following is my data. 
 
-|**Participant (by shirt color) **| **Fudnamental Frequency** | 
+|**Participant (by shirt color) **| **Fundamental Frequency** | 
 |:--|:--|
 | Blue 1 | 175 | 
-| Blue 2 | 75 | 
-| Red 1 | 312 | 
+| Blue 2 | 125 | 
+| Red 1 | 220 | 
 | Red 2 | 190 | 
 
 
 Let us run Cohen's d on this data to see what the magnitude of the difference is. 
 
 ```{r}
-blue = c(175,75)
-red = c(312,190)
-mean(blue) -mean(red)
+blue = c(175,125)
+red = c(220,190)
+mean(blue) - mean(red)
 cohen.d(blue,red)
 ```
 
-We get a large effect. However, there's no way we can conclude that shirt color has anything to do with someone's voice pitch. We cannot generalize to the population. We observe a difference but we probably have a decent error margin in our prediction. To quantify this error, we need to introduce a new mertric **standard error**.
+We get a large effect. However, there's no way we can conclude that shirt color has anything to do with someone's voice pitch. We cannot generalize to the population. We observe a difference but we probably have a decent error margin in our prediction. To quantify this error, we need to introduce a new metric **standard error**.
 
-## Standard Error
 Standard Error (SE) is a combination of the **variability** in the data and the **sample size**
 
 $$SE = \frac{s}{\sqrt{N}}$$
@@ -123,41 +154,227 @@ As you can see from the formula:
 * SE will decrease as your sample size grows
 
 
-Let's calculate the standard error for the little sample above. First we need to find s (which is the pooled standard deviation of the two groups.) The formula is 
-
-$$s = \sqrt{\frac{sd1 + sd2}{2}}$$
+Let us calculate the standard error for each of our means.
 
 ```{r}
-s <-  sqrt(((sd(blue)**2)+(sd(red)**2))/2)
-s
+#Calculate Standard Errors
+SE_blue <- sd(blue)/sqrt(2)
+SE_red <- sd(red)/sqrt(2)
+
+#print Standard Error for blue shirts
+SE_blue
+
+#print Standard Error for red shirts
+SE_red
 ```
-Now, we can calculate the standard error for the difference of the two means. 
 
-```{r}
-SE <- s / sqrt(4)
-SE  
-```
 
-Standard Error tells us how close or far away from the true population mean. In this simple example, we were trying to get the difference in average voice pitch between blue and red shirt wearers. We have a total of 4 data points. This is obviously going to return a big standard error. 
-
+Standard Error tells us how close or far away from the true population mean. In this example, we were trying to get the average voice pitch for people wearing a blue shirt and people wearing a red shirt. In each sample, we have only 2 samples. Obviously, this is very little data and the Standard Errors are going to be big. 
 
 ## Confidence Interval
 
-Confidence interval is going to help us answer the following question. Confidence interval is a metric that helps you determine the level of confidence in your population parameter estimates. For example 95% confidence interval means the following. 
+Confidence interval is a metric that helps you determine the level of confidence in your population parameter estimates. The formula for 95% Confidence Interval is as follows:
 
-If I were to sample this data (2 blue, 2 red) 100 times. 95 times, the difference in their means would lay between two numbers (x and y). The smaller this interval, the better. 
+$$CI = [mean \pm 1.96 * SE ]$$
+Let us decompose this formula a bit. 
 
-The confidence interal formula for 95% is as follows:
+* **mean** is the sample mean of some sample
+* **SE** is the standard error of the sample
+* $\pm$ indicates that the value is going to be somewhere between *mean plus or minus some value*.
+* **1.96** is a special number that indicates the 95% CI.[^1] 
 
-$$CI = [mean - 1.96*SE,mean + 1.96*SE ]$$
+[^1]: In fact, it corresponds to the z-score value of 95%. For calculating the 90% interval, we would use the corresponding z-score value 1.64. 
+
 
 As the name suggests, CI is an interval and the numbers returned define the range of possible values for 95% of the time. 
 
-Let us calculate the 95% confidence interval for our mean difference for blue and red data. 
+Let us calculate the 95% confidence intervals for our our means for the blue and red data.
 
 ```{r}
-mean_diff <- mean(red) - mean(blue)
+#calculate means
+mean_blue <- mean(blue)
+mean_red <- mean(red)
 
-CI <- c(mean_diff - (1.96*SE), mean_diff + (1.96*SE))
-CI
+
+#calculate CIs
+CI_blue <- c(mean_blue - 1.96 * SE_blue, mean_blue + 1.96 * SE_blue)
+CI_red <- c(mean_red - 1.96 * SE_red, mean_red + 1.96 * SE_red)
+
+
+name <-c('mean','SE','CI_min','CI_max')
+val_blue<-c(mean_blue,SE_blue,CI_blue)
+val_red<-c(mean_red,SE_red,CI_red)
+
+#print mean, SE, and CI for blue
+blue_st <- data.frame(name, val_blue)
+blue_st
+
+#print mean, SE, and CI for red
+red_st <- data.frame(name, val_red)
+red_st
+```
+
+## Standard Error of the difference of two means
+In the previous sections, we calculated the SE and CI for each sample (blue and red). However, what we are ultimately interested in is the difference in the means between two groups. The difference in the mean is what will tell us if there is a significant difference between the voice pitches of people wearing different colors. To calculate the Standard Error for the difference in mean of two samples, we use the formula below. 
+
+$$SE_{diff} = \sqrt{\frac{SD_1^2}{n_1}+\frac{SD_2^2}{n_2}}$$
+Let us calculate the SE of the difference in mean. 
+
+```{r}
+#calculate standard deviations
+
+sd_blue <- sd(blue)
+sd_red <- sd(red)
+
+# calculate SE_diff
+SE_diff <- sqrt(sd_blue^2/2 + sd_red^2/2)
+
+#print SE_diff
+SE_diff
+```
+
+Let us now calculate the 95% CI for the difference in means. 
+
+```{r}
+#calculate the difference in means
+diff_mean <- mean_blue - mean_red
+
+#calculate the 95% CI
+CI_diff <- c(diff_mean-1.96*SE_diff, diff_mean+1.96*SE_diff)
+
+#print the CI_diff by rounding the numbers to 2 decimal point
+round(CI_diff, 2)
+```
+
+
+## Hypothesis Testing
+Remember that throughout the semester we talked about forming and testing hypotheses. Let us form our hypotheses and then test them.
+
+Let us build our **alternative hypothesis**.
+
+* H1: There is a difference in voice pitch between people who wear blue and people who wear red.
+
+Now, let us build our null hypothesis. 
+
+* H0: There is **no** difference in voice pitch between people who wear blue and people who wear red.
+
+
+In hypothesis testing framework, we do not try proving our alternative hypothesis (H1). Instead, we try **rejecting the null hypothesis**.
+
+To reject the null hypothesis we do the following:
+
+1. Make an observation. 
+  * In this case, our observation is the difference in means between two colors. 
+2. Calculate the probability of making this observation. 
+  * This means we need to find the **p-value** of the observation.
+3. Check the **p-value** against a **critical value** called alpha ($\alpha$).
+  * If the **p-value** is smaller than the **critical value**, then we **reject** the null hypothesis.
+  * else, we maintain the null hypothesis. 
+  
+  
+What is the **critical value**. Critical value is a value that we define depending on the nature of our question. It's up to us and how we want to interpret the results. The scientific community has converged on using several critical values.
+
+ * $\alpha$ = 0.05 (commonly adopted for social sciences)
+ * $\alpha$ = 0.01
+ * $\alpha$ = 0.001
+
+
+**So, how do we calculate the p-value for our null hypothesis**?
+
+In other words, how do we calculate the p-value for the difference we observe between people who wear blue and red? To do this, we need a particular method that allows us to calculate some statistics for the **difference between two means**. For this, we will use a **t-test** which allows us to calculate a standardized **t-score** which comes from a particular distribution called **t-distribution**. Once we have a **t-score**, we can check it against the **t-distribution** to calculate its **p-value**. 
+
+
+
+
+
+## Calculating the t-score
+
+**t-score** is calculated using the following formula. 
+
+$$t = \frac{mean1-mean2}{SE_{diff}}$$
+What the t-score encodes is 1) magnitude of the difference, 2)Variability in the data 3) Sample size. So, all of the information we need.
+
+Let us calculate the t-score for our data. 
+
+```{r}
+#calculate the t-score
+t <- diff_mean / SE_diff
+#print the t-score
+t
+```
+
+**How do we interpret the t-score**
+t-score is going to be a value from a t-distribution. A t-distribution is very similar to a normal distribution except that it has **heavier tails**. What this means is that there is a higher probability of having more extreme values especially with small data sets. Let's take a look at the t-and normal distributions. 
+
+
+A t-distribution is like a normal distribution but has an additional parameter called **degrees of freedom**. This is relatively vague concept we won't go into. You can google it and find what it means intuitively. For our purposes, we will just assume that degrees of freedom is calculated by deducing 1 from our sample size. 
+
+ * df_blue = sample_size_blue - 1
+ * df_red = sample_size_red - 1
+ 
+ When we are calculating the degrees of freedom for both samples, then we calculate it using the formula below:
+ 
+ * df = sample_size_blue + sample_size_red -2
+ 
+Given that we have a total of 4 data points, then our df will be 2.
+ 
+
+```{r}
+curve(dt(x, df=2), from=-4, to=4, col = 'red',ylim=c(0,0.5)) # 2 degrees of freedom
+curve(dnorm(x), from=-4, to=4, col = 'steelblue',add=TRUE) 
+
+legend(-4, .3, legend=c("t (df=2)", "normal"),
+       col=c("red", "steelblue" ), lty=5, cex=1.2)
+```
+
+
+**t-distribution** approaches normal distribution (for z-scores) as the degrees of freedom increases. At 30 degrees of freedom or above, it becomes very similar to normal distribution.[^2]
+
+[^2]: This is part of the reason why people aim for at least 30 participants in each group. 
+
+
+```{r}
+curve(dt(x, df=10), from=-4, to=4, col = 'red',ylim=c(0,0.5)) #10 degrees of freedom
+curve(dnorm(x), from=-4, to=4, col = 'steelblue',add=TRUE) 
+
+legend(-4, .3, legend=c("t (df=2)", "normal"),
+       col=c("red", "steelblue" ), lty=5, cex=1.2)
+```
+
+```{r}
+curve(dt(x, df=30), from=-4, to=4, col = 'red',ylim=c(0,0.5)) #30 degrees of freedom
+curve(dnorm(x), from=-4, to=4, col = 'steelblue',add=TRUE) 
+
+legend(-4, .3, legend=c("t (df=2)", "normal"),
+       col=c("red", "steelblue" ), lty=5, cex=1.2)
+```
+
+
+## p-value
+p-value is the probability of observing a particular t-score given a t-distribution. So, all we need to do now is to calculate the p-value for the t-score we observed above. There are various ways of doing this. Many people use a t-table to do the calculation. See [this link](https://www.sjsu.edu/faculty/gerstman/StatPrimer/t-table.pdf).
+
+Alternatively, we can calculate it using the `pt()` function, which takes the following arguments.
+
+* t-score
+* degrees of freedom
+* A Boolean for lower.tail (optional)
+
+```{r}
+pt(t,2)
+```
+
+The value we get is going to be the probability of t-score on one tail of the distribution (called **one-tailed**). This is used for a directional hypothesis (e.g. red shirts have a higher voice pitch than blue ones). In our case, we are interested in the difference regardless of the direction. For this, we can simply multiply our p-value by 2 to get a **two-tailed** distribution. 
+
+```{r}
+2*pt(t,2)
+```
+
+
+It looks like our p-value is larger than the critical value $\alpha = 0.05$. So, we must **cannot reject** our null hypothesis. This means that, there is a big chance of observing such a difference in mean when we have only a total of 4 data points. 
+
+Even though our effect size is large as can be seen below, our results are **not significant**. In other words, the big difference is due to chance and we cannot conclude that there is a difference in the voice pitches of people who wear blue and people who wear red.
+
+
+```{r}
+cohen.d(blue,red)
 ```
