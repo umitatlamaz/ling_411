@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Data Structures | Ling 411 - Fall 2022</title>
-  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <title>Chapter 3 Data Structures | Ling 411 - Fall 2023</title>
+  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Data Structures | Ling 411 - Fall 2022" />
+  <meta property="og:title" content="Chapter 3 Data Structures | Ling 411 - Fall 2023" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
+  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
   <meta name="github-repo" content="rstudio/ling_411" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Data Structures | Ling 411 - Fall 2022" />
+  <meta name="twitter:title" content="Chapter 3 Data Structures | Ling 411 - Fall 2023" />
   
-  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
+  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
   
 
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2022-12-26" />
+<meta name="date" content="2023-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,14 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.26/datatables.js"></script>
-<link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -127,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -141,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Ling 411 - Fall 2022</a></li>
+<li><a href="./">Ling 411 - Fall 2023</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
@@ -195,96 +191,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.2" data-path="working-with-data.html"><a href="working-with-data.html#pipes-1"><i class="fa fa-check"></i><b>4.6.2</b> Pipes</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="plotting-1.html"><a href="plotting-1.html"><i class="fa fa-check"></i><b>5</b> Plotting</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="plotting-1.html"><a href="plotting-1.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>5.1</b> The basics of ggplot2</a></li>
-<li class="chapter" data-level="5.2" data-path="plotting-1.html"><a href="plotting-1.html#the-basics-of-ggplot2-1"><i class="fa fa-check"></i><b>5.2</b> The basics of ggplot2</a></li>
-<li class="chapter" data-level="5.3" data-path="plotting-1.html"><a href="plotting-1.html#using-lines-in-plots"><i class="fa fa-check"></i><b>5.3</b> Using lines in plots</a></li>
-<li class="chapter" data-level="5.4" data-path="plotting-1.html"><a href="plotting-1.html#color-and-fill"><i class="fa fa-check"></i><b>5.4</b> Color and fill</a></li>
-<li class="chapter" data-level="5.5" data-path="plotting-1.html"><a href="plotting-1.html#grouping-and-facets"><i class="fa fa-check"></i><b>5.5</b> Grouping and facets</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions"><i class="fa fa-check"></i><b>6.1</b> Distributions</a></li>
-<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#centraltendency"><i class="fa fa-check"></i><b>6.2</b> Measures of central tendency</a>
-<ul>
-<li class="chapter" data-level="6.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean"><i class="fa fa-check"></i><b>6.2.1</b> The mean</a></li>
-<li class="chapter" data-level="6.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#calculating-the-mean-in-r"><i class="fa fa-check"></i><b>6.2.2</b> Calculating the mean in R</a></li>
-<li class="chapter" data-level="6.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#median"><i class="fa fa-check"></i><b>6.2.3</b> The median</a></li>
-<li class="chapter" data-level="6.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>6.2.4</b> Mean or median? What’s the difference?</a></li>
-<li class="chapter" data-level="6.2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#trimmedmean"><i class="fa fa-check"></i><b>6.2.5</b> Trimmed mean</a></li>
-<li class="chapter" data-level="6.2.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>6.2.6</b> Mode</a></li>
-<li class="chapter" data-level="6.2.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summary"><i class="fa fa-check"></i><b>6.2.7</b> Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#var"><i class="fa fa-check"></i><b>6.3</b> Measures of variability</a>
-<ul>
-<li class="chapter" data-level="6.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#range"><i class="fa fa-check"></i><b>6.3.1</b> Range</a></li>
-<li class="chapter" data-level="6.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quantiles-and-percentile"><i class="fa fa-check"></i><b>6.3.2</b> Quantiles and percentile</a></li>
-<li class="chapter" data-level="6.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#interquartile-range"><i class="fa fa-check"></i><b>6.3.3</b> Interquartile range</a></li>
-<li class="chapter" data-level="6.3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#aad"><i class="fa fa-check"></i><b>6.3.4</b> Mean absolute deviation</a></li>
-<li class="chapter" data-level="6.3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>6.3.5</b> Variance</a></li>
-<li class="chapter" data-level="6.3.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#sd"><i class="fa fa-check"></i><b>6.3.6</b> Standard deviation</a></li>
-<li class="chapter" data-level="6.3.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#which-measure-to-use"><i class="fa fa-check"></i><b>6.3.7</b> Which measure to use?</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summary"><i class="fa fa-check"></i><b>6.4</b> Getting an overall summary of a variable</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarising-a-vector"><i class="fa fa-check"></i><b>6.4.1</b> Summarising a vector</a></li>
-<li class="chapter" data-level="6.4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarising-a-data-frame"><i class="fa fa-check"></i><b>6.4.2</b> Summarising a data frame</a></li>
-</ul></li>
-<li class="chapter" data-level="6.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#correlations"><i class="fa fa-check"></i><b>6.5</b> Correlations</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html"><i class="fa fa-check"></i><b>7</b> Linear Regression with one Predictor</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#word-frequency-effects"><i class="fa fa-check"></i><b>7.1</b> Word Frequency Effects</a></li>
-<li class="chapter" data-level="7.2" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#simple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Simple Linear Regression</a></li>
-<li class="chapter" data-level="7.3" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#finding-the-regression-line"><i class="fa fa-check"></i><b>7.3</b> Finding the Regression Line</a></li>
-<li class="chapter" data-level="7.4" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#estimating-the-coefficients"><i class="fa fa-check"></i><b>7.4</b> Estimating the Coefficients</a></li>
-<li class="chapter" data-level="7.5" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#data-is-messy"><i class="fa fa-check"></i><b>7.5</b> Data is messy</a></li>
-<li class="chapter" data-level="7.6" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#simplified-frequency-data"><i class="fa fa-check"></i><b>7.6</b> Simplified Frequency Data</a></li>
-<li class="chapter" data-level="7.7" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#residuals"><i class="fa fa-check"></i><b>7.7</b> Residuals</a>
-<ul>
-<li class="chapter" data-level="7.7.1" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#sum-of-squared-errors"><i class="fa fa-check"></i><b>7.7.1</b> Sum of Squared Errors</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html"><i class="fa fa-check"></i><b>8</b> Linear Regression with Many Predictors</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#fitting-two-linear-models"><i class="fa fa-check"></i><b>8.1</b> Fitting two Linear Models</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html"><i class="fa fa-check"></i><b>9</b> Linear &amp; Non-Linear Transformations</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-transformations"><i class="fa fa-check"></i><b>9.1</b> Linear Transformations</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#centering"><i class="fa fa-check"></i><b>9.1.1</b> Centering</a></li>
-<li class="chapter" data-level="9.1.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#standardizing"><i class="fa fa-check"></i><b>9.1.2</b> Standardizing</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#scaling-and-standardizing-in-r"><i class="fa fa-check"></i><b>9.2</b> Scaling and Standardizing in R</a></li>
-<li class="chapter" data-level="9.3" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#non-linear-transformations"><i class="fa fa-check"></i><b>9.3</b> Non-linear Transformations</a>
-<ul>
-<li class="chapter" data-level="9.3.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#logarithms-log-transformation"><i class="fa fa-check"></i><b>9.3.1</b> Logarithms &amp; Log Transformation</a></li>
-<li class="chapter" data-level="9.3.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-regression-with-log-transformation"><i class="fa fa-check"></i><b>9.3.2</b> Linear Regression with Log Transformation</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="categorical-predictors.html"><a href="categorical-predictors.html"><i class="fa fa-check"></i><b>10</b> Categorical Predictors</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictor---continuous-outcome"><i class="fa fa-check"></i><b>10.1</b> Categorical Predictor - Continuous Outcome</a></li>
-<li class="chapter" data-level="10.2" data-path="categorical-predictors.html"><a href="categorical-predictors.html#taste-vs.-smell-words"><i class="fa fa-check"></i><b>10.2</b> Taste vs. Smell Words</a></li>
-<li class="chapter" data-level="10.3" data-path="categorical-predictors.html"><a href="categorical-predictors.html#contrasts-coding"><i class="fa fa-check"></i><b>10.3</b> Contrasts &amp; Coding</a>
-<ul>
-<li class="chapter" data-level="10.3.1" data-path="categorical-predictors.html"><a href="categorical-predictors.html#treatment-coding."><i class="fa fa-check"></i><b>10.3.1</b> Treatment Coding.</a></li>
-<li class="chapter" data-level="10.3.2" data-path="categorical-predictors.html"><a href="categorical-predictors.html#sum-coding"><i class="fa fa-check"></i><b>10.3.2</b> Sum Coding</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictors-with-more-than-2-levels"><i class="fa fa-check"></i><b>10.4</b> Categorical Predictors with more than 2 levels</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="effect-size-significance.html"><a href="effect-size-significance.html"><i class="fa fa-check"></i><b>11</b> Effect Size &amp; Significance</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#cohens-d"><i class="fa fa-check"></i><b>11.1</b> Cohen’s <em>d</em></a></li>
-<li class="chapter" data-level="11.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error"><i class="fa fa-check"></i><b>11.2</b> Standard Error</a></li>
-<li class="chapter" data-level="11.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#confidence-interval"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval</a></li>
-<li class="chapter" data-level="11.4" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error-of-the-difference-of-two-means"><i class="fa fa-check"></i><b>11.4</b> Standard Error of the difference of two means</a></li>
-<li class="chapter" data-level="11.5" data-path="effect-size-significance.html"><a href="effect-size-significance.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.5</b> Hypothesis Testing</a></li>
-<li class="chapter" data-level="11.6" data-path="effect-size-significance.html"><a href="effect-size-significance.html#calculating-the-t-score"><i class="fa fa-check"></i><b>11.6</b> Calculating the t-score</a></li>
-<li class="chapter" data-level="11.7" data-path="effect-size-significance.html"><a href="effect-size-significance.html#p-value"><i class="fa fa-check"></i><b>11.7</b> p-value</a></li>
-</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -297,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2022</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2023</a>
           </h1>
         </div>
 
@@ -407,15 +313,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Let’s look at some examples</li>
 </ul>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="data-structures.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create and print vectors, don&#39;t save</span></span>
-<span id="cb82-2"><a href="data-structures.html#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>, <span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="data-structures.html#cb82-1" tabindex="-1"></a><span class="co"># create and print vectors, don&#39;t save</span></span>
+<span id="cb82-2"><a href="data-structures.html#cb82-2" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>, <span class="dv">1000</span>)</span></code></pre></div>
 <pre class="r-output"><code>## [1]    1    2 1000</code></pre>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="data-structures.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>, <span class="dv">1000</span>, pi)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="data-structures.html#cb84-1" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>, <span class="dv">1000</span>, pi)</span></code></pre></div>
 <pre class="r-output"><code>## [1]    1.000000    2.000000 1000.000000    3.141593</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="data-structures.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="data-structures.html#cb86-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] 1 2 3</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="data-structures.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create and print a data.frame</span></span>
-<span id="cb88-2"><a href="data-structures.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="data-structures.html#cb88-1" tabindex="-1"></a><span class="co"># create and print a data.frame</span></span>
+<span id="cb88-2"><a href="data-structures.html#cb88-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
 <pre class="r-output"><code>##   X1.3
 ## 1    1
 ## 2    2
@@ -428,78 +334,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>They are useful for storing sets or sequences of numbers.</li>
 <li>Let’s create a simple vector with all integers from 1 to 8 and look at its contents.</li>
 </ul>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="data-structures.html#cb90-1" aria-hidden="true" tabindex="-1"></a>vector_var <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
-<span id="cb90-2"><a href="data-structures.html#cb90-2" aria-hidden="true" tabindex="-1"></a>vector_var</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="data-structures.html#cb90-1" tabindex="-1"></a>vector_var <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
+<span id="cb90-2"><a href="data-structures.html#cb90-2" tabindex="-1"></a>vector_var</span></code></pre></div>
 <pre class="r-output"><code>## [1] 1 2 3 4 5 6 7 8</code></pre>
 <ul>
 <li>There is even a more elegant ways to do that:</li>
 </ul>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="data-structures.html#cb92-1" aria-hidden="true" tabindex="-1"></a>vector_var <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span></span>
-<span id="cb92-2"><a href="data-structures.html#cb92-2" aria-hidden="true" tabindex="-1"></a>vector_var</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="data-structures.html#cb92-1" tabindex="-1"></a>vector_var <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span></span>
+<span id="cb92-2"><a href="data-structures.html#cb92-2" tabindex="-1"></a>vector_var</span></code></pre></div>
 <pre class="r-output"><code>## [1] 1 2 3 4 5 6 7 8</code></pre>
 <ul>
 <li>Now, let’s create a simple vector with integers between 1 and 8, going in steps of 2.</li>
 </ul>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="data-structures.html#cb94-1" aria-hidden="true" tabindex="-1"></a>vector_var <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">8</span>, <span class="at">by=</span><span class="dv">2</span>)</span>
-<span id="cb94-2"><a href="data-structures.html#cb94-2" aria-hidden="true" tabindex="-1"></a>vector_var</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="data-structures.html#cb94-1" tabindex="-1"></a>vector_var <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">8</span>, <span class="at">by=</span><span class="dv">2</span>)</span>
+<span id="cb94-2"><a href="data-structures.html#cb94-2" tabindex="-1"></a>vector_var</span></code></pre></div>
 <pre class="r-output"><code>## [1] 1 3 5 7</code></pre>
 <ul>
 <li>Some useful vectors already exist in R.</li>
 </ul>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="data-structures.html#cb96-1" aria-hidden="true" tabindex="-1"></a>letters</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="data-structures.html#cb96-1" tabindex="-1"></a>letters</span></code></pre></div>
 <pre class="r-output"><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
 ## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="data-structures.html#cb98-1" aria-hidden="true" tabindex="-1"></a>LETTERS</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="data-structures.html#cb98-1" tabindex="-1"></a>LETTERS</span></code></pre></div>
 <pre class="r-output"><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;
 ## [20] &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</code></pre>
 <ul>
 <li>We can select specific elements of a vector by indexing it with <code>[]</code>.</li>
 </ul>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="data-structures.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the first letter</span></span>
-<span id="cb100-2"><a href="data-structures.html#cb100-2" aria-hidden="true" tabindex="-1"></a>letters[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="data-structures.html#cb100-1" tabindex="-1"></a><span class="co"># the first letter</span></span>
+<span id="cb100-2"><a href="data-structures.html#cb100-2" tabindex="-1"></a>letters[<span class="dv">1</span>]</span></code></pre></div>
 <pre class="r-output"><code>## [1] &quot;a&quot;</code></pre>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="data-structures.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the 13-th letter</span></span>
-<span id="cb102-2"><a href="data-structures.html#cb102-2" aria-hidden="true" tabindex="-1"></a>letters[<span class="dv">13</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="data-structures.html#cb102-1" tabindex="-1"></a><span class="co"># the 13-th letter</span></span>
+<span id="cb102-2"><a href="data-structures.html#cb102-2" tabindex="-1"></a>letters[<span class="dv">13</span>]</span></code></pre></div>
 <pre class="r-output"><code>## [1] &quot;m&quot;</code></pre>
 <ul>
 <li>Indices can be vectors too.</li>
 </ul>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="data-structures.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># both of them</span></span>
-<span id="cb104-2"><a href="data-structures.html#cb104-2" aria-hidden="true" tabindex="-1"></a>letters[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="data-structures.html#cb104-1" tabindex="-1"></a><span class="co"># both of them</span></span>
+<span id="cb104-2"><a href="data-structures.html#cb104-2" tabindex="-1"></a>letters[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>)]</span></code></pre></div>
 <pre class="r-output"><code>## [1] &quot;a&quot; &quot;g&quot;</code></pre>
 <ul>
 <li>We can even take a whole <em>‘slice’</em> of a vector.</li>
 </ul>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="data-structures.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># both of them</span></span>
-<span id="cb106-2"><a href="data-structures.html#cb106-2" aria-hidden="true" tabindex="-1"></a>letters[<span class="dv">6</span><span class="sc">:</span><span class="dv">12</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="data-structures.html#cb106-1" tabindex="-1"></a><span class="co"># both of them</span></span>
+<span id="cb106-2"><a href="data-structures.html#cb106-2" tabindex="-1"></a>letters[<span class="dv">6</span><span class="sc">:</span><span class="dv">12</span>]</span></code></pre></div>
 <pre class="r-output"><code>## [1] &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot;</code></pre>
 <ul>
 <li>Indices can even be negative. A negative index <span class="math inline">\(-n\)</span> means <em>‘everything’ except <span class="math inline">\(n\)</span></em>.</li>
 </ul>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="data-structures.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># both of them</span></span>
-<span id="cb108-2"><a href="data-structures.html#cb108-2" aria-hidden="true" tabindex="-1"></a>letters[<span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="data-structures.html#cb108-1" tabindex="-1"></a><span class="co"># both of them</span></span>
+<span id="cb108-2"><a href="data-structures.html#cb108-2" tabindex="-1"></a>letters[<span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
 <pre class="r-output"><code>##  [1] &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot;
 ## [20] &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
 <ul>
 <li>Vectors can be named.</li>
 </ul>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-structures.html#cb110-1" aria-hidden="true" tabindex="-1"></a>digits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;one&#39;</span><span class="ot">=</span><span class="dv">1</span>, <span class="st">&#39;two&#39;</span><span class="ot">=</span><span class="dv">2</span>, <span class="st">&#39;three&#39;</span><span class="ot">=</span><span class="dv">3</span>, <span class="st">&#39;four&#39;</span><span class="ot">=</span><span class="dv">4</span>, <span class="st">&#39;five&#39;</span><span class="ot">=</span><span class="dv">5</span>, <span class="st">&#39;six&#39;</span><span class="ot">=</span><span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-structures.html#cb110-1" tabindex="-1"></a>digits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;one&#39;</span><span class="ot">=</span><span class="dv">1</span>, <span class="st">&#39;two&#39;</span><span class="ot">=</span><span class="dv">2</span>, <span class="st">&#39;three&#39;</span><span class="ot">=</span><span class="dv">3</span>, <span class="st">&#39;four&#39;</span><span class="ot">=</span><span class="dv">4</span>, <span class="st">&#39;five&#39;</span><span class="ot">=</span><span class="dv">5</span>, <span class="st">&#39;six&#39;</span><span class="ot">=</span><span class="dv">6</span>)</span></code></pre></div>
 <ul>
 <li>In this case, we can index by the name</li>
 </ul>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="data-structures.html#cb111-1" aria-hidden="true" tabindex="-1"></a>digits[<span class="fu">c</span>(<span class="st">&#39;one&#39;</span>, <span class="st">&#39;six&#39;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="data-structures.html#cb111-1" tabindex="-1"></a>digits[<span class="fu">c</span>(<span class="st">&#39;one&#39;</span>, <span class="st">&#39;six&#39;</span>)]</span></code></pre></div>
 <pre class="r-output"><code>## one six 
 ##   1   6</code></pre>
 <ul>
 <li>Believe it or not, everything in R is actually a vector. For example <code>9</code> is a vector with only one element, which is <code>9</code>.</li>
 </ul>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="data-structures.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span></span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="data-structures.html#cb113-1" tabindex="-1"></a><span class="dv">9</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] 9</code></pre>
 <ul>
 <li>This is why every output begins with <code>[1]</code>. R tries to help you find numbers in printed vectors. Every time a vector is printed, it reminds you at which position in the vector we are.</li>
 <li>The <code>[1]</code> in the output below tells you that <code>"a"</code> is the first element, and the <code>[20]</code> tells you that <code>"t"</code> is the 20-th element.</li>
 </ul>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data-structures.html#cb115-1" aria-hidden="true" tabindex="-1"></a>letters <span class="co"># print a vector with all lower-case letters</span></span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data-structures.html#cb115-1" tabindex="-1"></a>letters <span class="co"># print a vector with all lower-case letters</span></span></code></pre></div>
 <pre class="r-output"><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
 ## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
 <div id="what-are-vectors-good-for" class="section level3 hasAnchor" number="3.3.1">
@@ -508,40 +414,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Let’s put this knowledge to use.</li>
 <li>Here are two vectors representing the winnings from my recent gambling:</li>
 </ul>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="data-structures.html#cb117-1" aria-hidden="true" tabindex="-1"></a>horse_bets_payout_tl <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="sc">-</span><span class="dv">50</span>, <span class="dv">1</span>, <span class="dv">100</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">20</span>, <span class="dv">250</span>, <span class="sc">-</span><span class="dv">40</span>, <span class="sc">-</span><span class="dv">30</span>, <span class="dv">23</span>, <span class="sc">-</span><span class="dv">23</span>, <span class="dv">55</span>, <span class="dv">14</span>, <span class="dv">8</span>, <span class="dv">24</span>, <span class="sc">-</span><span class="dv">3</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="data-structures.html#cb118-1" aria-hidden="true" tabindex="-1"></a>poker_payout_tl <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">5</span>, <span class="sc">-</span><span class="fl">38.1</span>, <span class="dv">12</span>, <span class="dv">103</span>, <span class="dv">15</span>, <span class="dv">5</span>, <span class="dv">187</span>, <span class="dv">13</span>, <span class="sc">-</span><span class="dv">23</span>, <span class="sc">-</span><span class="dv">45</span>, <span class="dv">36</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="data-structures.html#cb117-1" tabindex="-1"></a>horse_bets_payout_tl <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="sc">-</span><span class="dv">50</span>, <span class="dv">1</span>, <span class="dv">100</span>, <span class="sc">-</span><span class="dv">10</span>, <span class="sc">-</span><span class="dv">20</span>, <span class="dv">250</span>, <span class="sc">-</span><span class="dv">40</span>, <span class="sc">-</span><span class="dv">30</span>, <span class="dv">23</span>, <span class="sc">-</span><span class="dv">23</span>, <span class="dv">55</span>, <span class="dv">14</span>, <span class="dv">8</span>, <span class="dv">24</span>, <span class="sc">-</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="data-structures.html#cb118-1" tabindex="-1"></a>poker_payout_tl <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">5</span>, <span class="sc">-</span><span class="fl">38.1</span>, <span class="dv">12</span>, <span class="dv">103</span>, <span class="dv">15</span>, <span class="dv">5</span>, <span class="dv">187</span>, <span class="dv">13</span>, <span class="sc">-</span><span class="dv">23</span>, <span class="sc">-</span><span class="dv">45</span>, <span class="dv">36</span>)</span></code></pre></div>
 <ul>
 <li>Let’s find out which game is more profitable.</li>
 <li>To get our average profit, we first need to compute the sum of a vector.</li>
 <li>Then, we will divide the sum by the length of the vector.</li>
 <li>First, let’s compute the sums of these vectors.</li>
 </ul>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="data-structures.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(horse_bets_payout_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="data-structures.html#cb119-1" tabindex="-1"></a><span class="fu">sum</span>(horse_bets_payout_tl)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 399</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="data-structures.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(poker_payout_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="data-structures.html#cb121-1" tabindex="-1"></a><span class="fu">sum</span>(poker_payout_tl)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 293.9</code></pre>
 <ul>
 <li>Now, we need to determine the length of these vectors:</li>
 </ul>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-structures.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(horse_bets_payout_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-structures.html#cb123-1" tabindex="-1"></a><span class="fu">length</span>(horse_bets_payout_tl)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 16</code></pre>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-structures.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(poker_payout_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-structures.html#cb125-1" tabindex="-1"></a><span class="fu">length</span>(poker_payout_tl)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 12</code></pre>
 <ul>
 <li>Dividing the sum by the length would give us our average profit.</li>
 </ul>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-structures.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(horse_bets_payout_tl)<span class="sc">/</span><span class="fu">length</span>(horse_bets_payout_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-structures.html#cb127-1" tabindex="-1"></a><span class="fu">sum</span>(horse_bets_payout_tl)<span class="sc">/</span><span class="fu">length</span>(horse_bets_payout_tl)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 24.9375</code></pre>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-structures.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(poker_payout_tl)<span class="sc">/</span><span class="fu">length</span>(poker_payout_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-structures.html#cb129-1" tabindex="-1"></a><span class="fu">sum</span>(poker_payout_tl)<span class="sc">/</span><span class="fu">length</span>(poker_payout_tl)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 24.49167</code></pre>
 <p>… so which game is more profitable?</p>
 <ul>
 <li><p>It seems that betting is more profitable.</p></li>
 <li><p>Next time, we can accomplish this calulation by calling the function <code>mean()</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="data-structures.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(horse_bets_payout_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="data-structures.html#cb131-1" tabindex="-1"></a><span class="fu">mean</span>(horse_bets_payout_tl)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 24.9375</code></pre>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="data-structures.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(poker_payout_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="data-structures.html#cb133-1" tabindex="-1"></a><span class="fu">mean</span>(poker_payout_tl)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 24.49167</code></pre>
 <p>Now, I forgot to mention that my bookie charges me 1.5 TL per bet on a horse, on average. The poker payouts correspond to the profits, though. </p>
 <ul>
@@ -549,33 +455,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Let’s subtract 1.5 from elements of <code>horse_bets_payout_tl</code> and save the result as <code>horse_bets_profits_tl</code>.</p></li>
 <li><p>As you see, this subtraction is applied to every element of the vector.</p></li>
 </ul>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-structures.html#cb135-1" aria-hidden="true" tabindex="-1"></a>horse_bets_profits_tl <span class="ot">&lt;-</span> horse_bets_payout_tl <span class="sc">-</span> <span class="fl">1.5</span></span>
-<span id="cb135-2"><a href="data-structures.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(horse_bets_profits_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-structures.html#cb135-1" tabindex="-1"></a>horse_bets_profits_tl <span class="ot">&lt;-</span> horse_bets_payout_tl <span class="sc">-</span> <span class="fl">1.5</span></span>
+<span id="cb135-2"><a href="data-structures.html#cb135-2" tabindex="-1"></a><span class="fu">head</span>(horse_bets_profits_tl)</span></code></pre></div>
 <pre class="r-output"><code>## [1]  98.5 -51.5  -0.5  98.5 -11.5 -21.5</code></pre>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data-structures.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(horse_bets_payout_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data-structures.html#cb137-1" tabindex="-1"></a><span class="fu">head</span>(horse_bets_payout_tl)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 100 -50   1 100 -10 -20</code></pre>
 <ul>
 <li>For poker, we don’t need to change anything. So, we assign the already existing <code>poker_payout_tl</code> vector to another vector called <code>poker_profits_tl</code>.</li>
 </ul>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-structures.html#cb139-1" aria-hidden="true" tabindex="-1"></a>poker_profits_tl <span class="ot">&lt;-</span> poker_payout_tl</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-structures.html#cb139-1" tabindex="-1"></a>poker_profits_tl <span class="ot">&lt;-</span> poker_payout_tl</span></code></pre></div>
 <ul>
 <li>Let’s compare:</li>
 </ul>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="data-structures.html#cb140-1" aria-hidden="true" tabindex="-1"></a>horse_bets_payout_tl</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="data-structures.html#cb140-1" tabindex="-1"></a>horse_bets_payout_tl</span></code></pre></div>
 <pre class="r-output"><code>##  [1] 100 -50   1 100 -10 -20 250 -40 -30  23 -23  55  14   8  24  -3</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="data-structures.html#cb142-1" aria-hidden="true" tabindex="-1"></a>horse_bets_profits_tl</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="data-structures.html#cb142-1" tabindex="-1"></a>horse_bets_profits_tl</span></code></pre></div>
 <pre class="r-output"><code>##  [1]  98.5 -51.5  -0.5  98.5 -11.5 -21.5 248.5 -41.5 -31.5  21.5 -24.5  53.5
 ## [13]  12.5   6.5  22.5  -4.5</code></pre>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="data-structures.html#cb144-1" aria-hidden="true" tabindex="-1"></a>poker_payout_tl</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="data-structures.html#cb144-1" tabindex="-1"></a>poker_payout_tl</span></code></pre></div>
 <pre class="r-output"><code>##  [1]  24.0   5.0 -38.1  12.0 103.0  15.0   5.0 187.0  13.0 -23.0 -45.0  36.0</code></pre>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="data-structures.html#cb146-1" aria-hidden="true" tabindex="-1"></a>poker_profits_tl</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="data-structures.html#cb146-1" tabindex="-1"></a>poker_profits_tl</span></code></pre></div>
 <pre class="r-output"><code>##  [1]  24.0   5.0 -38.1  12.0 103.0  15.0   5.0 187.0  13.0 -23.0 -45.0  36.0</code></pre>
 <ul>
 <li>Which game is more profitable now?</li>
 </ul>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-structures.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(horse_bets_profits_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-structures.html#cb148-1" tabindex="-1"></a><span class="fu">mean</span>(horse_bets_profits_tl)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 23.4375</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-structures.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(poker_profits_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-structures.html#cb150-1" tabindex="-1"></a><span class="fu">mean</span>(poker_profits_tl)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 24.49167</code></pre>
 </div>
 </div>
@@ -592,23 +498,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>One way is to represent it in two vectors containing days of the week. In that case, every <span class="math inline">\(i\)</span>-th element in <code>poker_week_days</code> corresponds to the <span class="math inline">\(i\)</span>-th element in <code>poker_week_days</code>.</li>
 </ul>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-structures.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create two vectors with week days</span></span>
-<span id="cb152-2"><a href="data-structures.html#cb152-2" aria-hidden="true" tabindex="-1"></a>horse_bets_week_days <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Fr&quot;</span>), <span class="dv">8</span>)</span>
-<span id="cb152-3"><a href="data-structures.html#cb152-3" aria-hidden="true" tabindex="-1"></a>poker_week_days <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Fr&quot;</span>), <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-structures.html#cb152-1" tabindex="-1"></a><span class="co"># create two vectors with week days</span></span>
+<span id="cb152-2"><a href="data-structures.html#cb152-2" tabindex="-1"></a>horse_bets_week_days <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Fr&quot;</span>), <span class="dv">8</span>)</span>
+<span id="cb152-3"><a href="data-structures.html#cb152-3" tabindex="-1"></a>poker_week_days <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Fr&quot;</span>), <span class="dv">6</span>)</span></code></pre></div>
 <ul>
 <li><p>But this is getting messy. We have to keep track of two pairs a vectors, and the relations between them. Let’s represent all poker-related information in one data structure, and all horse race-related information in another structure.</p></li>
 <li><p>The best way to represent a pair of vectors where the <span class="math inline">\(i\)</span>-th element in vector 1 corresponds to the <span class="math inline">\(i\)</span>-th element in vector 2 is with data frames. We can create a new data frame with the function <code>data.frame()</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="data-structures.html#cb153-1" aria-hidden="true" tabindex="-1"></a>df_horse_bets <span class="ot">&lt;-</span> </span>
-<span id="cb153-2"><a href="data-structures.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">wday =</span> horse_bets_week_days, </span>
-<span id="cb153-3"><a href="data-structures.html#cb153-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">profit =</span> horse_bets_profits_tl)</span></code></pre></div>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-structures.html#cb154-1" aria-hidden="true" tabindex="-1"></a>df_poker <span class="ot">&lt;-</span> </span>
-<span id="cb154-2"><a href="data-structures.html#cb154-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">wday =</span> poker_week_days, </span>
-<span id="cb154-3"><a href="data-structures.html#cb154-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">profit =</span> poker_payout_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="data-structures.html#cb153-1" tabindex="-1"></a>df_horse_bets <span class="ot">&lt;-</span> </span>
+<span id="cb153-2"><a href="data-structures.html#cb153-2" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">wday =</span> horse_bets_week_days, </span>
+<span id="cb153-3"><a href="data-structures.html#cb153-3" tabindex="-1"></a>             <span class="at">profit =</span> horse_bets_profits_tl)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-structures.html#cb154-1" tabindex="-1"></a>df_poker <span class="ot">&lt;-</span> </span>
+<span id="cb154-2"><a href="data-structures.html#cb154-2" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">wday =</span> poker_week_days, </span>
+<span id="cb154-3"><a href="data-structures.html#cb154-3" tabindex="-1"></a>             <span class="at">profit =</span> poker_payout_tl)</span></code></pre></div>
 <ul>
 <li>Let’s take a look at what we’ve created.</li>
 </ul>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="data-structures.html#cb155-1" aria-hidden="true" tabindex="-1"></a>df_horse_bets</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="data-structures.html#cb155-1" tabindex="-1"></a>df_horse_bets</span></code></pre></div>
 <pre class="r-output"><code>##    wday profit
 ## 1   Wed   98.5
 ## 2    Fr  -51.5
@@ -631,26 +537,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Generally, it’s sufficient to see the first couple of rows of a <code>data.frame</code> to get a sense of what it contains.</p></li>
 <li><p>We’ll use the function <code>head()</code>, which takes a <code>data.frame</code> and a number <span class="math inline">\(n\)</span>, and outputs the first <span class="math inline">\(n\)</span> lines.</p></li>
 </ul>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="data-structures.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let&#39;s see the first two rows of the data frame called df_horse_bets</span></span>
-<span id="cb157-2"><a href="data-structures.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_horse_bets, <span class="dv">2</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="data-structures.html#cb157-1" tabindex="-1"></a><span class="co"># let&#39;s see the first two rows of the data frame called df_horse_bets</span></span>
+<span id="cb157-2"><a href="data-structures.html#cb157-2" tabindex="-1"></a><span class="fu">head</span>(df_horse_bets, <span class="dv">2</span>) </span></code></pre></div>
 <pre class="r-output"><code>##   wday profit
 ## 1  Wed   98.5
 ## 2   Fr  -51.5</code></pre>
 <ul>
 <li>An alternative is <code>View()</code>, which shows you the entire <code>data.frame</code> within a new tab in the RStudio GUI.</li>
 </ul>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="data-structures.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(df_poker)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="data-structures.html#cb159-1" tabindex="-1"></a><span class="fu">View</span>(df_poker)</span></code></pre></div>
 <ul>
 <li><p>Turning back to our gambling example, we still have two objects, which really belong together.</p></li>
 <li><p>Let’s merge them into one long data frame.</p></li>
 <li><p>The function <code>rbind()</code> takes two data frames as its arguments, and returns a single concatenated data frame, where all the rows of the first data frame are on top, and all the rows of the second data frame are at the bottom.</p></li>
 </ul>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-structures.html#cb160-1" aria-hidden="true" tabindex="-1"></a>df_gambling <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_horse_bets, df_poker)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-structures.html#cb160-1" tabindex="-1"></a>df_gambling <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_horse_bets, df_poker)</span></code></pre></div>
 <!-- to-do: Place all new functions info into little colored boxes, with an additional link to an online R man page.  -->
 <ul>
 <li>Unfortunately, now, we don’t have any information on which profits are from which game.</li>
 </ul>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-structures.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_gambling)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-structures.html#cb161-1" tabindex="-1"></a><span class="fu">head</span>(df_gambling)</span></code></pre></div>
 <pre class="r-output"><code>##   wday profit
 ## 1  Wed   98.5
 ## 2   Fr  -51.5
@@ -664,13 +570,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>When we assign a value to a specific column, R puts the specified value into every row of the column of the given data frame.</li>
 <li>What the following code says is “Create a new column named <code>game</code> in the data frame named <code>df_horse_bets</code> and fill the column with the string <em>horse_bets</em>.”</li>
 </ul>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="data-structures.html#cb163-1" aria-hidden="true" tabindex="-1"></a>df_horse_bets<span class="sc">$</span>game <span class="ot">&lt;-</span> <span class="st">&quot;horse_bets&quot;</span></span>
-<span id="cb163-2"><a href="data-structures.html#cb163-2" aria-hidden="true" tabindex="-1"></a>df_poker<span class="sc">$</span>game <span class="ot">&lt;-</span> <span class="st">&quot;poker&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="data-structures.html#cb163-1" tabindex="-1"></a>df_horse_bets<span class="sc">$</span>game <span class="ot">&lt;-</span> <span class="st">&quot;horse_bets&quot;</span></span>
+<span id="cb163-2"><a href="data-structures.html#cb163-2" tabindex="-1"></a>df_poker<span class="sc">$</span>game <span class="ot">&lt;-</span> <span class="st">&quot;poker&quot;</span></span></code></pre></div>
 <ul>
 <li>Now, let’s bind them together again. (This overwrites the old data frame called <code>df_gambling</code>, which we created previously.)</li>
 </ul>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="data-structures.html#cb164-1" aria-hidden="true" tabindex="-1"></a>df_gambling <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_horse_bets, df_poker)</span>
-<span id="cb164-2"><a href="data-structures.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_gambling)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="data-structures.html#cb164-1" tabindex="-1"></a>df_gambling <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_horse_bets, df_poker)</span>
+<span id="cb164-2"><a href="data-structures.html#cb164-2" tabindex="-1"></a><span class="fu">head</span>(df_gambling)</span></code></pre></div>
 <pre class="r-output"><code>##   wday profit       game
 ## 1  Wed   98.5 horse_bets
 ## 2   Fr  -51.5 horse_bets
@@ -685,8 +591,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Now, we can do very cool things very easily.</li>
 <li>But we’ll need two packages for that: <code>dplyr</code>, and <code>magrittr</code>.</li>
 </ul>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data-structures.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the two packages</span></span>
-<span id="cb166-2"><a href="data-structures.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr) <span class="co"># for &#39;%&gt;%&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data-structures.html#cb166-1" tabindex="-1"></a><span class="co"># load the two packages</span></span>
+<span id="cb166-2"><a href="data-structures.html#cb166-2" tabindex="-1"></a><span class="fu">library</span>(magrittr) <span class="co"># for &#39;%&gt;%&#39;</span></span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;magrittr&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:purrr&#39;:
@@ -695,7 +601,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following object is masked from &#39;package:tidyr&#39;:
 ## 
 ##     extract</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-structures.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># for group_by() and summarize()</span></span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-structures.html#cb170-1" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># for group_by() and summarize()</span></span></code></pre></div>
 <ul>
 <li><p>Now, we can <em>‘aggregate’</em> data <em>(= “combine data from several measurements by replacing it by summary statistics”)</em>.</p></li>
 <li><p>Let’s compute the average profit by <code>game</code>.</p></li>
@@ -703,9 +609,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>In this case, <code>avg_profit</code> is the name of our column and its content is mean of the profit column.</p></li>
 <li><p>Keep in mind that <code>summarize()</code> function is applied at the group level.</p></li>
 </ul>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="data-structures.html#cb171-1" aria-hidden="true" tabindex="-1"></a>df_gambling <span class="sc">%&gt;%</span> </span>
-<span id="cb171-2"><a href="data-structures.html#cb171-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(game) <span class="sc">%&gt;%</span> </span>
-<span id="cb171-3"><a href="data-structures.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_profit =</span> <span class="fu">mean</span>(profit))</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="data-structures.html#cb171-1" tabindex="-1"></a>df_gambling <span class="sc">%&gt;%</span> </span>
+<span id="cb171-2"><a href="data-structures.html#cb171-2" tabindex="-1"></a>  <span class="fu">group_by</span>(game) <span class="sc">%&gt;%</span> </span>
+<span id="cb171-3"><a href="data-structures.html#cb171-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_profit =</span> <span class="fu">mean</span>(profit))</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 2 × 2
 ##   game       avg_profit
 ##   &lt;chr&gt;           &lt;dbl&gt;
@@ -714,9 +620,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>We can also aggregate over several grouping variables at the same time, like <code>game</code> and <code>wday</code>.</li>
 </ul>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="data-structures.html#cb173-1" aria-hidden="true" tabindex="-1"></a>df_gambling <span class="sc">%&gt;%</span> </span>
-<span id="cb173-2"><a href="data-structures.html#cb173-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(game, wday) <span class="sc">%&gt;%</span> </span>
-<span id="cb173-3"><a href="data-structures.html#cb173-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_profit =</span> <span class="fu">mean</span>(profit))</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="data-structures.html#cb173-1" tabindex="-1"></a>df_gambling <span class="sc">%&gt;%</span> </span>
+<span id="cb173-2"><a href="data-structures.html#cb173-2" tabindex="-1"></a>  <span class="fu">group_by</span>(game, wday) <span class="sc">%&gt;%</span> </span>
+<span id="cb173-3"><a href="data-structures.html#cb173-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_profit =</span> <span class="fu">mean</span>(profit))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;game&#39;. You can override using the
 ## `.groups` argument.</code></pre>
 <pre class="r-output"><code>## # A tibble: 4 × 3
@@ -730,9 +636,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>… and we can do so in various ways. Here we compute the proportion of wins.</li>
 </ul>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="data-structures.html#cb176-1" aria-hidden="true" tabindex="-1"></a>df_gambling <span class="sc">%&gt;%</span> </span>
-<span id="cb176-2"><a href="data-structures.html#cb176-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(game, wday) <span class="sc">%&gt;%</span> </span>
-<span id="cb176-3"><a href="data-structures.html#cb176-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_proportion_wins =</span> <span class="fu">mean</span>(profit<span class="sc">&gt;</span><span class="dv">0</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="data-structures.html#cb176-1" tabindex="-1"></a>df_gambling <span class="sc">%&gt;%</span> </span>
+<span id="cb176-2"><a href="data-structures.html#cb176-2" tabindex="-1"></a>  <span class="fu">group_by</span>(game, wday) <span class="sc">%&gt;%</span> </span>
+<span id="cb176-3"><a href="data-structures.html#cb176-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_proportion_wins =</span> <span class="fu">mean</span>(profit<span class="sc">&gt;</span><span class="dv">0</span>) )</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;game&#39;. You can override using the
 ## `.groups` argument.</code></pre>
 <pre class="r-output"><code>## # A tibble: 4 × 3
@@ -747,20 +653,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Now, we can also plot the results.</li>
 <li>But we’ll need to save the summary statistics first.</li>
 </ul>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="data-structures.html#cb179-1" aria-hidden="true" tabindex="-1"></a>profits_by_game <span class="ot">&lt;-</span> </span>
-<span id="cb179-2"><a href="data-structures.html#cb179-2" aria-hidden="true" tabindex="-1"></a>  df_gambling <span class="sc">%&gt;%</span> </span>
-<span id="cb179-3"><a href="data-structures.html#cb179-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(game) <span class="sc">%&gt;%</span> </span>
-<span id="cb179-4"><a href="data-structures.html#cb179-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">avg_profit =</span> <span class="fu">mean</span>(profit))</span></code></pre></div>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="data-structures.html#cb180-1" aria-hidden="true" tabindex="-1"></a>profits_by_game_and_wday <span class="ot">&lt;-</span> </span>
-<span id="cb180-2"><a href="data-structures.html#cb180-2" aria-hidden="true" tabindex="-1"></a>  df_gambling <span class="sc">%&gt;%</span> </span>
-<span id="cb180-3"><a href="data-structures.html#cb180-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(game, wday) <span class="sc">%&gt;%</span> </span>
-<span id="cb180-4"><a href="data-structures.html#cb180-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">avg_profit =</span> <span class="fu">mean</span>(profit))</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="data-structures.html#cb179-1" tabindex="-1"></a>profits_by_game <span class="ot">&lt;-</span> </span>
+<span id="cb179-2"><a href="data-structures.html#cb179-2" tabindex="-1"></a>  df_gambling <span class="sc">%&gt;%</span> </span>
+<span id="cb179-3"><a href="data-structures.html#cb179-3" tabindex="-1"></a>    <span class="fu">group_by</span>(game) <span class="sc">%&gt;%</span> </span>
+<span id="cb179-4"><a href="data-structures.html#cb179-4" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">avg_profit =</span> <span class="fu">mean</span>(profit))</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="data-structures.html#cb180-1" tabindex="-1"></a>profits_by_game_and_wday <span class="ot">&lt;-</span> </span>
+<span id="cb180-2"><a href="data-structures.html#cb180-2" tabindex="-1"></a>  df_gambling <span class="sc">%&gt;%</span> </span>
+<span id="cb180-3"><a href="data-structures.html#cb180-3" tabindex="-1"></a>    <span class="fu">group_by</span>(game, wday) <span class="sc">%&gt;%</span> </span>
+<span id="cb180-4"><a href="data-structures.html#cb180-4" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">avg_profit =</span> <span class="fu">mean</span>(profit))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;game&#39;. You can override using the
 ## `.groups` argument.</code></pre>
 <ul>
 <li>We will also need yet another package (for plotting): <code>ggplot2</code>.</li>
 </ul>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="data-structures.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="data-structures.html#cb182-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <ul>
 <li>After loading the package ggplot2, we can create plots with the function <code>ggplot()</code>. We will be going over the details in the upcoming chapters.
 <!--
@@ -770,22 +676,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 - Let's first try a plot with points.
 --></li>
 </ul>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="data-structures.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(profits_by_game, <span class="fu">aes</span>(game, avg_profit)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="data-structures.html#cb183-1" tabindex="-1"></a><span class="fu">ggplot</span>(profits_by_game, <span class="fu">aes</span>(game, avg_profit)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 <ul>
 <li>We may also want lines that connect the points.</li>
 </ul>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="data-structures.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb184-2"><a href="data-structures.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(profits_by_game_and_wday, <span class="fu">aes</span>(game, avg_profit, <span class="at">color =</span> wday, <span class="at">group =</span> wday)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="data-structures.html#cb184-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb184-2"><a href="data-structures.html#cb184-2" tabindex="-1"></a><span class="fu">ggplot</span>(profits_by_game_and_wday, <span class="fu">aes</span>(game, avg_profit, <span class="at">color =</span> wday, <span class="at">group =</span> wday)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
 <ul>
 <li>Or, we may want to have a bar graph.</li>
 </ul>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="data-structures.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb185-2"><a href="data-structures.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(profits_by_game, <span class="fu">aes</span>(game, avg_profit)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="data-structures.html#cb185-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb185-2"><a href="data-structures.html#cb185-2" tabindex="-1"></a><span class="fu">ggplot</span>(profits_by_game, <span class="fu">aes</span>(game, avg_profit)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
 <p><img src="main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="data-structures.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb186-2"><a href="data-structures.html#cb186-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(profits_by_game_and_wday, <span class="fu">aes</span>(game, avg_profit, <span class="at">fill =</span> wday)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="data-structures.html#cb186-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb186-2"><a href="data-structures.html#cb186-2" tabindex="-1"></a><span class="fu">ggplot</span>(profits_by_game_and_wday, <span class="fu">aes</span>(game, avg_profit, <span class="at">fill =</span> wday)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
 <p><img src="main_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
 <!-- 
 - dollar sign

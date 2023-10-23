@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Working with Data | Ling 411 - Fall 2022</title>
-  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <title>Chapter 4 Working with Data | Ling 411 - Fall 2023</title>
+  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Working with Data | Ling 411 - Fall 2022" />
+  <meta property="og:title" content="Chapter 4 Working with Data | Ling 411 - Fall 2023" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
+  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
   <meta name="github-repo" content="rstudio/ling_411" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Working with Data | Ling 411 - Fall 2022" />
+  <meta name="twitter:title" content="Chapter 4 Working with Data | Ling 411 - Fall 2023" />
   
-  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
+  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
   
 
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2022-12-26" />
+<meta name="date" content="2023-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="data-structures.html"/>
-<link rel="next" href="plotting-1.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,14 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.26/datatables.js"></script>
-<link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -127,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -141,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Ling 411 - Fall 2022</a></li>
+<li><a href="./">Ling 411 - Fall 2023</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
@@ -195,96 +191,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.2" data-path="working-with-data.html"><a href="working-with-data.html#pipes-1"><i class="fa fa-check"></i><b>4.6.2</b> Pipes</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="plotting-1.html"><a href="plotting-1.html"><i class="fa fa-check"></i><b>5</b> Plotting</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="plotting-1.html"><a href="plotting-1.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>5.1</b> The basics of ggplot2</a></li>
-<li class="chapter" data-level="5.2" data-path="plotting-1.html"><a href="plotting-1.html#the-basics-of-ggplot2-1"><i class="fa fa-check"></i><b>5.2</b> The basics of ggplot2</a></li>
-<li class="chapter" data-level="5.3" data-path="plotting-1.html"><a href="plotting-1.html#using-lines-in-plots"><i class="fa fa-check"></i><b>5.3</b> Using lines in plots</a></li>
-<li class="chapter" data-level="5.4" data-path="plotting-1.html"><a href="plotting-1.html#color-and-fill"><i class="fa fa-check"></i><b>5.4</b> Color and fill</a></li>
-<li class="chapter" data-level="5.5" data-path="plotting-1.html"><a href="plotting-1.html#grouping-and-facets"><i class="fa fa-check"></i><b>5.5</b> Grouping and facets</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions"><i class="fa fa-check"></i><b>6.1</b> Distributions</a></li>
-<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#centraltendency"><i class="fa fa-check"></i><b>6.2</b> Measures of central tendency</a>
-<ul>
-<li class="chapter" data-level="6.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean"><i class="fa fa-check"></i><b>6.2.1</b> The mean</a></li>
-<li class="chapter" data-level="6.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#calculating-the-mean-in-r"><i class="fa fa-check"></i><b>6.2.2</b> Calculating the mean in R</a></li>
-<li class="chapter" data-level="6.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#median"><i class="fa fa-check"></i><b>6.2.3</b> The median</a></li>
-<li class="chapter" data-level="6.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>6.2.4</b> Mean or median? What’s the difference?</a></li>
-<li class="chapter" data-level="6.2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#trimmedmean"><i class="fa fa-check"></i><b>6.2.5</b> Trimmed mean</a></li>
-<li class="chapter" data-level="6.2.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>6.2.6</b> Mode</a></li>
-<li class="chapter" data-level="6.2.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summary"><i class="fa fa-check"></i><b>6.2.7</b> Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#var"><i class="fa fa-check"></i><b>6.3</b> Measures of variability</a>
-<ul>
-<li class="chapter" data-level="6.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#range"><i class="fa fa-check"></i><b>6.3.1</b> Range</a></li>
-<li class="chapter" data-level="6.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quantiles-and-percentile"><i class="fa fa-check"></i><b>6.3.2</b> Quantiles and percentile</a></li>
-<li class="chapter" data-level="6.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#interquartile-range"><i class="fa fa-check"></i><b>6.3.3</b> Interquartile range</a></li>
-<li class="chapter" data-level="6.3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#aad"><i class="fa fa-check"></i><b>6.3.4</b> Mean absolute deviation</a></li>
-<li class="chapter" data-level="6.3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>6.3.5</b> Variance</a></li>
-<li class="chapter" data-level="6.3.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#sd"><i class="fa fa-check"></i><b>6.3.6</b> Standard deviation</a></li>
-<li class="chapter" data-level="6.3.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#which-measure-to-use"><i class="fa fa-check"></i><b>6.3.7</b> Which measure to use?</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summary"><i class="fa fa-check"></i><b>6.4</b> Getting an overall summary of a variable</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarising-a-vector"><i class="fa fa-check"></i><b>6.4.1</b> Summarising a vector</a></li>
-<li class="chapter" data-level="6.4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarising-a-data-frame"><i class="fa fa-check"></i><b>6.4.2</b> Summarising a data frame</a></li>
-</ul></li>
-<li class="chapter" data-level="6.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#correlations"><i class="fa fa-check"></i><b>6.5</b> Correlations</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html"><i class="fa fa-check"></i><b>7</b> Linear Regression with one Predictor</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#word-frequency-effects"><i class="fa fa-check"></i><b>7.1</b> Word Frequency Effects</a></li>
-<li class="chapter" data-level="7.2" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#simple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Simple Linear Regression</a></li>
-<li class="chapter" data-level="7.3" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#finding-the-regression-line"><i class="fa fa-check"></i><b>7.3</b> Finding the Regression Line</a></li>
-<li class="chapter" data-level="7.4" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#estimating-the-coefficients"><i class="fa fa-check"></i><b>7.4</b> Estimating the Coefficients</a></li>
-<li class="chapter" data-level="7.5" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#data-is-messy"><i class="fa fa-check"></i><b>7.5</b> Data is messy</a></li>
-<li class="chapter" data-level="7.6" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#simplified-frequency-data"><i class="fa fa-check"></i><b>7.6</b> Simplified Frequency Data</a></li>
-<li class="chapter" data-level="7.7" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#residuals"><i class="fa fa-check"></i><b>7.7</b> Residuals</a>
-<ul>
-<li class="chapter" data-level="7.7.1" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#sum-of-squared-errors"><i class="fa fa-check"></i><b>7.7.1</b> Sum of Squared Errors</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html"><i class="fa fa-check"></i><b>8</b> Linear Regression with Many Predictors</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#fitting-two-linear-models"><i class="fa fa-check"></i><b>8.1</b> Fitting two Linear Models</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html"><i class="fa fa-check"></i><b>9</b> Linear &amp; Non-Linear Transformations</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-transformations"><i class="fa fa-check"></i><b>9.1</b> Linear Transformations</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#centering"><i class="fa fa-check"></i><b>9.1.1</b> Centering</a></li>
-<li class="chapter" data-level="9.1.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#standardizing"><i class="fa fa-check"></i><b>9.1.2</b> Standardizing</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#scaling-and-standardizing-in-r"><i class="fa fa-check"></i><b>9.2</b> Scaling and Standardizing in R</a></li>
-<li class="chapter" data-level="9.3" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#non-linear-transformations"><i class="fa fa-check"></i><b>9.3</b> Non-linear Transformations</a>
-<ul>
-<li class="chapter" data-level="9.3.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#logarithms-log-transformation"><i class="fa fa-check"></i><b>9.3.1</b> Logarithms &amp; Log Transformation</a></li>
-<li class="chapter" data-level="9.3.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-regression-with-log-transformation"><i class="fa fa-check"></i><b>9.3.2</b> Linear Regression with Log Transformation</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="categorical-predictors.html"><a href="categorical-predictors.html"><i class="fa fa-check"></i><b>10</b> Categorical Predictors</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictor---continuous-outcome"><i class="fa fa-check"></i><b>10.1</b> Categorical Predictor - Continuous Outcome</a></li>
-<li class="chapter" data-level="10.2" data-path="categorical-predictors.html"><a href="categorical-predictors.html#taste-vs.-smell-words"><i class="fa fa-check"></i><b>10.2</b> Taste vs. Smell Words</a></li>
-<li class="chapter" data-level="10.3" data-path="categorical-predictors.html"><a href="categorical-predictors.html#contrasts-coding"><i class="fa fa-check"></i><b>10.3</b> Contrasts &amp; Coding</a>
-<ul>
-<li class="chapter" data-level="10.3.1" data-path="categorical-predictors.html"><a href="categorical-predictors.html#treatment-coding."><i class="fa fa-check"></i><b>10.3.1</b> Treatment Coding.</a></li>
-<li class="chapter" data-level="10.3.2" data-path="categorical-predictors.html"><a href="categorical-predictors.html#sum-coding"><i class="fa fa-check"></i><b>10.3.2</b> Sum Coding</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictors-with-more-than-2-levels"><i class="fa fa-check"></i><b>10.4</b> Categorical Predictors with more than 2 levels</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="effect-size-significance.html"><a href="effect-size-significance.html"><i class="fa fa-check"></i><b>11</b> Effect Size &amp; Significance</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#cohens-d"><i class="fa fa-check"></i><b>11.1</b> Cohen’s <em>d</em></a></li>
-<li class="chapter" data-level="11.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error"><i class="fa fa-check"></i><b>11.2</b> Standard Error</a></li>
-<li class="chapter" data-level="11.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#confidence-interval"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval</a></li>
-<li class="chapter" data-level="11.4" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error-of-the-difference-of-two-means"><i class="fa fa-check"></i><b>11.4</b> Standard Error of the difference of two means</a></li>
-<li class="chapter" data-level="11.5" data-path="effect-size-significance.html"><a href="effect-size-significance.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.5</b> Hypothesis Testing</a></li>
-<li class="chapter" data-level="11.6" data-path="effect-size-significance.html"><a href="effect-size-significance.html#calculating-the-t-score"><i class="fa fa-check"></i><b>11.6</b> Calculating the t-score</a></li>
-<li class="chapter" data-level="11.7" data-path="effect-size-significance.html"><a href="effect-size-significance.html#p-value"><i class="fa fa-check"></i><b>11.7</b> p-value</a></li>
-</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -297,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2022</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2023</a>
           </h1>
         </div>
 
@@ -311,52 +217,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="basic-dataframes" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Basic dataframes<a href="working-with-data.html#basic-dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R has some prebuilt functions to build dataframes. Let us see a simple example. Consider the following three vectors.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="working-with-data.html#cb187-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sam&quot;</span>, <span class="st">&quot;Paulina&quot;</span>, <span class="st">&quot;Cenk&quot;</span>)</span>
-<span id="cb187-2"><a href="working-with-data.html#cb187-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">34</span>, <span class="dv">19</span>)</span>
-<span id="cb187-3"><a href="working-with-data.html#cb187-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">179</span>, <span class="dv">167</span>, <span class="dv">173</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="working-with-data.html#cb187-1" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Sam&quot;</span>, <span class="st">&quot;Paulina&quot;</span>, <span class="st">&quot;Cenk&quot;</span>)</span>
+<span id="cb187-2"><a href="working-with-data.html#cb187-2" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">34</span>, <span class="dv">19</span>)</span>
+<span id="cb187-3"><a href="working-with-data.html#cb187-3" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">179</span>, <span class="dv">167</span>, <span class="dv">173</span>)</span></code></pre></div>
 <p>Let us turn the data stored in different vectors into a single dataframe so that we can visualize the data better.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="working-with-data.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let us first create the dataframe and assign it to the variable my_df</span></span>
-<span id="cb188-2"><a href="working-with-data.html#cb188-2" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(name,age,height)</span>
-<span id="cb188-3"><a href="working-with-data.html#cb188-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb188-4"><a href="working-with-data.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s print the dataframe now</span></span>
-<span id="cb188-5"><a href="working-with-data.html#cb188-5" aria-hidden="true" tabindex="-1"></a>my_df</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="working-with-data.html#cb188-1" tabindex="-1"></a><span class="co">#Let us first create the dataframe and assign it to the variable my_df</span></span>
+<span id="cb188-2"><a href="working-with-data.html#cb188-2" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(name,age,height)</span>
+<span id="cb188-3"><a href="working-with-data.html#cb188-3" tabindex="-1"></a></span>
+<span id="cb188-4"><a href="working-with-data.html#cb188-4" tabindex="-1"></a><span class="co">#Let&#39;s print the dataframe now</span></span>
+<span id="cb188-5"><a href="working-with-data.html#cb188-5" tabindex="-1"></a>my_df</span></code></pre></div>
 <pre class="r-output"><code>##      name age height
 ## 1     Sam  23    179
 ## 2 Paulina  34    167
 ## 3    Cenk  19    173</code></pre>
 <p>We can select a particular row, column, or cell on a dataframe by using indices. For this we can use the slicing method <code>my_dataframe[row,column]</code>.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="working-with-data.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let us select the entire first row </span></span>
-<span id="cb190-2"><a href="working-with-data.html#cb190-2" aria-hidden="true" tabindex="-1"></a>my_df[<span class="dv">1</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="working-with-data.html#cb190-1" tabindex="-1"></a><span class="co">#Let us select the entire first row </span></span>
+<span id="cb190-2"><a href="working-with-data.html#cb190-2" tabindex="-1"></a>my_df[<span class="dv">1</span>,]</span></code></pre></div>
 <pre class="r-output"><code>##   name age height
 ## 1  Sam  23    179</code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="working-with-data.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now, let us select the first column </span></span>
-<span id="cb192-2"><a href="working-with-data.html#cb192-2" aria-hidden="true" tabindex="-1"></a>my_df[,<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="working-with-data.html#cb192-1" tabindex="-1"></a><span class="co">#Now, let us select the first column </span></span>
+<span id="cb192-2"><a href="working-with-data.html#cb192-2" tabindex="-1"></a>my_df[,<span class="dv">1</span>]</span></code></pre></div>
 <pre class="r-output"><code>## [1] &quot;Sam&quot;     &quot;Paulina&quot; &quot;Cenk&quot;</code></pre>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="working-with-data.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now, let us find Paulina&#39;s height. For this, we need to get the 2nd row and 3rd column.</span></span>
-<span id="cb194-2"><a href="working-with-data.html#cb194-2" aria-hidden="true" tabindex="-1"></a>my_df[<span class="dv">2</span>,<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="working-with-data.html#cb194-1" tabindex="-1"></a><span class="co">#Now, let us find Paulina&#39;s height. For this, we need to get the 2nd row and 3rd column.</span></span>
+<span id="cb194-2"><a href="working-with-data.html#cb194-2" tabindex="-1"></a>my_df[<span class="dv">2</span>,<span class="dv">3</span>]</span></code></pre></div>
 <pre class="r-output"><code>## [1] 167</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="working-with-data.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now, let us find Paulina&#39;s age and height. For this, we need to get the 2nd row and 2nd and 3rd columns.</span></span>
-<span id="cb196-2"><a href="working-with-data.html#cb196-2" aria-hidden="true" tabindex="-1"></a>my_df[<span class="dv">2</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="working-with-data.html#cb196-1" tabindex="-1"></a><span class="co">#Now, let us find Paulina&#39;s age and height. For this, we need to get the 2nd row and 2nd and 3rd columns.</span></span>
+<span id="cb196-2"><a href="working-with-data.html#cb196-2" tabindex="-1"></a>my_df[<span class="dv">2</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre class="r-output"><code>##   age height
 ## 2  34    167</code></pre>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="working-with-data.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finally, let us get Sam and Paulina&#39;s ages.</span></span>
-<span id="cb198-2"><a href="working-with-data.html#cb198-2" aria-hidden="true" tabindex="-1"></a>my_df[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="working-with-data.html#cb198-1" tabindex="-1"></a><span class="co">#Finally, let us get Sam and Paulina&#39;s ages.</span></span>
+<span id="cb198-2"><a href="working-with-data.html#cb198-2" tabindex="-1"></a>my_df[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">2</span>]</span></code></pre></div>
 <pre class="r-output"><code>## [1] 23 34</code></pre>
 <p>You can also use the column name to select an entire column. Just add the dollar sign <code>$</code> after the df and then the column mane.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="working-with-data.html#cb200-1" aria-hidden="true" tabindex="-1"></a>my_df<span class="sc">$</span>age</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="working-with-data.html#cb200-1" tabindex="-1"></a>my_df<span class="sc">$</span>age</span></code></pre></div>
 <pre class="r-output"><code>## [1] 23 34 19</code></pre>
 </div>
 <div id="tibbles" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Tibbles<a href="working-with-data.html#tibbles" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The standard dataframes in R are good but not great. Often, we will deal with a lot of data we may not now which index to use to find the value we want. So, we need to be able to have some better ways to access data on our dataframes. We also want to be able to add new data or change some of the existing data easily. For this, we will use various packages in <strong>tidyverse</strong> for better dataframe management.</p>
 <p>Let us first load the tidyverse library, which will load the necessary packages for the functionality described in the following sections.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="working-with-data.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="working-with-data.html#cb202-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>Next, let us introduce tibbles. A <strong>tibble</strong> is a dataframe with some improved properties. We can turn a regular dataframe into a tibble by calling the <code>as_tibble()</code> function on our dataframe.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="working-with-data.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s turn my_df into a tibble</span></span>
-<span id="cb203-2"><a href="working-with-data.html#cb203-2" aria-hidden="true" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(my_df)</span>
-<span id="cb203-3"><a href="working-with-data.html#cb203-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb203-4"><a href="working-with-data.html#cb203-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s print my_tibble</span></span>
-<span id="cb203-5"><a href="working-with-data.html#cb203-5" aria-hidden="true" tabindex="-1"></a>my_tibble</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="working-with-data.html#cb203-1" tabindex="-1"></a><span class="co">#Let&#39;s turn my_df into a tibble</span></span>
+<span id="cb203-2"><a href="working-with-data.html#cb203-2" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(my_df)</span>
+<span id="cb203-3"><a href="working-with-data.html#cb203-3" tabindex="-1"></a></span>
+<span id="cb203-4"><a href="working-with-data.html#cb203-4" tabindex="-1"></a><span class="co">#Let&#39;s print my_tibble</span></span>
+<span id="cb203-5"><a href="working-with-data.html#cb203-5" tabindex="-1"></a>my_tibble</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 3 × 3
 ##   name      age height
 ##   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -372,8 +278,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.3.1</span> Reading data from a csv file<a href="working-with-data.html#reading-data-from-a-csv-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this course, we will use some of the data sets from Bodo Winter’s book. Go to <a href="https://osf.io/34mq9/">this website</a> to download the <code>materials</code> folder. Once your data has been downloaded, navigate to the <code>materials/data</code> folder and locate the <code>nettle_1999_climate.csv</code> file.</p>
 <p>To read in data from a csv to a tibble, we will use the <code>read_csv()</code> function. All we need to do is to provide the path to the csv file we want to read in. If your csv file is in the same folder as your script, you can simply give its name. Otherwise, you need to provide the relevant directory information as well in your path.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="working-with-data.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s read in the data</span></span>
-<span id="cb205-2"><a href="working-with-data.html#cb205-2" aria-hidden="true" tabindex="-1"></a>nettle <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/nettle_1999_climate.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="working-with-data.html#cb205-1" tabindex="-1"></a><span class="co">#Let&#39;s read in the data</span></span>
+<span id="cb205-2"><a href="working-with-data.html#cb205-2" tabindex="-1"></a>nettle <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/nettle_1999_climate.csv&#39;</span>)</span></code></pre></div>
 <pre><code>## Rows: 74 Columns: 5
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -382,8 +288,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="working-with-data.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s print the head of the data to see what it looks like</span></span>
-<span id="cb207-2"><a href="working-with-data.html#cb207-2" aria-hidden="true" tabindex="-1"></a>nettle</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="working-with-data.html#cb207-1" tabindex="-1"></a><span class="co">#Let&#39;s print the head of the data to see what it looks like</span></span>
+<span id="cb207-2"><a href="working-with-data.html#cb207-2" tabindex="-1"></a>nettle</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 74 × 5
 ##    Country      Population  Area   MGS Langs
 ##    &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -397,9 +303,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 Brazil             5.19  6.93  9.71   209
 ##  9 Burkina Faso       3.97  5.44  5.17    75
 ## 10 CAR                3.5   5.79  8.08    94
-## # … with 64 more rows</code></pre>
+## # ℹ 64 more rows</code></pre>
 <p>If you want to see the last 5 items, use the <code>tail()</code> function.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="working-with-data.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(nettle)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="working-with-data.html#cb209-1" tabindex="-1"></a><span class="fu">tail</span>(nettle)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 6 × 5
 ##   Country   Population  Area   MGS Langs
 ##   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -414,16 +320,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="reading-data-from-r-data-packages" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Reading data from R data packages<a href="working-with-data.html#reading-data-from-r-data-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R has various data packages you can install and use. Let us install the <code>languageR</code> which has some nice language datasets. Once you install the package and load the library, you can easily use the datasets as tibles. For all the details and available datasets in <code>languageR</code>, you can check the <a href="https://cran.r-project.org/web/packages/languageR/languageR.pdf">languageR documentation</a> on CRAN.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="working-with-data.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s load the library</span></span>
-<span id="cb211-2"><a href="working-with-data.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(languageR)</span>
-<span id="cb211-3"><a href="working-with-data.html#cb211-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-4"><a href="working-with-data.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="co">#We&#39;ll use the dativeSimplified dataset, which is documented. Let&#39;s see the documentation</span></span>
-<span id="cb211-5"><a href="working-with-data.html#cb211-5" aria-hidden="true" tabindex="-1"></a>?dativeSimplified</span></code></pre></div>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="working-with-data.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co">#let&#39;s use the dativeSimplified data from the languageR </span></span>
-<span id="cb212-2"><a href="working-with-data.html#cb212-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(dativeSimplified)</span>
-<span id="cb212-3"><a href="working-with-data.html#cb212-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb212-4"><a href="working-with-data.html#cb212-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s print the first few lines of the data</span></span>
-<span id="cb212-5"><a href="working-with-data.html#cb212-5" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="working-with-data.html#cb211-1" tabindex="-1"></a><span class="co">#Let&#39;s load the library</span></span>
+<span id="cb211-2"><a href="working-with-data.html#cb211-2" tabindex="-1"></a><span class="fu">library</span>(languageR)</span>
+<span id="cb211-3"><a href="working-with-data.html#cb211-3" tabindex="-1"></a></span>
+<span id="cb211-4"><a href="working-with-data.html#cb211-4" tabindex="-1"></a><span class="co">#We&#39;ll use the dativeSimplified dataset, which is documented. Let&#39;s see the documentation</span></span>
+<span id="cb211-5"><a href="working-with-data.html#cb211-5" tabindex="-1"></a>?dativeSimplified</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="working-with-data.html#cb212-1" tabindex="-1"></a><span class="co">#let&#39;s use the dativeSimplified data from the languageR </span></span>
+<span id="cb212-2"><a href="working-with-data.html#cb212-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(dativeSimplified)</span>
+<span id="cb212-3"><a href="working-with-data.html#cb212-3" tabindex="-1"></a></span>
+<span id="cb212-4"><a href="working-with-data.html#cb212-4" tabindex="-1"></a><span class="co">#Let&#39;s print the first few lines of the data</span></span>
+<span id="cb212-5"><a href="working-with-data.html#cb212-5" tabindex="-1"></a>data</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 903 × 5
 ##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
@@ -437,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 NP               bring animate      inanimate              0    
 ##  9 NP               teach animate      inanimate              2.40 
 ## 10 NP               give  animate      inanimate              0.693
-## # … with 893 more rows</code></pre>
+## # ℹ 893 more rows</code></pre>
 <p><strong>Dative Alternation</strong> is the phenomenon in English where a recipient of a ditransitive verb can occur as an NP or a PP.</p>
 <ol style="list-style-type: decimal">
 <li>Alex gave Sam a book.</li>
@@ -445,17 +351,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Both of these constructions are grammatical and they mean essentially the same thing. The question is what factors are involved in picking one of the forms over the other. Bresnan et al. (2007) used this data to determine the relevant factors.
 Let us randomly select 10 examples and see what they look like. For that, we can use the folloing code.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="working-with-data.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store all possible row indices in a vector</span></span>
-<span id="cb214-2"><a href="working-with-data.html#cb214-2" aria-hidden="true" tabindex="-1"></a>indices_all <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data)</span>
-<span id="cb214-3"><a href="working-with-data.html#cb214-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb214-4"><a href="working-with-data.html#cb214-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set the random seed to make the results reproducible</span></span>
-<span id="cb214-5"><a href="working-with-data.html#cb214-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb214-6"><a href="working-with-data.html#cb214-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb214-7"><a href="working-with-data.html#cb214-7" aria-hidden="true" tabindex="-1"></a><span class="co"># choose 10 such numbers at random without replacement</span></span>
-<span id="cb214-8"><a href="working-with-data.html#cb214-8" aria-hidden="true" tabindex="-1"></a>indices_random <span class="ot">&lt;-</span> <span class="fu">sample</span>(indices_all, <span class="at">size =</span> <span class="dv">10</span>)</span>
-<span id="cb214-9"><a href="working-with-data.html#cb214-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb214-10"><a href="working-with-data.html#cb214-10" aria-hidden="true" tabindex="-1"></a><span class="co"># use them to index the data frame to get the corresponding rows</span></span>
-<span id="cb214-11"><a href="working-with-data.html#cb214-11" aria-hidden="true" tabindex="-1"></a>data[indices_random,]</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="working-with-data.html#cb214-1" tabindex="-1"></a><span class="co"># store all possible row indices in a vector</span></span>
+<span id="cb214-2"><a href="working-with-data.html#cb214-2" tabindex="-1"></a>indices_all <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data)</span>
+<span id="cb214-3"><a href="working-with-data.html#cb214-3" tabindex="-1"></a></span>
+<span id="cb214-4"><a href="working-with-data.html#cb214-4" tabindex="-1"></a><span class="co"># set the random seed to make the results reproducible</span></span>
+<span id="cb214-5"><a href="working-with-data.html#cb214-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb214-6"><a href="working-with-data.html#cb214-6" tabindex="-1"></a></span>
+<span id="cb214-7"><a href="working-with-data.html#cb214-7" tabindex="-1"></a><span class="co"># choose 10 such numbers at random without replacement</span></span>
+<span id="cb214-8"><a href="working-with-data.html#cb214-8" tabindex="-1"></a>indices_random <span class="ot">&lt;-</span> <span class="fu">sample</span>(indices_all, <span class="at">size =</span> <span class="dv">10</span>)</span>
+<span id="cb214-9"><a href="working-with-data.html#cb214-9" tabindex="-1"></a></span>
+<span id="cb214-10"><a href="working-with-data.html#cb214-10" tabindex="-1"></a><span class="co"># use them to index the data frame to get the corresponding rows</span></span>
+<span id="cb214-11"><a href="working-with-data.html#cb214-11" tabindex="-1"></a>data[indices_random,]</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 10 × 5
 ##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
@@ -474,17 +380,17 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 <div id="summarizing-data" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Summarizing Data<a href="working-with-data.html#summarizing-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Looking at the summary statistics of your data is always a good first step. Let’s take a look at the percentage of NP realizations of the recipient by animacy of the theme.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="working-with-data.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, let&#39;s take a look at the key dependet variable (NP or PP)</span></span>
-<span id="cb216-2"><a href="working-with-data.html#cb216-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb216-3"><a href="working-with-data.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(data<span class="sc">$</span>RealizationOfRec)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="working-with-data.html#cb216-1" tabindex="-1"></a><span class="co"># First, let&#39;s take a look at the key dependet variable (NP or PP)</span></span>
+<span id="cb216-2"><a href="working-with-data.html#cb216-2" tabindex="-1"></a></span>
+<span id="cb216-3"><a href="working-with-data.html#cb216-3" tabindex="-1"></a><span class="fu">unique</span>(data<span class="sc">$</span>RealizationOfRec)</span></code></pre></div>
 <pre class="r-output"><code>## [1] NP PP
 ## Levels: NP PP</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="working-with-data.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now, let&#39;s compute the percentages (perc_NP) and the number of observations in each subset</span></span>
-<span id="cb218-2"><a href="working-with-data.html#cb218-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">%&gt;%</span> </span>
-<span id="cb218-3"><a href="working-with-data.html#cb218-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(AnimacyOfRec) <span class="sc">%&gt;%</span> </span>
-<span id="cb218-4"><a href="working-with-data.html#cb218-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>), </span>
-<span id="cb218-5"><a href="working-with-data.html#cb218-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">N =</span> <span class="fu">n</span>()</span>
-<span id="cb218-6"><a href="working-with-data.html#cb218-6" aria-hidden="true" tabindex="-1"></a>                  )</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="working-with-data.html#cb218-1" tabindex="-1"></a><span class="co"># now, let&#39;s compute the percentages (perc_NP) and the number of observations in each subset</span></span>
+<span id="cb218-2"><a href="working-with-data.html#cb218-2" tabindex="-1"></a>data<span class="sc">%&gt;%</span> </span>
+<span id="cb218-3"><a href="working-with-data.html#cb218-3" tabindex="-1"></a>  <span class="fu">group_by</span>(AnimacyOfRec) <span class="sc">%&gt;%</span> </span>
+<span id="cb218-4"><a href="working-with-data.html#cb218-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>), </span>
+<span id="cb218-5"><a href="working-with-data.html#cb218-5" tabindex="-1"></a>                   <span class="at">N =</span> <span class="fu">n</span>()</span>
+<span id="cb218-6"><a href="working-with-data.html#cb218-6" tabindex="-1"></a>                  )</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 2 × 3
 ##   AnimacyOfRec perc_NP     N
 ##   &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;
@@ -500,7 +406,7 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 <h2><span class="header-section-number">4.5</span> Working with dplyr<a href="working-with-data.html#working-with-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>One of the packages in the <code>tidyverse</code> is <code>dplyr</code>. We use it to do various manipulations on the data frames. Check out the <a href="https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf">dplyr cheatsheet</a> for further details.</p>
 <p>The <code>arrange</code> function will arrange your data in an ascending order.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="working-with-data.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="working-with-data.html#cb220-1" tabindex="-1"></a><span class="fu">arrange</span>(data)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 903 × 5
 ##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
@@ -514,9 +420,9 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 ##  8 NP               bring animate      inanimate              0    
 ##  9 NP               teach animate      inanimate              2.40 
 ## 10 NP               give  animate      inanimate              0.693
-## # … with 893 more rows</code></pre>
+## # ℹ 893 more rows</code></pre>
 <p>You can arrange the data based on a particular column. In that case, you need to provide the column name.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="working-with-data.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(data,LengthOfTheme)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="working-with-data.html#cb222-1" tabindex="-1"></a><span class="fu">arrange</span>(data,LengthOfTheme)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 903 × 5
 ##    RealizationOfRec Verb   AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ##    &lt;fct&gt;            &lt;fct&gt;  &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
@@ -530,8 +436,8 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 ##  8 NP               charge animate      inanimate                  0
 ##  9 NP               give   animate      inanimate                  0
 ## 10 NP               pay    animate      inanimate                  0
-## # … with 893 more rows</code></pre>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="working-with-data.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(data[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,], LengthOfTheme)</span></code></pre></div>
+## # ℹ 893 more rows</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="working-with-data.html#cb224-1" tabindex="-1"></a><span class="fu">arrange</span>(data[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,], LengthOfTheme)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 10 × 5
 ##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
@@ -546,7 +452,7 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 ##  9 NP               give  animate      inanimate              2.56 
 ## 10 NP               feed  animate      inanimate              2.64</code></pre>
 <p>If you want to arrange things in a descending order, then you need to put the <code>desc()</code> function around the relevant column.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="working-with-data.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(data, <span class="fu">desc</span>(LengthOfTheme))</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="working-with-data.html#cb226-1" tabindex="-1"></a><span class="fu">arrange</span>(data, <span class="fu">desc</span>(LengthOfTheme))</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 903 × 5
 ##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
@@ -560,13 +466,13 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 ##  8 NP               give  animate      inanimate               3.40
 ##  9 NP               send  animate      inanimate               3.40
 ## 10 NP               give  animate      inanimate               3.37
-## # … with 893 more rows</code></pre>
+## # ℹ 893 more rows</code></pre>
 <p>Another useful function is the <code>select()</code> function which allows you to create new dataframes using only columns you want.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="working-with-data.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create the new dataframe using select</span></span>
-<span id="cb228-2"><a href="working-with-data.html#cb228-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">select</span>(data, Verb, LengthOfTheme)</span>
-<span id="cb228-3"><a href="working-with-data.html#cb228-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb228-4"><a href="working-with-data.html#cb228-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print the head</span></span>
-<span id="cb228-5"><a href="working-with-data.html#cb228-5" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="working-with-data.html#cb228-1" tabindex="-1"></a><span class="co">#Create the new dataframe using select</span></span>
+<span id="cb228-2"><a href="working-with-data.html#cb228-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">select</span>(data, Verb, LengthOfTheme)</span>
+<span id="cb228-3"><a href="working-with-data.html#cb228-3" tabindex="-1"></a></span>
+<span id="cb228-4"><a href="working-with-data.html#cb228-4" tabindex="-1"></a><span class="co">#print the head</span></span>
+<span id="cb228-5"><a href="working-with-data.html#cb228-5" tabindex="-1"></a>df</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 903 × 2
 ##    Verb  LengthOfTheme
 ##    &lt;fct&gt;         &lt;dbl&gt;
@@ -580,9 +486,9 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 ##  8 bring         0    
 ##  9 teach         2.40 
 ## 10 give          0.693
-## # … with 893 more rows</code></pre>
+## # ℹ 893 more rows</code></pre>
 <p>Another useful function is <code>sample_n()</code> which randomly samples some number of datapoints.</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="working-with-data.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_n</span>(data, <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="working-with-data.html#cb230-1" tabindex="-1"></a><span class="fu">sample_n</span>(data, <span class="dv">5</span>)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 5 × 5
 ##   RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ##   &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
@@ -592,8 +498,8 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 ## 4 PP               pay   animate      inanimate              1.39 
 ## 5 PP               offer inanimate    inanimate              1.95</code></pre>
 <p>Two other useful functions are <code>group_by()</code> and <code>ungroup()</code>.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="working-with-data.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s group a small portion of the data by the realization of recipient</span></span>
-<span id="cb232-2"><a href="working-with-data.html#cb232-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], RealizationOfRec)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="working-with-data.html#cb232-1" tabindex="-1"></a><span class="co">#Let&#39;s group a small portion of the data by the realization of recipient</span></span>
+<span id="cb232-2"><a href="working-with-data.html#cb232-2" tabindex="-1"></a><span class="fu">group_by</span>(data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], RealizationOfRec)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 903 × 5
 ## # Groups:   RealizationOfRec [2]
 ##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
@@ -608,9 +514,9 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 ##  8 NP               bring animate      inanimate              0    
 ##  9 NP               teach animate      inanimate              2.40 
 ## 10 NP               give  animate      inanimate              0.693
-## # … with 893 more rows</code></pre>
+## # ℹ 893 more rows</code></pre>
 <p>Now let us group the data by verbs.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="working-with-data.html#cb234-1" aria-hidden="true" tabindex="-1"></a>data_grouped_by_verb <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data,Verb)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="working-with-data.html#cb234-1" tabindex="-1"></a>data_grouped_by_verb <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data,Verb)</span></code></pre></div>
 <p>An important but complex function is the <code>summarize()</code> function.</p>
 <ol style="list-style-type: decimal">
 <li>It divides a grouped data frame into subsets, with each subset corresponding to one value of the grouping variable (or a combination of values for several grouping variables).</li>
@@ -618,12 +524,12 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 <li>It creates a new data frame and puts everything together. The first column of this new data frame consists of levels of our grouping variable. In the following columns, the summarize() function prints the results of the computations we have specified.</li>
 </ol>
 <p>Try to guess the result of the following code. What will you see as an output? What will be the name of the columns?</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="working-with-data.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarize several variables</span></span>
-<span id="cb235-2"><a href="working-with-data.html#cb235-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(data_grouped_by_verb, </span>
-<span id="cb235-3"><a href="working-with-data.html#cb235-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">prop_animate_rec =</span> <span class="fu">mean</span>( AnimacyOfRec <span class="sc">==</span> <span class="st">&quot;animate&quot;</span> ),</span>
-<span id="cb235-4"><a href="working-with-data.html#cb235-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">prop_animate_theme =</span> <span class="fu">mean</span>( AnimacyOfTheme <span class="sc">==</span> <span class="st">&quot;animate&quot;</span> ),</span>
-<span id="cb235-5"><a href="working-with-data.html#cb235-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">N =</span> <span class="fu">n</span>()</span>
-<span id="cb235-6"><a href="working-with-data.html#cb235-6" aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="working-with-data.html#cb235-1" tabindex="-1"></a><span class="co"># summarize several variables</span></span>
+<span id="cb235-2"><a href="working-with-data.html#cb235-2" tabindex="-1"></a><span class="fu">summarize</span>(data_grouped_by_verb, </span>
+<span id="cb235-3"><a href="working-with-data.html#cb235-3" tabindex="-1"></a>          <span class="at">prop_animate_rec =</span> <span class="fu">mean</span>( AnimacyOfRec <span class="sc">==</span> <span class="st">&quot;animate&quot;</span> ),</span>
+<span id="cb235-4"><a href="working-with-data.html#cb235-4" tabindex="-1"></a>          <span class="at">prop_animate_theme =</span> <span class="fu">mean</span>( AnimacyOfTheme <span class="sc">==</span> <span class="st">&quot;animate&quot;</span> ),</span>
+<span id="cb235-5"><a href="working-with-data.html#cb235-5" tabindex="-1"></a>          <span class="at">N =</span> <span class="fu">n</span>()</span>
+<span id="cb235-6"><a href="working-with-data.html#cb235-6" tabindex="-1"></a>          )</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 65 × 4
 ##    Verb     prop_animate_rec prop_animate_theme     N
 ##    &lt;fct&gt;               &lt;dbl&gt;              &lt;dbl&gt; &lt;int&gt;
@@ -637,14 +543,14 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 ##  8 bet                 1                      0     1
 ##  9 bring               0.818                  0    11
 ## 10 carry               1                      0     1
-## # … with 55 more rows</code></pre>
+## # ℹ 55 more rows</code></pre>
 <p>Try to interpret the output of the following code.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="working-with-data.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the averages</span></span>
-<span id="cb237-2"><a href="working-with-data.html#cb237-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(data_grouped_by_verb, </span>
-<span id="cb237-3"><a href="working-with-data.html#cb237-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">prop_anim =</span> <span class="fu">mean</span>(AnimacyOfRec <span class="sc">==</span> <span class="st">&quot;animate&quot;</span>),</span>
-<span id="cb237-4"><a href="working-with-data.html#cb237-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">prop_inanim =</span> <span class="dv">1</span><span class="sc">-</span>prop_anim,</span>
-<span id="cb237-5"><a href="working-with-data.html#cb237-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">prop_v_recip_anim =</span> <span class="fu">ifelse</span>(prop_anim <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low&quot;</span>)</span>
-<span id="cb237-6"><a href="working-with-data.html#cb237-6" aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="working-with-data.html#cb237-1" tabindex="-1"></a><span class="co"># compute the averages</span></span>
+<span id="cb237-2"><a href="working-with-data.html#cb237-2" tabindex="-1"></a><span class="fu">summarize</span>(data_grouped_by_verb, </span>
+<span id="cb237-3"><a href="working-with-data.html#cb237-3" tabindex="-1"></a>          <span class="at">prop_anim =</span> <span class="fu">mean</span>(AnimacyOfRec <span class="sc">==</span> <span class="st">&quot;animate&quot;</span>),</span>
+<span id="cb237-4"><a href="working-with-data.html#cb237-4" tabindex="-1"></a>          <span class="at">prop_inanim =</span> <span class="dv">1</span><span class="sc">-</span>prop_anim,</span>
+<span id="cb237-5"><a href="working-with-data.html#cb237-5" tabindex="-1"></a>          <span class="at">prop_v_recip_anim =</span> <span class="fu">ifelse</span>(prop_anim <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low&quot;</span>)</span>
+<span id="cb237-6"><a href="working-with-data.html#cb237-6" tabindex="-1"></a>          )</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 65 × 4
 ##    Verb     prop_anim prop_inanim prop_v_recip_anim
 ##    &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;            
@@ -658,47 +564,48 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 ##  8 bet          1          0      high             
 ##  9 bring        0.818      0.182  high             
 ## 10 carry        1          0      high             
-## # … with 55 more rows</code></pre>
+## # ℹ 55 more rows</code></pre>
 <p>The last line uses the function ifelse(condition, value1, value2), which, for each element of the condition vector returns the corresponding element of the value1 vector if the condition is true at that element, or an element of vector2 otherwise.</p>
 <p>mutate() proceeds similarly to summarize() in dividing a grouped dataset into subsets, but instead of computing one or several values for each subset, it creates or modifies a column.</p>
 <p>The main difference between mutate() and summarize() is the output. While mutate() modifies the original and returns a modified version of it, summarize() creates a brand new data frame with one row for every combination of the the grouping variable values.</p>
 <p>A very simple application of mutate() is to simply create a new column. In this case, we don’t even need to group.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="working-with-data.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># these two lines performs exactly the same action, </span></span>
-<span id="cb239-2"><a href="working-with-data.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="co"># except the latter stores the result in df </span></span>
-<span id="cb239-3"><a href="working-with-data.html#cb239-3" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>is_realization_NP <span class="ot">&lt;-</span> (data<span class="sc">$</span>RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span> ) </span>
-<span id="cb239-4"><a href="working-with-data.html#cb239-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(data, <span class="at">is_realization_NP =</span> (RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span>
-<span id="cb239-5"><a href="working-with-data.html#cb239-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb239-6"><a href="working-with-data.html#cb239-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="working-with-data.html#cb239-1" tabindex="-1"></a><span class="co"># these two lines performs exactly the same action, </span></span>
+<span id="cb239-2"><a href="working-with-data.html#cb239-2" tabindex="-1"></a><span class="co"># except the latter stores the result in df </span></span>
+<span id="cb239-3"><a href="working-with-data.html#cb239-3" tabindex="-1"></a>data<span class="sc">$</span>is_realization_NP <span class="ot">&lt;-</span> (data<span class="sc">$</span>RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span> ) </span>
+<span id="cb239-4"><a href="working-with-data.html#cb239-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(data, <span class="at">is_realization_NP =</span> (RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span>
+<span id="cb239-5"><a href="working-with-data.html#cb239-5" tabindex="-1"></a></span>
+<span id="cb239-6"><a href="working-with-data.html#cb239-6" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">2</span>)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 2 × 6
-##   RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme is_realizat…¹
-##   &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt; &lt;lgl&gt;        
-## 1 NP               feed  animate      inanimate               2.64 TRUE         
-## 2 NP               give  animate      inanimate               1.10 TRUE         
-## # … with abbreviated variable name ¹​is_realization_NP</code></pre>
+##   RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
+##   &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
+## 1 NP               feed  animate      inanimate               2.64
+## 2 NP               give  animate      inanimate               1.10
+## # ℹ 1 more variable: is_realization_NP &lt;lgl&gt;</code></pre>
 <p>One final useful function is the <code>filter()</code> function. It allows you to find rows by particular values of a column.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="working-with-data.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(data, is_realization_NP <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="working-with-data.html#cb241-1" tabindex="-1"></a><span class="fu">filter</span>(data, is_realization_NP <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 348 × 6
-##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme is_realiza…¹
-##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt; &lt;lgl&gt;       
-##  1 PP               give  animate      inanimate              0     FALSE       
-##  2 PP               give  inanimate    inanimate              1.79  FALSE       
-##  3 PP               give  animate      inanimate              1.39  FALSE       
-##  4 PP               give  animate      inanimate              1.39  FALSE       
-##  5 PP               sell  animate      inanimate              1.79  FALSE       
-##  6 PP               give  inanimate    inanimate              0.693 FALSE       
-##  7 PP               give  inanimate    inanimate              0.693 FALSE       
-##  8 PP               give  animate      inanimate              1.39  FALSE       
-##  9 PP               send  animate      inanimate              2.56  FALSE       
-## 10 PP               offer animate      inanimate              1.95  FALSE       
-## # … with 338 more rows, and abbreviated variable name ¹​is_realization_NP</code></pre>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="working-with-data.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(data, LengthOfTheme <span class="sc">&gt;</span> <span class="fl">3.5</span>)</span></code></pre></div>
+##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
+##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
+##  1 PP               give  animate      inanimate              0    
+##  2 PP               give  inanimate    inanimate              1.79 
+##  3 PP               give  animate      inanimate              1.39 
+##  4 PP               give  animate      inanimate              1.39 
+##  5 PP               sell  animate      inanimate              1.79 
+##  6 PP               give  inanimate    inanimate              0.693
+##  7 PP               give  inanimate    inanimate              0.693
+##  8 PP               give  animate      inanimate              1.39 
+##  9 PP               send  animate      inanimate              2.56 
+## 10 PP               offer animate      inanimate              1.95 
+## # ℹ 338 more rows
+## # ℹ 1 more variable: is_realization_NP &lt;lgl&gt;</code></pre>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="working-with-data.html#cb243-1" tabindex="-1"></a><span class="fu">filter</span>(data, LengthOfTheme <span class="sc">&gt;</span> <span class="fl">3.5</span>)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 3 × 6
-##   RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme is_realizat…¹
-##   &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt; &lt;lgl&gt;        
-## 1 NP               send  animate      inanimate               3.56 TRUE         
-## 2 NP               give  animate      inanimate               3.53 TRUE         
-## 3 NP               give  inanimate    inanimate               3.64 TRUE         
-## # … with abbreviated variable name ¹​is_realization_NP</code></pre>
+##   RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
+##   &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
+## 1 NP               send  animate      inanimate               3.56
+## 2 NP               give  animate      inanimate               3.53
+## 3 NP               give  inanimate    inanimate               3.64
+## # ℹ 1 more variable: is_realization_NP &lt;lgl&gt;</code></pre>
 </div>
 <div id="pipes" class="section level2 hasAnchor" number="4.6">
 <h2><span class="header-section-number">4.6</span> Pipes<a href="working-with-data.html#pipes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -707,13 +614,13 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 <ul>
 <li>The code below is really hard to read, even harder to maintain, and <code>dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme</code> is a terribly long variable name.</li>
 </ul>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="working-with-data.html#cb245-1" aria-hidden="true" tabindex="-1"></a>dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme <span class="ot">&lt;-</span></span>
-<span id="cb245-2"><a href="working-with-data.html#cb245-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme)</span>
-<span id="cb245-3"><a href="working-with-data.html#cb245-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">summarize</span>(dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme, </span>
-<span id="cb245-4"><a href="working-with-data.html#cb245-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="working-with-data.html#cb245-1" tabindex="-1"></a>dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme <span class="ot">&lt;-</span></span>
+<span id="cb245-2"><a href="working-with-data.html#cb245-2" tabindex="-1"></a>      <span class="fu">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme)</span>
+<span id="cb245-3"><a href="working-with-data.html#cb245-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">summarize</span>(dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme, </span>
+<span id="cb245-4"><a href="working-with-data.html#cb245-4" tabindex="-1"></a>                  <span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;AnimacyOfRec&#39;. You can override using the
 ## `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="working-with-data.html#cb247-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="working-with-data.html#cb247-1" tabindex="-1"></a>df</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 4 × 3
 ## # Groups:   AnimacyOfRec [2]
 ##   AnimacyOfRec AnimacyOfTheme perc_NP
@@ -725,11 +632,11 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 <ul>
 <li>This alternative is also quite bad. To read this code, you need to know which bracket matches which other bracket.</li>
 </ul>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="working-with-data.html#cb249-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">summarize</span>(<span class="fu">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), </span>
-<span id="cb249-2"><a href="working-with-data.html#cb249-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="working-with-data.html#cb249-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">summarize</span>(<span class="fu">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), </span>
+<span id="cb249-2"><a href="working-with-data.html#cb249-2" tabindex="-1"></a>                  <span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;AnimacyOfRec&#39;. You can override using the
 ## `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="working-with-data.html#cb251-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="working-with-data.html#cb251-1" tabindex="-1"></a>df</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 4 × 3
 ## # Groups:   AnimacyOfRec [2]
 ##   AnimacyOfRec AnimacyOfTheme perc_NP
@@ -741,13 +648,13 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 <ul>
 <li>One nested function call may be OK. But try to read this.</li>
 </ul>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="working-with-data.html#cb253-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="fu">group_by</span>(<span class="fu">mutate</span>(dativeSimplified, <span class="at">long_theme =</span> <span class="fu">ifelse</span>(LengthOfTheme <span class="sc">&gt;</span> <span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ), long_theme),</span>
-<span id="cb253-2"><a href="working-with-data.html#cb253-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>)</span>
-<span id="cb253-3"><a href="working-with-data.html#cb253-3" aria-hidden="true" tabindex="-1"></a>              )</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="working-with-data.html#cb253-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="fu">group_by</span>(<span class="fu">mutate</span>(dativeSimplified, <span class="at">long_theme =</span> <span class="fu">ifelse</span>(LengthOfTheme <span class="sc">&gt;</span> <span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ), long_theme),</span>
+<span id="cb253-2"><a href="working-with-data.html#cb253-2" tabindex="-1"></a>              <span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>)</span>
+<span id="cb253-3"><a href="working-with-data.html#cb253-3" tabindex="-1"></a>              )</span></code></pre></div>
 <ul>
 <li>Or consider this expression (<code>sqrt</code> is the square root.)</li>
 </ul>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="working-with-data.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">divide_by</span>(<span class="fu">sum</span>(<span class="fu">divide_by</span>(<span class="dv">2</span>,<span class="dv">3</span>), <span class="fu">multiply_by</span>(<span class="dv">2</span>,<span class="dv">3</span>)), <span class="fu">sum</span>(<span class="dv">3</span>,<span class="dv">4</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="working-with-data.html#cb254-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">divide_by</span>(<span class="fu">sum</span>(<span class="fu">divide_by</span>(<span class="dv">2</span>,<span class="dv">3</span>), <span class="fu">multiply_by</span>(<span class="dv">2</span>,<span class="dv">3</span>)), <span class="fu">sum</span>(<span class="dv">3</span>,<span class="dv">4</span>)))</span></code></pre></div>
 <pre class="r-output"><code>## [1] 0.9759001</code></pre>
 <ul>
 <li>Luckily, there a better way to write this expression.</li>
@@ -761,29 +668,29 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 <li>The packages <strong>dplyr</strong> and <strong>magrittr</strong> provide a limited version of such functionality, and we’ll need to use <strong>pipe</strong> operators (<code>%&gt;%</code> and <code>%&lt;&gt;%</code>) to link expressions with an ‘anaphoric dependency’.</li>
 <li>Whenever you see <code>%&gt;%</code>, you can think about it as the following: “Take whatever is on the left side, and use it in the function that is on the right side.”</li>
 </ul>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="working-with-data.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb256-2"><a href="working-with-data.html#cb256-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb256-3"><a href="working-with-data.html#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Typical notation. Read as &quot;Divide 10 by 2.&quot;</span></span>
-<span id="cb256-4"><a href="working-with-data.html#cb256-4" aria-hidden="true" tabindex="-1"></a><span class="fu">divide_by</span>(<span class="dv">10</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="working-with-data.html#cb256-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb256-2"><a href="working-with-data.html#cb256-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb256-3"><a href="working-with-data.html#cb256-3" tabindex="-1"></a><span class="co"># Typical notation. Read as &quot;Divide 10 by 2.&quot;</span></span>
+<span id="cb256-4"><a href="working-with-data.html#cb256-4" tabindex="-1"></a><span class="fu">divide_by</span>(<span class="dv">10</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="working-with-data.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalent pipe notation. Read as &quot;Take 10, and divide it by 2.&quot;</span></span>
-<span id="cb258-2"><a href="working-with-data.html#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">%&gt;%</span> <span class="fu">divide_by</span>(., <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="working-with-data.html#cb258-1" tabindex="-1"></a><span class="co"># Equivalent pipe notation. Read as &quot;Take 10, and divide it by 2.&quot;</span></span>
+<span id="cb258-2"><a href="working-with-data.html#cb258-2" tabindex="-1"></a><span class="dv">10</span> <span class="sc">%&gt;%</span> <span class="fu">divide_by</span>(., <span class="dv">2</span>)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="working-with-data.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalent pipe notation. Read as &quot;Take 2, and divide 10 by it.&quot;</span></span>
-<span id="cb260-2"><a href="working-with-data.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%&gt;%</span> <span class="fu">divide_by</span>(<span class="dv">10</span>, .)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="working-with-data.html#cb260-1" tabindex="-1"></a><span class="co"># Equivalent pipe notation. Read as &quot;Take 2, and divide 10 by it.&quot;</span></span>
+<span id="cb260-2"><a href="working-with-data.html#cb260-2" tabindex="-1"></a><span class="dv">2</span> <span class="sc">%&gt;%</span> <span class="fu">divide_by</span>(<span class="dv">10</span>, .)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 5</code></pre>
 <ul>
 <li>If the dot operator occurs in the first argument slot, it can be omitted. (R has pro-drop.)</li>
 </ul>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="working-with-data.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pipe notation with omission of &#39;.&#39;</span></span>
-<span id="cb262-2"><a href="working-with-data.html#cb262-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">%&gt;%</span> <span class="fu">divide_by</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="working-with-data.html#cb262-1" tabindex="-1"></a><span class="co"># pipe notation with omission of &#39;.&#39;</span></span>
+<span id="cb262-2"><a href="working-with-data.html#cb262-2" tabindex="-1"></a><span class="dv">10</span> <span class="sc">%&gt;%</span> <span class="fu">divide_by</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 5</code></pre>
 <ul>
 <li>Let’s see how it can resolve the mess below. (Repetition of previous example.)</li>
 </ul>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="working-with-data.html#cb264-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(<span class="fu">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), </span>
-<span id="cb264-2"><a href="working-with-data.html#cb264-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span>
-<span id="cb264-3"><a href="working-with-data.html#cb264-3" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="working-with-data.html#cb264-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(<span class="fu">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), </span>
+<span id="cb264-2"><a href="working-with-data.html#cb264-2" tabindex="-1"></a>                  <span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span>
+<span id="cb264-3"><a href="working-with-data.html#cb264-3" tabindex="-1"></a>df</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 903 × 6
 ## # Groups:   AnimacyOfRec, AnimacyOfTheme [4]
 ##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme perc_NP
@@ -798,37 +705,37 @@ Let us randomly select 10 examples and see what they look like. For that, we can
 ##  8 NP               bring animate      inanimate              0       0.633
 ##  9 NP               teach animate      inanimate              2.40    0.633
 ## 10 NP               give  animate      inanimate              0.693   0.633
-## # … with 893 more rows</code></pre>
+## # ℹ 893 more rows</code></pre>
 <ul>
 <li>And here is the much more readable version of this code:</li>
 </ul>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="working-with-data.html#cb266-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span>  dativeSimplified <span class="sc">%&gt;%</span></span>
-<span id="cb266-2"><a href="working-with-data.html#cb266-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(., <span class="at">long_theme =</span> <span class="fu">ifelse</span>(LengthOfTheme <span class="sc">&gt;</span> <span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
-<span id="cb266-3"><a href="working-with-data.html#cb266-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">group_by</span>(., long_theme) <span class="sc">%&gt;%</span> </span>
-<span id="cb266-4"><a href="working-with-data.html#cb266-4" aria-hidden="true" tabindex="-1"></a>          dplyr<span class="sc">::</span><span class="fu">summarize</span>(., <span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="working-with-data.html#cb266-1" tabindex="-1"></a>df <span class="ot">&lt;-</span>  dativeSimplified <span class="sc">%&gt;%</span></span>
+<span id="cb266-2"><a href="working-with-data.html#cb266-2" tabindex="-1"></a>          <span class="fu">mutate</span>(., <span class="at">long_theme =</span> <span class="fu">ifelse</span>(LengthOfTheme <span class="sc">&gt;</span> <span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb266-3"><a href="working-with-data.html#cb266-3" tabindex="-1"></a>          <span class="fu">group_by</span>(., long_theme) <span class="sc">%&gt;%</span> </span>
+<span id="cb266-4"><a href="working-with-data.html#cb266-4" tabindex="-1"></a>          dplyr<span class="sc">::</span><span class="fu">summarize</span>(., <span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span></code></pre></div>
 <ul>
 <li>We don’t actually need the dot:</li>
 </ul>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="working-with-data.html#cb267-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span>  dativeSimplified <span class="sc">%&gt;%</span></span>
-<span id="cb267-2"><a href="working-with-data.html#cb267-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">long_theme =</span> <span class="fu">ifelse</span>(LengthOfTheme <span class="sc">&gt;</span> <span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
-<span id="cb267-3"><a href="working-with-data.html#cb267-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">group_by</span>(long_theme) <span class="sc">%&gt;%</span> </span>
-<span id="cb267-4"><a href="working-with-data.html#cb267-4" aria-hidden="true" tabindex="-1"></a>          dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="working-with-data.html#cb267-1" tabindex="-1"></a>df <span class="ot">&lt;-</span>  dativeSimplified <span class="sc">%&gt;%</span></span>
+<span id="cb267-2"><a href="working-with-data.html#cb267-2" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">long_theme =</span> <span class="fu">ifelse</span>(LengthOfTheme <span class="sc">&gt;</span> <span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb267-3"><a href="working-with-data.html#cb267-3" tabindex="-1"></a>          <span class="fu">group_by</span>(long_theme) <span class="sc">%&gt;%</span> </span>
+<span id="cb267-4"><a href="working-with-data.html#cb267-4" tabindex="-1"></a>          dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">perc_NP =</span> <span class="fu">mean</span>(RealizationOfRec <span class="sc">==</span> <span class="st">&quot;NP&quot;</span>) )</span></code></pre></div>
 <ul>
 <li>The <code>%&lt;&gt;%</code> operator is a convenient combination of <code>%&gt;%</code> and <code>&lt;-</code> which you can use to directly modify an object.</li>
 </ul>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="working-with-data.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the package magrittr in order to access the assignment pipe operator</span></span>
-<span id="cb268-2"><a href="working-with-data.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb268-3"><a href="working-with-data.html#cb268-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb268-4"><a href="working-with-data.html#cb268-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector with numbers from 1 to 10</span></span>
-<span id="cb268-5"><a href="working-with-data.html#cb268-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb268-6"><a href="working-with-data.html#cb268-6" aria-hidden="true" tabindex="-1"></a><span class="co"># keep only numbers &lt; 5:</span></span>
-<span id="cb268-7"><a href="working-with-data.html#cb268-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   (i) without %&lt;&gt;%</span></span>
-<span id="cb268-8"><a href="working-with-data.html#cb268-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[x<span class="sc">&lt;</span><span class="dv">5</span>]</span>
-<span id="cb268-9"><a href="working-with-data.html#cb268-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   (i) with %&lt;&gt;%</span></span>
-<span id="cb268-10"><a href="working-with-data.html#cb268-10" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&lt;&gt;%</span> .[.<span class="sc">&lt;</span><span class="dv">5</span>]</span></code></pre></div>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="working-with-data.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lets add several columns to &#39;dativeSimplified&#39;</span></span>
-<span id="cb269-2"><a href="working-with-data.html#cb269-2" aria-hidden="true" tabindex="-1"></a>dativeSimplified <span class="sc">%&lt;&gt;%</span> <span class="fu">mutate</span>(<span class="at">A=</span><span class="dv">1</span>, <span class="at">B=</span><span class="dv">2</span>, <span class="at">C=</span><span class="dv">3</span>, <span class="at">D=</span><span class="dv">4</span>)</span>
-<span id="cb269-3"><a href="working-with-data.html#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dativeSimplified)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="working-with-data.html#cb268-1" tabindex="-1"></a><span class="co"># load the package magrittr in order to access the assignment pipe operator</span></span>
+<span id="cb268-2"><a href="working-with-data.html#cb268-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb268-3"><a href="working-with-data.html#cb268-3" tabindex="-1"></a></span>
+<span id="cb268-4"><a href="working-with-data.html#cb268-4" tabindex="-1"></a><span class="co"># create a vector with numbers from 1 to 10</span></span>
+<span id="cb268-5"><a href="working-with-data.html#cb268-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb268-6"><a href="working-with-data.html#cb268-6" tabindex="-1"></a><span class="co"># keep only numbers &lt; 5:</span></span>
+<span id="cb268-7"><a href="working-with-data.html#cb268-7" tabindex="-1"></a><span class="co">#   (i) without %&lt;&gt;%</span></span>
+<span id="cb268-8"><a href="working-with-data.html#cb268-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[x<span class="sc">&lt;</span><span class="dv">5</span>]</span>
+<span id="cb268-9"><a href="working-with-data.html#cb268-9" tabindex="-1"></a><span class="co">#   (i) with %&lt;&gt;%</span></span>
+<span id="cb268-10"><a href="working-with-data.html#cb268-10" tabindex="-1"></a>x <span class="sc">%&lt;&gt;%</span> .[.<span class="sc">&lt;</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="working-with-data.html#cb269-1" tabindex="-1"></a><span class="co"># lets add several columns to &#39;dativeSimplified&#39;</span></span>
+<span id="cb269-2"><a href="working-with-data.html#cb269-2" tabindex="-1"></a>dativeSimplified <span class="sc">%&lt;&gt;%</span> <span class="fu">mutate</span>(<span class="at">A=</span><span class="dv">1</span>, <span class="at">B=</span><span class="dv">2</span>, <span class="at">C=</span><span class="dv">3</span>, <span class="at">D=</span><span class="dv">4</span>)</span>
+<span id="cb269-3"><a href="working-with-data.html#cb269-3" tabindex="-1"></a><span class="fu">head</span>(dativeSimplified)</span></code></pre></div>
 <pre class="r-output"><code>##   RealizationOfRec  Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme A B C D
 ## 1               NP  feed      animate      inanimate      2.639057 1 2 3 4
 ## 2               NP  give      animate      inanimate      1.098612 1 2 3 4
@@ -845,8 +752,8 @@ Let us randomly select 10 examples and see what they look like. For that, we can
           </div>
         </div>
       </div>
-<a href="data-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="plotting-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-structures.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

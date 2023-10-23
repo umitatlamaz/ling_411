@@ -3,13 +3,13 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">Ling 411 - Fall 2022</a></li>
+        <li><a href="./">Ling 411 - Fall 2023</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
     #download: ["pdf", "epub"]
 bookdown::pdf_book:
-  includes:
+  includes: 
     in_header: preamble.tex
   latex_engine: xelatex
   citation_package: natbib
