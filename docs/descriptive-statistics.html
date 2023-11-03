@@ -23,7 +23,7 @@
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2023-10-31" />
+<meta name="date" content="2023-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -375,7 +375,7 @@ Figure 6.3: Histogram of a normal distribution.
 </div>
 <p>Here’s another one where we provide the <strong>mean</strong> and <strong>standard deviation</strong> parameteres.</p>
 <div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="descriptive-statistics.html#cb311-1" tabindex="-1"></a>normal2 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">rnorm</span>(<span class="dv">160</span>, <span class="at">mean =</span> <span class="dv">8</span>, <span class="at">sd=</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<p>Let us plot the seconf normally distributed data using a histogram.</p>
+<p>Let us plot the second normally distributed data using a histogram.</p>
 <div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="descriptive-statistics.html#cb312-1" tabindex="-1"></a><span class="fu">ggplot</span>(normal2, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
 <span id="cb312-2"><a href="descriptive-statistics.html#cb312-2" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
 <span id="cb312-3"><a href="descriptive-statistics.html#cb312-3" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>

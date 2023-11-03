@@ -71,9 +71,6 @@ ggplot(uniform, aes(dice_value)) +
 
     Just a quick point to think about. Why did we use a histogram for the 
     continuous uniform distribution and a bar graph for a discrete one? 
-    Also, why didn't we use the **stat="identity"** argument in the bar graph?
-
-
 
 Now, let us generate some random data with a **normal distribution** using the `rnorm`()` function.
 
@@ -102,7 +99,7 @@ normal2 <- as_tibble(rnorm(160, mean = 8, sd= 0.5))
 
 ```
 
-Let us plot the seconf normally distributed data using a histogram. 
+Let us plot the second normally distributed data using a histogram. 
 
 ```{r histogram4, fig.cap="Histogram of a normal distribution.", echo=TRUE}
 ggplot(normal2, aes(value)) +
