@@ -9,6 +9,8 @@ fig:meanmedian2
 tab:unnamed-chunk-182
 fig:aflsd
 fig:correlations
+fig:linearregression1
+fig:interceptslope
 getting-started
 disclaimer
 some-great-resources
@@ -77,3 +79,12 @@ factors-vectors
 character-vectors
 summarising-a-data-frame
 correlations
+linear-regression-with-one-predictor
+word-frequency-effects
+simple-linear-regression
+finding-the-regression-line
+estimating-the-coefficients
+data-is-messy
+simplified-frequency-data
+residuals
+sum-of-squared-errors

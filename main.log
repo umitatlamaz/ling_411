@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  3 NOV 2023 10:25
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  14 NOV 2023 10:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1055,8 +1055,81 @@ File: ./img/corr-1.png Graphic file (type bmp)
 <./img/corr-1.png>
 File: main_files/figure-latex/unnamed-chunk-193-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-193-1.pdf>
+[104] [105] [106
+
+]
+Chapter 7.
+[107]
+File: ./img/lr/lr1.png Graphic file (type bmp)
+<./img/lr/lr1.png>
+[108]
+File: ./img/lr/lr2.png Graphic file (type bmp)
+<./img/lr/lr2.png>
+[109]
+File: main_files/figure-latex/unnamed-chunk-194-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-194-1.pdf>
+[110] [111]
+Overfull \hbox (69.75pt too wide) in paragraph at lines 5052--5052
+[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 5052--5052
+[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 5077--5077
+[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 5077--5077
+[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
+ []
+
+[112] [113]
+File: main_files/figure-latex/unnamed-chunk-199-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-199-1.pdf>
+[114]
+Underfull \hbox (badness 2384) in paragraph at lines 5204--5205
+\TU/lmr/m/n/10 Let us use a simple frequency data. Go ahead and download the
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 5204--5205
+\TU/lmtt/m/n/10 log10ELP_frequency.csv \TU/lmr/m/n/10 file from Moodle. This is the same data in
+ []
+
+[115]
+Overfull \hbox (90.75pt too wide) in paragraph at lines 5226--5226
+[]\TU/lmtt/m/n/10 ## -- Column specification --------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 5226--5226
+[]\TU/lmtt/m/n/10 ## i Use `spec()` to retrieve the full column specification for this data.[] 
+ []
+
+
+Overfull \hbox (96.0pt too wide) in paragraph at lines 5226--5226
+[]\TU/lmtt/m/n/10 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.[] 
+ []
+
+File: main_files/figure-latex/unnamed-chunk-202-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-202-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[116] [117]
+File: main_files/figure-latex/unnamed-chunk-205-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-205-1.pdf>
+[118]
+File: main_files/figure-latex/unnamed-chunk-206-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-206-1.pdf>
+[119]
 No file main.bbl.
-[104] [105] (./main.aux)
+[120] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1064,15 +1137,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8C034D529C312787EEE2F1207ED17095;5733.
+(rerunfilecheck)             Checksum: 4EE146335E4168D378B4AAA5FE236BD9;7128.
  ) 
 Here is how much of TeX's memory you used:
- 17878 strings out of 477743
- 336734 string characters out of 5843158
- 815538 words of memory out of 5000000
- 38634 multiletter control sequences out of 15000+600000
- 475774 words of font info for 89 fonts, out of 8000000 for 9000
+ 17951 strings out of 477743
+ 339431 string characters out of 5843158
+ 816329 words of memory out of 5000000
+ 38697 multiletter control sequences out of 15000+600000
+ 475782 words of font info for 90 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,8n,121p,923b,484s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (105 pages).
+Output written on main.pdf (120 pages).

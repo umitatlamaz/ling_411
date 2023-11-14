@@ -83,12 +83,12 @@ A good way to remember the intercept and the slope and a linear model is to reme
 library(ggplot2)
 
 distance = 1:20
-cost = 7+(6*distance)
+cost = 20+(14*distance)
 
 ggplot(data=NULL, aes(distance,cost)) +
   scale_x_continuous(breaks = seq(0, 20, by =1)) +
-  scale_y_continuous(breaks = seq(0, 125, by = 5)) + 
-  geom_smooth(method="lm", formula =y~x + I(7+6*x))
+  scale_y_continuous(breaks = seq(0, 500, by = 20)) + 
+  geom_smooth(method="lm", formula =y~x + I(20+14*x))
 
 ```
 
@@ -111,7 +111,7 @@ taxi_model <- lm(cost ~ distance)
 # print the model coefficients
 taxi_model
 ```
-**Unbelievable!** The model estimated the intercept (start cost) as 7 and the slope (cost per km) as 6. Simple as that. Notice that the model estimated these coefficients simply from the data but nothing else. 
+**Unbelievable!** The model estimated the intercept (start cost) as 20 and the slope (cost per km) as 14. Simple as that. Notice that the model estimated these coefficients simply from the data but nothing else. 
 
 
 The model object that we stored in the variable `taxi_model` has a lot more information. Let us take a look at the results of our model. To do this, we'll take use the `glance()` function from the `broom` package. 
@@ -139,7 +139,7 @@ In the taxi model above, we worked with a very simplistic and ideal dataset. We 
 All we are going to do is to add some random values to our taxi prices. Let's generate some random numbers and bind it to a new cost variable. 
 
 ```{r}
-
+set.seed(42)
 hidden_cost <- rnorm(20, mean=7.5, sd=4.5)
 total_cost <- cost + hidden_cost
 ```
@@ -151,19 +151,21 @@ library(gridExtra)
 
 plot1 <- ggplot(data=NULL, aes(distance,cost)) +
   scale_x_continuous(breaks = seq(0, 20, by =1)) +
-  scale_y_continuous(breaks = seq(0, 125, by = 5)) + 
+  scale_y_continuous(breaks = seq(0, 500, by = 20)) + 
   geom_smooth(method="lm") +
   geom_point() +
   ggtitle("Taxi cost without traffic")
 
 plot2 <- ggplot(data=NULL, aes(distance,total_cost)) +
   scale_x_continuous(breaks = seq(0, 20, by =1)) +
-  scale_y_continuous(breaks = seq(0, 125, by = 5)) + 
+  scale_y_continuous(breaks = seq(0, 500, by = 20)) + 
   geom_smooth(method="lm")+
   geom_point()+
   ggtitle("Taxi cost with traffic")
 
 grid.arrange(plot1, plot2, ncol=2)
+
+
 
 ```
 
@@ -174,18 +176,18 @@ better_taxi_model <- lm(total_cost~distance)
 
 better_taxi_model
 ```
-Notice that we got a new intercept and slope. It's kinda weird. We know that the taxi start fare is 7TL. However, our intercept is a lot higher (this will differ as each time you run your code as the traffic cost we calculated is random). In a few instances where I ran the model I got a number between 14-18. This is quite off given our original intercept. 
+Notice that we got a new intercept and slope. It's kinda weird. We know that the taxi start fare is 20TL. However, our intercept is a lot higher (this will differ as each time you run your code as the traffic cost we calculated is random unless you set some seed number to generate the random values). This is quite off given our original intercept. 
 
-Notice that the slope is a little off too. It's not exactly 6 but it's not way off like the intercept. So, did our linear model do well? Before answering this question more formally, I'll draw your attention to one point. Our model predicts that your initial taxi fare will be a little higher at the beginning and it will sort of even out as your distance increases. Even though our model doesn't guess the intercept correctly, it still does a very decent job in modeling the real life taxi costs (or a simulation of it). Just add up the intercept and slope and that should give you around the minimum cost you'll pay for a taxi ride.
+Notice that the slope is a little off too. It's not exactly 14 but it's not way off like the intercept. So, did our linear model do well? Before answering this question more formally, I'll draw your attention to one point. Our model predicts that your initial taxi fare will be a little higher at the beginning and it will sort of even out as your distance increases. Even though our model doesn't guess the intercept correctly, it still does a very decent job in modeling the real life taxi costs (or a simulation of it). Just add up the intercept and slope and that should give you around the minimum cost you'll pay for a taxi ride.
 
 ```{r}
 coef(better_taxi_model)[1] + coef(better_taxi_model)[2]
 ```
 
-At this point, I want to remind you that taxi rides in İstanbul have a minimum of 20TLs for short distance trips (2km or less). So, our model does pretty good for a real life scenario. 
+At this point, I want to remind you that taxi rides in İstanbul have a minimum of 70 TLs for short distance trips (2km or less). So, our model does pretty good for a real life scenario. 
 
 ## Simplified Frequency Data
-Let us use a simple frequency data. Go ahead and download the `log10ELP_frequency.csv` file from Moodle. This is the sam data in Bodo Winter's ELP_frequency.csv file with an added column for log10 normalization. We will plot the data using a scatterplot with geom_point and also draw a regression line. 
+Let us use a simple frequency data. Go ahead and download the `log10ELP_frequency.csv` file from Moodle. This is the same data in Bodo Winter's ELP_frequency.csv file with an added column for log10 normalization. We will plot the data using a scatterplot with geom_point and also draw a regression line. 
 
 We will use log normal values as the x axis and the reaction time as the y axis. 
 
@@ -249,7 +251,7 @@ ggplot(freq_data, aes(x=log10freq, y=RT)) +
   geom_point()+
   geom_hline(yintercept = 680)+
   geom_segment(aes(x = log10freq, y = RT,
-                   xend = log10freq, yend = 700))
+                   xend = log10freq, yend = 680))
 ```
 
 Now, we have two models:
