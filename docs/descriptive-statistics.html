@@ -358,8 +358,7 @@ Figure 6.2: Histogram of a uniform distribution.
 <span id="cb307-3"><a href="descriptive-statistics.html#cb307-3" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
 <p><img src="main_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
 <pre><code>Just a quick point to think about. Why did we use a histogram for the 
-continuous uniform distribution and a bar graph for a discrete one? 
-Also, why didn&#39;t we use the **stat=&quot;identity&quot;** argument in the bar graph?</code></pre>
+continuous uniform distribution and a bar graph for a discrete one? </code></pre>
 <p>Now, let us generate some random data with a <strong>normal distribution</strong> using the <code>rnorm</code>()` function.</p>
 <div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="descriptive-statistics.html#cb309-1" tabindex="-1"></a>normal <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">rnorm</span>(<span class="dv">160</span>))</span></code></pre></div>
 <p>Let us plot the normally distributed data using a histogram.</p>
@@ -534,21 +533,16 @@ Figure 6.7: Distributions with different means and standard deviations. The ligh
 </div>
 <div id="mean-or-median-whats-the-difference" class="section level3 hasAnchor" number="6.2.4">
 <h3><span class="header-section-number">6.2.4</span> Mean or median? What’s the difference?<a href="descriptive-statistics.html#mean-or-median-whats-the-difference" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="figure"><span style="display:block;" id="fig:meanmedian"></span>
-&lt;img src=“./img/descriptives2/meanmedian.png” alt=“An illustration of the difference between how the mean and the median should be interpreted. The mean is basically the”centre of gravity” of the data set: if you imagine that the histogram of the data is a solid object, then the point on which you could balance it (as if on a see-saw) is the mean. In contrast, the median is the middle observation. Half of the observations are smaller, and half of the observations are larger.” /&gt;
-<p class="caption">
-Figure 6.8: An illustration of the difference between how the mean and the median should be interpreted. The mean is basically the “centre of gravity” of the data set: if you imagine that the histogram of the data is a solid object, then the point on which you could balance it (as if on a see-saw) is the mean. In contrast, the median is the middle observation. Half of the observations are smaller, and half of the observations are larger.
-</p>
-</div>
+<p><img src="img/descriptives2/meanmedian.png" /><!-- --></p>
 <ul>
-<li><p>Knowing how to calculate means and medians is only a part of the story. You also need to understand what each one is saying about the data, and what that implies for when you should use each one. This is illustrated in Figure <a href="descriptive-statistics.html#fig:meanmedian">6.8</a> the mean is kind of like the “centre of gravity” of the data set, whereas the median is the “middle value” in the data. What this implies, as far as which one you should use, depends a little on what type of data you’ve got and what you’re trying to achieve. As a rough guide:</p></li>
-<li><p>One consequence is that there’s systematic differences between the mean and the median when the histogram is asymmetric (skewed; see Section <a href="#skewandkurtosis"><strong>??</strong></a>). This is illustrated in Figure <a href="descriptive-statistics.html#fig:meanmedian">6.8</a> notice that the median (right hand side) is located closer to the “body” of the histogram, whereas the mean (left hand side) gets dragged towards the “tail” (where the extreme values are).</p></li>
+<li><p>Knowing how to calculate means and medians is only a part of the story. You also need to understand what each one is saying about the data, and what that implies for when you should use each one. This is illustrated in Figure <a href="#fig:meanmedian"><strong>??</strong></a> the mean is kind of like the “centre of gravity” of the data set, whereas the median is the “middle value” in the data. What this implies, as far as which one you should use, depends a little on what type of data you’ve got and what you’re trying to achieve. As a rough guide:</p></li>
+<li><p>One consequence is that there’s systematic differences between the mean and the median when the histogram is asymmetric (skewed). This is illustrated in Figure <a href="#fig:meanmedian"><strong>??</strong></a> notice that the median (right hand side) is located closer to the “body” of the histogram, whereas the mean (left hand side) gets dragged towards the “tail” (where the extreme values are).</p></li>
 <li><p>To give a concrete example, suppose Bob (income $50,000), Kate (income $60,000) and Jane (income $65,000) are sitting at a table: the average income at the table is $58,333 and the median income is $60,000. Then Bill sits down with them (income $100,000,000). The average income has now jumped to $25,043,750 but the median rises only to $62,500. If you’re interested in looking at the overall income at the table, the mean might be the right answer; but if you’re interested in what counts as a typical income at the table, the median would be a better choice here.</p></li>
 </ul>
 <div class="figure"><span style="display:block;" id="fig:meanmedian2"></span>
 <img src="img/descriptives2/mean_median.png" alt="Another example of mean and median where mean is moved by the outliers but median is constant."  />
 <p class="caption">
-Figure 6.9: Another example of mean and median where mean is moved by the outliers but median is constant.
+Figure 6.8: Another example of mean and median where mean is moved by the outliers but median is constant.
 </p>
 </div>
 <!--
@@ -954,7 +948,7 @@ sd( mammalian_sleep$sleep_total_h )
 <div class="figure"><span style="display:block;" id="fig:aflsd"></span>
 <img src="main_files/figure-html/aflsd-1.png" alt="An illustration of the standard deviation." width="672" />
 <p class="caption">
-Figure 6.10: An illustration of the standard deviation.
+Figure 6.9: An illustration of the standard deviation.
 </p>
 </div>
 <div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="descriptive-statistics.html#cb357-1" tabindex="-1"></a>  <span class="fu">with</span>(mammalian_sleep, <span class="fu">mean</span>(sleep_total_h<span class="sc">&gt;</span>(sleep_mean<span class="sc">-</span>sleep_sd) <span class="sc">&amp;</span> sleep_total_h<span class="sc">&lt;</span>(sleep_mean<span class="sc">+</span>sleep_sd) ))</span></code></pre></div>
@@ -1088,7 +1082,7 @@ In short, the IQR and the standard deviation are easily the two most common meas
 <div class="figure"><span style="display:block;" id="fig:correlations"></span>
 <img src="img/corr-1.png" alt="Different correlations."  />
 <p class="caption">
-Figure 6.11: Different correlations.
+Figure 6.10: Different correlations.
 </p>
 </div>
 <p>In R, we can calculate the correlations of two variables using the <code>cor()</code> function. Consider the following example.</p>

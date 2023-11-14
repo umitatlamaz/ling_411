@@ -5,7 +5,6 @@ fig:histogram4
 fig:histogram5
 fig:normaldatadistributions
 fig:normalparameterdistributions
-fig:meanmedian
 fig:meanmedian2
 tab:unnamed-chunk-182
 fig:aflsd
