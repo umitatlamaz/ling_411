@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  14 NOV 2023 10:04
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  21 NOV 2023 10:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -723,17 +723,17 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 6.99925pt on input line 2.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 4.99947pt on input line 2.
-[3])
+[3] [4])
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 135.
-[4]
-Chapter 1.
-[5
+[5] [6
 
 ]
+Chapter 1.
+[7]
 Underfull \hbox (badness 10000) in paragraph at lines 217--220
 
  []
@@ -743,16 +743,16 @@ Underfull \hbox (badness 1596) in paragraph at lines 217--220
 \TU/lmr/m/n/10 The following code block uses the \TU/lmtt/m/n/10 summary() \TU/lmr/m/n/10 function on the \TU/lmtt/m/n/10 mtcars
  []
 
-[6] [7] [8
+[8] [9] [10
 
 ]
 Chapter 2.
-[9] [10] [11] [12] [13]
+[11] [12] [13] [14] [15]
 Overfull \hbox (75.0pt too wide) in paragraph at lines 632--632
 []\TU/lmtt/m/n/10 ## Error in my_integer_1 + my_character: non-numeric argument to binary operator[] 
  []
 
-[14]
+[16]
 Overfull \hbox (90.75pt too wide) in paragraph at lines 770--770
 []\TU/lmtt/m/n/10 ## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --[] 
  []
@@ -762,44 +762,44 @@ Overfull \hbox (90.75pt too wide) in paragraph at lines 770--770
 []\TU/lmtt/m/n/10 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --[] 
  []
 
-[15]
+[17]
 Overfull \hbox (201.0pt too wide) in paragraph at lines 770--770
 []\TU/lmtt/m/n/10 ## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
  []
 
 File: main_files/figure-latex/unnamed-chunk-36-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-36-1.pdf>
-[16]
+[18]
 File: main_files/figure-latex/unnamed-chunk-37-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-37-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[17]
+[19]
 File: main_files/figure-latex/unnamed-chunk-38-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-38-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[18]
+[20]
 File: main_files/figure-latex/unnamed-chunk-39-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-39-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[19]
+[21]
 File: main_files/figure-latex/unnamed-chunk-40-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-40-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[20]
+[22]
 File: main_files/figure-latex/unnamed-chunk-41-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-41-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[21] [22]
+[23] [24]
 Underfull \hbox (badness 10000) in paragraph at lines 965--966
 
  []
@@ -809,7 +809,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 971--972
 
  []
 
-[23] [24
+[25] [26
 
 ]
 Chapter 3.
@@ -833,17 +833,17 @@ Overfull \hbox (98.92702pt too wide) in paragraph at lines 1037--1038
  []|[]| 
  []
 
-[25] [26] [27] [28] [29] [30]
+[27] [28] [29] [30] [31] [32]
 Underfull \hbox (badness 1997) in paragraph at lines 1548--1549
 \TU/lmr/m/n/10 already existing \TU/lmtt/m/n/10 poker_payout_tl \TU/lmr/m/n/10 vector to another vector called
  []
 
-[31] [32] [33] [34] [35]
+[33] [34] [35] [36] [37]
 Overfull \hbox (38.25pt too wide) in paragraph at lines 1932--1932
 []\TU/lmtt/m/n/10 ## `summarise()` has grouped output by 'game'. You can override using the[] 
  []
 
-[36]
+[38]
 Overfull \hbox (38.25pt too wide) in paragraph at lines 1964--1964
 []\TU/lmtt/m/n/10 ## `summarise()` has grouped output by 'game'. You can override using the[] 
  []
@@ -853,7 +853,7 @@ Overfull \hbox (38.25pt too wide) in paragraph at lines 2008--2008
 []\TU/lmtt/m/n/10 ## `summarise()` has grouped output by 'game'. You can override using the[] 
  []
 
-[37]
+[39]
 File: main_files/figure-latex/unnamed-chunk-89-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-89-1.pdf>
 File: main_files/figure-latex/unnamed-chunk-90-1.pdf Graphic file (type pdf)
@@ -861,17 +861,17 @@ File: main_files/figure-latex/unnamed-chunk-90-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[38]
+[40]
 File: main_files/figure-latex/unnamed-chunk-91-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-91-1.pdf>
-[39]
+[41]
 File: main_files/figure-latex/unnamed-chunk-92-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-92-1.pdf>
-[40] [41] [42
+[42] [43] [44
 
 ]
 Chapter 4.
-[43] [44] [45]
+[45] [46] [47]
 Overfull \hbox (90.75pt too wide) in paragraph at lines 2346--2346
 []\TU/lmtt/m/n/10 ## -- Column specification --------------------------------------------------------[] 
  []
@@ -886,31 +886,31 @@ Overfull \hbox (96.0pt too wide) in paragraph at lines 2346--2346
 []\TU/lmtt/m/n/10 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.[] 
  []
 
-[46] [47] [48] [49] [50] [51] [52] [53] [54]
+[48] [49] [50] [51] [52] [53] [54] [55] [56]
 Overfull \hbox (80.25pt too wide) in paragraph at lines 2917--2917
 []\TU/lmtt/m/n/10 ## `summarise()` has grouped output by 'AnimacyOfRec'. You can override using the[] 
  []
 
-[55]
+[57]
 Overfull \hbox (80.25pt too wide) in paragraph at lines 2954--2954
 []\TU/lmtt/m/n/10 ## `summarise()` has grouped output by 'AnimacyOfRec'. You can override using the[] 
  []
 
-[56] [57] [58] [59] [60
+[58] [59] [60] [61] [62
 
 ]
 Chapter 5.
-[61]
+[63]
 File: main_files/figure-latex/unnamed-chunk-136-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-136-1.pdf>
 File: main_files/figure-latex/unnamed-chunk-137-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-137-1.pdf>
-[62]
+[64]
 File: main_files/figure-latex/unnamed-chunk-138-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-138-1.pdf>
 File: main_files/figure-latex/unnamed-chunk-139-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-139-1.pdf>
-[63] [64]
+[65] [66]
 File: main_files/figure-latex/unnamed-chunk-143-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-143-1.pdf>
 File: main_files/figure-latex/unnamed-chunk-144-1.pdf Graphic file (type pdf)
@@ -918,10 +918,10 @@ File: main_files/figure-latex/unnamed-chunk-144-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[65]
+[67]
 File: main_files/figure-latex/unnamed-chunk-145-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-145-1.pdf>
-[66]
+[68]
 File: main_files/figure-latex/unnamed-chunk-146-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-146-1.pdf>
 File: main_files/figure-latex/unnamed-chunk-147-1.pdf Graphic file (type pdf)
@@ -929,10 +929,10 @@ File: main_files/figure-latex/unnamed-chunk-147-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 3965) has occurred while \output is active []
 
-[67]
+[69]
 File: main_files/figure-latex/unnamed-chunk-148-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-148-1.pdf>
-[68]
+[70]
 File: main_files/figure-latex/unnamed-chunk-149-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-149-1.pdf>
 File: main_files/figure-latex/unnamed-chunk-150-1.pdf Graphic file (type pdf)
@@ -945,10 +945,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 3464--3467
 
 Underfull \vbox (badness 7064) has occurred while \output is active []
 
-[69]
+[71]
 File: main_files/figure-latex/unnamed-chunk-151-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-151-1.pdf>
-[70]
+[72]
 File: main_files/figure-latex/unnamed-chunk-152-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-152-1.pdf>
 File: main_files/figure-latex/unnamed-chunk-153-1.pdf Graphic file (type pdf)
@@ -956,13 +956,13 @@ File: main_files/figure-latex/unnamed-chunk-153-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[71]
+[73]
 File: main_files/figure-latex/unnamed-chunk-154-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-154-1.pdf>
-[72]
+[74]
 File: main_files/figure-latex/unnamed-chunk-155-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-155-1.pdf>
-[73] [74
+[75] [76
 
 ]
 Chapter 6.
@@ -986,10 +986,10 @@ Overfull \hbox (96.0pt too wide) in paragraph at lines 3564--3564
 []\TU/lmtt/m/n/10 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.[] 
  []
 
-[75]
+[77]
 File: main_files/figure-latex/histogram1-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/histogram1-1.pdf>
-[76] [77]
+[78] [79]
 File: main_files/figure-latex/histogram2-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/histogram2-1.pdf>
 
@@ -997,13 +997,13 @@ Overfull \hbox (54.0pt too wide) in paragraph at lines 3691--3691
 []\TU/lmtt/m/n/10 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was[] 
  []
 
-[78]
+[80]
 File: main_files/figure-latex/unnamed-chunk-159-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-159-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[79]
+[81]
 Overfull \hbox (17.25pt too wide) in paragraph at lines 3731--3731
 []\TU/lmtt/m/n/10 Just a quick point to think about. Why did we use a histogram for the[] 
  []
@@ -1015,7 +1015,7 @@ Overfull \hbox (6.75pt too wide) in paragraph at lines 3731--3731
 
 File: main_files/figure-latex/histogram3-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/histogram3-1.pdf>
-[80]
+[82]
 File: main_files/figure-latex/histogram4-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/histogram4-1.pdf>
 File: main_files/figure-latex/histogram5-1.pdf Graphic file (type pdf)
@@ -1024,74 +1024,74 @@ File: ./img/descriptives2/data_distribution.png Graphic file (type bmp)
 <./img/descriptives2/data_distribution.png>
 File: ./img/descriptives2/normal_distribution.png Graphic file (type bmp)
 <./img/descriptives2/normal_distribution.png>
-[81] [82] [83] [84] [85] [86]
+[83] [84] [85] [86] [87] [88]
 File: ./img/descriptives2/meanmedian.png Graphic file (type bmp)
 <./img/descriptives2/meanmedian.png>
 
 Underfull \vbox (badness 1540) has occurred while \output is active []
 
-[87]
+[89]
 
-LaTeX Warning: Reference `fig:meanmedian' on page 88 undefined on input line 4000.
+LaTeX Warning: Reference `fig:meanmedian' on page 90 undefined on input line 4000.
 
 
-LaTeX Warning: Reference `fig:meanmedian' on page 88 undefined on input line 4002.
+LaTeX Warning: Reference `fig:meanmedian' on page 90 undefined on input line 4002.
 
 File: ./img/descriptives2/mean_median.png Graphic file (type bmp)
 <./img/descriptives2/mean_median.png>
-[88] [89] [90] [91] [92]
+[90] [91] [92] [93] [94]
 File: main_files/figure-latex/unnamed-chunk-173-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-173-1.pdf>
-[93] [94] [95] [96]
+[95] [96] [97] [98]
 Overfull \hbox (258.7601pt too wide) in paragraph at lines 4475--4486
  [][] 
  []
 
-[97] [98]
+[99] [100]
 File: main_files/figure-latex/aflsd-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/aflsd-1.pdf>
-[99] [100] [101] [102] [103]
+[101] [102] [103] [104] [105]
 File: ./img/corr-1.png Graphic file (type bmp)
 <./img/corr-1.png>
 File: main_files/figure-latex/unnamed-chunk-193-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-193-1.pdf>
-[104] [105] [106
+[106] [107] [108
 
 ]
 Chapter 7.
-[107]
+[109]
 File: ./img/lr/lr1.png Graphic file (type bmp)
 <./img/lr/lr1.png>
-[108]
+[110]
 File: ./img/lr/lr2.png Graphic file (type bmp)
 <./img/lr/lr2.png>
-[109]
+[111]
 File: main_files/figure-latex/unnamed-chunk-194-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-194-1.pdf>
-[110] [111]
-Overfull \hbox (69.75pt too wide) in paragraph at lines 5052--5052
-[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
- []
-
-
-Overfull \hbox (69.75pt too wide) in paragraph at lines 5052--5052
-[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
- []
-
-
-Overfull \hbox (69.75pt too wide) in paragraph at lines 5077--5077
-[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
- []
-
-
-Overfull \hbox (69.75pt too wide) in paragraph at lines 5077--5077
-[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
- []
-
 [112] [113]
+Overfull \hbox (69.75pt too wide) in paragraph at lines 5052--5052
+[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 5052--5052
+[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 5077--5077
+[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 5077--5077
+[]\TU/lmtt/m/n/10 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable[] 
+ []
+
+[114] [115]
 File: main_files/figure-latex/unnamed-chunk-199-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-199-1.pdf>
-[114]
+[116]
 Underfull \hbox (badness 2384) in paragraph at lines 5204--5205
 \TU/lmr/m/n/10 Let us use a simple frequency data. Go ahead and download the
  []
@@ -1101,7 +1101,7 @@ Underfull \hbox (badness 1072) in paragraph at lines 5204--5205
 \TU/lmtt/m/n/10 log10ELP_frequency.csv \TU/lmr/m/n/10 file from Moodle. This is the same data in
  []
 
-[115]
+[117]
 Overfull \hbox (90.75pt too wide) in paragraph at lines 5226--5226
 []\TU/lmtt/m/n/10 ## -- Column specification --------------------------------------------------------[] 
  []
@@ -1121,15 +1121,86 @@ File: main_files/figure-latex/unnamed-chunk-202-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[116] [117]
+[118] [119]
 File: main_files/figure-latex/unnamed-chunk-205-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-205-1.pdf>
-[118]
+[120]
 File: main_files/figure-latex/unnamed-chunk-206-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-206-1.pdf>
-[119]
+[121] [122]
+Chapter 8.
+File: main_files/figure-latex/carsPerfect2A-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/carsPerfect2A-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[123
+
+] [124] [125] [126] [127] [128]
+Chapter 9.
+[129
+
+]
+File: main_files/figure-latex/unnamed-chunk-220-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-220-1.pdf>
+[130] [131]
+File: main_files/figure-latex/unnamed-chunk-222-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-222-1.pdf>
+[132] [133]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 5879--5879
+[]\TU/lmtt/m/n/10 ## Warning: Removed 2 rows containing missing values (`geom_bar()`).[] 
+ []
+
+File: main_files/figure-latex/unnamed-chunk-225-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-225-1.pdf>
+[134] [135]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 5962--5962
+[]\TU/lmtt/m/n/10 ## Warning: Removed 1 rows containing missing values (`geom_bar()`).[] 
+ []
+
+File: main_files/figure-latex/unnamed-chunk-227-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-227-1.pdf>
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 5978--5978
+[]\TU/lmtt/m/n/10 ## Warning: Removed 2 rows containing missing values (`geom_bar()`).[] 
+ []
+
+File: main_files/figure-latex/unnamed-chunk-227-2.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-227-2.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[136]
+File: main_files/figure-latex/unnamed-chunk-227-3.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-227-3.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[137]
+File: ./img/skewness.jpg Graphic file (type bmp)
+<./img/skewness.jpg>
+[138]
+Overfull \hbox (43.5pt too wide) in paragraph at lines 6054--6054
+[]\TU/lmtt/m/n/10 ## Warning: Removed 2288 rows containing non-finite values (`stat_bin()`).[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 6058--6058
+[]\TU/lmtt/m/n/10 ## Warning: Removed 2 rows containing missing values (`geom_bar()`).[] 
+ []
+
+[139]
+File: main_files/figure-latex/unnamed-chunk-229-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-229-1.pdf>
+[140]
+File: main_files/figure-latex/unnamed-chunk-230-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-230-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[141]
 No file main.bbl.
-[120] (./main.aux)
+[142] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1137,15 +1208,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 4EE146335E4168D378B4AAA5FE236BD9;7128.
+(rerunfilecheck)             Checksum: CFA19AB48746EBF5E1092CB2228599FE;8367.
  ) 
 Here is how much of TeX's memory you used:
- 17951 strings out of 477743
- 339431 string characters out of 5843158
- 816329 words of memory out of 5000000
- 38697 multiletter control sequences out of 15000+600000
+ 18048 strings out of 477743
+ 343543 string characters out of 5843158
+ 817301 words of memory out of 5000000
+ 38784 multiletter control sequences out of 15000+600000
  475782 words of font info for 90 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,8n,121p,923b,484s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (120 pages).
+Output written on main.pdf (142 pages).

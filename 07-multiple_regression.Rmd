@@ -10,7 +10,7 @@ In the previous section, we built linear models with **one predictor**. In other
 
 In many real life scenarios, multiple factors will be involved in the outcome of a particular experiments. In other words, a particular dependent variable will be the outcome of more than one independent variable (predictors). 
 
-Let us consider our taxi example again. While our taxi model is primarily based on the distance we travel, sometimes we need to cross bridges or toll roads. These factors will obviously increase the cost as they get added to our total cost. The following is a simple example. You can download the data from Moodle or by just clicking this [data link]('https://github.com/umitatlamaz/ling_411/blob/main/cab_fares.csv'). 
+Let us consider our taxi example again. While our taxi model is primarily based on the distance we travel, sometimes we need to cross bridges or toll roads. These factors will obviously increase the cost as they get added to our total cost. The following is a simple example. You can download the data from Moodle or by just clicking this [data link]('https://github.com/umitatlamaz/ling_411/blob/main/data/taxi_fares.csv'). 
 
 
 ```{r echo=FALSE, message=FALSE}
