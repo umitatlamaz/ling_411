@@ -99,3 +99,10 @@ scaling-and-standardizing-in-r
 non-linear-transformations
 logarithms-log-transformation
 linear-regression-with-log-transformation
+categorical-predictors
+categorical-predictor---continuous-outcome
+taste-vs.-smell-words
+contrasts-coding
+treatment-coding.
+sum-coding
+categorical-predictors-with-more-than-2-levels

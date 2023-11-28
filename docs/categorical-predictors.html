@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 Categorical Predictors | Ling 411 - Fall 2022</title>
-  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <title>Chapter 10 Categorical Predictors | Ling 411 - Fall 2023</title>
+  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 Categorical Predictors | Ling 411 - Fall 2022" />
+  <meta property="og:title" content="Chapter 10 Categorical Predictors | Ling 411 - Fall 2023" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
+  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
   <meta name="github-repo" content="rstudio/ling_411" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 Categorical Predictors | Ling 411 - Fall 2022" />
+  <meta name="twitter:title" content="Chapter 10 Categorical Predictors | Ling 411 - Fall 2023" />
   
-  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2022." />
+  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
   
 
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2022-12-26" />
+<meta name="date" content="2023-11-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="linear-non-linear-transformations.html"/>
-<link rel="next" href="effect-size-significance.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,12 +52,12 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.26/datatables.js"></script>
-<link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.30/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
@@ -127,6 +127,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -141,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Ling 411 - Fall 2022</a></li>
+<li><a href="./">Ling 411 - Fall 2023</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
@@ -275,16 +279,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictors-with-more-than-2-levels"><i class="fa fa-check"></i><b>10.4</b> Categorical Predictors with more than 2 levels</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="effect-size-significance.html"><a href="effect-size-significance.html"><i class="fa fa-check"></i><b>11</b> Effect Size &amp; Significance</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#cohens-d"><i class="fa fa-check"></i><b>11.1</b> Cohen’s <em>d</em></a></li>
-<li class="chapter" data-level="11.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error"><i class="fa fa-check"></i><b>11.2</b> Standard Error</a></li>
-<li class="chapter" data-level="11.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#confidence-interval"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval</a></li>
-<li class="chapter" data-level="11.4" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error-of-the-difference-of-two-means"><i class="fa fa-check"></i><b>11.4</b> Standard Error of the difference of two means</a></li>
-<li class="chapter" data-level="11.5" data-path="effect-size-significance.html"><a href="effect-size-significance.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.5</b> Hypothesis Testing</a></li>
-<li class="chapter" data-level="11.6" data-path="effect-size-significance.html"><a href="effect-size-significance.html#calculating-the-t-score"><i class="fa fa-check"></i><b>11.6</b> Calculating the t-score</a></li>
-<li class="chapter" data-level="11.7" data-path="effect-size-significance.html"><a href="effect-size-significance.html#p-value"><i class="fa fa-check"></i><b>11.7</b> p-value</a></li>
-</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -297,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2022</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2023</a>
           </h1>
         </div>
 
@@ -365,12 +359,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Just the verb <em>kok</em> “smell” seems to have a negative connotation. On the other hand, the adjective <em>tatlı</em> “tasty” whose root <em>tat</em> “taste” and the suffix <em>-lı</em> simply means “with” has a positive connotation. Whle this is simply a hunch, we don’t have enough evidence for Turkish to claim that this is in fact true. Let’s hope that someone will run an experiment for Turkish and report the results. For now, we’ll use the <strong>senses_valence</strong> dataset from Bodo Winter’s book.</p>
 <p>Let us read in the dataset and see what it looks like.</p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="categorical-predictors.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Import tidyverse</span></span>
-<span id="cb475-2"><a href="categorical-predictors.html#cb475-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb475-3"><a href="categorical-predictors.html#cb475-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Read in the data</span></span>
-<span id="cb475-4"><a href="categorical-predictors.html#cb475-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/winter_2016_senses_valence.csv&#39;</span>)</span>
-<span id="cb475-5"><a href="categorical-predictors.html#cb475-5" aria-hidden="true" tabindex="-1"></a><span class="co">#print the head to see what it looks like</span></span>
-<span id="cb475-6"><a href="categorical-predictors.html#cb475-6" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="categorical-predictors.html#cb465-1" tabindex="-1"></a><span class="co">#Import tidyverse</span></span>
+<span id="cb465-2"><a href="categorical-predictors.html#cb465-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb465-3"><a href="categorical-predictors.html#cb465-3" tabindex="-1"></a><span class="co">#Read in the data</span></span>
+<span id="cb465-4"><a href="categorical-predictors.html#cb465-4" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/winter_2016_senses_valence.csv&#39;</span>)</span>
+<span id="cb465-5"><a href="categorical-predictors.html#cb465-5" tabindex="-1"></a><span class="co">#print the head to see what it looks like</span></span>
+<span id="cb465-6"><a href="categorical-predictors.html#cb465-6" tabindex="-1"></a>data</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 405 × 3
 ##    Word      Modality   Val
 ##    &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;
@@ -384,7 +378,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 alive     Sight     6.04
 ##  9 amber     Sight     5.72
 ## 10 angular   Sight     5.48
-## # … with 395 more rows</code></pre>
+## # ℹ 395 more rows</code></pre>
 <p>The dataset consists of three variables:</p>
 <ul>
 <li><strong>Word</strong>: A word associated with some sense.</li>
@@ -395,21 +389,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>For now, we’re only interested in <strong>smell</strong> and <strong>taste</strong>. Yet, it looks like the data has more than that. Let’s print the unique values in the Modality column to see all the categories.</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="categorical-predictors.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(data<span class="sc">$</span>Modality)</span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="categorical-predictors.html#cb467-1" tabindex="-1"></a><span class="fu">unique</span>(data<span class="sc">$</span>Modality)</span></code></pre></div>
 <pre class="r-output"><code>## [1] &quot;Touch&quot; &quot;Sight&quot; &quot;Taste&quot; &quot;Smell&quot; &quot;Sound&quot;</code></pre>
 <p>Let’s now select the rows that have only <strong>smell</strong> and <strong>taste</strong> values. For this, we will use the filter function.</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="categorical-predictors.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data</span></span>
-<span id="cb479-2"><a href="categorical-predictors.html#cb479-2" aria-hidden="true" tabindex="-1"></a>senses_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, Modality <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;Smell&#39;</span>, <span class="st">&#39;Taste&#39;</span>))</span>
-<span id="cb479-3"><a href="categorical-predictors.html#cb479-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb479-4"><a href="categorical-predictors.html#cb479-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the unique values to make sure</span></span>
-<span id="cb479-5"><a href="categorical-predictors.html#cb479-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(senses_data<span class="sc">$</span>Modality)</span></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="categorical-predictors.html#cb469-1" tabindex="-1"></a><span class="co"># Filter the data</span></span>
+<span id="cb469-2"><a href="categorical-predictors.html#cb469-2" tabindex="-1"></a>senses_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, Modality <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;Smell&#39;</span>, <span class="st">&#39;Taste&#39;</span>))</span>
+<span id="cb469-3"><a href="categorical-predictors.html#cb469-3" tabindex="-1"></a></span>
+<span id="cb469-4"><a href="categorical-predictors.html#cb469-4" tabindex="-1"></a><span class="co"># Check the unique values to make sure</span></span>
+<span id="cb469-5"><a href="categorical-predictors.html#cb469-5" tabindex="-1"></a><span class="fu">unique</span>(senses_data<span class="sc">$</span>Modality)</span></code></pre></div>
 <pre class="r-output"><code>## [1] &quot;Taste&quot; &quot;Smell&quot;</code></pre>
 <p>Let us quickly get some summary statistics using the `summarize()’ function.</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="categorical-predictors.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pipe the data to a group_by function</span></span>
-<span id="cb481-2"><a href="categorical-predictors.html#cb481-2" aria-hidden="true" tabindex="-1"></a><span class="co">#then pipe the groupings to the summarize function</span></span>
-<span id="cb481-3"><a href="categorical-predictors.html#cb481-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create the summary variables for mean and sd</span></span>
-<span id="cb481-4"><a href="categorical-predictors.html#cb481-4" aria-hidden="true" tabindex="-1"></a>senses_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Modality) <span class="sc">%&gt;%</span></span>
-<span id="cb481-5"><a href="categorical-predictors.html#cb481-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">M =</span> <span class="fu">mean</span>(Val), <span class="at">SD =</span> <span class="fu">sd</span>(Val))</span></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="categorical-predictors.html#cb471-1" tabindex="-1"></a><span class="co">#pipe the data to a group_by function</span></span>
+<span id="cb471-2"><a href="categorical-predictors.html#cb471-2" tabindex="-1"></a><span class="co">#then pipe the groupings to the summarize function</span></span>
+<span id="cb471-3"><a href="categorical-predictors.html#cb471-3" tabindex="-1"></a><span class="co"># create the summary variables for mean and sd</span></span>
+<span id="cb471-4"><a href="categorical-predictors.html#cb471-4" tabindex="-1"></a>senses_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Modality) <span class="sc">%&gt;%</span></span>
+<span id="cb471-5"><a href="categorical-predictors.html#cb471-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">M =</span> <span class="fu">mean</span>(Val), <span class="at">SD =</span> <span class="fu">sd</span>(Val))</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 2 × 3
 ##   Modality     M    SD
 ##   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
@@ -417,14 +411,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 Taste     5.81 0.303</code></pre>
 <p>It looks like the mean valence for the two groups (smell and taste) are slightly different. Without fitting a model, we won’t yet know if this difference is significant (i.e. meaningful but not by chance).</p>
 <p>Before fitting a model though, let us visualize the data to see what it looks like. For categorical variables, it is often useful to plot a box-and-whiskers plot.</p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="categorical-predictors.html#cb483-1" aria-hidden="true" tabindex="-1"></a>senses_data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Modality, <span class="at">y =</span> Val, <span class="at">fill =</span> Modality)) <span class="sc">+</span> </span>
-<span id="cb483-2"><a href="categorical-predictors.html#cb483-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb483-3"><a href="categorical-predictors.html#cb483-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="categorical-predictors.html#cb473-1" tabindex="-1"></a>senses_data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Modality, <span class="at">y =</span> Val, <span class="at">fill =</span> Modality)) <span class="sc">+</span> </span>
+<span id="cb473-2"><a href="categorical-predictors.html#cb473-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb473-3"><a href="categorical-predictors.html#cb473-3" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
 <p>An alternative way to plot the data is to use density graphs, which are essentially smoothed histograms.</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="categorical-predictors.html#cb484-1" aria-hidden="true" tabindex="-1"></a>senses_data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Val, <span class="at">fill =</span> Modality, <span class="fu">after_stat</span>(scaled))) <span class="sc">+</span> </span>
-<span id="cb484-2"><a href="categorical-predictors.html#cb484-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) </span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="categorical-predictors.html#cb474-1" tabindex="-1"></a>senses_data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Val, <span class="at">fill =</span> Modality, <span class="fu">after_stat</span>(scaled))) <span class="sc">+</span> </span>
+<span id="cb474-2"><a href="categorical-predictors.html#cb474-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) </span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
 </div>
 <div id="contrasts-coding" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Contrasts &amp; Coding<a href="categorical-predictors.html#contrasts-coding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -459,10 +453,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Let us do this by hand before training a model.</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="categorical-predictors.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column with 0 for smell and 1 for taste</span></span>
-<span id="cb485-2"><a href="categorical-predictors.html#cb485-2" aria-hidden="true" tabindex="-1"></a>senses_data <span class="ot">&lt;-</span> <span class="fu">mutate</span>(senses_data, <span class="at">treatment =</span> <span class="fu">ifelse</span>(Modality <span class="sc">==</span> <span class="st">&#39;Taste&#39;</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb485-3"><a href="categorical-predictors.html#cb485-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb485-4"><a href="categorical-predictors.html#cb485-4" aria-hidden="true" tabindex="-1"></a>senses_data</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="categorical-predictors.html#cb475-1" tabindex="-1"></a><span class="co"># Create a new column with 0 for smell and 1 for taste</span></span>
+<span id="cb475-2"><a href="categorical-predictors.html#cb475-2" tabindex="-1"></a>senses_data <span class="ot">&lt;-</span> <span class="fu">mutate</span>(senses_data, <span class="at">treatment =</span> <span class="fu">ifelse</span>(Modality <span class="sc">==</span> <span class="st">&#39;Taste&#39;</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb475-3"><a href="categorical-predictors.html#cb475-3" tabindex="-1"></a></span>
+<span id="cb475-4"><a href="categorical-predictors.html#cb475-4" tabindex="-1"></a>senses_data</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 72 × 4
 ##    Word       Modality   Val treatment
 ##    &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -476,11 +470,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 beery      Taste     6.07         1
 ##  9 bitter     Taste     5.12         1
 ## 10 bland      Taste     5.75         1
-## # … with 62 more rows</code></pre>
+## # ℹ 62 more rows</code></pre>
 <p>Now that our categories are turned into numeric values, we can run a model. Let us fit a model where <strong>valence</strong> is a function of <strong>modality</strong> using our <strong>treatment</strong> codes.</p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="categorical-predictors.html#cb487-1" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Val <span class="sc">~</span> treatment, <span class="at">data =</span> senses_data)</span>
-<span id="cb487-2"><a href="categorical-predictors.html#cb487-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb487-3"><a href="categorical-predictors.html#cb487-3" aria-hidden="true" tabindex="-1"></a>model_1</span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="categorical-predictors.html#cb477-1" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Val <span class="sc">~</span> treatment, <span class="at">data =</span> senses_data)</span>
+<span id="cb477-2"><a href="categorical-predictors.html#cb477-2" tabindex="-1"></a></span>
+<span id="cb477-3"><a href="categorical-predictors.html#cb477-3" tabindex="-1"></a>model_1</span></code></pre></div>
 <pre class="r-output"><code>## 
 ## Call:
 ## lm(formula = Val ~ treatment, data = senses_data)
@@ -489,13 +483,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)    treatment  
 ##      5.4710       0.3371</code></pre>
 <p>In treatment coding, the intercept becomes the mean of one of your variables whereas the slope is the difference between the two means. You can see this clearly once you plot a linear function between the two variables.</p>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="categorical-predictors.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(senses_data, <span class="fu">aes</span>(<span class="at">x=</span> treatment, <span class="at">y=</span> Val))<span class="sc">+</span></span>
-<span id="cb489-2"><a href="categorical-predictors.html#cb489-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb489-3"><a href="categorical-predictors.html#cb489-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb489-4"><a href="categorical-predictors.html#cb489-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">se=</span>F)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-246-1.png" width="672" /></p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="categorical-predictors.html#cb479-1" tabindex="-1"></a><span class="fu">ggplot</span>(senses_data, <span class="fu">aes</span>(<span class="at">x=</span> treatment, <span class="at">y=</span> Val))<span class="sc">+</span></span>
+<span id="cb479-2"><a href="categorical-predictors.html#cb479-2" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb479-3"><a href="categorical-predictors.html#cb479-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb479-4"><a href="categorical-predictors.html#cb479-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">se=</span>F)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
 <p>Let us now take a look at the usual numbers R<sup>2</sup> and p-value to interpret how our model is doing.</p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="categorical-predictors.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_1)</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="categorical-predictors.html#cb480-1" tabindex="-1"></a><span class="fu">summary</span>(model_1)</span></code></pre></div>
 <pre class="r-output"><code>## 
 ## Call:
 ## lm(formula = Val ~ treatment, data = senses_data)
@@ -515,9 +509,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.2109, Adjusted R-squared:  0.1997 
 ## F-statistic: 18.71 on 1 and 70 DF,  p-value: 4.951e-05</code></pre>
 <p>Normally, you don’t have to do the treatment coding by hand. R will do it automatically for you. We did it manually to make sure we understand what’s under the hood.</p>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="categorical-predictors.html#cb492-1" aria-hidden="true" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Val <span class="sc">~</span> Modality, <span class="at">data =</span> senses_data)</span>
-<span id="cb492-2"><a href="categorical-predictors.html#cb492-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb492-3"><a href="categorical-predictors.html#cb492-3" aria-hidden="true" tabindex="-1"></a>model_2</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="categorical-predictors.html#cb482-1" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Val <span class="sc">~</span> Modality, <span class="at">data =</span> senses_data)</span>
+<span id="cb482-2"><a href="categorical-predictors.html#cb482-2" tabindex="-1"></a></span>
+<span id="cb482-3"><a href="categorical-predictors.html#cb482-3" tabindex="-1"></a>model_2</span></code></pre></div>
 <pre class="r-output"><code>## 
 ## Call:
 ## lm(formula = Val ~ Modality, data = senses_data)
@@ -528,26 +522,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Interpreting the coefficients:</strong> Our model is simply the following mathematical model.</p>
 <p><span class="math display">\[valence = 5.8 + (−0.3) * modality\]</span>
 So, our model predicts only two values.</p>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="categorical-predictors.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a dataset consisting of categories in the data</span></span>
-<span id="cb494-2"><a href="categorical-predictors.html#cb494-2" aria-hidden="true" tabindex="-1"></a>preds <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Modality =</span> <span class="fu">unique</span>(senses_data<span class="sc">$</span>Modality))</span>
-<span id="cb494-3"><a href="categorical-predictors.html#cb494-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Print to see what they look like</span></span>
-<span id="cb494-4"><a href="categorical-predictors.html#cb494-4" aria-hidden="true" tabindex="-1"></a>preds</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="categorical-predictors.html#cb484-1" tabindex="-1"></a><span class="co">#Create a dataset consisting of categories in the data</span></span>
+<span id="cb484-2"><a href="categorical-predictors.html#cb484-2" tabindex="-1"></a>preds <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Modality =</span> <span class="fu">unique</span>(senses_data<span class="sc">$</span>Modality))</span>
+<span id="cb484-3"><a href="categorical-predictors.html#cb484-3" tabindex="-1"></a><span class="co"># Print to see what they look like</span></span>
+<span id="cb484-4"><a href="categorical-predictors.html#cb484-4" tabindex="-1"></a>preds</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 2 × 1
 ##   Modality
 ##   &lt;chr&gt;   
 ## 1 Taste   
 ## 2 Smell</code></pre>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="categorical-predictors.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See the predictions</span></span>
-<span id="cb496-2"><a href="categorical-predictors.html#cb496-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model_2, preds)</span></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="categorical-predictors.html#cb486-1" tabindex="-1"></a><span class="co"># See the predictions</span></span>
+<span id="cb486-2"><a href="categorical-predictors.html#cb486-2" tabindex="-1"></a><span class="fu">predict</span>(model_2, preds)</span></code></pre></div>
 <pre class="r-output"><code>##        1        2 
 ## 5.808124 5.471012</code></pre>
 </div>
 <div id="sum-coding" class="section level3 hasAnchor" number="10.3.2">
 <h3><span class="header-section-number">10.3.2</span> Sum Coding<a href="categorical-predictors.html#sum-coding" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sum coding is a slightly different coding mechanism. Instead of using 0 and 1 as the coding scheme, we use -1 and 1 as the coding scheme. This has the benefit of having the mean of the means as the intercept. To be able to use R’s coding functionality, we should convert our categorical values as <strong>factors</strong>.</p>
-<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="categorical-predictors.html#cb498-1" aria-hidden="true" tabindex="-1"></a>senses_data<span class="ot">&lt;-</span> <span class="fu">mutate</span>(senses_data, <span class="at">Modality =</span> <span class="fu">factor</span>(Modality))</span>
-<span id="cb498-2"><a href="categorical-predictors.html#cb498-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb498-3"><a href="categorical-predictors.html#cb498-3" aria-hidden="true" tabindex="-1"></a>senses_data</span></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="categorical-predictors.html#cb488-1" tabindex="-1"></a>senses_data<span class="ot">&lt;-</span> <span class="fu">mutate</span>(senses_data, <span class="at">Modality =</span> <span class="fu">factor</span>(Modality))</span>
+<span id="cb488-2"><a href="categorical-predictors.html#cb488-2" tabindex="-1"></a></span>
+<span id="cb488-3"><a href="categorical-predictors.html#cb488-3" tabindex="-1"></a>senses_data</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 72 × 4
 ##    Word       Modality   Val treatment
 ##    &lt;chr&gt;      &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -561,49 +555,49 @@ So, our model predicts only two values.</p>
 ##  8 beery      Taste     6.07         1
 ##  9 bitter     Taste     5.12         1
 ## 10 bland      Taste     5.75         1
-## # … with 62 more rows</code></pre>
+## # ℹ 62 more rows</code></pre>
 <p>Next, we can use the contrasts function to see what the current coding scheme looks like.</p>
-<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="categorical-predictors.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(senses_data<span class="sc">$</span>Modality)</span></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="categorical-predictors.html#cb490-1" tabindex="-1"></a><span class="fu">contrasts</span>(senses_data<span class="sc">$</span>Modality)</span></code></pre></div>
 <pre class="r-output"><code>##       Taste
 ## Smell     0
 ## Taste     1</code></pre>
 <p>We can also use R’s built in cont function to get various coding types.</p>
 <p><strong>For treatment coding:</strong></p>
-<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="categorical-predictors.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Treatment coding with two variables</span></span>
-<span id="cb502-2"><a href="categorical-predictors.html#cb502-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contr.treatment</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="categorical-predictors.html#cb492-1" tabindex="-1"></a><span class="co">#Treatment coding with two variables</span></span>
+<span id="cb492-2"><a href="categorical-predictors.html#cb492-2" tabindex="-1"></a><span class="fu">contr.treatment</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre class="r-output"><code>##   2
 ## 1 0
 ## 2 1</code></pre>
 <p><strong>For Sum coding:</strong></p>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="categorical-predictors.html#cb504-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sum coding with two variables</span></span>
-<span id="cb504-2"><a href="categorical-predictors.html#cb504-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contr.sum</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="categorical-predictors.html#cb494-1" tabindex="-1"></a><span class="co">#Sum coding with two variables</span></span>
+<span id="cb494-2"><a href="categorical-predictors.html#cb494-2" tabindex="-1"></a><span class="fu">contr.sum</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre class="r-output"><code>##   [,1]
 ## 1    1
 ## 2   -1</code></pre>
 <p><strong>More than 2 variables:</strong></p>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="categorical-predictors.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Treatment coding with 3 variables</span></span>
-<span id="cb506-2"><a href="categorical-predictors.html#cb506-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contr.treatment</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="categorical-predictors.html#cb496-1" tabindex="-1"></a><span class="co">#Treatment coding with 3 variables</span></span>
+<span id="cb496-2"><a href="categorical-predictors.html#cb496-2" tabindex="-1"></a><span class="fu">contr.treatment</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre class="r-output"><code>##   2 3
 ## 1 0 0
 ## 2 1 0
 ## 3 0 1</code></pre>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="categorical-predictors.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sum coding with 3 variables</span></span>
-<span id="cb508-2"><a href="categorical-predictors.html#cb508-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contr.sum</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="categorical-predictors.html#cb498-1" tabindex="-1"></a><span class="co">#Sum coding with 3 variables</span></span>
+<span id="cb498-2"><a href="categorical-predictors.html#cb498-2" tabindex="-1"></a><span class="fu">contr.sum</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre class="r-output"><code>##   [,1] [,2]
 ## 1    1    0
 ## 2    0    1
 ## 3   -1   -1</code></pre>
 <p><strong>More than 2 variables:</strong></p>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="categorical-predictors.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Treatment coding with 5 variables</span></span>
-<span id="cb510-2"><a href="categorical-predictors.html#cb510-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contr.treatment</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="categorical-predictors.html#cb500-1" tabindex="-1"></a><span class="co">#Treatment coding with 5 variables</span></span>
+<span id="cb500-2"><a href="categorical-predictors.html#cb500-2" tabindex="-1"></a><span class="fu">contr.treatment</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre class="r-output"><code>##   2 3 4 5
 ## 1 0 0 0 0
 ## 2 1 0 0 0
 ## 3 0 1 0 0
 ## 4 0 0 1 0
 ## 5 0 0 0 1</code></pre>
-<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="categorical-predictors.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sum coding with 5 variables</span></span>
-<span id="cb512-2"><a href="categorical-predictors.html#cb512-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contr.sum</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="categorical-predictors.html#cb502-1" tabindex="-1"></a><span class="co">#Sum coding with 5 variables</span></span>
+<span id="cb502-2"><a href="categorical-predictors.html#cb502-2" tabindex="-1"></a><span class="fu">contr.sum</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre class="r-output"><code>##   [,1] [,2] [,3] [,4]
 ## 1    1    0    0    0
 ## 2    0    1    0    0
@@ -611,19 +605,19 @@ So, our model predicts only two values.</p>
 ## 4    0    0    0    1
 ## 5   -1   -1   -1   -1</code></pre>
 <p>Let us use sum coding on our data.</p>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="categorical-predictors.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a new column by copying the modality factors (Taste and Smell)</span></span>
-<span id="cb514-2"><a href="categorical-predictors.html#cb514-2" aria-hidden="true" tabindex="-1"></a>senses_data <span class="ot">&lt;-</span> <span class="fu">mutate</span>(senses_data, <span class="at">sum_coding=</span>Modality)</span>
-<span id="cb514-3"><a href="categorical-predictors.html#cb514-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Use sum coding using contrasts() and contr.sum()</span></span>
-<span id="cb514-4"><a href="categorical-predictors.html#cb514-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(senses_data<span class="sc">$</span>sum_coding) <span class="ot">&lt;-</span> <span class="fu">contr.sum</span>(<span class="dv">2</span>)</span>
-<span id="cb514-5"><a href="categorical-predictors.html#cb514-5" aria-hidden="true" tabindex="-1"></a><span class="co">#run constrasts to see if it worked</span></span>
-<span id="cb514-6"><a href="categorical-predictors.html#cb514-6" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(senses_data<span class="sc">$</span>sum_coding)</span></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="categorical-predictors.html#cb504-1" tabindex="-1"></a><span class="co">#Create a new column by copying the modality factors (Taste and Smell)</span></span>
+<span id="cb504-2"><a href="categorical-predictors.html#cb504-2" tabindex="-1"></a>senses_data <span class="ot">&lt;-</span> <span class="fu">mutate</span>(senses_data, <span class="at">sum_coding=</span>Modality)</span>
+<span id="cb504-3"><a href="categorical-predictors.html#cb504-3" tabindex="-1"></a><span class="co">#Use sum coding using contrasts() and contr.sum()</span></span>
+<span id="cb504-4"><a href="categorical-predictors.html#cb504-4" tabindex="-1"></a><span class="fu">contrasts</span>(senses_data<span class="sc">$</span>sum_coding) <span class="ot">&lt;-</span> <span class="fu">contr.sum</span>(<span class="dv">2</span>)</span>
+<span id="cb504-5"><a href="categorical-predictors.html#cb504-5" tabindex="-1"></a><span class="co">#run constrasts to see if it worked</span></span>
+<span id="cb504-6"><a href="categorical-predictors.html#cb504-6" tabindex="-1"></a><span class="fu">contrasts</span>(senses_data<span class="sc">$</span>sum_coding)</span></code></pre></div>
 <pre class="r-output"><code>##       [,1]
 ## Smell    1
 ## Taste   -1</code></pre>
 <p>Now we can fit a linear model and see what the coefficients look like.</p>
-<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="categorical-predictors.html#cb516-1" aria-hidden="true" tabindex="-1"></a>model_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Val <span class="sc">~</span> sum_coding, <span class="at">data=</span>senses_data)</span>
-<span id="cb516-2"><a href="categorical-predictors.html#cb516-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb516-3"><a href="categorical-predictors.html#cb516-3" aria-hidden="true" tabindex="-1"></a>model_3</span></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="categorical-predictors.html#cb506-1" tabindex="-1"></a>model_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Val <span class="sc">~</span> sum_coding, <span class="at">data=</span>senses_data)</span>
+<span id="cb506-2"><a href="categorical-predictors.html#cb506-2" tabindex="-1"></a></span>
+<span id="cb506-3"><a href="categorical-predictors.html#cb506-3" tabindex="-1"></a>model_3</span></code></pre></div>
 <pre class="r-output"><code>## 
 ## Call:
 ## lm(formula = Val ~ sum_coding, data = senses_data)
@@ -633,16 +627,16 @@ So, our model predicts only two values.</p>
 ##      5.6396      -0.1686</code></pre>
 <p>The intercept is now the mean of the means. The slope is halved.</p>
 <p>Let us also plot the model to see where the intercept is.</p>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="categorical-predictors.html#cb518-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(senses_data, <span class="fu">aes</span>(<span class="at">x=</span> sum_coding, <span class="at">y=</span> Val))<span class="sc">+</span></span>
-<span id="cb518-2"><a href="categorical-predictors.html#cb518-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="categorical-predictors.html#cb508-1" tabindex="-1"></a><span class="fu">ggplot</span>(senses_data, <span class="fu">aes</span>(<span class="at">x=</span> sum_coding, <span class="at">y=</span> Val))<span class="sc">+</span></span>
+<span id="cb508-2"><a href="categorical-predictors.html#cb508-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
 </div>
 </div>
 <div id="categorical-predictors-with-more-than-2-levels" class="section level2 hasAnchor" number="10.4">
 <h2><span class="header-section-number">10.4</span> Categorical Predictors with more than 2 levels<a href="categorical-predictors.html#categorical-predictors-with-more-than-2-levels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Remember that originally our data had 5 levels (“Touch” “Sight” “Taste” “Smell” “Sound”). Let us build a linear model that includes all of them.</p>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="categorical-predictors.html#cb519-1" aria-hidden="true" tabindex="-1"></a>model_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Val <span class="sc">~</span> Modality, <span class="at">data=</span>data)</span>
-<span id="cb519-2"><a href="categorical-predictors.html#cb519-2" aria-hidden="true" tabindex="-1"></a>model_4</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="categorical-predictors.html#cb509-1" tabindex="-1"></a>model_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Val <span class="sc">~</span> Modality, <span class="at">data=</span>data)</span>
+<span id="cb509-2"><a href="categorical-predictors.html#cb509-2" tabindex="-1"></a>model_4</span></code></pre></div>
 <pre class="r-output"><code>## 
 ## Call:
 ## lm(formula = Val ~ Modality, data = data)
@@ -650,20 +644,28 @@ So, our model predicts only two values.</p>
 ## Coefficients:
 ##   (Intercept)  ModalitySmell  ModalitySound  ModalityTaste  ModalityTouch  
 ##       5.57966       -0.10865       -0.17447        0.22846       -0.04523</code></pre>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="categorical-predictors.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span> Modality, <span class="at">y=</span> Val, <span class="at">color=</span>Modality))<span class="sc">+</span></span>
-<span id="cb521-2"><a href="categorical-predictors.html#cb521-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb521-3"><a href="categorical-predictors.html#cb521-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">se=</span>F)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-260-1.png" width="672" /></p>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="categorical-predictors.html#cb511-1" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span> Modality, <span class="at">y=</span> Val, <span class="at">color=</span>Modality))<span class="sc">+</span></span>
+<span id="cb511-2"><a href="categorical-predictors.html#cb511-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb511-3"><a href="categorical-predictors.html#cb511-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">se=</span>F)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
 
 </div>
 </div>
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="linear-non-linear-transformations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="effect-size-significance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="linear-non-linear-transformations.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
