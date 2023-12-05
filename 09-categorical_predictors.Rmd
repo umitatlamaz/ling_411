@@ -34,7 +34,7 @@ Smell words have been claimed to be more negative than taste words. I don't know
 * Burası (çok) kokuyor. 
 * Bu (çok) tatlı.
 
-Just the verb *kok* "smell" seems to have a negative connotation. On the other hand, the adjective *tatlı* "tasty"  whose root *tat*  "taste" and the suffix *-lı* simply means "with" has a positive connotation. Whle this is simply a hunch, we don't have enough evidence for Turkish to claim that this is in fact true. Let's hope that someone will run an experiment for Turkish and report the results. For now, we'll use the **senses_valence** dataset from Bodo Winter's book. 
+Just the verb *kok* "smell" seems to have a negative connotation. On the other hand, the adjective *tatlı* "tasty"  whose root *tat*  "taste" and the suffix *-lı* simply means "with" has a positive connotation. While this is simply a hunch, we don't have enough evidence for Turkish to claim that this is in fact true. Let's hope that someone will run an experiment for Turkish and report the results. For now, we'll use the **senses_valence** dataset from Bodo Winter's book. 
 
 Let us read in the dataset and see what it looks like. 
 

@@ -23,7 +23,7 @@
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2023-11-28" />
+<meta name="date" content="2023-12-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="linear-non-linear-transformations.html"/>
-
+<link rel="next" href="effect-size-significance.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -279,6 +279,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictors-with-more-than-2-levels"><i class="fa fa-check"></i><b>10.4</b> Categorical Predictors with more than 2 levels</a></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="effect-size-significance.html"><a href="effect-size-significance.html"><i class="fa fa-check"></i><b>11</b> Effect Size &amp; Significance</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#cohens-d"><i class="fa fa-check"></i><b>11.1</b> Cohen’s <em>d</em></a></li>
+<li class="chapter" data-level="11.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error"><i class="fa fa-check"></i><b>11.2</b> Standard Error</a></li>
+<li class="chapter" data-level="11.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#confidence-interval"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval</a></li>
+<li class="chapter" data-level="11.4" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error-of-the-difference-of-two-means"><i class="fa fa-check"></i><b>11.4</b> Standard Error of the difference of two means</a></li>
+<li class="chapter" data-level="11.5" data-path="effect-size-significance.html"><a href="effect-size-significance.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.5</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="11.6" data-path="effect-size-significance.html"><a href="effect-size-significance.html#calculating-the-t-score"><i class="fa fa-check"></i><b>11.6</b> Calculating the t-score</a></li>
+<li class="chapter" data-level="11.7" data-path="effect-size-significance.html"><a href="effect-size-significance.html#p-value"><i class="fa fa-check"></i><b>11.7</b> p-value</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -357,7 +367,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Burası (çok) kokuyor.</li>
 <li>Bu (çok) tatlı.</li>
 </ul>
-<p>Just the verb <em>kok</em> “smell” seems to have a negative connotation. On the other hand, the adjective <em>tatlı</em> “tasty” whose root <em>tat</em> “taste” and the suffix <em>-lı</em> simply means “with” has a positive connotation. Whle this is simply a hunch, we don’t have enough evidence for Turkish to claim that this is in fact true. Let’s hope that someone will run an experiment for Turkish and report the results. For now, we’ll use the <strong>senses_valence</strong> dataset from Bodo Winter’s book.</p>
+<p>Just the verb <em>kok</em> “smell” seems to have a negative connotation. On the other hand, the adjective <em>tatlı</em> “tasty” whose root <em>tat</em> “taste” and the suffix <em>-lı</em> simply means “with” has a positive connotation. While this is simply a hunch, we don’t have enough evidence for Turkish to claim that this is in fact true. Let’s hope that someone will run an experiment for Turkish and report the results. For now, we’ll use the <strong>senses_valence</strong> dataset from Bodo Winter’s book.</p>
 <p>Let us read in the dataset and see what it looks like.</p>
 <div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="categorical-predictors.html#cb465-1" tabindex="-1"></a><span class="co">#Import tidyverse</span></span>
 <span id="cb465-2"><a href="categorical-predictors.html#cb465-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -651,21 +661,13 @@ So, our model predicts only two values.</p>
 
 </div>
 </div>
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="linear-non-linear-transformations.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="linear-non-linear-transformations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="effect-size-significance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
