@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  5 DEC 2023 11:34
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  12 DEC 2023 11:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1221,12 +1221,10 @@ File: main_files/figure-latex/unnamed-chunk-253-1.pdf Graphic file (type pdf)
 
 ]
 Chapter 11.
-[157] [158] [159]
+[157] [158] [159] [160]
 File: ./img/cohens.png Graphic file (type bmp)
 <./img/cohens.png>
-[160] [161] [162] [163] [164] [165] [166] [167]
-File: main_files/figure-latex/unnamed-chunk-265-1.pdf Graphic file (type pdf)
-<use main_files/figure-latex/unnamed-chunk-265-1.pdf>
+[161] [162] [163] [164] [165] [166] [167]
 File: main_files/figure-latex/unnamed-chunk-266-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/unnamed-chunk-266-1.pdf>
 [168]
@@ -1235,9 +1233,15 @@ File: main_files/figure-latex/unnamed-chunk-267-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[169] [170]
+[169]
+File: main_files/figure-latex/unnamed-chunk-268-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-268-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[170] [171]
 No file main.bbl.
-[171] (./main.aux)
+[172] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1256,4 +1260,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  86i,8n,121p,923b,484s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (171 pages).
+Output written on main.pdf (172 pages).

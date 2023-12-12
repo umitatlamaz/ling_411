@@ -120,7 +120,7 @@
 
 \title{Ling 411 - Fall 2023}
 \author{Ümit Atlamaz}
-\date{2023-12-05}
+\date{2023-12-12}
 
 \begin{document}
 \maketitle
@@ -3193,7 +3193,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(05 December, 2023, 11:34)
+(12 December, 2023, 11:38)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -6821,21 +6821,26 @@ As we are trying to figure out a standardized effect size (and other values), we
 
 Cohen's \emph{d} is the measure used to quantify the \textbf{strength} of a difference between two means (m1 and m2). The formula for Cohen's \emph{d} is given below:
 
-\[d = \frac{m1-m2}{s}\]
+\[d = \frac{m_1-m_2}{s}\]
+where:
+\[m_1 = \text{mean of group 1}\]
+\[m_2 = \text{mean of group 2}\]
 
-\begin{itemize}
-\tightlist
-\item
-  m1 = mean of group 1
-\item
-  m2 mean of group 2
-\item
-  s = standard deviation of all the data (group 1 and group 2)
-\end{itemize}
+\[s = \text{pooled standard deviation}\]
 
-We'll calculate s using the formula below for \textbf{pooled} standard deviation.
+We'll calculate s using the formula below for \textbf{pooled} standard deviation:
 
-\[s = \sqrt{\frac{sd_1^2 + sd_2^2}{2}}\]
+\[s = \sqrt{\frac{(n_1-1)*sd_1^2 + (n_2-1)*sd_2^2}{n_1+n_2-2}}\]
+
+where:
+
+\[n_1 = \text{number of items in group 1}\]
+
+\[n_2 = \text{number of items in group 2}\]
+
+\[sd_1 = \text{standard deviation of group 1}\]
+
+\[sd_2 = \text{standard deviation of group 2}\]
 
 The reason why we are calculating the \textbf{pooled} standard deviation is to make sure that our standard deviations that come from different means (i.e.~groups of data) are weighted. Below, we'll see that the pooled standard deviation has a slightly different value than the standard deviation of the whole data.
 
@@ -6899,6 +6904,17 @@ Let us get the means for each category.
 \end{Highlighting}
 \end{Shaded}
 
+Let us get the length of each group (i.e.~number of items in each group).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#get the number of items for each condition (Taste, Smell)}
+\NormalTok{lengths  }\OtherTok{\textless{}{-}}\NormalTok{ senses\_data }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(Modality) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{N =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
 Let us now calculate s (pooled standard deviation).
 
 \begin{Shaded}
@@ -6909,7 +6925,7 @@ Let us now calculate s (pooled standard deviation).
   \FunctionTok{summarize}\NormalTok{(}\AttributeTok{s =} \FunctionTok{sd}\NormalTok{(Val))}
 
 \CommentTok{\#calculate pooled standard deviation using the formula above}
-\NormalTok{s }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{((s\_devs}\SpecialCharTok{$}\NormalTok{s[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ s\_devs}\SpecialCharTok{$}\NormalTok{s[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}
+\NormalTok{s }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(((lengths}\SpecialCharTok{$}\NormalTok{N[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(s\_devs}\SpecialCharTok{$}\NormalTok{s[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ (lengths}\SpecialCharTok{$}\NormalTok{N[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(s\_devs}\SpecialCharTok{$}\NormalTok{s[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}\SpecialCharTok{/}\NormalTok{(lengths}\SpecialCharTok{$}\NormalTok{N[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{+}\NormalTok{lengths}\SpecialCharTok{$}\NormalTok{N[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{))}
 
 \CommentTok{\#print the pooled standard deviation}
 \NormalTok{s}
@@ -6918,7 +6934,7 @@ Let us now calculate s (pooled standard deviation).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{\#\# [1] 0.3199647}
+\NormalTok{\#\# [1] 0.3148274}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6946,7 +6962,7 @@ Now we can calculate Cohen's \emph{d}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{\#\# [1] {-}1.053592}
+\NormalTok{\#\# [1] {-}1.070784}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7373,7 +7389,7 @@ Given that we have a total of 4 data points, then our df will be 2.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{main_files/figure-latex/unnamed-chunk-265-1.pdf}
+\includegraphics{main_files/figure-latex/unnamed-chunk-266-1.pdf}
 
 \textbf{t-distribution} approaches normal distribution (for z-scores) as the degrees of freedom increases. At 30 degrees of freedom or above, it becomes very similar to normal distribution.\footnote{This is part of the reason why people aim for at least 30 participants in each group.}
 
@@ -7387,7 +7403,7 @@ Given that we have a total of 4 data points, then our df will be 2.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{main_files/figure-latex/unnamed-chunk-266-1.pdf}
+\includegraphics{main_files/figure-latex/unnamed-chunk-267-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7399,7 +7415,7 @@ Given that we have a total of 4 data points, then our df will be 2.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{main_files/figure-latex/unnamed-chunk-267-1.pdf}
+\includegraphics{main_files/figure-latex/unnamed-chunk-268-1.pdf}
 
 \hypertarget{p-value}{%
 \section{p-value}\label{p-value}}
@@ -7420,13 +7436,13 @@ Alternatively, we can calculate it using the \texttt{pt()} function, which takes
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{pt}\NormalTok{(t,}\DecValTok{2}\NormalTok{)}
+\FunctionTok{pt}\NormalTok{(}\FunctionTok{abs}\NormalTok{(t),}\FloatTok{1.6374}\NormalTok{,}\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{\#\# [1] 0.09993387}
+\NormalTok{\#\# [1] 0.1135606}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7434,13 +7450,13 @@ The value we get is going to be the probability of t-score on one tail of the di
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{2}\SpecialCharTok{*}\FunctionTok{pt}\NormalTok{(t,}\DecValTok{2}\NormalTok{)}
+\DecValTok{2}\SpecialCharTok{*}\FunctionTok{pt}\NormalTok{(}\FunctionTok{abs}\NormalTok{(t),}\FloatTok{1.6374}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{\#\# [1] 0.1998677}
+\NormalTok{\#\# [1] 0.2271212}
 \end{Highlighting}
 \end{Shaded}
 

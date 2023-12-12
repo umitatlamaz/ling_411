@@ -24,15 +24,28 @@ As we are trying to figure out a standardized effect size (and other values), we
 ## Cohen's *d*
 Cohen's *d* is the measure used to quantify the **strength** of a difference between two means (m1 and m2). The formula for Cohen's *d* is given below:
 
-$$d = \frac{m1-m2}{s}$$
+$$d = \frac{m_1-m_2}{s}$$
+where: 
+$$m_1 = \text{mean of group 1}$$
+$$m_2 = \text{mean of group 2}$$
 
-* m1 = mean of group 1
-* m2 mean of group 2
-* s = standard deviation of all the data (group 1 and group 2)
+$$s = \text{pooled standard deviation}$$
 
-We'll calculate s using the formula below for **pooled** standard deviation.
+We'll calculate s using the formula below for **pooled** standard deviation:
 
-$$s = \sqrt{\frac{sd_1^2 + sd_2^2}{2}}$$
+$$s = \sqrt{\frac{(n_1-1)*sd_1^2 + (n_2-1)*sd_2^2}{n_1+n_2-2}}$$
+
+where:
+
+$$n_1 = \text{number of items in group 1}$$
+
+$$n_2 = \text{number of items in group 2}$$
+
+$$sd_1 = \text{standard deviation of group 1}$$
+
+$$sd_2 = \text{standard deviation of group 2}$$
+
+
 
 The reason why we are calculating the **pooled** standard deviation is to make sure that our standard deviations that come from different means (i.e. groups of data) are weighted. Below, we'll see that the pooled standard deviation has a slightly different value than the standard deviation of the whole data. 
 
@@ -65,6 +78,19 @@ means <- senses_data %>%
 means
 ```
 
+Let us get the length of each group (i.e. number of items in each group).
+
+```{r}
+#get the number of items for each condition (Taste, Smell)
+lengths  <- senses_data %>% 
+  group_by(Modality) %>% 
+  summarize(N = n())
+
+```
+
+
+
+
 Let us now calculate s (pooled standard deviation).
 
 ```{r}
@@ -74,7 +100,7 @@ s_devs  <- senses_data %>%
   summarize(s = sd(Val))
 
 #calculate pooled standard deviation using the formula above
-s <- sqrt((s_devs$s[1]^2 + s_devs$s[2]^2)/2)
+s <- sqrt(((lengths$N[1]-1)*(s_devs$s[1]^2) + (lengths$N[2]-1)*(s_devs$s[2]^2))/(lengths$N[1]+lengths$N[2]-2))
 
 #print the pooled standard deviation
 s
@@ -360,13 +386,13 @@ Alternatively, we can calculate it using the `pt()` function, which takes the fo
 * A Boolean for lower.tail (optional)
 
 ```{r}
-pt(t,2)
+pt(abs(t),1.6374,lower.tail = FALSE)
 ```
 
 The value we get is going to be the probability of t-score on one tail of the distribution (called **one-tailed**). This is used for a directional hypothesis (e.g. red shirts have a higher voice pitch than blue ones). In our case, we are interested in the difference regardless of the direction. For this, we can simply multiply our p-value by 2 to get a **two-tailed** distribution. 
 
 ```{r}
-2*pt(t,2)
+2*pt(abs(t),1.6374, lower.tail = FALSE)
 ```
 
 
