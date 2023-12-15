@@ -115,3 +115,8 @@ standard-error-of-the-difference-of-two-means
 hypothesis-testing
 calculating-the-t-score
 p-value
+type-i-and-type-ii-errors
+housingpriceexample
+type-i-error
+typee-ii-error
+statistical-power

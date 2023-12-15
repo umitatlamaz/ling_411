@@ -404,3 +404,111 @@ Even though our effect size is large as can be seen below, our results are **not
 ```{r}
 cohen.d(blue,red)
 ```
+
+
+## Type I and Type II Errors
+Sometimes, we might find $p < 0.05$ which suggests that we have found a significant result. However, this is not always true. Such errors are called Type I error (also known as False Positive). Other times, there might be a significant difference between our two groups but we might fail to identify this significance because we got $p \geq 0.05$. Such errors are called Type II errors (a.k.a. False Negative). Such errors usually occur when we don't have sufficient data (i.e. sample size is too small).
+
+
+|**Error Type**| **Explanation** | **a.k.a.** |
+|:--|:--|:--|
+| **Type I** | $p < 0.05$ but in fact there is no significant difference  | False Positive|
+| **Type II** | $p \geq 0.05$ but in fact there is a significant difference | False Negative|
+
+### Type I Error
+Remember that the difference between two groups of data is **statistically significant** means that there is an actual meaningful difference in the way these data are generated. This difference can be small or big in terms of its effect size. This difference might be caused by one factor or by many factors. What matters is that there is an underlying difference in the mechanism that is generating the data. This underlying difference is causing the actual variance in the data from two distinct groups. 
+
+Also remember that the variance within or across two groups can also be caused by completely random factors. For example, when you are measuring the reaction time, a little insect in the room might lead to a bit of a distraction and increase the reaction time. 
+
+Given all this background, let us see a little bit of a random data that was generated from a single distribution. 
+
+
+```{r}
+data_1 <- rnorm(10,mean =1, sd = 1)
+data_2 <- rnorm(10,mean =1, sd = 1)
+
+data_1
+
+data_2
+
+```
+
+
+You see that the data points are different but the parameters are the same. So underlyingly, they come from the same distribution, same data generation process, there is no actual difference between the two datasets in terms of the underlying mechanism. 
+
+Let us now pass the data through a t test for a few times to see if we can ever find a statistically significant difference. 
+
+
+```{r}
+set.seed(42)
+t.test(rnorm(10,mean =1, sd = 1),rnorm(10,mean =1, sd = 1))
+t.test(rnorm(10,mean =1, sd = 1),rnorm(10,mean =1, sd = 1))
+t.test(rnorm(10,mean =1, sd = 1),rnorm(10,mean =1, sd = 1))
+t.test(rnorm(10,mean =1, sd = 1),rnorm(10,mean =1, sd = 1))
+
+```
+
+
+As you can see, the fourth model came out to be statistically significant. This is a Type I Error. 
+
+### Typee II Error
+Now, let us create data with different parameters. This time, the means are going to be different.
+
+```{r}
+data_1 <- rnorm(10,mean =0, sd = 1)
+data_2 <- rnorm(10,mean =1, sd = 1)
+
+data_1
+
+data_2
+
+```
+
+Now, let's run the model a few times again. 
+
+```{r}
+set.seed(42)
+t.test(rnorm(10,mean =0, sd = 1),rnorm(10,mean =1, sd = 1))
+t.test(rnorm(10,mean =0, sd = 1),rnorm(10,mean =1, sd = 1))
+t.test(rnorm(10,mean =0, sd = 1),rnorm(10,mean =1, sd = 1))
+t.test(rnorm(10,mean =0, sd = 1),rnorm(10,mean =1, sd = 1))
+
+```
+
+As you can see, the results end up being not significant despite an actual difference in the parameters that generate data.
+
+
+### Statistical Power
+The rate at which a model would makes a Type II error is called Type II Error rate represented as $\beta$. We want to minimize $\beta$ as much as possible. The lower the error rate, the more powerful our model is. A standard way of measuring how powerful our model is the concept of **statistical power**. 
+
+* Statistical power = 1-$\beta$
+
+The higher the statistical power of a model, the more reliable it is. Often people aim for a value above 80%. To calculate the statistical power of a t test in r, we can use the following code. 
+
+```{r}
+
+effect_size <- cohen.d(rnorm(10,mean =0, sd = 1), rnorm(10,mean =1, sd = 1))$estimate
+n <- 10
+alpha <- 0.05
+
+power <- power.t.test(n = n, delta = effect_size, sd = 1, sig.level = alpha, type = "two.sample")$power
+
+power
+
+```
+
+Now, let us try the same data with an increased number of observations. 
+
+
+```{r}
+
+effect_size <- cohen.d(rnorm(10,mean =0, sd = 1), rnorm(10,mean =1, sd = 1))$estimate
+n <- 300
+alpha <- 0.05
+
+power <- power.t.test(n = n, delta = effect_size, sd = 1, sig.level = alpha, type = "two.sample")$power
+
+power
+
+```
+
