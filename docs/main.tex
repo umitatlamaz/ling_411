@@ -3193,7 +3193,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(15 December, 2023, 10:13)
+(15 December, 2023, 13:43)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -7484,6 +7484,340 @@ Even though our effect size is large as can be seen below, our results are \text
 
 \hypertarget{type-i-and-type-ii-errors}{%
 \section{Type I and Type II Errors}\label{type-i-and-type-ii-errors}}
+
+Sometimes, we might find \(p < 0.05\) which suggests that we have found a significant result. However, this is not always true. Such errors are called Type I error (also known as False Positive). Other times, there might be a significant difference between our two groups but we might fail to identify this significance because we got \(p \geq 0.05\). Such errors are called Type II errors (a.k.a. False Negative). Such errors usually occur when we don't have sufficient data (i.e.~sample size is too small).
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Error Type}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Explanation}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{a.k.a.}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Type I} & \(p < 0.05\) but in fact there is no significant difference & False Positive \\
+\textbf{Type II} & \(p \geq 0.05\) but in fact there is a significant difference & False Negative \\
+\end{longtable}
+
+\hypertarget{type-i-error}{%
+\subsection{Type I Error}\label{type-i-error}}
+
+Remember that the difference between two groups of data is \textbf{statistically significant} means that there is an actual meaningful difference in the way these data are generated. This difference can be small or big in terms of its effect size. This difference might be caused by one factor or by many factors. What matters is that there is an underlying difference in the mechanism that is generating the data. This underlying difference is causing the actual variance in the data from two distinct groups.
+
+Also remember that the variance within or across two groups can also be caused by completely random factors. For example, when you are measuring the reaction time, a little insect in the room might lead to a bit of a distraction and increase the reaction time.
+
+Given all this background, let us see a little bit of a random data that was generated from a single distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_1 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+\NormalTok{data\_2 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{data\_1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1] {-}0.2918083  1.3658382  0.8477967  0.2659059  0.2180279  1.5515670}
+\NormalTok{\#\#  [7] {-}0.6108410  1.7481764  1.4492960  0.1299375}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1]  0.902252069  1.893100214  2.350915095  2.488970394  1.371067213}
+\NormalTok{\#\#  [6]  0.785526756  1.455494590  0.741888890 {-}0.002923752  1.844143483}
+\end{Highlighting}
+\end{Shaded}
+
+You see that the data points are different but the parameters are the same. So underlyingly, they come from the same distribution, same data generation process, there is no actual difference between the two datasets in terms of the underlying mechanism.
+
+Let us now pass the data through a t test for a few times to see if we can ever find a statistically significant difference.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 1, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = 1.2268, df = 13.421, p{-}value = 0.241}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}0.5369389  1.9584459}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# mean of x mean of y }
+\NormalTok{\#\# 1.5472968 0.8365433}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 1, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = 0.36582, df = 17.977, p{-}value = 0.7188}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}0.8814711  1.2531201}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# mean of x mean of y }
+\NormalTok{\#\# 0.8219205 0.6360959}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 1, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = {-}0.082117, df = 16.257, p{-}value = 0.9356}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}1.0340503  0.9568318}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# mean of x mean of y }
+\NormalTok{\#\# 0.9797846 1.0183939}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 1, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = 2.3062, df = 17.808, p{-}value = 0.03335}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  0.06683172 1.44707262}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# mean of x mean of y }
+\NormalTok{\#\# 1.5390768 0.7821246}
+\end{Highlighting}
+\end{Shaded}
+
+As you can see, the fourth model came out to be statistically significant. This is a Type I Error.
+
+\hypertarget{typee-ii-error}{%
+\subsection{Typee II Error}\label{typee-ii-error}}
+
+Now, let us create data with different parameters. This time, the means are going to be different.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_1 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+\NormalTok{data\_2 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{data\_1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1]  1.51270701  0.25792144  0.08844023 {-}0.12089654 {-}1.19432890  0.61199690}
+\NormalTok{\#\#  [7] {-}0.21713985 {-}0.18275671  0.93334633  0.82177311}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1]  2.3921164  0.5238261  1.6503486  2.3911105 {-}0.1107889  0.1392074}
+\NormalTok{\#\#  [7] {-}0.1317387 {-}0.4592140  1.0799826  1.6532043}
+\end{Highlighting}
+\end{Shaded}
+
+Now, let's run the model a few times again.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 0, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = {-}0.49924, df = 13.421, p{-}value = 0.6257}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}1.5369389  0.9584459}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# mean of x mean of y }
+\NormalTok{\#\# 0.5472968 0.8365433}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 0, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = {-}1.6028, df = 17.977, p{-}value = 0.1264}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}1.8814711  0.2531201}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\#  mean of x  mean of y }
+\NormalTok{\#\# {-}0.1780795  0.6360959}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 0, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = {-}2.209, df = 16.257, p{-}value = 0.04186}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}2.03405031 {-}0.04316822}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\#   mean of x   mean of y }
+\NormalTok{\#\# {-}0.02021535  1.01839391}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 0, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = {-}0.74048, df = 17.808, p{-}value = 0.4687}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}0.9331683  0.4470726}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# mean of x mean of y }
+\NormalTok{\#\# 0.5390768 0.7821246}
+\end{Highlighting}
+\end{Shaded}
+
+As you can see, the results end up being not significant despite an actual difference in the parameters that generate data.
+
+\hypertarget{statistical-power}{%
+\subsection{Statistical Power}\label{statistical-power}}
+
+The rate at which a model would makes a Type II error is called Type II Error rate represented as \(\beta\). We want to minimize \(\beta\) as much as possible. The lower the error rate, the more powerful our model is. A standard way of measuring how powerful our model is the concept of \textbf{statistical power}.
+
+\begin{itemize}
+\tightlist
+\item
+  Statistical power = 1-\(\beta\)
+\end{itemize}
+
+The higher the statistical power of a model, the more reliable it is. Often people aim for a value above 80\%. To calculate the statistical power of a t test in r, we can use the following code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{effect\_size }\OtherTok{\textless{}{-}} \FunctionTok{cohen.d}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}\SpecialCharTok{$}\NormalTok{estimate}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{alpha }\OtherTok{\textless{}{-}} \FloatTok{0.05}
+
+\NormalTok{power }\OtherTok{\textless{}{-}} \FunctionTok{power.t.test}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{delta =}\NormalTok{ effect\_size, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{, }\AttributeTok{sig.level =}\NormalTok{ alpha, }\AttributeTok{type =} \StringTok{"two.sample"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{power}
+
+\NormalTok{power}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.3273469}
+\end{Highlighting}
+\end{Shaded}
+
+Now, let us try the same data with an increased number of observations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{effect\_size }\OtherTok{\textless{}{-}} \FunctionTok{cohen.d}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}\SpecialCharTok{$}\NormalTok{estimate}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{300}
+\NormalTok{alpha }\OtherTok{\textless{}{-}} \FloatTok{0.05}
+
+\NormalTok{power }\OtherTok{\textless{}{-}} \FunctionTok{power.t.test}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{delta =}\NormalTok{ effect\_size, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{, }\AttributeTok{sig.level =}\NormalTok{ alpha, }\AttributeTok{type =} \StringTok{"two.sample"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{power}
+
+\NormalTok{power}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.999999}
+\end{Highlighting}
+\end{Shaded}
+
 
   \bibliography{book.bib,packages.bib}
 

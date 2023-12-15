@@ -52,6 +52,14 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.30/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -208,10 +216,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#calculating-the-mean-in-r"><i class="fa fa-check"></i><b>6.2.2</b> Calculating the mean in R</a></li>
 <li class="chapter" data-level="6.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#median"><i class="fa fa-check"></i><b>6.2.3</b> The median</a></li>
 <li class="chapter" data-level="6.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>6.2.4</b> Mean or median? What’s the difference?</a></li>
-<li class="chapter" data-level="6.2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#housingpriceexample"><i class="fa fa-check"></i><b>6.2.5</b> A real life example</a></li>
-<li class="chapter" data-level="6.2.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#trimmedmean"><i class="fa fa-check"></i><b>6.2.6</b> Trimmed mean</a></li>
-<li class="chapter" data-level="6.2.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>6.2.7</b> Mode</a></li>
-<li class="chapter" data-level="6.2.8" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summary"><i class="fa fa-check"></i><b>6.2.8</b> Summary</a></li>
+<li class="chapter" data-level="6.2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#trimmedmean"><i class="fa fa-check"></i><b>6.2.5</b> Trimmed mean</a></li>
+<li class="chapter" data-level="6.2.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>6.2.6</b> Mode</a></li>
+<li class="chapter" data-level="6.2.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summary"><i class="fa fa-check"></i><b>6.2.7</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#var"><i class="fa fa-check"></i><b>6.3</b> Measures of variability</a>
 <ul>
@@ -348,15 +355,15 @@ where:
 <p>The reason why we are calculating the <strong>pooled</strong> standard deviation is to make sure that our standard deviations that come from different means (i.e. groups of data) are weighted. Below, we’ll see that the pooled standard deviation has a slightly different value than the standard deviation of the whole data.</p>
 <p><strong>Let us try Cohen’s <em>d</em> for the Smell and Taste data. </strong></p>
 <p>First, load the data and select the relevant data using the filter function.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="effect-size-significance.html#cb1-1" tabindex="-1"></a><span class="co">#Import tidyverse</span></span>
-<span id="cb1-2"><a href="effect-size-significance.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="effect-size-significance.html#cb1-3" tabindex="-1"></a><span class="co">#Read in the data</span></span>
-<span id="cb1-4"><a href="effect-size-significance.html#cb1-4" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/winter_2016_senses_valence.csv&#39;</span>)</span>
-<span id="cb1-5"><a href="effect-size-significance.html#cb1-5" tabindex="-1"></a><span class="co">#filter in the data for the relevant conditions (Taste and Smell)</span></span>
-<span id="cb1-6"><a href="effect-size-significance.html#cb1-6" tabindex="-1"></a>senses_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, Modality <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;Taste&#39;</span>, <span class="st">&#39;Smell&#39;</span>))</span>
-<span id="cb1-7"><a href="effect-size-significance.html#cb1-7" tabindex="-1"></a><span class="co">#print the head to see what it looks like</span></span>
-<span id="cb1-8"><a href="effect-size-significance.html#cb1-8" tabindex="-1"></a>data</span></code></pre></div>
-<pre><code>## # A tibble: 405 × 3
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="effect-size-significance.html#cb512-1" tabindex="-1"></a><span class="co">#Import tidyverse</span></span>
+<span id="cb512-2"><a href="effect-size-significance.html#cb512-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb512-3"><a href="effect-size-significance.html#cb512-3" tabindex="-1"></a><span class="co">#Read in the data</span></span>
+<span id="cb512-4"><a href="effect-size-significance.html#cb512-4" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/winter_2016_senses_valence.csv&#39;</span>)</span>
+<span id="cb512-5"><a href="effect-size-significance.html#cb512-5" tabindex="-1"></a><span class="co">#filter in the data for the relevant conditions (Taste and Smell)</span></span>
+<span id="cb512-6"><a href="effect-size-significance.html#cb512-6" tabindex="-1"></a>senses_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, Modality <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;Taste&#39;</span>, <span class="st">&#39;Smell&#39;</span>))</span>
+<span id="cb512-7"><a href="effect-size-significance.html#cb512-7" tabindex="-1"></a><span class="co">#print the head to see what it looks like</span></span>
+<span id="cb512-8"><a href="effect-size-significance.html#cb512-8" tabindex="-1"></a>data</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 405 × 3
 ##    Word      Modality   Val
 ##    &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;
 ##  1 abrasive  Touch     5.40
@@ -371,46 +378,46 @@ where:
 ## 10 angular   Sight     5.48
 ## # ℹ 395 more rows</code></pre>
 <p>Let us get the means for each category.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="effect-size-significance.html#cb3-1" tabindex="-1"></a><span class="co">#calculate means for each condition (Taste, Smell)</span></span>
-<span id="cb3-2"><a href="effect-size-significance.html#cb3-2" tabindex="-1"></a>means <span class="ot">&lt;-</span> senses_data <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="effect-size-significance.html#cb3-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Modality) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-4"><a href="effect-size-significance.html#cb3-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(Val))</span>
-<span id="cb3-5"><a href="effect-size-significance.html#cb3-5" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="effect-size-significance.html#cb3-6" tabindex="-1"></a><span class="co">#print means to see what it looks like</span></span>
-<span id="cb3-7"><a href="effect-size-significance.html#cb3-7" tabindex="-1"></a>means</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 2
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="effect-size-significance.html#cb514-1" tabindex="-1"></a><span class="co">#calculate means for each condition (Taste, Smell)</span></span>
+<span id="cb514-2"><a href="effect-size-significance.html#cb514-2" tabindex="-1"></a>means <span class="ot">&lt;-</span> senses_data <span class="sc">%&gt;%</span> </span>
+<span id="cb514-3"><a href="effect-size-significance.html#cb514-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Modality) <span class="sc">%&gt;%</span> </span>
+<span id="cb514-4"><a href="effect-size-significance.html#cb514-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(Val))</span>
+<span id="cb514-5"><a href="effect-size-significance.html#cb514-5" tabindex="-1"></a></span>
+<span id="cb514-6"><a href="effect-size-significance.html#cb514-6" tabindex="-1"></a><span class="co">#print means to see what it looks like</span></span>
+<span id="cb514-7"><a href="effect-size-significance.html#cb514-7" tabindex="-1"></a>means</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 2 × 2
 ##   Modality   avg
 ##   &lt;chr&gt;    &lt;dbl&gt;
 ## 1 Smell     5.47
 ## 2 Taste     5.81</code></pre>
 <p>Let us get the length of each group (i.e. number of items in each group).</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="effect-size-significance.html#cb5-1" tabindex="-1"></a><span class="co">#get the number of items for each condition (Taste, Smell)</span></span>
-<span id="cb5-2"><a href="effect-size-significance.html#cb5-2" tabindex="-1"></a>lengths  <span class="ot">&lt;-</span> senses_data <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="effect-size-significance.html#cb5-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Modality) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-4"><a href="effect-size-significance.html#cb5-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">N =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="effect-size-significance.html#cb516-1" tabindex="-1"></a><span class="co">#get the number of items for each condition (Taste, Smell)</span></span>
+<span id="cb516-2"><a href="effect-size-significance.html#cb516-2" tabindex="-1"></a>lengths  <span class="ot">&lt;-</span> senses_data <span class="sc">%&gt;%</span> </span>
+<span id="cb516-3"><a href="effect-size-significance.html#cb516-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Modality) <span class="sc">%&gt;%</span> </span>
+<span id="cb516-4"><a href="effect-size-significance.html#cb516-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">N =</span> <span class="fu">n</span>())</span></code></pre></div>
 <p>Let us now calculate s (pooled standard deviation).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="effect-size-significance.html#cb6-1" tabindex="-1"></a><span class="co">#calculate standard deviation for each condition (Taste, Smell)</span></span>
-<span id="cb6-2"><a href="effect-size-significance.html#cb6-2" tabindex="-1"></a>s_devs  <span class="ot">&lt;-</span> senses_data <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="effect-size-significance.html#cb6-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Modality) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-4"><a href="effect-size-significance.html#cb6-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">s =</span> <span class="fu">sd</span>(Val))</span>
-<span id="cb6-5"><a href="effect-size-significance.html#cb6-5" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="effect-size-significance.html#cb6-6" tabindex="-1"></a><span class="co">#calculate pooled standard deviation using the formula above</span></span>
-<span id="cb6-7"><a href="effect-size-significance.html#cb6-7" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(((lengths<span class="sc">$</span>N[<span class="dv">1</span>]<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span>(s_devs<span class="sc">$</span>s[<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> (lengths<span class="sc">$</span>N[<span class="dv">2</span>]<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span>(s_devs<span class="sc">$</span>s[<span class="dv">2</span>]<span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span>(lengths<span class="sc">$</span>N[<span class="dv">1</span>]<span class="sc">+</span>lengths<span class="sc">$</span>N[<span class="dv">2</span>]<span class="sc">-</span><span class="dv">2</span>))</span>
-<span id="cb6-8"><a href="effect-size-significance.html#cb6-8" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="effect-size-significance.html#cb6-9" tabindex="-1"></a><span class="co">#print the pooled standard deviation</span></span>
-<span id="cb6-10"><a href="effect-size-significance.html#cb6-10" tabindex="-1"></a>s</span></code></pre></div>
-<pre><code>## [1] 0.3148274</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="effect-size-significance.html#cb8-1" tabindex="-1"></a><span class="co">#calculate and print the standard deviation of the whole data for comparison</span></span>
-<span id="cb8-2"><a href="effect-size-significance.html#cb8-2" tabindex="-1"></a><span class="fu">sd</span>(senses_data<span class="sc">$</span>Val)</span></code></pre></div>
-<pre><code>## [1] 0.3519115</code></pre>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="effect-size-significance.html#cb517-1" tabindex="-1"></a><span class="co">#calculate standard deviation for each condition (Taste, Smell)</span></span>
+<span id="cb517-2"><a href="effect-size-significance.html#cb517-2" tabindex="-1"></a>s_devs  <span class="ot">&lt;-</span> senses_data <span class="sc">%&gt;%</span> </span>
+<span id="cb517-3"><a href="effect-size-significance.html#cb517-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Modality) <span class="sc">%&gt;%</span> </span>
+<span id="cb517-4"><a href="effect-size-significance.html#cb517-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">s =</span> <span class="fu">sd</span>(Val))</span>
+<span id="cb517-5"><a href="effect-size-significance.html#cb517-5" tabindex="-1"></a></span>
+<span id="cb517-6"><a href="effect-size-significance.html#cb517-6" tabindex="-1"></a><span class="co">#calculate pooled standard deviation using the formula above</span></span>
+<span id="cb517-7"><a href="effect-size-significance.html#cb517-7" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(((lengths<span class="sc">$</span>N[<span class="dv">1</span>]<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span>(s_devs<span class="sc">$</span>s[<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> (lengths<span class="sc">$</span>N[<span class="dv">2</span>]<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span>(s_devs<span class="sc">$</span>s[<span class="dv">2</span>]<span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span>(lengths<span class="sc">$</span>N[<span class="dv">1</span>]<span class="sc">+</span>lengths<span class="sc">$</span>N[<span class="dv">2</span>]<span class="sc">-</span><span class="dv">2</span>))</span>
+<span id="cb517-8"><a href="effect-size-significance.html#cb517-8" tabindex="-1"></a></span>
+<span id="cb517-9"><a href="effect-size-significance.html#cb517-9" tabindex="-1"></a><span class="co">#print the pooled standard deviation</span></span>
+<span id="cb517-10"><a href="effect-size-significance.html#cb517-10" tabindex="-1"></a>s</span></code></pre></div>
+<pre class="r-output"><code>## [1] 0.3148274</code></pre>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="effect-size-significance.html#cb519-1" tabindex="-1"></a><span class="co">#calculate and print the standard deviation of the whole data for comparison</span></span>
+<span id="cb519-2"><a href="effect-size-significance.html#cb519-2" tabindex="-1"></a><span class="fu">sd</span>(senses_data<span class="sc">$</span>Val)</span></code></pre></div>
+<pre class="r-output"><code>## [1] 0.3519115</code></pre>
 <p>Now we can calculate Cohen’s <em>d</em>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="effect-size-significance.html#cb10-1" tabindex="-1"></a>d <span class="ot">=</span> (means<span class="sc">$</span>avg[<span class="dv">1</span>] <span class="sc">-</span> means<span class="sc">$</span>avg[<span class="dv">2</span>]) <span class="sc">/</span> s</span>
-<span id="cb10-2"><a href="effect-size-significance.html#cb10-2" tabindex="-1"></a>d</span></code></pre></div>
-<pre><code>## [1] -1.070784</code></pre>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="effect-size-significance.html#cb521-1" tabindex="-1"></a>d <span class="ot">=</span> (means<span class="sc">$</span>avg[<span class="dv">1</span>] <span class="sc">-</span> means<span class="sc">$</span>avg[<span class="dv">2</span>]) <span class="sc">/</span> s</span>
+<span id="cb521-2"><a href="effect-size-significance.html#cb521-2" tabindex="-1"></a>d</span></code></pre></div>
+<pre class="r-output"><code>## [1] -1.070784</code></pre>
 <p>We can also use the package <code>effsize</code> to calculate Cohen’s d. You’ll see observe a difference between our calculation and the calculation given by the effsize package This is mainly because they use a slightly difference way of calculating variation in the data (the denominator). That’s not a huge difference.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="effect-size-significance.html#cb12-1" tabindex="-1"></a><span class="fu">library</span>(effsize)</span>
-<span id="cb12-2"><a href="effect-size-significance.html#cb12-2" tabindex="-1"></a><span class="fu">cohen.d</span>(Val <span class="sc">~</span> Modality, <span class="at">data =</span> senses_data)</span></code></pre></div>
-<pre><code>## 
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="effect-size-significance.html#cb523-1" tabindex="-1"></a><span class="fu">library</span>(effsize)</span>
+<span id="cb523-2"><a href="effect-size-significance.html#cb523-2" tabindex="-1"></a><span class="fu">cohen.d</span>(Val <span class="sc">~</span> Modality, <span class="at">data =</span> senses_data)</span></code></pre></div>
+<pre class="r-output"><code>## 
 ## Cohen&#39;s d
 ## 
 ## d estimate: -1.070784 (large)
@@ -479,12 +486,12 @@ Figure 11.1: Cohen’s <em>d</em>.
 </tbody>
 </table>
 <p>Let us run Cohen’s d on this data to see what the magnitude of the difference is.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="effect-size-significance.html#cb14-1" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">175</span>,<span class="dv">125</span>)</span>
-<span id="cb14-2"><a href="effect-size-significance.html#cb14-2" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">220</span>,<span class="dv">190</span>)</span>
-<span id="cb14-3"><a href="effect-size-significance.html#cb14-3" tabindex="-1"></a><span class="fu">mean</span>(blue) <span class="sc">-</span> <span class="fu">mean</span>(red)</span></code></pre></div>
-<pre><code>## [1] -55</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="effect-size-significance.html#cb16-1" tabindex="-1"></a><span class="fu">cohen.d</span>(blue,red)</span></code></pre></div>
-<pre><code>## 
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="effect-size-significance.html#cb525-1" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">175</span>,<span class="dv">125</span>)</span>
+<span id="cb525-2"><a href="effect-size-significance.html#cb525-2" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">220</span>,<span class="dv">190</span>)</span>
+<span id="cb525-3"><a href="effect-size-significance.html#cb525-3" tabindex="-1"></a><span class="fu">mean</span>(blue) <span class="sc">-</span> <span class="fu">mean</span>(red)</span></code></pre></div>
+<pre class="r-output"><code>## [1] -55</code></pre>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="effect-size-significance.html#cb527-1" tabindex="-1"></a><span class="fu">cohen.d</span>(blue,red)</span></code></pre></div>
+<pre class="r-output"><code>## 
 ## Cohen&#39;s d
 ## 
 ## d estimate: -1.886484 (large)
@@ -505,16 +512,16 @@ Figure 11.1: Cohen’s <em>d</em>.
 <li>SE will decrease as your sample size grows</li>
 </ul>
 <p>Let us calculate the standard error for each of our means.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="effect-size-significance.html#cb18-1" tabindex="-1"></a><span class="co">#Calculate Standard Errors</span></span>
-<span id="cb18-2"><a href="effect-size-significance.html#cb18-2" tabindex="-1"></a>SE_blue <span class="ot">&lt;-</span> <span class="fu">sd</span>(blue)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span>)</span>
-<span id="cb18-3"><a href="effect-size-significance.html#cb18-3" tabindex="-1"></a>SE_red <span class="ot">&lt;-</span> <span class="fu">sd</span>(red)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span>)</span>
-<span id="cb18-4"><a href="effect-size-significance.html#cb18-4" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="effect-size-significance.html#cb18-5" tabindex="-1"></a><span class="co">#print Standard Error for blue shirts</span></span>
-<span id="cb18-6"><a href="effect-size-significance.html#cb18-6" tabindex="-1"></a>SE_blue</span></code></pre></div>
-<pre><code>## [1] 25</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="effect-size-significance.html#cb20-1" tabindex="-1"></a><span class="co">#print Standard Error for red shirts</span></span>
-<span id="cb20-2"><a href="effect-size-significance.html#cb20-2" tabindex="-1"></a>SE_red</span></code></pre></div>
-<pre><code>## [1] 15</code></pre>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="effect-size-significance.html#cb529-1" tabindex="-1"></a><span class="co">#Calculate Standard Errors</span></span>
+<span id="cb529-2"><a href="effect-size-significance.html#cb529-2" tabindex="-1"></a>SE_blue <span class="ot">&lt;-</span> <span class="fu">sd</span>(blue)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb529-3"><a href="effect-size-significance.html#cb529-3" tabindex="-1"></a>SE_red <span class="ot">&lt;-</span> <span class="fu">sd</span>(red)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb529-4"><a href="effect-size-significance.html#cb529-4" tabindex="-1"></a></span>
+<span id="cb529-5"><a href="effect-size-significance.html#cb529-5" tabindex="-1"></a><span class="co">#print Standard Error for blue shirts</span></span>
+<span id="cb529-6"><a href="effect-size-significance.html#cb529-6" tabindex="-1"></a>SE_blue</span></code></pre></div>
+<pre class="r-output"><code>## [1] 25</code></pre>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="effect-size-significance.html#cb531-1" tabindex="-1"></a><span class="co">#print Standard Error for red shirts</span></span>
+<span id="cb531-2"><a href="effect-size-significance.html#cb531-2" tabindex="-1"></a>SE_red</span></code></pre></div>
+<pre class="r-output"><code>## [1] 15</code></pre>
 <p>Standard Error tells us how close or far away from the true population mean. In this example, we were trying to get the average voice pitch for people wearing a blue shirt and people wearing a red shirt. In each sample, we have only 2 samples. Obviously, this is very little data and the Standard Errors are going to be big.</p>
 </div>
 <div id="confidence-interval" class="section level2 hasAnchor" number="11.3">
@@ -526,36 +533,36 @@ Let us decompose this formula a bit.</p>
 <li><strong>mean</strong> is the sample mean of some sample</li>
 <li><strong>SE</strong> is the standard error of the sample</li>
 <li><span class="math inline">\(\pm\)</span> indicates that the value is going to be somewhere between <em>mean plus or minus some value</em>.</li>
-<li><strong>1.96</strong> is a special number that indicates the 95% CI.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></li>
+<li><strong>1.96</strong> is a special number that indicates the 95% CI.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></li>
 </ul>
 <p>As the name suggests, CI is an interval and the numbers returned define the range of possible values for 95% of the time.</p>
 <p>Let us calculate the 95% confidence intervals for our our means for the blue and red data.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="effect-size-significance.html#cb22-1" tabindex="-1"></a><span class="co">#calculate means</span></span>
-<span id="cb22-2"><a href="effect-size-significance.html#cb22-2" tabindex="-1"></a>mean_blue <span class="ot">&lt;-</span> <span class="fu">mean</span>(blue)</span>
-<span id="cb22-3"><a href="effect-size-significance.html#cb22-3" tabindex="-1"></a>mean_red <span class="ot">&lt;-</span> <span class="fu">mean</span>(red)</span>
-<span id="cb22-4"><a href="effect-size-significance.html#cb22-4" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="effect-size-significance.html#cb22-5" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="effect-size-significance.html#cb22-6" tabindex="-1"></a><span class="co">#calculate CIs</span></span>
-<span id="cb22-7"><a href="effect-size-significance.html#cb22-7" tabindex="-1"></a>CI_blue <span class="ot">&lt;-</span> <span class="fu">c</span>(mean_blue <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> SE_blue, mean_blue <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> SE_blue)</span>
-<span id="cb22-8"><a href="effect-size-significance.html#cb22-8" tabindex="-1"></a>CI_red <span class="ot">&lt;-</span> <span class="fu">c</span>(mean_red <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> SE_red, mean_red <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> SE_red)</span>
-<span id="cb22-9"><a href="effect-size-significance.html#cb22-9" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="effect-size-significance.html#cb22-10" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="effect-size-significance.html#cb22-11" tabindex="-1"></a>name <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;mean&#39;</span>,<span class="st">&#39;SE&#39;</span>,<span class="st">&#39;CI_min&#39;</span>,<span class="st">&#39;CI_max&#39;</span>)</span>
-<span id="cb22-12"><a href="effect-size-significance.html#cb22-12" tabindex="-1"></a>val_blue<span class="ot">&lt;-</span><span class="fu">c</span>(mean_blue,SE_blue,CI_blue)</span>
-<span id="cb22-13"><a href="effect-size-significance.html#cb22-13" tabindex="-1"></a>val_red<span class="ot">&lt;-</span><span class="fu">c</span>(mean_red,SE_red,CI_red)</span>
-<span id="cb22-14"><a href="effect-size-significance.html#cb22-14" tabindex="-1"></a></span>
-<span id="cb22-15"><a href="effect-size-significance.html#cb22-15" tabindex="-1"></a><span class="co">#print mean, SE, and CI for blue</span></span>
-<span id="cb22-16"><a href="effect-size-significance.html#cb22-16" tabindex="-1"></a>blue_st <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(name, val_blue)</span>
-<span id="cb22-17"><a href="effect-size-significance.html#cb22-17" tabindex="-1"></a>blue_st</span></code></pre></div>
-<pre><code>##     name val_blue
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="effect-size-significance.html#cb533-1" tabindex="-1"></a><span class="co">#calculate means</span></span>
+<span id="cb533-2"><a href="effect-size-significance.html#cb533-2" tabindex="-1"></a>mean_blue <span class="ot">&lt;-</span> <span class="fu">mean</span>(blue)</span>
+<span id="cb533-3"><a href="effect-size-significance.html#cb533-3" tabindex="-1"></a>mean_red <span class="ot">&lt;-</span> <span class="fu">mean</span>(red)</span>
+<span id="cb533-4"><a href="effect-size-significance.html#cb533-4" tabindex="-1"></a></span>
+<span id="cb533-5"><a href="effect-size-significance.html#cb533-5" tabindex="-1"></a></span>
+<span id="cb533-6"><a href="effect-size-significance.html#cb533-6" tabindex="-1"></a><span class="co">#calculate CIs</span></span>
+<span id="cb533-7"><a href="effect-size-significance.html#cb533-7" tabindex="-1"></a>CI_blue <span class="ot">&lt;-</span> <span class="fu">c</span>(mean_blue <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> SE_blue, mean_blue <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> SE_blue)</span>
+<span id="cb533-8"><a href="effect-size-significance.html#cb533-8" tabindex="-1"></a>CI_red <span class="ot">&lt;-</span> <span class="fu">c</span>(mean_red <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> SE_red, mean_red <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> SE_red)</span>
+<span id="cb533-9"><a href="effect-size-significance.html#cb533-9" tabindex="-1"></a></span>
+<span id="cb533-10"><a href="effect-size-significance.html#cb533-10" tabindex="-1"></a></span>
+<span id="cb533-11"><a href="effect-size-significance.html#cb533-11" tabindex="-1"></a>name <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;mean&#39;</span>,<span class="st">&#39;SE&#39;</span>,<span class="st">&#39;CI_min&#39;</span>,<span class="st">&#39;CI_max&#39;</span>)</span>
+<span id="cb533-12"><a href="effect-size-significance.html#cb533-12" tabindex="-1"></a>val_blue<span class="ot">&lt;-</span><span class="fu">c</span>(mean_blue,SE_blue,CI_blue)</span>
+<span id="cb533-13"><a href="effect-size-significance.html#cb533-13" tabindex="-1"></a>val_red<span class="ot">&lt;-</span><span class="fu">c</span>(mean_red,SE_red,CI_red)</span>
+<span id="cb533-14"><a href="effect-size-significance.html#cb533-14" tabindex="-1"></a></span>
+<span id="cb533-15"><a href="effect-size-significance.html#cb533-15" tabindex="-1"></a><span class="co">#print mean, SE, and CI for blue</span></span>
+<span id="cb533-16"><a href="effect-size-significance.html#cb533-16" tabindex="-1"></a>blue_st <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(name, val_blue)</span>
+<span id="cb533-17"><a href="effect-size-significance.html#cb533-17" tabindex="-1"></a>blue_st</span></code></pre></div>
+<pre class="r-output"><code>##     name val_blue
 ## 1   mean      150
 ## 2     SE       25
 ## 3 CI_min      101
 ## 4 CI_max      199</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="effect-size-significance.html#cb24-1" tabindex="-1"></a><span class="co">#print mean, SE, and CI for red</span></span>
-<span id="cb24-2"><a href="effect-size-significance.html#cb24-2" tabindex="-1"></a>red_st <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(name, val_red)</span>
-<span id="cb24-3"><a href="effect-size-significance.html#cb24-3" tabindex="-1"></a>red_st</span></code></pre></div>
-<pre><code>##     name val_red
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="effect-size-significance.html#cb535-1" tabindex="-1"></a><span class="co">#print mean, SE, and CI for red</span></span>
+<span id="cb535-2"><a href="effect-size-significance.html#cb535-2" tabindex="-1"></a>red_st <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(name, val_red)</span>
+<span id="cb535-3"><a href="effect-size-significance.html#cb535-3" tabindex="-1"></a>red_st</span></code></pre></div>
+<pre class="r-output"><code>##     name val_red
 ## 1   mean   205.0
 ## 2     SE    15.0
 ## 3 CI_min   175.6
@@ -566,27 +573,27 @@ Let us decompose this formula a bit.</p>
 <p>In the previous sections, we calculated the SE and CI for each sample (blue and red). However, what we are ultimately interested in is the difference in the means between two groups. The difference in the mean is what will tell us if there is a significant difference between the voice pitches of people wearing different colors. To calculate the Standard Error for the difference in mean of two samples, we use the formula below.</p>
 <p><span class="math display">\[SE_{diff} = \sqrt{\frac{SD_1^2}{n_1}+\frac{SD_2^2}{n_2}}\]</span>
 Let us calculate the SE of the difference in mean.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="effect-size-significance.html#cb26-1" tabindex="-1"></a><span class="co">#calculate standard deviations</span></span>
-<span id="cb26-2"><a href="effect-size-significance.html#cb26-2" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="effect-size-significance.html#cb26-3" tabindex="-1"></a>sd_blue <span class="ot">&lt;-</span> <span class="fu">sd</span>(blue)</span>
-<span id="cb26-4"><a href="effect-size-significance.html#cb26-4" tabindex="-1"></a>sd_red <span class="ot">&lt;-</span> <span class="fu">sd</span>(red)</span>
-<span id="cb26-5"><a href="effect-size-significance.html#cb26-5" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="effect-size-significance.html#cb26-6" tabindex="-1"></a><span class="co"># calculate SE_diff</span></span>
-<span id="cb26-7"><a href="effect-size-significance.html#cb26-7" tabindex="-1"></a>SE_diff <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sd_blue<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> sd_red<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span>)</span>
-<span id="cb26-8"><a href="effect-size-significance.html#cb26-8" tabindex="-1"></a></span>
-<span id="cb26-9"><a href="effect-size-significance.html#cb26-9" tabindex="-1"></a><span class="co">#print SE_diff</span></span>
-<span id="cb26-10"><a href="effect-size-significance.html#cb26-10" tabindex="-1"></a>SE_diff</span></code></pre></div>
-<pre><code>## [1] 29.15476</code></pre>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="effect-size-significance.html#cb537-1" tabindex="-1"></a><span class="co">#calculate standard deviations</span></span>
+<span id="cb537-2"><a href="effect-size-significance.html#cb537-2" tabindex="-1"></a></span>
+<span id="cb537-3"><a href="effect-size-significance.html#cb537-3" tabindex="-1"></a>sd_blue <span class="ot">&lt;-</span> <span class="fu">sd</span>(blue)</span>
+<span id="cb537-4"><a href="effect-size-significance.html#cb537-4" tabindex="-1"></a>sd_red <span class="ot">&lt;-</span> <span class="fu">sd</span>(red)</span>
+<span id="cb537-5"><a href="effect-size-significance.html#cb537-5" tabindex="-1"></a></span>
+<span id="cb537-6"><a href="effect-size-significance.html#cb537-6" tabindex="-1"></a><span class="co"># calculate SE_diff</span></span>
+<span id="cb537-7"><a href="effect-size-significance.html#cb537-7" tabindex="-1"></a>SE_diff <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sd_blue<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> sd_red<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb537-8"><a href="effect-size-significance.html#cb537-8" tabindex="-1"></a></span>
+<span id="cb537-9"><a href="effect-size-significance.html#cb537-9" tabindex="-1"></a><span class="co">#print SE_diff</span></span>
+<span id="cb537-10"><a href="effect-size-significance.html#cb537-10" tabindex="-1"></a>SE_diff</span></code></pre></div>
+<pre class="r-output"><code>## [1] 29.15476</code></pre>
 <p>Let us now calculate the 95% CI for the difference in means.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="effect-size-significance.html#cb28-1" tabindex="-1"></a><span class="co">#calculate the difference in means</span></span>
-<span id="cb28-2"><a href="effect-size-significance.html#cb28-2" tabindex="-1"></a>diff_mean <span class="ot">&lt;-</span> mean_blue <span class="sc">-</span> mean_red</span>
-<span id="cb28-3"><a href="effect-size-significance.html#cb28-3" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="effect-size-significance.html#cb28-4" tabindex="-1"></a><span class="co">#calculate the 95% CI</span></span>
-<span id="cb28-5"><a href="effect-size-significance.html#cb28-5" tabindex="-1"></a>CI_diff <span class="ot">&lt;-</span> <span class="fu">c</span>(diff_mean<span class="fl">-1.96</span><span class="sc">*</span>SE_diff, diff_mean<span class="fl">+1.96</span><span class="sc">*</span>SE_diff)</span>
-<span id="cb28-6"><a href="effect-size-significance.html#cb28-6" tabindex="-1"></a></span>
-<span id="cb28-7"><a href="effect-size-significance.html#cb28-7" tabindex="-1"></a><span class="co">#print the CI_diff by rounding the numbers to 2 decimal point</span></span>
-<span id="cb28-8"><a href="effect-size-significance.html#cb28-8" tabindex="-1"></a><span class="fu">round</span>(CI_diff, <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] -112.14    2.14</code></pre>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="effect-size-significance.html#cb539-1" tabindex="-1"></a><span class="co">#calculate the difference in means</span></span>
+<span id="cb539-2"><a href="effect-size-significance.html#cb539-2" tabindex="-1"></a>diff_mean <span class="ot">&lt;-</span> mean_blue <span class="sc">-</span> mean_red</span>
+<span id="cb539-3"><a href="effect-size-significance.html#cb539-3" tabindex="-1"></a></span>
+<span id="cb539-4"><a href="effect-size-significance.html#cb539-4" tabindex="-1"></a><span class="co">#calculate the 95% CI</span></span>
+<span id="cb539-5"><a href="effect-size-significance.html#cb539-5" tabindex="-1"></a>CI_diff <span class="ot">&lt;-</span> <span class="fu">c</span>(diff_mean<span class="fl">-1.96</span><span class="sc">*</span>SE_diff, diff_mean<span class="fl">+1.96</span><span class="sc">*</span>SE_diff)</span>
+<span id="cb539-6"><a href="effect-size-significance.html#cb539-6" tabindex="-1"></a></span>
+<span id="cb539-7"><a href="effect-size-significance.html#cb539-7" tabindex="-1"></a><span class="co">#print the CI_diff by rounding the numbers to 2 decimal point</span></span>
+<span id="cb539-8"><a href="effect-size-significance.html#cb539-8" tabindex="-1"></a><span class="fu">round</span>(CI_diff, <span class="dv">2</span>)</span></code></pre></div>
+<pre class="r-output"><code>## [1] -112.14    2.14</code></pre>
 </div>
 <div id="hypothesis-testing" class="section level2 hasAnchor" number="11.5">
 <h2><span class="header-section-number">11.5</span> Hypothesis Testing<a href="effect-size-significance.html#hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -635,11 +642,11 @@ Let us calculate the SE of the difference in mean.</p>
 <p><span class="math display">\[t = \frac{mean1-mean2}{SE_{diff}}\]</span>
 What the t-score encodes is 1) magnitude of the difference, 2)Variability in the data 3) Sample size. So, all of the information we need.</p>
 <p>Let us calculate the t-score for our data.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="effect-size-significance.html#cb30-1" tabindex="-1"></a><span class="co">#calculate the t-score</span></span>
-<span id="cb30-2"><a href="effect-size-significance.html#cb30-2" tabindex="-1"></a>t <span class="ot">&lt;-</span> diff_mean <span class="sc">/</span> SE_diff</span>
-<span id="cb30-3"><a href="effect-size-significance.html#cb30-3" tabindex="-1"></a><span class="co">#print the t-score</span></span>
-<span id="cb30-4"><a href="effect-size-significance.html#cb30-4" tabindex="-1"></a>t</span></code></pre></div>
-<pre><code>## [1] -1.886484</code></pre>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="effect-size-significance.html#cb541-1" tabindex="-1"></a><span class="co">#calculate the t-score</span></span>
+<span id="cb541-2"><a href="effect-size-significance.html#cb541-2" tabindex="-1"></a>t <span class="ot">&lt;-</span> diff_mean <span class="sc">/</span> SE_diff</span>
+<span id="cb541-3"><a href="effect-size-significance.html#cb541-3" tabindex="-1"></a><span class="co">#print the t-score</span></span>
+<span id="cb541-4"><a href="effect-size-significance.html#cb541-4" tabindex="-1"></a>t</span></code></pre></div>
+<pre class="r-output"><code>## [1] -1.886484</code></pre>
 <p><strong>How do we interpret the t-score</strong>
 t-score is going to be a value from a t-distribution. A t-distribution is very similar to a normal distribution except that it has <strong>heavier tails</strong>. What this means is that there is a higher probability of having more extreme values especially with small data sets. Let’s take a look at the t-and normal distributions.</p>
 <p>A t-distribution is like a normal distribution but has an additional parameter called <strong>degrees of freedom</strong>. This is relatively vague concept we won’t go into. You can google it and find what it means intuitively. For our purposes, we will just assume that degrees of freedom is calculated by deducing 1 from our sample size.</p>
@@ -652,25 +659,25 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 <li>df = sample_size_blue + sample_size_red -2</li>
 </ul>
 <p>Given that we have a total of 4 data points, then our df will be 2.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="effect-size-significance.html#cb32-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">2</span>), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>)) <span class="co"># 2 degrees of freedom</span></span>
-<span id="cb32-2"><a href="effect-size-significance.html#cb32-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;steelblue&#39;</span>,<span class="at">add=</span><span class="cn">TRUE</span>) </span>
-<span id="cb32-3"><a href="effect-size-significance.html#cb32-3" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="effect-size-significance.html#cb32-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">4</span>, .<span class="dv">3</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t (df=2)&quot;</span>, <span class="st">&quot;normal&quot;</span>),</span>
-<span id="cb32-5"><a href="effect-size-significance.html#cb32-5" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;steelblue&quot;</span> ), <span class="at">lty=</span><span class="dv">5</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<p><strong>t-distribution</strong> approaches normal distribution (for z-scores) as the degrees of freedom increases. At 30 degrees of freedom or above, it becomes very similar to normal distribution.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="effect-size-significance.html#cb33-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">10</span>), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>)) <span class="co">#10 degrees of freedom</span></span>
-<span id="cb33-2"><a href="effect-size-significance.html#cb33-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;steelblue&#39;</span>,<span class="at">add=</span><span class="cn">TRUE</span>) </span>
-<span id="cb33-3"><a href="effect-size-significance.html#cb33-3" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="effect-size-significance.html#cb33-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">4</span>, .<span class="dv">3</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t (df=2)&quot;</span>, <span class="st">&quot;normal&quot;</span>),</span>
-<span id="cb33-5"><a href="effect-size-significance.html#cb33-5" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;steelblue&quot;</span> ), <span class="at">lty=</span><span class="dv">5</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="effect-size-significance.html#cb34-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">30</span>), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>)) <span class="co">#30 degrees of freedom</span></span>
-<span id="cb34-2"><a href="effect-size-significance.html#cb34-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;steelblue&#39;</span>,<span class="at">add=</span><span class="cn">TRUE</span>) </span>
-<span id="cb34-3"><a href="effect-size-significance.html#cb34-3" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="effect-size-significance.html#cb34-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">4</span>, .<span class="dv">3</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t (df=2)&quot;</span>, <span class="st">&quot;normal&quot;</span>),</span>
-<span id="cb34-5"><a href="effect-size-significance.html#cb34-5" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;steelblue&quot;</span> ), <span class="at">lty=</span><span class="dv">5</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="effect-size-significance.html#cb543-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">2</span>), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>)) <span class="co"># 2 degrees of freedom</span></span>
+<span id="cb543-2"><a href="effect-size-significance.html#cb543-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;steelblue&#39;</span>,<span class="at">add=</span><span class="cn">TRUE</span>) </span>
+<span id="cb543-3"><a href="effect-size-significance.html#cb543-3" tabindex="-1"></a></span>
+<span id="cb543-4"><a href="effect-size-significance.html#cb543-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">4</span>, .<span class="dv">3</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t (df=2)&quot;</span>, <span class="st">&quot;normal&quot;</span>),</span>
+<span id="cb543-5"><a href="effect-size-significance.html#cb543-5" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;steelblue&quot;</span> ), <span class="at">lty=</span><span class="dv">5</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-266-1.png" width="672" /></p>
+<p><strong>t-distribution</strong> approaches normal distribution (for z-scores) as the degrees of freedom increases. At 30 degrees of freedom or above, it becomes very similar to normal distribution.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="effect-size-significance.html#cb544-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">10</span>), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>)) <span class="co">#10 degrees of freedom</span></span>
+<span id="cb544-2"><a href="effect-size-significance.html#cb544-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;steelblue&#39;</span>,<span class="at">add=</span><span class="cn">TRUE</span>) </span>
+<span id="cb544-3"><a href="effect-size-significance.html#cb544-3" tabindex="-1"></a></span>
+<span id="cb544-4"><a href="effect-size-significance.html#cb544-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">4</span>, .<span class="dv">3</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t (df=2)&quot;</span>, <span class="st">&quot;normal&quot;</span>),</span>
+<span id="cb544-5"><a href="effect-size-significance.html#cb544-5" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;steelblue&quot;</span> ), <span class="at">lty=</span><span class="dv">5</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="effect-size-significance.html#cb545-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">30</span>), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>)) <span class="co">#30 degrees of freedom</span></span>
+<span id="cb545-2"><a href="effect-size-significance.html#cb545-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;steelblue&#39;</span>,<span class="at">add=</span><span class="cn">TRUE</span>) </span>
+<span id="cb545-3"><a href="effect-size-significance.html#cb545-3" tabindex="-1"></a></span>
+<span id="cb545-4"><a href="effect-size-significance.html#cb545-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">4</span>, .<span class="dv">3</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t (df=2)&quot;</span>, <span class="st">&quot;normal&quot;</span>),</span>
+<span id="cb545-5"><a href="effect-size-significance.html#cb545-5" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;steelblue&quot;</span> ), <span class="at">lty=</span><span class="dv">5</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-268-1.png" width="672" /></p>
 </div>
 <div id="p-value" class="section level2 hasAnchor" number="11.7">
 <h2><span class="header-section-number">11.7</span> p-value<a href="effect-size-significance.html#p-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -681,15 +688,15 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 <li>degrees of freedom</li>
 <li>A Boolean for lower.tail (optional)</li>
 </ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="effect-size-significance.html#cb35-1" tabindex="-1"></a><span class="fu">pt</span>(<span class="fu">abs</span>(t),<span class="fl">1.6374</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>## [1] 0.1135606</code></pre>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="effect-size-significance.html#cb546-1" tabindex="-1"></a><span class="fu">pt</span>(<span class="fu">abs</span>(t),<span class="fl">1.6374</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre class="r-output"><code>## [1] 0.1135606</code></pre>
 <p>The value we get is going to be the probability of t-score on one tail of the distribution (called <strong>one-tailed</strong>). This is used for a directional hypothesis (e.g. red shirts have a higher voice pitch than blue ones). In our case, we are interested in the difference regardless of the direction. For this, we can simply multiply our p-value by 2 to get a <strong>two-tailed</strong> distribution.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="effect-size-significance.html#cb37-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="fu">abs</span>(t),<span class="fl">1.6374</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>## [1] 0.2271212</code></pre>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="effect-size-significance.html#cb548-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="fu">abs</span>(t),<span class="fl">1.6374</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre class="r-output"><code>## [1] 0.2271212</code></pre>
 <p>It looks like our p-value is larger than the critical value <span class="math inline">\(\alpha = 0.05\)</span>. So, we must <strong>cannot reject</strong> our null hypothesis. This means that, there is a big chance of observing such a difference in mean when we have only a total of 4 data points.</p>
 <p>Even though our effect size is large as can be seen below, our results are <strong>not significant</strong>. In other words, the big difference is due to chance and we cannot conclude that there is a difference in the voice pitches of people who wear blue and people who wear red.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="effect-size-significance.html#cb39-1" tabindex="-1"></a><span class="fu">cohen.d</span>(blue,red)</span></code></pre></div>
-<pre><code>## 
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="effect-size-significance.html#cb550-1" tabindex="-1"></a><span class="fu">cohen.d</span>(blue,red)</span></code></pre></div>
+<pre class="r-output"><code>## 
 ## Cohen&#39;s d
 ## 
 ## d estimate: -1.886484 (large)
@@ -731,20 +738,20 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 <p>Remember that the difference between two groups of data is <strong>statistically significant</strong> means that there is an actual meaningful difference in the way these data are generated. This difference can be small or big in terms of its effect size. This difference might be caused by one factor or by many factors. What matters is that there is an underlying difference in the mechanism that is generating the data. This underlying difference is causing the actual variance in the data from two distinct groups.</p>
 <p>Also remember that the variance within or across two groups can also be caused by completely random factors. For example, when you are measuring the reaction time, a little insect in the room might lead to a bit of a distraction and increase the reaction time.</p>
 <p>Given all this background, let us see a little bit of a random data that was generated from a single distribution.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="effect-size-significance.html#cb41-1" tabindex="-1"></a>data_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb41-2"><a href="effect-size-significance.html#cb41-2" tabindex="-1"></a>data_2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb41-3"><a href="effect-size-significance.html#cb41-3" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="effect-size-significance.html#cb41-4" tabindex="-1"></a>data_1</span></code></pre></div>
-<pre><code>##  [1]  2.0243451  3.0411630  1.8620259  1.4753489  0.6150596 -0.0313409
-##  [7]  1.4859989  0.6076856  1.0591471  0.5541941</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="effect-size-significance.html#cb43-1" tabindex="-1"></a>data_2</span></code></pre></div>
-<pre><code>##  [1]  1.40610100  1.81907731  0.45548568  1.68558434  2.40894592  1.78363015
-##  [7]  1.66676103 -0.10108831  1.30884132 -0.03339796</code></pre>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="effect-size-significance.html#cb552-1" tabindex="-1"></a>data_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb552-2"><a href="effect-size-significance.html#cb552-2" tabindex="-1"></a>data_2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb552-3"><a href="effect-size-significance.html#cb552-3" tabindex="-1"></a></span>
+<span id="cb552-4"><a href="effect-size-significance.html#cb552-4" tabindex="-1"></a>data_1</span></code></pre></div>
+<pre class="r-output"><code>##  [1] -0.2918083  1.3658382  0.8477967  0.2659059  0.2180279  1.5515670
+##  [7] -0.6108410  1.7481764  1.4492960  0.1299375</code></pre>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="effect-size-significance.html#cb554-1" tabindex="-1"></a>data_2</span></code></pre></div>
+<pre class="r-output"><code>##  [1]  0.902252069  1.893100214  2.350915095  2.488970394  1.371067213
+##  [6]  0.785526756  1.455494590  0.741888890 -0.002923752  1.844143483</code></pre>
 <p>You see that the data points are different but the parameters are the same. So underlyingly, they come from the same distribution, same data generation process, there is no actual difference between the two datasets in terms of the underlying mechanism.</p>
 <p>Let us now pass the data through a t test for a few times to see if we can ever find a statistically significant difference.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="effect-size-significance.html#cb45-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb45-2"><a href="effect-size-significance.html#cb45-2" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## 
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="effect-size-significance.html#cb556-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb556-2"><a href="effect-size-significance.html#cb556-2" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre class="r-output"><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  rnorm(10, mean = 1, sd = 1) and rnorm(10, mean = 1, sd = 1)
@@ -755,8 +762,8 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 ## sample estimates:
 ## mean of x mean of y 
 ## 1.5472968 0.8365433</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="effect-size-significance.html#cb47-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## 
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="effect-size-significance.html#cb558-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre class="r-output"><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  rnorm(10, mean = 1, sd = 1) and rnorm(10, mean = 1, sd = 1)
@@ -767,8 +774,8 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 ## sample estimates:
 ## mean of x mean of y 
 ## 0.8219205 0.6360959</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="effect-size-significance.html#cb49-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## 
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="effect-size-significance.html#cb560-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre class="r-output"><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  rnorm(10, mean = 1, sd = 1) and rnorm(10, mean = 1, sd = 1)
@@ -779,8 +786,8 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 ## sample estimates:
 ## mean of x mean of y 
 ## 0.9797846 1.0183939</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="effect-size-significance.html#cb51-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## 
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="effect-size-significance.html#cb562-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre class="r-output"><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  rnorm(10, mean = 1, sd = 1) and rnorm(10, mean = 1, sd = 1)
@@ -796,19 +803,19 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 <div id="typee-ii-error" class="section level3 hasAnchor" number="11.8.2">
 <h3><span class="header-section-number">11.8.2</span> Typee II Error<a href="effect-size-significance.html#typee-ii-error" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, let us create data with different parameters. This time, the means are going to be different.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="effect-size-significance.html#cb53-1" tabindex="-1"></a>data_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb53-2"><a href="effect-size-significance.html#cb53-2" tabindex="-1"></a>data_2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb53-3"><a href="effect-size-significance.html#cb53-3" tabindex="-1"></a></span>
-<span id="cb53-4"><a href="effect-size-significance.html#cb53-4" tabindex="-1"></a>data_1</span></code></pre></div>
-<pre><code>##  [1]  1.51270701  0.25792144  0.08844023 -0.12089654 -1.19432890  0.61199690
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="effect-size-significance.html#cb564-1" tabindex="-1"></a>data_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb564-2"><a href="effect-size-significance.html#cb564-2" tabindex="-1"></a>data_2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb564-3"><a href="effect-size-significance.html#cb564-3" tabindex="-1"></a></span>
+<span id="cb564-4"><a href="effect-size-significance.html#cb564-4" tabindex="-1"></a>data_1</span></code></pre></div>
+<pre class="r-output"><code>##  [1]  1.51270701  0.25792144  0.08844023 -0.12089654 -1.19432890  0.61199690
 ##  [7] -0.21713985 -0.18275671  0.93334633  0.82177311</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="effect-size-significance.html#cb55-1" tabindex="-1"></a>data_2</span></code></pre></div>
-<pre><code>##  [1]  2.3921164  0.5238261  1.6503486  2.3911105 -0.1107889  0.1392074
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="effect-size-significance.html#cb566-1" tabindex="-1"></a>data_2</span></code></pre></div>
+<pre class="r-output"><code>##  [1]  2.3921164  0.5238261  1.6503486  2.3911105 -0.1107889  0.1392074
 ##  [7] -0.1317387 -0.4592140  1.0799826  1.6532043</code></pre>
 <p>Now, let’s run the model a few times again.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="effect-size-significance.html#cb57-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb57-2"><a href="effect-size-significance.html#cb57-2" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## 
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="effect-size-significance.html#cb568-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb568-2"><a href="effect-size-significance.html#cb568-2" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre class="r-output"><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  rnorm(10, mean = 0, sd = 1) and rnorm(10, mean = 1, sd = 1)
@@ -819,8 +826,8 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 ## sample estimates:
 ## mean of x mean of y 
 ## 0.5472968 0.8365433</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="effect-size-significance.html#cb59-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## 
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="effect-size-significance.html#cb570-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre class="r-output"><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  rnorm(10, mean = 0, sd = 1) and rnorm(10, mean = 1, sd = 1)
@@ -831,8 +838,8 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 ## sample estimates:
 ##  mean of x  mean of y 
 ## -0.1780795  0.6360959</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="effect-size-significance.html#cb61-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## 
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="effect-size-significance.html#cb572-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre class="r-output"><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  rnorm(10, mean = 0, sd = 1) and rnorm(10, mean = 1, sd = 1)
@@ -843,8 +850,8 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 ## sample estimates:
 ##   mean of x   mean of y 
 ## -0.02021535  1.01839391</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="effect-size-significance.html#cb63-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## 
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="effect-size-significance.html#cb574-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre class="r-output"><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  rnorm(10, mean = 0, sd = 1) and rnorm(10, mean = 1, sd = 1)
@@ -864,27 +871,30 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 <li>Statistical power = 1-<span class="math inline">\(\beta\)</span></li>
 </ul>
 <p>The higher the statistical power of a model, the more reliable it is. Often people aim for a value above 80%. To calculate the statistical power of a t test in r, we can use the following code.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="effect-size-significance.html#cb65-1" tabindex="-1"></a>effect_size <span class="ot">&lt;-</span> <span class="fu">cohen.d</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))<span class="sc">$</span>estimate</span>
-<span id="cb65-2"><a href="effect-size-significance.html#cb65-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb65-3"><a href="effect-size-significance.html#cb65-3" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb65-4"><a href="effect-size-significance.html#cb65-4" tabindex="-1"></a></span>
-<span id="cb65-5"><a href="effect-size-significance.html#cb65-5" tabindex="-1"></a>power <span class="ot">&lt;-</span> <span class="fu">power.t.test</span>(<span class="at">n =</span> n, <span class="at">delta =</span> effect_size, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">sig.level =</span> alpha, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>)<span class="sc">$</span>power</span>
-<span id="cb65-6"><a href="effect-size-significance.html#cb65-6" tabindex="-1"></a></span>
-<span id="cb65-7"><a href="effect-size-significance.html#cb65-7" tabindex="-1"></a>power</span></code></pre></div>
-<pre><code>## [1] 0.3273469</code></pre>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="effect-size-significance.html#cb576-1" tabindex="-1"></a>effect_size <span class="ot">&lt;-</span> <span class="fu">cohen.d</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))<span class="sc">$</span>estimate</span>
+<span id="cb576-2"><a href="effect-size-significance.html#cb576-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb576-3"><a href="effect-size-significance.html#cb576-3" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb576-4"><a href="effect-size-significance.html#cb576-4" tabindex="-1"></a></span>
+<span id="cb576-5"><a href="effect-size-significance.html#cb576-5" tabindex="-1"></a>power <span class="ot">&lt;-</span> <span class="fu">power.t.test</span>(<span class="at">n =</span> n, <span class="at">delta =</span> effect_size, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">sig.level =</span> alpha, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>)<span class="sc">$</span>power</span>
+<span id="cb576-6"><a href="effect-size-significance.html#cb576-6" tabindex="-1"></a></span>
+<span id="cb576-7"><a href="effect-size-significance.html#cb576-7" tabindex="-1"></a>power</span></code></pre></div>
+<pre class="r-output"><code>## [1] 0.3273469</code></pre>
 <p>Now, let us try the same data with an increased number of observations.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="effect-size-significance.html#cb67-1" tabindex="-1"></a>effect_size <span class="ot">&lt;-</span> <span class="fu">cohen.d</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))<span class="sc">$</span>estimate</span>
-<span id="cb67-2"><a href="effect-size-significance.html#cb67-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
-<span id="cb67-3"><a href="effect-size-significance.html#cb67-3" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb67-4"><a href="effect-size-significance.html#cb67-4" tabindex="-1"></a></span>
-<span id="cb67-5"><a href="effect-size-significance.html#cb67-5" tabindex="-1"></a>power <span class="ot">&lt;-</span> <span class="fu">power.t.test</span>(<span class="at">n =</span> n, <span class="at">delta =</span> effect_size, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">sig.level =</span> alpha, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>)<span class="sc">$</span>power</span>
-<span id="cb67-6"><a href="effect-size-significance.html#cb67-6" tabindex="-1"></a></span>
-<span id="cb67-7"><a href="effect-size-significance.html#cb67-7" tabindex="-1"></a>power</span></code></pre></div>
-<pre><code>## [1] 0.999999</code></pre>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="effect-size-significance.html#cb578-1" tabindex="-1"></a>effect_size <span class="ot">&lt;-</span> <span class="fu">cohen.d</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>))<span class="sc">$</span>estimate</span>
+<span id="cb578-2"><a href="effect-size-significance.html#cb578-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="cb578-3"><a href="effect-size-significance.html#cb578-3" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb578-4"><a href="effect-size-significance.html#cb578-4" tabindex="-1"></a></span>
+<span id="cb578-5"><a href="effect-size-significance.html#cb578-5" tabindex="-1"></a>power <span class="ot">&lt;-</span> <span class="fu">power.t.test</span>(<span class="at">n =</span> n, <span class="at">delta =</span> effect_size, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">sig.level =</span> alpha, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>)<span class="sc">$</span>power</span>
+<span id="cb578-6"><a href="effect-size-significance.html#cb578-6" tabindex="-1"></a></span>
+<span id="cb578-7"><a href="effect-size-significance.html#cb578-7" tabindex="-1"></a>power</span></code></pre></div>
+<pre class="r-output"><code>## [1] 0.999999</code></pre>
 
 </div>
 </div>
 </div>
+
+
+
 
 
 
@@ -894,9 +904,9 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>In fact, it corresponds to the z-score value of 95%. For calculating the 90% interval, we would use the corresponding z-score value 1.64.<a href="effect-size-significance.html#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>This is part of the reason why people aim for at least 30 participants in each group.<a href="effect-size-significance.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<ol start="4">
+<li id="fn4"><p>In fact, it corresponds to the z-score value of 95%. For calculating the 90% interval, we would use the corresponding z-score value 1.64.<a href="effect-size-significance.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>This is part of the reason why people aim for at least 30 participants in each group.<a href="effect-size-significance.html#fnref5" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

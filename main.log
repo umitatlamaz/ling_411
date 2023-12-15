@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  15 DEC 2023 10:13
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  15 DEC 2023 13:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1239,9 +1239,9 @@ File: main_files/figure-latex/unnamed-chunk-268-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[170] [171]
+[170] [171] [172] [173] [174] [175] [176]
 No file main.bbl.
-[172] (./main.aux)
+[177] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1252,12 +1252,12 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 0AFC9CE2F6CE30C375DB49E3C334FC59;10933.
  ) 
 Here is how much of TeX's memory you used:
- 18145 strings out of 477743
- 347426 string characters out of 5843158
- 819224 words of memory out of 5000000
- 38871 multiletter control sequences out of 15000+600000
+ 18149 strings out of 477743
+ 347482 string characters out of 5843158
+ 819434 words of memory out of 5000000
+ 38875 multiletter control sequences out of 15000+600000
  475790 words of font info for 91 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,8n,121p,923b,484s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (172 pages).
+Output written on main.pdf (177 pages).
