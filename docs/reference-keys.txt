@@ -13,6 +13,7 @@ fig:linearregression1
 fig:interceptslope
 fig:skewness
 fig:cohens
+fig:unnamed-chunk-286
 getting-started
 disclaimer
 some-great-resources
@@ -119,3 +120,16 @@ type-i-and-type-ii-errors
 type-i-error
 typee-ii-error
 statistical-power
+logistic-regression
+the-intuition
+the-math
+binomial-bernoulli-distributions
+binomial-distribution
+bernoulli-distribution
+logistic-regression-1
+log-odds-logits
+odds-log-odds-and-logits
+logistic-regression-in-r
+data
+model
+from-logits-to-probabilities

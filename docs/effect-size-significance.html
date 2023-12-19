@@ -23,7 +23,7 @@
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2023-12-15" />
+<meta name="date" content="2023-12-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="categorical-predictors.html"/>
-
+<link rel="next" href="logistic-regression.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -293,6 +293,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.8.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#type-i-error"><i class="fa fa-check"></i><b>11.8.1</b> Type I Error</a></li>
 <li class="chapter" data-level="11.8.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#typee-ii-error"><i class="fa fa-check"></i><b>11.8.2</b> Typee II Error</a></li>
 <li class="chapter" data-level="11.8.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#statistical-power"><i class="fa fa-check"></i><b>11.8.3</b> Statistical Power</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="logistic-regression.html"><a href="logistic-regression.html#the-intuition"><i class="fa fa-check"></i><b>12.1</b> The Intuition</a></li>
+<li class="chapter" data-level="12.2" data-path="logistic-regression.html"><a href="logistic-regression.html#the-math"><i class="fa fa-check"></i><b>12.2</b> The Math</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#binomial-bernoulli-distributions"><i class="fa fa-check"></i><b>12.2.1</b> Binomial &amp; Bernoulli Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-1"><i class="fa fa-check"></i><b>12.3</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-odds-logits"><i class="fa fa-check"></i><b>12.3.1</b> Log Odds &amp; Logits</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-in-r"><i class="fa fa-check"></i><b>12.4</b> Logistic Regression in R</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#data"><i class="fa fa-check"></i><b>12.4.1</b> Data</a></li>
+<li class="chapter" data-level="12.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#model"><i class="fa fa-check"></i><b>12.4.2</b> Model</a></li>
+<li class="chapter" data-level="12.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#from-logits-to-probabilities"><i class="fa fa-check"></i><b>12.4.3</b> From logits to probabilities</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -892,16 +910,6 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 </div>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 <div class="footnotes">
 <hr />
 <ol start="4">
@@ -914,8 +922,8 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
           </div>
         </div>
       </div>
-<a href="categorical-predictors.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="categorical-predictors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="logistic-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

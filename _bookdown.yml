@@ -13,7 +13,8 @@ rmd_files: ["index.Rmd", "01-intro.Rmd",
             '07-multiple_regression.Rmd',
             '08-transformations.Rmd',
             '09-categorical_predictors.Rmd',
-            '10-significance.Rmd'
+            '10-significance.Rmd',
+            '11-logistic_regression.Rmd'
             ]
 
 

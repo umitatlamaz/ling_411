@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  15 DEC 2023 13:43
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  19 DEC 2023 10:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1239,9 +1239,58 @@ File: main_files/figure-latex/unnamed-chunk-268-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[170] [171] [172] [173] [174] [175] [176]
+[170] [171] [172] [173] [174] [175] [176] [177] [178
+
+]
+Chapter 12.
+[179]
+Underfull \hbox (badness 10000) in paragraph at lines 7875--7877
+
+ []
+
+File: main_files/figure-latex/unnamed-chunk-278-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-278-1.pdf>
+[180]
+File: main_files/figure-latex/unnamed-chunk-279-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-279-1.pdf>
+[181]
+File: main_files/figure-latex/unnamed-chunk-281-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-281-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[182]
+File: main_files/figure-latex/unnamed-chunk-282-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-282-1.pdf>
+[183]
+File: main_files/figure-latex/unnamed-chunk-283-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-283-1.pdf>
+File: main_files/figure-latex/unnamed-chunk-284-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-284-1.pdf>
+[184]
+File: main_files/figure-latex/unnamed-chunk-285-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-285-1.pdf>
+[185]
+File: ./img/logis.png Graphic file (type bmp)
+<./img/logis.png>
+[186] [187]
+Overfull \hbox (90.75pt too wide) in paragraph at lines 8204--8204
+[]\TU/lmtt/m/n/10 ## -- Column specification --------------------------------------------------------[] 
+ []
+
+[188]
+Overfull \hbox (43.5pt too wide) in paragraph at lines 8204--8204
+[]\TU/lmtt/m/n/10 ## i Use `spec()` to retrieve the full column specification for this data.[] 
+ []
+
+
+Overfull \hbox (96.0pt too wide) in paragraph at lines 8204--8204
+[]\TU/lmtt/m/n/10 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.[] 
+ []
+
+[189] [190]
 No file main.bbl.
-[177] (./main.aux)
+[191] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1249,15 +1298,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 0AFC9CE2F6CE30C375DB49E3C334FC59;10933.
+(rerunfilecheck)             Checksum: 08127CF729D529D14C57A5119572F5E4;11642.
  ) 
 Here is how much of TeX's memory you used:
- 18149 strings out of 477743
- 347482 string characters out of 5843158
- 819434 words of memory out of 5000000
- 38875 multiletter control sequences out of 15000+600000
+ 18230 strings out of 477743
+ 350760 string characters out of 5843158
+ 821053 words of memory out of 5000000
+ 38948 multiletter control sequences out of 15000+600000
  475790 words of font info for 91 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,8n,121p,923b,484s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (177 pages).
+Output written on main.pdf (191 pages).
