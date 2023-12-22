@@ -120,7 +120,7 @@
 
 \title{Ling 411 - Fall 2023}
 \author{Ümit Atlamaz}
-\date{2023-12-19}
+\date{2023-12-22}
 
 \begin{document}
 \maketitle
@@ -3193,7 +3193,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(19 December, 2023, 10:04)
+(22 December, 2023, 13:02)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -7992,7 +7992,7 @@ Remember that in \textbf{linear regression}, the goal was to estimate the model 
             \overbrace{\underbrace{a}_{\text{intercept}}}^{\text{additive term}} + 
             \overbrace{\underbrace{b}_{\text{slope}} * \underbrace{X}_{\text{predictor}}}^{\text{additive term}} \]
 
-In other words, our model took input some data, assumed that the variance in the data can be described by a line, then tried to estimate the parameters (i.e.~intercept and slope). For example, we tried to estimate the taxi fare cost and out linear model could predict it as follows:
+In other words, our model took input some data, assumed that the variance in the data can be described by a line, then tried to estimate the parameters (i.e.~intercept and slope). For example, we tried to estimate the taxi fare cost and our linear model could predict it as follows:
 
 \begin{itemize}
 \tightlist
@@ -8387,6 +8387,215 @@ Not bad. Using \textbf{logistic regression} we can:
 \item
   make predictions
 \end{itemize}
+
+Now that we have the model coefficients, we can predict some values and plot them.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAC\_vals }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.01}\NormalTok{)}
+\NormalTok{y\_preds }\OtherTok{\textless{}{-}} \FunctionTok{plogis}\NormalTok{(intercept }\SpecialCharTok{+}\NormalTok{ slope }\SpecialCharTok{*}\NormalTok{ BAC\_vals)}
+
+\NormalTok{mdl\_preds }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(BAC\_vals, y\_preds)}
+\NormalTok{mdl\_preds}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 41 x 2}
+\NormalTok{\#\#    BAC\_vals y\_preds}
+\NormalTok{\#\#       \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1     0     0.0255}
+\NormalTok{\#\#  2     0.01  0.0298}
+\NormalTok{\#\#  3     0.02  0.0349}
+\NormalTok{\#\#  4     0.03  0.0407}
+\NormalTok{\#\#  5     0.04  0.0475}
+\NormalTok{\#\#  6     0.05  0.0553}
+\NormalTok{\#\#  7     0.06  0.0644}
+\NormalTok{\#\#  8     0.07  0.0748}
+\NormalTok{\#\#  9     0.08  0.0867}
+\NormalTok{\#\# 10     0.09  0.100 }
+\NormalTok{\#\# \# i 31 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ BAC, }\AttributeTok{y =}\NormalTok{ speech\_error)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{4}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.6}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{data =}\NormalTok{ mdl\_preds,}
+            \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ BAC\_vals, }\AttributeTok{y =}\NormalTok{ y\_preds)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-294-1.pdf}
+
+\hypertarget{dative-dataset}{%
+\subsection{Dative Dataset}\label{dative-dataset}}
+
+Let us now turn to another dataset we discussed earlier in the semester. This is the dative dataset by Bresnan et al.~(2007). The main goal of the experiment was to identify the factors in determining the dative alternation in English:
+
+\begin{itemize}
+\tightlist
+\item
+  Alex gave Sam a book. (NP NP)
+\item
+  Alex gave a book to Sam. (NP PP)
+\end{itemize}
+
+The dative data set can be found directly using the \texttt{languageR} library. Let us take a look at the columns in the dataset and also some values to get a sense of what it looks like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(languageR)}
+
+\FunctionTok{colnames}\NormalTok{(dative)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1] "Speaker"                "Modality"               "Verb"                  }
+\NormalTok{\#\#  [4] "SemanticClass"          "LengthOfRecipient"      "AnimacyOfRec"          }
+\NormalTok{\#\#  [7] "DefinOfRec"             "PronomOfRec"            "LengthOfTheme"         }
+\NormalTok{\#\# [10] "AnimacyOfTheme"         "DefinOfTheme"           "PronomOfTheme"         }
+\NormalTok{\#\# [13] "RealizationOfRecipient" "AccessOfRec"            "AccessOfTheme"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(dative,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   Speaker Modality Verb SemanticClass LengthOfRecipient AnimacyOfRec DefinOfRec}
+\NormalTok{\#\# 1    \textless{}NA\textgreater{}  written feed             t                 1      animate   definite}
+\NormalTok{\#\# 2    \textless{}NA\textgreater{}  written give             a                 2      animate   definite}
+\NormalTok{\#\# 3    \textless{}NA\textgreater{}  written give             a                 1      animate   definite}
+\NormalTok{\#\#     PronomOfRec LengthOfTheme AnimacyOfTheme DefinOfTheme PronomOfTheme}
+\NormalTok{\#\# 1    pronominal            14      inanimate   indefinite nonpronominal}
+\NormalTok{\#\# 2 nonpronominal             3      inanimate   indefinite nonpronominal}
+\NormalTok{\#\# 3 nonpronominal            13      inanimate     definite nonpronominal}
+\NormalTok{\#\#   RealizationOfRecipient AccessOfRec AccessOfTheme}
+\NormalTok{\#\# 1                     NP       given           new}
+\NormalTok{\#\# 2                     NP       given           new}
+\NormalTok{\#\# 3                     NP       given           new}
+\end{Highlighting}
+\end{Shaded}
+
+Next, let us take a look at the possible values for the RealizationOfRecipient column to see what they look like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{levels}\NormalTok{(dative}\SpecialCharTok{$}\NormalTok{RealizationOfRecipient)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] "NP" "PP"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{levels}\NormalTok{(dative}\SpecialCharTok{$}\NormalTok{AnimacyOfRec)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] "animate"   "inanimate"}
+\end{Highlighting}
+\end{Shaded}
+
+OK so, we have only two values. This is a good task for logistic regression. Let us for now model the RealizationOfRecipient as a function of the AnimacyOfRec.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_1 }\OtherTok{\textless{}{-}}\NormalTok{ model }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(RealizationOfRecipient }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AnimacyOfRec, dative, }\AttributeTok{family=}\StringTok{\textquotesingle{}binomial\textquotesingle{}}\NormalTok{)}
+
+\FunctionTok{tidy}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 5}
+\NormalTok{\#\#   term                  estimate std.error statistic   p.value}
+\NormalTok{\#\#   \textless{}chr\textgreater{}                    \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 (Intercept)              {-}1.15    0.0426    {-}27.1  1.15e{-}161}
+\NormalTok{\#\# 2 AnimacyOfRecinanimate     1.23    0.136       9.02 1.87e{-} 19}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_2 }\OtherTok{\textless{}{-}}\FunctionTok{glm}\NormalTok{(RealizationOfRecipient }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AnimacyOfRec}\SpecialCharTok{+}\NormalTok{LengthOfTheme}\SpecialCharTok{+}\NormalTok{LengthOfRecipient}\SpecialCharTok{+}\NormalTok{AnimacyOfTheme, dative, }\AttributeTok{family=}\StringTok{\textquotesingle{}binomial\textquotesingle{}}\NormalTok{)}
+
+\FunctionTok{tidy}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 5}
+\NormalTok{\#\#   term                  estimate std.error statistic   p.value}
+\NormalTok{\#\#   \textless{}chr\textgreater{}                    \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 (Intercept)              {-}1.15    0.0426    {-}27.1  1.15e{-}161}
+\NormalTok{\#\# 2 AnimacyOfRecinanimate     1.23    0.136       9.02 1.87e{-} 19}
+\end{Highlighting}
+\end{Shaded}
+
+Now let us compare the two models.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(lmtest)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: zoo
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'zoo'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     as.Date, as.Date.numeric
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lr\_test }\OtherTok{\textless{}{-}} \FunctionTok{lrtest}\NormalTok{(model\_1, model\_2)}
+\FunctionTok{print}\NormalTok{(lr\_test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# Likelihood ratio test}
+\NormalTok{\#\# }
+\NormalTok{\#\# Model 1: RealizationOfRecipient \textasciitilde{} AnimacyOfRec}
+\NormalTok{\#\# Model 2: RealizationOfRecipient \textasciitilde{} AnimacyOfRec + LengthOfTheme + LengthOfRecipient + }
+\NormalTok{\#\#     AnimacyOfTheme}
+\NormalTok{\#\#   \#Df  LogLik Df  Chisq Pr(\textgreater{}Chisq)    }
+\NormalTok{\#\# 1   2 {-}1831.1                         }
+\NormalTok{\#\# 2   5 {-}1379.5  3 903.19  \textless{} 2.2e{-}16 ***}
+\NormalTok{\#\# {-}{-}{-}}
+\NormalTok{\#\# Signif. codes:  0 \textquotesingle{}***\textquotesingle{} 0.001 \textquotesingle{}**\textquotesingle{} 0.01 \textquotesingle{}*\textquotesingle{} 0.05 \textquotesingle{}.\textquotesingle{} 0.1 \textquotesingle{} \textquotesingle{} 1}
+\end{Highlighting}
+\end{Shaded}
+
 
   \bibliography{book.bib,packages.bib}
 

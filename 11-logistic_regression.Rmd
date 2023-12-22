@@ -204,7 +204,7 @@ $$ \underbrace{Y}_{\text{dependent variable}} =
             \overbrace{\underbrace{a}_{\text{intercept}}}^{\text{additive term}} + 
             \overbrace{\underbrace{b}_{\text{slope}} * \underbrace{X}_{\text{predictor}}}^{\text{additive term}} $$
 
-In other words, our model took input some data, assumed that the variance in the data can be described by a line, then tried to estimate the parameters (i.e. intercept and slope). For example, we tried to estimate the taxi fare cost and out linear model could predict it as follows:
+In other words, our model took input some data, assumed that the variance in the data can be described by a line, then tried to estimate the parameters (i.e. intercept and slope). For example, we tried to estimate the taxi fare cost and our linear model could predict it as follows:
 
 * cost = Intercept + Slope * Distance (in km)
 * cost = 20 + 14 * 5
@@ -374,3 +374,83 @@ Not bad. Using **logistic regression** we can:
 
 * understand the relationship between variables where the outcome is categorical (two categories)
 * make predictions
+
+
+Now that we have the model coefficients, we can predict some values and plot them.
+
+
+```{r}
+
+BAC_vals <- seq(0, 0.4, 0.01)
+y_preds <- plogis(intercept + slope * BAC_vals)
+
+mdl_preds <- tibble(BAC_vals, y_preds)
+mdl_preds
+
+ggplot(data, aes(x = BAC, y = speech_error)) +
+  geom_point(size = 4, alpha = 0.6) +
+  geom_line(data = mdl_preds,
+            aes(x = BAC_vals, y = y_preds)) +
+  theme_minimal()
+```
+
+
+### Dative Dataset
+Let us now turn to another dataset we discussed earlier in the semester. This is the dative dataset by Bresnan et al. (2007). The main goal of the experiment was to identify the factors in determining the dative alternation in English:
+
+* Alex gave Sam a book. (NP NP)
+* Alex gave a book to Sam. (NP PP)
+
+The dative data set can be found directly using the ```languageR``` library. Let us take a look at the columns in the dataset and also some values to get a sense of what it looks like. 
+
+```{r}
+library(languageR)
+
+colnames(dative)
+
+head(dative,3)
+
+
+```
+
+Next, let us take a look at the possible values for the RealizationOfRecipient column to see what they look like.
+
+```{r}
+
+levels(dative$RealizationOfRecipient)
+
+levels(dative$AnimacyOfRec)
+
+```
+
+OK so, we have only two values. This is a good task for logistic regression. Let us for now model the RealizationOfRecipient as a function of the AnimacyOfRec. 
+
+
+```{r}
+model_1 <- model <- glm(RealizationOfRecipient ~ AnimacyOfRec, dative, family='binomial')
+
+tidy(model)
+```
+
+
+
+```{r}
+model_2 <-glm(RealizationOfRecipient ~ AnimacyOfRec+LengthOfTheme+LengthOfRecipient+AnimacyOfTheme, dative, family='binomial')
+
+tidy(model)
+```
+
+
+
+
+Now let us compare the two models.
+
+```{r}
+library(lmtest)
+
+
+lr_test <- lrtest(model_1, model_2)
+print(lr_test)
+
+```
+

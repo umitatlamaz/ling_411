@@ -23,7 +23,7 @@
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2023-12-19" />
+<meta name="date" content="2023-12-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -311,6 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#data"><i class="fa fa-check"></i><b>12.4.1</b> Data</a></li>
 <li class="chapter" data-level="12.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#model"><i class="fa fa-check"></i><b>12.4.2</b> Model</a></li>
 <li class="chapter" data-level="12.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#from-logits-to-probabilities"><i class="fa fa-check"></i><b>12.4.3</b> From logits to probabilities</a></li>
+<li class="chapter" data-level="12.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#dative-dataset"><i class="fa fa-check"></i><b>12.4.4</b> Dative Dataset</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -459,7 +460,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[ \underbrace{Y}_{\text{dependent variable}} =
             \overbrace{\underbrace{a}_{\text{intercept}}}^{\text{additive term}} +
             \overbrace{\underbrace{b}_{\text{slope}} * \underbrace{X}_{\text{predictor}}}^{\text{additive term}} \]</span></p>
-<p>In other words, our model took input some data, assumed that the variance in the data can be described by a line, then tried to estimate the parameters (i.e. intercept and slope). For example, we tried to estimate the taxi fare cost and out linear model could predict it as follows:</p>
+<p>In other words, our model took input some data, assumed that the variance in the data can be described by a line, then tried to estimate the parameters (i.e. intercept and slope). For example, we tried to estimate the taxi fare cost and our linear model could predict it as follows:</p>
 <ul>
 <li>cost = Intercept + Slope * Distance (in km)</li>
 <li>cost = 20 + 14 * 5</li>
@@ -678,6 +679,104 @@ Figure 12.1: Logistic Function
 <li>understand the relationship between variables where the outcome is categorical (two categories)</li>
 <li>make predictions</li>
 </ul>
+<p>Now that we have the model coefficients, we can predict some values and plot them.</p>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="logistic-regression.html#cb603-1" tabindex="-1"></a>BAC_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.4</span>, <span class="fl">0.01</span>)</span>
+<span id="cb603-2"><a href="logistic-regression.html#cb603-2" tabindex="-1"></a>y_preds <span class="ot">&lt;-</span> <span class="fu">plogis</span>(intercept <span class="sc">+</span> slope <span class="sc">*</span> BAC_vals)</span>
+<span id="cb603-3"><a href="logistic-regression.html#cb603-3" tabindex="-1"></a></span>
+<span id="cb603-4"><a href="logistic-regression.html#cb603-4" tabindex="-1"></a>mdl_preds <span class="ot">&lt;-</span> <span class="fu">tibble</span>(BAC_vals, y_preds)</span>
+<span id="cb603-5"><a href="logistic-regression.html#cb603-5" tabindex="-1"></a>mdl_preds</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 41 × 2
+##    BAC_vals y_preds
+##       &lt;dbl&gt;   &lt;dbl&gt;
+##  1     0     0.0255
+##  2     0.01  0.0298
+##  3     0.02  0.0349
+##  4     0.03  0.0407
+##  5     0.04  0.0475
+##  6     0.05  0.0553
+##  7     0.06  0.0644
+##  8     0.07  0.0748
+##  9     0.08  0.0867
+## 10     0.09  0.100 
+## # ℹ 31 more rows</code></pre>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="logistic-regression.html#cb605-1" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> BAC, <span class="at">y =</span> speech_error)) <span class="sc">+</span></span>
+<span id="cb605-2"><a href="logistic-regression.html#cb605-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb605-3"><a href="logistic-regression.html#cb605-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> mdl_preds,</span>
+<span id="cb605-4"><a href="logistic-regression.html#cb605-4" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> BAC_vals, <span class="at">y =</span> y_preds)) <span class="sc">+</span></span>
+<span id="cb605-5"><a href="logistic-regression.html#cb605-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-294-1.png" width="672" /></p>
+</div>
+<div id="dative-dataset" class="section level3 hasAnchor" number="12.4.4">
+<h3><span class="header-section-number">12.4.4</span> Dative Dataset<a href="logistic-regression.html#dative-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let us now turn to another dataset we discussed earlier in the semester. This is the dative dataset by Bresnan et al. (2007). The main goal of the experiment was to identify the factors in determining the dative alternation in English:</p>
+<ul>
+<li>Alex gave Sam a book. (NP NP)</li>
+<li>Alex gave a book to Sam. (NP PP)</li>
+</ul>
+<p>The dative data set can be found directly using the <code>languageR</code> library. Let us take a look at the columns in the dataset and also some values to get a sense of what it looks like.</p>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="logistic-regression.html#cb606-1" tabindex="-1"></a><span class="fu">library</span>(languageR)</span>
+<span id="cb606-2"><a href="logistic-regression.html#cb606-2" tabindex="-1"></a></span>
+<span id="cb606-3"><a href="logistic-regression.html#cb606-3" tabindex="-1"></a><span class="fu">colnames</span>(dative)</span></code></pre></div>
+<pre class="r-output"><code>##  [1] &quot;Speaker&quot;                &quot;Modality&quot;               &quot;Verb&quot;                  
+##  [4] &quot;SemanticClass&quot;          &quot;LengthOfRecipient&quot;      &quot;AnimacyOfRec&quot;          
+##  [7] &quot;DefinOfRec&quot;             &quot;PronomOfRec&quot;            &quot;LengthOfTheme&quot;         
+## [10] &quot;AnimacyOfTheme&quot;         &quot;DefinOfTheme&quot;           &quot;PronomOfTheme&quot;         
+## [13] &quot;RealizationOfRecipient&quot; &quot;AccessOfRec&quot;            &quot;AccessOfTheme&quot;</code></pre>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="logistic-regression.html#cb608-1" tabindex="-1"></a><span class="fu">head</span>(dative,<span class="dv">3</span>)</span></code></pre></div>
+<pre class="r-output"><code>##   Speaker Modality Verb SemanticClass LengthOfRecipient AnimacyOfRec DefinOfRec
+## 1    &lt;NA&gt;  written feed             t                 1      animate   definite
+## 2    &lt;NA&gt;  written give             a                 2      animate   definite
+## 3    &lt;NA&gt;  written give             a                 1      animate   definite
+##     PronomOfRec LengthOfTheme AnimacyOfTheme DefinOfTheme PronomOfTheme
+## 1    pronominal            14      inanimate   indefinite nonpronominal
+## 2 nonpronominal             3      inanimate   indefinite nonpronominal
+## 3 nonpronominal            13      inanimate     definite nonpronominal
+##   RealizationOfRecipient AccessOfRec AccessOfTheme
+## 1                     NP       given           new
+## 2                     NP       given           new
+## 3                     NP       given           new</code></pre>
+<p>Next, let us take a look at the possible values for the RealizationOfRecipient column to see what they look like.</p>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="logistic-regression.html#cb610-1" tabindex="-1"></a><span class="fu">levels</span>(dative<span class="sc">$</span>RealizationOfRecipient)</span></code></pre></div>
+<pre class="r-output"><code>## [1] &quot;NP&quot; &quot;PP&quot;</code></pre>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="logistic-regression.html#cb612-1" tabindex="-1"></a><span class="fu">levels</span>(dative<span class="sc">$</span>AnimacyOfRec)</span></code></pre></div>
+<pre class="r-output"><code>## [1] &quot;animate&quot;   &quot;inanimate&quot;</code></pre>
+<p>OK so, we have only two values. This is a good task for logistic regression. Let us for now model the RealizationOfRecipient as a function of the AnimacyOfRec.</p>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="logistic-regression.html#cb614-1" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> model <span class="ot">&lt;-</span> <span class="fu">glm</span>(RealizationOfRecipient <span class="sc">~</span> AnimacyOfRec, dative, <span class="at">family=</span><span class="st">&#39;binomial&#39;</span>)</span>
+<span id="cb614-2"><a href="logistic-regression.html#cb614-2" tabindex="-1"></a></span>
+<span id="cb614-3"><a href="logistic-regression.html#cb614-3" tabindex="-1"></a><span class="fu">tidy</span>(model)</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 2 × 5
+##   term                  estimate std.error statistic   p.value
+##   &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)              -1.15    0.0426    -27.1  1.15e-161
+## 2 AnimacyOfRecinanimate     1.23    0.136       9.02 1.87e- 19</code></pre>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="logistic-regression.html#cb616-1" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span><span class="fu">glm</span>(RealizationOfRecipient <span class="sc">~</span> AnimacyOfRec<span class="sc">+</span>LengthOfTheme<span class="sc">+</span>LengthOfRecipient<span class="sc">+</span>AnimacyOfTheme, dative, <span class="at">family=</span><span class="st">&#39;binomial&#39;</span>)</span>
+<span id="cb616-2"><a href="logistic-regression.html#cb616-2" tabindex="-1"></a></span>
+<span id="cb616-3"><a href="logistic-regression.html#cb616-3" tabindex="-1"></a><span class="fu">tidy</span>(model)</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 2 × 5
+##   term                  estimate std.error statistic   p.value
+##   &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)              -1.15    0.0426    -27.1  1.15e-161
+## 2 AnimacyOfRecinanimate     1.23    0.136       9.02 1.87e- 19</code></pre>
+<p>Now let us compare the two models.</p>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="logistic-regression.html#cb618-1" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span></code></pre></div>
+<pre><code>## Loading required package: zoo</code></pre>
+<pre><code>## 
+## Attaching package: &#39;zoo&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.Date, as.Date.numeric</code></pre>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="logistic-regression.html#cb622-1" tabindex="-1"></a>lr_test <span class="ot">&lt;-</span> <span class="fu">lrtest</span>(model_1, model_2)</span>
+<span id="cb622-2"><a href="logistic-regression.html#cb622-2" tabindex="-1"></a><span class="fu">print</span>(lr_test)</span></code></pre></div>
+<pre class="r-output"><code>## Likelihood ratio test
+## 
+## Model 1: RealizationOfRecipient ~ AnimacyOfRec
+## Model 2: RealizationOfRecipient ~ AnimacyOfRec + LengthOfTheme + LengthOfRecipient + 
+##     AnimacyOfTheme
+##   #Df  LogLik Df  Chisq Pr(&gt;Chisq)    
+## 1   2 -1831.1                         
+## 2   5 -1379.5  3 903.19  &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 
 </div>
 </div>
