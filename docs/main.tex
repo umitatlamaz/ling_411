@@ -3193,7 +3193,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(26 December, 2023, 08:38)
+(26 December, 2023, 08:54)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -8596,6 +8596,57 @@ Now let us compare the two models.
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{testing-the-model}{%
+\section{Testing the model}\label{testing-the-model}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test\_data }\OtherTok{\textless{}{-}} \FunctionTok{select}\NormalTok{(dative, AnimacyOfRec,LengthOfTheme,LengthOfRecipient,AnimacyOfTheme,RealizationOfRecipient)}
+\FunctionTok{head}\NormalTok{(test\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   AnimacyOfRec LengthOfTheme LengthOfRecipient AnimacyOfTheme}
+\NormalTok{\#\# 1      animate            14                 1      inanimate}
+\NormalTok{\#\# 2      animate             3                 2      inanimate}
+\NormalTok{\#\# 3      animate            13                 1      inanimate}
+\NormalTok{\#\# 4      animate             5                 1      inanimate}
+\NormalTok{\#\# 5      animate             3                 2      inanimate}
+\NormalTok{\#\# 6      animate             4                 2      inanimate}
+\NormalTok{\#\#   RealizationOfRecipient}
+\NormalTok{\#\# 1                     NP}
+\NormalTok{\#\# 2                     NP}
+\NormalTok{\#\# 3                     NP}
+\NormalTok{\#\# 4                     NP}
+\NormalTok{\#\# 5                     NP}
+\NormalTok{\#\# 6                     NP}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Make predictions on the test set}
+\NormalTok{predictions }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model, }\AttributeTok{newdata =}\NormalTok{ test\_data, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
+
+
+\CommentTok{\# For binary classification, calculate accuracy}
+\NormalTok{predicted\_classes }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(predictions }\SpecialCharTok{\textgreater{}} \FloatTok{0.5}\NormalTok{, }\StringTok{\textquotesingle{}PP\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}NP\textquotesingle{}}\NormalTok{)}
+
+
+\NormalTok{accuracy }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predicted\_classes }\SpecialCharTok{==}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{RealizationOfRecipient)}
+
+\NormalTok{accuracy}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.7425682}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{modeling-poisson-distribution}{%
 \chapter{Modeling Poisson Distribution}\label{modeling-poisson-distribution}}
 
@@ -8626,7 +8677,7 @@ For example, assume that on average you get \textbf{5 email per day}. A day is y
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{main_files/figure-latex/unnamed-chunk-300-1.pdf}
+\includegraphics{main_files/figure-latex/unnamed-chunk-301-1.pdf}
 
 The bar plot above plots the \textbf{probability density} of each event. In other words, it just gives us a probability for each number of emails per day. As you can see, when \(\lambda = 5\), it is more likely to get 4 or 5 emails than 15 emails per day. Let us play with the number of events to see what the probability distribution looks like.
 
@@ -8648,7 +8699,7 @@ The bar plot above plots the \textbf{probability density} of each event. In othe
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{main_files/figure-latex/unnamed-chunk-301-1.pdf}
+\includegraphics{main_files/figure-latex/unnamed-chunk-302-1.pdf}
 
 Notice how we kept \(\lambda\) constant and merely increased the number of emails per day. We now have a long tail with probabilities close to 0. This just simply means `if you are receiving on average 5 emails per day, then the probability of getting 50 emails on a given day is very low (close to 0).'
 
@@ -8672,7 +8723,7 @@ Let us now change our \(\lambda\) to see what it looks like. Assume that on aver
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{main_files/figure-latex/unnamed-chunk-302-1.pdf}
+\includegraphics{main_files/figure-latex/unnamed-chunk-303-1.pdf}
 
 So far, we have used the \texttt{dpois()} function to generate the probability distributions of possible events. It takes in an array of possible event values and a \(\lambda\) and returns the probability associated with each event given \(\lambda\). These are theoretical values. What the barplot above tells us is the following: `For any given day, you are likely to get 20 emails. It is also equally likely that you'll get 18 or 21 emails. It is also possible that you only get 9 emails but it is a lot less likely. It is very unlikely that you'll get no emails at all.'
 
@@ -8734,7 +8785,7 @@ Let us plot the emails to get a better visual.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{main_files/figure-latex/unnamed-chunk-305-1.pdf}
+\includegraphics{main_files/figure-latex/unnamed-chunk-306-1.pdf}
 
 \hypertarget{modeling-with-poisson-distribution}{%
 \section{\texorpdfstring{Modeling with \textbf{Poisson distribution}}{Modeling with Poisson distribution}}\label{modeling-with-poisson-distribution}}

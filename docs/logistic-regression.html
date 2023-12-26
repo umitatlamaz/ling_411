@@ -313,6 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#from-logits-to-probabilities"><i class="fa fa-check"></i><b>12.4.3</b> From logits to probabilities</a></li>
 <li class="chapter" data-level="12.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#dative-dataset"><i class="fa fa-check"></i><b>12.4.4</b> Dative Dataset</a></li>
 </ul></li>
+<li class="chapter" data-level="12.5" data-path="logistic-regression.html"><a href="logistic-regression.html#testing-the-model"><i class="fa fa-check"></i><b>12.5</b> Testing the model</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html"><i class="fa fa-check"></i><b>13</b> Modeling Poisson Distribution</a>
 <ul>
@@ -785,8 +786,39 @@ Figure 12.1: Logistic Function
 ## 2   5 -1379.5  3 903.19  &lt; 2.2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-
 </div>
+</div>
+<div id="testing-the-model" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Testing the model<a href="logistic-regression.html#testing-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="logistic-regression.html#cb624-1" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">select</span>(dative, AnimacyOfRec,LengthOfTheme,LengthOfRecipient,AnimacyOfTheme,RealizationOfRecipient)</span>
+<span id="cb624-2"><a href="logistic-regression.html#cb624-2" tabindex="-1"></a><span class="fu">head</span>(test_data)</span></code></pre></div>
+<pre class="r-output"><code>##   AnimacyOfRec LengthOfTheme LengthOfRecipient AnimacyOfTheme
+## 1      animate            14                 1      inanimate
+## 2      animate             3                 2      inanimate
+## 3      animate            13                 1      inanimate
+## 4      animate             5                 1      inanimate
+## 5      animate             3                 2      inanimate
+## 6      animate             4                 2      inanimate
+##   RealizationOfRecipient
+## 1                     NP
+## 2                     NP
+## 3                     NP
+## 4                     NP
+## 5                     NP
+## 6                     NP</code></pre>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="logistic-regression.html#cb626-1" tabindex="-1"></a><span class="co"># Make predictions on the test set</span></span>
+<span id="cb626-2"><a href="logistic-regression.html#cb626-2" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> test_data, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb626-3"><a href="logistic-regression.html#cb626-3" tabindex="-1"></a></span>
+<span id="cb626-4"><a href="logistic-regression.html#cb626-4" tabindex="-1"></a></span>
+<span id="cb626-5"><a href="logistic-regression.html#cb626-5" tabindex="-1"></a><span class="co"># For binary classification, calculate accuracy</span></span>
+<span id="cb626-6"><a href="logistic-regression.html#cb626-6" tabindex="-1"></a>predicted_classes <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(predictions <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="st">&#39;PP&#39;</span>, <span class="st">&#39;NP&#39;</span>)</span>
+<span id="cb626-7"><a href="logistic-regression.html#cb626-7" tabindex="-1"></a></span>
+<span id="cb626-8"><a href="logistic-regression.html#cb626-8" tabindex="-1"></a></span>
+<span id="cb626-9"><a href="logistic-regression.html#cb626-9" tabindex="-1"></a>accuracy <span class="ot">&lt;-</span> <span class="fu">mean</span>(predicted_classes <span class="sc">==</span> test_data<span class="sc">$</span>RealizationOfRecipient)</span>
+<span id="cb626-10"><a href="logistic-regression.html#cb626-10" tabindex="-1"></a></span>
+<span id="cb626-11"><a href="logistic-regression.html#cb626-11" tabindex="-1"></a>accuracy</span></code></pre></div>
+<pre class="r-output"><code>## [1] 0.7425682</code></pre>
+
 </div>
 </div>
             </section>

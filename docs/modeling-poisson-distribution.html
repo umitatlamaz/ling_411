@@ -313,6 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#from-logits-to-probabilities"><i class="fa fa-check"></i><b>12.4.3</b> From logits to probabilities</a></li>
 <li class="chapter" data-level="12.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#dative-dataset"><i class="fa fa-check"></i><b>12.4.4</b> Dative Dataset</a></li>
 </ul></li>
+<li class="chapter" data-level="12.5" data-path="logistic-regression.html"><a href="logistic-regression.html#testing-the-model"><i class="fa fa-check"></i><b>12.5</b> Testing the model</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html"><i class="fa fa-check"></i><b>13</b> Modeling Poisson Distribution</a>
 <ul>
@@ -349,51 +350,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">13.1</span> Poisson Distribution<a href="modeling-poisson-distribution.html#poisson-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Poisson Distribution</strong> models count distributions. It has a single parameter <span class="math inline">\(\lambda\)</span> which builds in both the central tendency and spread (so to speak). <span class="math inline">\(\lambda\)</span> is the average rate at which an event would occur at a specified time. It tells you the average number of events you would expect to occur in a given interval.</p>
 <p>For example, assume that on average you get <strong>5 email per day</strong>. A day is your interval and <span class="math inline">\(\lambda\)</span> is the average number of emails. Given <span class="math inline">\(\lambda = 5\)</span>, the Poisson distribution of emails per day looks like the following.</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="modeling-poisson-distribution.html#cb624-1" tabindex="-1"></a><span class="co"># Set the lambda parameter for the Poisson distribution</span></span>
-<span id="cb624-2"><a href="modeling-poisson-distribution.html#cb624-2" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb624-3"><a href="modeling-poisson-distribution.html#cb624-3" tabindex="-1"></a></span>
-<span id="cb624-4"><a href="modeling-poisson-distribution.html#cb624-4" tabindex="-1"></a><span class="co"># Generate values for x (number of events) and their corresponding probabilities</span></span>
-<span id="cb624-5"><a href="modeling-poisson-distribution.html#cb624-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">15</span></span>
-<span id="cb624-6"><a href="modeling-poisson-distribution.html#cb624-6" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dpois</span>(x, lambda)</span>
-<span id="cb624-7"><a href="modeling-poisson-distribution.html#cb624-7" tabindex="-1"></a></span>
-<span id="cb624-8"><a href="modeling-poisson-distribution.html#cb624-8" tabindex="-1"></a><span class="fu">barplot</span>(probabilities, <span class="at">names.arg =</span> x, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb624-9"><a href="modeling-poisson-distribution.html#cb624-9" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Number of Events (i.e. num of emails per day)&quot;</span>,</span>
-<span id="cb624-10"><a href="modeling-poisson-distribution.html#cb624-10" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>)</span>
-<span id="cb624-11"><a href="modeling-poisson-distribution.html#cb624-11" tabindex="-1"></a></span>
-<span id="cb624-12"><a href="modeling-poisson-distribution.html#cb624-12" tabindex="-1"></a><span class="co"># Add a title and labels to the plot</span></span>
-<span id="cb624-13"><a href="modeling-poisson-distribution.html#cb624-13" tabindex="-1"></a><span class="fu">title</span>(<span class="fu">paste</span>(<span class="st">&quot;Poisson distribution with λ =&quot;</span>, lambda))</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-300-1.png" width="672" /></p>
-<p>The bar plot above plots the <strong>probability density</strong> of each event. In other words, it just gives us a probability for each number of emails per day. As you can see, when <span class="math inline">\(\lambda = 5\)</span>, it is more likely to get 4 or 5 emails than 15 emails per day. Let us play with the number of events to see what the probability distribution looks like.</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="modeling-poisson-distribution.html#cb625-1" tabindex="-1"></a><span class="co"># Set the lambda parameter for the Poisson distribution</span></span>
-<span id="cb625-2"><a href="modeling-poisson-distribution.html#cb625-2" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb625-3"><a href="modeling-poisson-distribution.html#cb625-3" tabindex="-1"></a></span>
-<span id="cb625-4"><a href="modeling-poisson-distribution.html#cb625-4" tabindex="-1"></a><span class="co"># Generate values for x (number of events) and their corresponding probabilities</span></span>
-<span id="cb625-5"><a href="modeling-poisson-distribution.html#cb625-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">50</span></span>
-<span id="cb625-6"><a href="modeling-poisson-distribution.html#cb625-6" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dpois</span>(x, lambda)</span>
-<span id="cb625-7"><a href="modeling-poisson-distribution.html#cb625-7" tabindex="-1"></a></span>
-<span id="cb625-8"><a href="modeling-poisson-distribution.html#cb625-8" tabindex="-1"></a><span class="fu">barplot</span>(probabilities, <span class="at">names.arg =</span> x, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb625-9"><a href="modeling-poisson-distribution.html#cb625-9" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Number of Events (i.e. num of emails per day)&quot;</span>,</span>
-<span id="cb625-10"><a href="modeling-poisson-distribution.html#cb625-10" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>)</span>
-<span id="cb625-11"><a href="modeling-poisson-distribution.html#cb625-11" tabindex="-1"></a></span>
-<span id="cb625-12"><a href="modeling-poisson-distribution.html#cb625-12" tabindex="-1"></a><span class="co"># Add a title and labels to the plot</span></span>
-<span id="cb625-13"><a href="modeling-poisson-distribution.html#cb625-13" tabindex="-1"></a><span class="fu">title</span>(<span class="fu">paste</span>(<span class="st">&quot;Poisson distribution with λ =&quot;</span>, lambda))</span></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="modeling-poisson-distribution.html#cb628-1" tabindex="-1"></a><span class="co"># Set the lambda parameter for the Poisson distribution</span></span>
+<span id="cb628-2"><a href="modeling-poisson-distribution.html#cb628-2" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb628-3"><a href="modeling-poisson-distribution.html#cb628-3" tabindex="-1"></a></span>
+<span id="cb628-4"><a href="modeling-poisson-distribution.html#cb628-4" tabindex="-1"></a><span class="co"># Generate values for x (number of events) and their corresponding probabilities</span></span>
+<span id="cb628-5"><a href="modeling-poisson-distribution.html#cb628-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">15</span></span>
+<span id="cb628-6"><a href="modeling-poisson-distribution.html#cb628-6" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dpois</span>(x, lambda)</span>
+<span id="cb628-7"><a href="modeling-poisson-distribution.html#cb628-7" tabindex="-1"></a></span>
+<span id="cb628-8"><a href="modeling-poisson-distribution.html#cb628-8" tabindex="-1"></a><span class="fu">barplot</span>(probabilities, <span class="at">names.arg =</span> x, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb628-9"><a href="modeling-poisson-distribution.html#cb628-9" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Number of Events (i.e. num of emails per day)&quot;</span>,</span>
+<span id="cb628-10"><a href="modeling-poisson-distribution.html#cb628-10" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>)</span>
+<span id="cb628-11"><a href="modeling-poisson-distribution.html#cb628-11" tabindex="-1"></a></span>
+<span id="cb628-12"><a href="modeling-poisson-distribution.html#cb628-12" tabindex="-1"></a><span class="co"># Add a title and labels to the plot</span></span>
+<span id="cb628-13"><a href="modeling-poisson-distribution.html#cb628-13" tabindex="-1"></a><span class="fu">title</span>(<span class="fu">paste</span>(<span class="st">&quot;Poisson distribution with λ =&quot;</span>, lambda))</span></code></pre></div>
 <p><img src="main_files/figure-html/unnamed-chunk-301-1.png" width="672" /></p>
+<p>The bar plot above plots the <strong>probability density</strong> of each event. In other words, it just gives us a probability for each number of emails per day. As you can see, when <span class="math inline">\(\lambda = 5\)</span>, it is more likely to get 4 or 5 emails than 15 emails per day. Let us play with the number of events to see what the probability distribution looks like.</p>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="modeling-poisson-distribution.html#cb629-1" tabindex="-1"></a><span class="co"># Set the lambda parameter for the Poisson distribution</span></span>
+<span id="cb629-2"><a href="modeling-poisson-distribution.html#cb629-2" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb629-3"><a href="modeling-poisson-distribution.html#cb629-3" tabindex="-1"></a></span>
+<span id="cb629-4"><a href="modeling-poisson-distribution.html#cb629-4" tabindex="-1"></a><span class="co"># Generate values for x (number of events) and their corresponding probabilities</span></span>
+<span id="cb629-5"><a href="modeling-poisson-distribution.html#cb629-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">50</span></span>
+<span id="cb629-6"><a href="modeling-poisson-distribution.html#cb629-6" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dpois</span>(x, lambda)</span>
+<span id="cb629-7"><a href="modeling-poisson-distribution.html#cb629-7" tabindex="-1"></a></span>
+<span id="cb629-8"><a href="modeling-poisson-distribution.html#cb629-8" tabindex="-1"></a><span class="fu">barplot</span>(probabilities, <span class="at">names.arg =</span> x, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb629-9"><a href="modeling-poisson-distribution.html#cb629-9" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Number of Events (i.e. num of emails per day)&quot;</span>,</span>
+<span id="cb629-10"><a href="modeling-poisson-distribution.html#cb629-10" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>)</span>
+<span id="cb629-11"><a href="modeling-poisson-distribution.html#cb629-11" tabindex="-1"></a></span>
+<span id="cb629-12"><a href="modeling-poisson-distribution.html#cb629-12" tabindex="-1"></a><span class="co"># Add a title and labels to the plot</span></span>
+<span id="cb629-13"><a href="modeling-poisson-distribution.html#cb629-13" tabindex="-1"></a><span class="fu">title</span>(<span class="fu">paste</span>(<span class="st">&quot;Poisson distribution with λ =&quot;</span>, lambda))</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-302-1.png" width="672" /></p>
 <p>Notice how we kept <span class="math inline">\(\lambda\)</span> constant and merely increased the number of emails per day. We now have a long tail with probabilities close to 0. This just simply means ‘if you are receiving on average 5 emails per day, then the probability of getting 50 emails on a given day is very low (close to 0).’</p>
 <p>Let us now change our <span class="math inline">\(\lambda\)</span> to see what it looks like. Assume that on average you get 20 emails per day.</p>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="modeling-poisson-distribution.html#cb626-1" tabindex="-1"></a><span class="co"># Set the lambda parameter for the Poisson distribution</span></span>
-<span id="cb626-2"><a href="modeling-poisson-distribution.html#cb626-2" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb626-3"><a href="modeling-poisson-distribution.html#cb626-3" tabindex="-1"></a></span>
-<span id="cb626-4"><a href="modeling-poisson-distribution.html#cb626-4" tabindex="-1"></a><span class="co"># Generate values for x (number of events) and their corresponding probabilities</span></span>
-<span id="cb626-5"><a href="modeling-poisson-distribution.html#cb626-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">50</span></span>
-<span id="cb626-6"><a href="modeling-poisson-distribution.html#cb626-6" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dpois</span>(x, lambda)</span>
-<span id="cb626-7"><a href="modeling-poisson-distribution.html#cb626-7" tabindex="-1"></a></span>
-<span id="cb626-8"><a href="modeling-poisson-distribution.html#cb626-8" tabindex="-1"></a><span class="fu">barplot</span>(probabilities, <span class="at">names.arg =</span> x, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb626-9"><a href="modeling-poisson-distribution.html#cb626-9" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Number of Events (i.e. num of emails per day)&quot;</span>,</span>
-<span id="cb626-10"><a href="modeling-poisson-distribution.html#cb626-10" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>)</span>
-<span id="cb626-11"><a href="modeling-poisson-distribution.html#cb626-11" tabindex="-1"></a></span>
-<span id="cb626-12"><a href="modeling-poisson-distribution.html#cb626-12" tabindex="-1"></a><span class="co"># Add a title and labels to the plot</span></span>
-<span id="cb626-13"><a href="modeling-poisson-distribution.html#cb626-13" tabindex="-1"></a><span class="fu">title</span>(<span class="fu">paste</span>(<span class="st">&quot;Poisson distribution with λ =&quot;</span>, lambda))</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-302-1.png" width="672" /></p>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="modeling-poisson-distribution.html#cb630-1" tabindex="-1"></a><span class="co"># Set the lambda parameter for the Poisson distribution</span></span>
+<span id="cb630-2"><a href="modeling-poisson-distribution.html#cb630-2" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb630-3"><a href="modeling-poisson-distribution.html#cb630-3" tabindex="-1"></a></span>
+<span id="cb630-4"><a href="modeling-poisson-distribution.html#cb630-4" tabindex="-1"></a><span class="co"># Generate values for x (number of events) and their corresponding probabilities</span></span>
+<span id="cb630-5"><a href="modeling-poisson-distribution.html#cb630-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">50</span></span>
+<span id="cb630-6"><a href="modeling-poisson-distribution.html#cb630-6" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dpois</span>(x, lambda)</span>
+<span id="cb630-7"><a href="modeling-poisson-distribution.html#cb630-7" tabindex="-1"></a></span>
+<span id="cb630-8"><a href="modeling-poisson-distribution.html#cb630-8" tabindex="-1"></a><span class="fu">barplot</span>(probabilities, <span class="at">names.arg =</span> x, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb630-9"><a href="modeling-poisson-distribution.html#cb630-9" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Number of Events (i.e. num of emails per day)&quot;</span>,</span>
+<span id="cb630-10"><a href="modeling-poisson-distribution.html#cb630-10" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>)</span>
+<span id="cb630-11"><a href="modeling-poisson-distribution.html#cb630-11" tabindex="-1"></a></span>
+<span id="cb630-12"><a href="modeling-poisson-distribution.html#cb630-12" tabindex="-1"></a><span class="co"># Add a title and labels to the plot</span></span>
+<span id="cb630-13"><a href="modeling-poisson-distribution.html#cb630-13" tabindex="-1"></a><span class="fu">title</span>(<span class="fu">paste</span>(<span class="st">&quot;Poisson distribution with λ =&quot;</span>, lambda))</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-303-1.png" width="672" /></p>
 <p>So far, we have used the <code>dpois()</code> function to generate the probability distributions of possible events. It takes in an array of possible event values and a <span class="math inline">\(\lambda\)</span> and returns the probability associated with each event given <span class="math inline">\(\lambda\)</span>. These are theoretical values. What the barplot above tells us is the following: ‘For any given day, you are likely to get 20 emails. It is also equally likely that you’ll get 18 or 21 emails. It is also possible that you only get 9 emails but it is a lot less likely. It is very unlikely that you’ll get no emails at all.’</p>
 <p>Given the probabilities above, how does a real day look like then? For simulating real life scenarios, we need to randomly sample some data using the probabilities above. For that, we’ll use the <code>rpois()</code> function. The <code>r</code> prefix before distributions suggests that we want to do some random sampling. We’ve seen this several times.</p>
 <ul>
@@ -402,24 +403,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>dpois()</code> – <code>rpois()</code></li>
 </ul>
 <p>Let us now simulate a single day with <span class="math inline">\(\lambda = 20\)</span>. Think of it like ‘On average I get 20 emails per day. Given that today is just another day in the office, how many emails am I getting today?’ Each time we run the code below, we’ll get a slightly different number as the sampling is random.</p>
-<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="modeling-poisson-distribution.html#cb627-1" tabindex="-1"></a><span class="co"># Number of samples and lambda</span></span>
-<span id="cb627-2"><a href="modeling-poisson-distribution.html#cb627-2" tabindex="-1"></a><span class="fu">rpois</span>(<span class="dv">1</span>,<span class="at">lambda=</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="modeling-poisson-distribution.html#cb631-1" tabindex="-1"></a><span class="co"># Number of samples and lambda</span></span>
+<span id="cb631-2"><a href="modeling-poisson-distribution.html#cb631-2" tabindex="-1"></a><span class="fu">rpois</span>(<span class="dv">1</span>,<span class="at">lambda=</span><span class="dv">20</span>)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 37</code></pre>
 <p>Now, let us project what a month will look like in terms of the number of emails I receive. For that, we just need to sample not once but 30 times.</p>
-<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="modeling-poisson-distribution.html#cb629-1" tabindex="-1"></a><span class="co"># Number of samples and lambda</span></span>
-<span id="cb629-2"><a href="modeling-poisson-distribution.html#cb629-2" tabindex="-1"></a>emails_this_month <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">30</span>,<span class="at">lambda=</span><span class="dv">20</span>)</span>
-<span id="cb629-3"><a href="modeling-poisson-distribution.html#cb629-3" tabindex="-1"></a>emails_this_month</span></code></pre></div>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="modeling-poisson-distribution.html#cb633-1" tabindex="-1"></a><span class="co"># Number of samples and lambda</span></span>
+<span id="cb633-2"><a href="modeling-poisson-distribution.html#cb633-2" tabindex="-1"></a>emails_this_month <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">30</span>,<span class="at">lambda=</span><span class="dv">20</span>)</span>
+<span id="cb633-3"><a href="modeling-poisson-distribution.html#cb633-3" tabindex="-1"></a>emails_this_month</span></code></pre></div>
 <pre class="r-output"><code>##  [1] 19 15 18 17 23 20 21 14 20 25 26 15 15 17 18 12 18 19 18 24 17 13 15 19 18
 ## [26] 26 15 14 14 17</code></pre>
 <p>Let us plot the emails to get a better visual.</p>
-<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="modeling-poisson-distribution.html#cb631-1" tabindex="-1"></a><span class="co"># Plot a bar graph</span></span>
-<span id="cb631-2"><a href="modeling-poisson-distribution.html#cb631-2" tabindex="-1"></a><span class="fu">barplot</span>(emails_this_month, <span class="at">names.arg =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>,</span>
-<span id="cb631-3"><a href="modeling-poisson-distribution.html#cb631-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Emails this month&quot;</span>,</span>
-<span id="cb631-4"><a href="modeling-poisson-distribution.html#cb631-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Day&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Number of Emails&quot;</span>)</span>
-<span id="cb631-5"><a href="modeling-poisson-distribution.html#cb631-5" tabindex="-1"></a></span>
-<span id="cb631-6"><a href="modeling-poisson-distribution.html#cb631-6" tabindex="-1"></a><span class="co"># Add a horizontal line representing the average rate (lambda)</span></span>
-<span id="cb631-7"><a href="modeling-poisson-distribution.html#cb631-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> lambda, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-305-1.png" width="672" /></p>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="modeling-poisson-distribution.html#cb635-1" tabindex="-1"></a><span class="co"># Plot a bar graph</span></span>
+<span id="cb635-2"><a href="modeling-poisson-distribution.html#cb635-2" tabindex="-1"></a><span class="fu">barplot</span>(emails_this_month, <span class="at">names.arg =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>,</span>
+<span id="cb635-3"><a href="modeling-poisson-distribution.html#cb635-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Emails this month&quot;</span>,</span>
+<span id="cb635-4"><a href="modeling-poisson-distribution.html#cb635-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Day&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Number of Emails&quot;</span>)</span>
+<span id="cb635-5"><a href="modeling-poisson-distribution.html#cb635-5" tabindex="-1"></a></span>
+<span id="cb635-6"><a href="modeling-poisson-distribution.html#cb635-6" tabindex="-1"></a><span class="co"># Add a horizontal line representing the average rate (lambda)</span></span>
+<span id="cb635-7"><a href="modeling-poisson-distribution.html#cb635-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> lambda, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-306-1.png" width="672" /></p>
 </div>
 <div id="modeling-with-poisson-distribution" class="section level2 hasAnchor" number="13.2">
 <h2><span class="header-section-number">13.2</span> Modeling with <strong>Poisson distribution</strong><a href="modeling-poisson-distribution.html#modeling-with-poisson-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -431,8 +432,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-1" class="section level3 hasAnchor" number="13.2.1">
 <h3><span class="header-section-number">13.2.1</span> Data<a href="modeling-poisson-distribution.html#data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We’ll use the Nettle (1999) data which we used earlier in the semester.</p>
-<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="modeling-poisson-distribution.html#cb632-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb632-2"><a href="modeling-poisson-distribution.html#cb632-2" tabindex="-1"></a>nettle <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;/Users/umit/ling_411/data/nettle_1999_climate.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="modeling-poisson-distribution.html#cb636-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb636-2"><a href="modeling-poisson-distribution.html#cb636-2" tabindex="-1"></a>nettle <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;/Users/umit/ling_411/data/nettle_1999_climate.csv&#39;</span>)</span></code></pre></div>
 <pre><code>## Rows: 74 Columns: 5
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -441,7 +442,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="modeling-poisson-distribution.html#cb634-1" tabindex="-1"></a>nettle</span></code></pre></div>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="modeling-poisson-distribution.html#cb638-1" tabindex="-1"></a>nettle</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 74 × 5
 ##    Country      Population  Area   MGS Langs
 ##    &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -457,30 +458,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 CAR                3.5   5.79  8.08    94
 ## # ℹ 64 more rows</code></pre>
 <p>The data consists of <em>population, area, mean growing season</em> (<code>MGS</code>), and <em>number of languages</em> spoken in a country. For now, we’ll just try to predict the number of language spoken in a country as a function of the <code>MGS</code>.</p>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="modeling-poisson-distribution.html#cb636-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb636-2"><a href="modeling-poisson-distribution.html#cb636-2" tabindex="-1"></a>mgs_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Langs <span class="sc">~</span> MGS, <span class="at">data =</span> nettle,</span>
-<span id="cb636-3"><a href="modeling-poisson-distribution.html#cb636-3" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">&#39;poisson&#39;</span>)</span>
-<span id="cb636-4"><a href="modeling-poisson-distribution.html#cb636-4" tabindex="-1"></a></span>
-<span id="cb636-5"><a href="modeling-poisson-distribution.html#cb636-5" tabindex="-1"></a><span class="fu">tidy</span>(mgs_model)</span></code></pre></div>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="modeling-poisson-distribution.html#cb640-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb640-2"><a href="modeling-poisson-distribution.html#cb640-2" tabindex="-1"></a>mgs_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Langs <span class="sc">~</span> MGS, <span class="at">data =</span> nettle,</span>
+<span id="cb640-3"><a href="modeling-poisson-distribution.html#cb640-3" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">&#39;poisson&#39;</span>)</span>
+<span id="cb640-4"><a href="modeling-poisson-distribution.html#cb640-4" tabindex="-1"></a></span>
+<span id="cb640-5"><a href="modeling-poisson-distribution.html#cb640-5" tabindex="-1"></a><span class="fu">tidy</span>(mgs_model)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 2 × 5
 ##   term        estimate std.error statistic   p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)    3.42    0.0392       87.1 0        
 ## 2 MGS            0.141   0.00453      31.2 2.42e-213</code></pre>
 <p>Let us interpret the coefficients. We observe that the intercept is positive and the p-value is very small. This indicates a positive correlation between the number of languages and mean number growing seasons and the relationship is statistically significant. There’s one thing to pay attention though. The coefficients in <code>glm poisson</code> are expressed in logarithms. In order for them to make a bit more sense, we need to exponantiate them (remember that exponentiation is the inverse of logarithms).</p>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="modeling-poisson-distribution.html#cb638-1" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="fu">tidy</span>(mgs_model)<span class="sc">$</span>estimate[<span class="dv">1</span>]</span>
-<span id="cb638-2"><a href="modeling-poisson-distribution.html#cb638-2" tabindex="-1"></a>slope <span class="ot">&lt;-</span> <span class="fu">tidy</span>(mgs_model)<span class="sc">$</span>estimate[<span class="dv">2</span>]</span>
-<span id="cb638-3"><a href="modeling-poisson-distribution.html#cb638-3" tabindex="-1"></a></span>
-<span id="cb638-4"><a href="modeling-poisson-distribution.html#cb638-4" tabindex="-1"></a><span class="fu">exp</span>(intercept)</span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="modeling-poisson-distribution.html#cb642-1" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="fu">tidy</span>(mgs_model)<span class="sc">$</span>estimate[<span class="dv">1</span>]</span>
+<span id="cb642-2"><a href="modeling-poisson-distribution.html#cb642-2" tabindex="-1"></a>slope <span class="ot">&lt;-</span> <span class="fu">tidy</span>(mgs_model)<span class="sc">$</span>estimate[<span class="dv">2</span>]</span>
+<span id="cb642-3"><a href="modeling-poisson-distribution.html#cb642-3" tabindex="-1"></a></span>
+<span id="cb642-4"><a href="modeling-poisson-distribution.html#cb642-4" tabindex="-1"></a><span class="fu">exp</span>(intercept)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 30.45637</code></pre>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="modeling-poisson-distribution.html#cb640-1" tabindex="-1"></a><span class="fu">exp</span>(slope)</span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="modeling-poisson-distribution.html#cb644-1" tabindex="-1"></a><span class="fu">exp</span>(slope)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 1.151545</code></pre>
 <p>The intercept is <code>30.45637</code>. This means that on average, a country with 0 months of growing season (e.g. desert of ice/snow) will have 30 languages. Let us predict other values.</p>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="modeling-poisson-distribution.html#cb642-1" tabindex="-1"></a>langs <span class="ot">&lt;-</span> <span class="fu">exp</span>(intercept <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span> <span class="sc">*</span> slope)</span>
-<span id="cb642-2"><a href="modeling-poisson-distribution.html#cb642-2" tabindex="-1"></a>langs</span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="modeling-poisson-distribution.html#cb646-1" tabindex="-1"></a>langs <span class="ot">&lt;-</span> <span class="fu">exp</span>(intercept <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span> <span class="sc">*</span> slope)</span>
+<span id="cb646-2"><a href="modeling-poisson-distribution.html#cb646-2" tabindex="-1"></a>langs</span></code></pre></div>
 <pre class="r-output"><code>##  [1]  35.07188  40.38685  46.50727  53.55521  61.67123  71.01719  81.77948
 ##  [8]  94.17275 108.44415 124.87831 143.80298 165.59559</code></pre>
-<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="modeling-poisson-distribution.html#cb644-1" tabindex="-1"></a><span class="fu">filter</span>(nettle, MGS <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span> MGS <span class="sc">==</span> <span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="modeling-poisson-distribution.html#cb648-1" tabindex="-1"></a><span class="fu">filter</span>(nettle, MGS <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span> MGS <span class="sc">==</span> <span class="dv">12</span>)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 6 × 5
 ##   Country         Population  Area   MGS Langs
 ##   &lt;chr&gt;                &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -490,16 +491,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Suriname              2.63  5.21    12    17
 ## 5 Vanuatu               2.21  4.09    12   111
 ## 6 Yemen                 4.09  5.72     0     6</code></pre>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="modeling-poisson-distribution.html#cb646-1" tabindex="-1"></a>mgs_model_1 <span class="ot">&lt;-</span> mgs_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Langs <span class="sc">~</span> MGS, <span class="at">data =</span> nettle,</span>
-<span id="cb646-2"><a href="modeling-poisson-distribution.html#cb646-2" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">&#39;poisson&#39;</span>)</span>
-<span id="cb646-3"><a href="modeling-poisson-distribution.html#cb646-3" tabindex="-1"></a></span>
-<span id="cb646-4"><a href="modeling-poisson-distribution.html#cb646-4" tabindex="-1"></a>mgs_model_2 <span class="ot">&lt;-</span> mgs_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Langs <span class="sc">~</span> Population <span class="sc">+</span> Area <span class="sc">+</span> MGS, <span class="at">data =</span> nettle,</span>
-<span id="cb646-5"><a href="modeling-poisson-distribution.html#cb646-5" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">&#39;poisson&#39;</span>)</span>
-<span id="cb646-6"><a href="modeling-poisson-distribution.html#cb646-6" tabindex="-1"></a></span>
-<span id="cb646-7"><a href="modeling-poisson-distribution.html#cb646-7" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb646-8"><a href="modeling-poisson-distribution.html#cb646-8" tabindex="-1"></a></span>
-<span id="cb646-9"><a href="modeling-poisson-distribution.html#cb646-9" tabindex="-1"></a>lr_test <span class="ot">&lt;-</span> <span class="fu">lrtest</span>(mgs_model_1, mgs_model_2)</span>
-<span id="cb646-10"><a href="modeling-poisson-distribution.html#cb646-10" tabindex="-1"></a><span class="fu">print</span>(lr_test)</span></code></pre></div>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="modeling-poisson-distribution.html#cb650-1" tabindex="-1"></a>mgs_model_1 <span class="ot">&lt;-</span> mgs_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Langs <span class="sc">~</span> MGS, <span class="at">data =</span> nettle,</span>
+<span id="cb650-2"><a href="modeling-poisson-distribution.html#cb650-2" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">&#39;poisson&#39;</span>)</span>
+<span id="cb650-3"><a href="modeling-poisson-distribution.html#cb650-3" tabindex="-1"></a></span>
+<span id="cb650-4"><a href="modeling-poisson-distribution.html#cb650-4" tabindex="-1"></a>mgs_model_2 <span class="ot">&lt;-</span> mgs_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Langs <span class="sc">~</span> Population <span class="sc">+</span> Area <span class="sc">+</span> MGS, <span class="at">data =</span> nettle,</span>
+<span id="cb650-5"><a href="modeling-poisson-distribution.html#cb650-5" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">&#39;poisson&#39;</span>)</span>
+<span id="cb650-6"><a href="modeling-poisson-distribution.html#cb650-6" tabindex="-1"></a></span>
+<span id="cb650-7"><a href="modeling-poisson-distribution.html#cb650-7" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb650-8"><a href="modeling-poisson-distribution.html#cb650-8" tabindex="-1"></a></span>
+<span id="cb650-9"><a href="modeling-poisson-distribution.html#cb650-9" tabindex="-1"></a>lr_test <span class="ot">&lt;-</span> <span class="fu">lrtest</span>(mgs_model_1, mgs_model_2)</span>
+<span id="cb650-10"><a href="modeling-poisson-distribution.html#cb650-10" tabindex="-1"></a><span class="fu">print</span>(lr_test)</span></code></pre></div>
 <pre class="r-output"><code>## Likelihood ratio test
 ## 
 ## Model 1: Langs ~ MGS
@@ -509,15 +510,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2   4 -2861.7  2 3428.9  &lt; 2.2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="modeling-poisson-distribution.html#cb648-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="modeling-poisson-distribution.html#cb652-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;MASS&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
 ## 
 ##     select</code></pre>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="modeling-poisson-distribution.html#cb651-1" tabindex="-1"></a>mgs_model_3 <span class="ot">&lt;-</span> mgs_model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(Langs <span class="sc">~</span> Population <span class="sc">+</span> Area <span class="sc">+</span> MGS, <span class="at">data =</span> nettle)</span>
-<span id="cb651-2"><a href="modeling-poisson-distribution.html#cb651-2" tabindex="-1"></a></span>
-<span id="cb651-3"><a href="modeling-poisson-distribution.html#cb651-3" tabindex="-1"></a><span class="fu">tidy</span>(mgs_model_3)</span></code></pre></div>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="modeling-poisson-distribution.html#cb655-1" tabindex="-1"></a>mgs_model_3 <span class="ot">&lt;-</span> mgs_model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(Langs <span class="sc">~</span> Population <span class="sc">+</span> Area <span class="sc">+</span> MGS, <span class="at">data =</span> nettle)</span>
+<span id="cb655-2"><a href="modeling-poisson-distribution.html#cb655-2" tabindex="-1"></a></span>
+<span id="cb655-3"><a href="modeling-poisson-distribution.html#cb655-3" tabindex="-1"></a><span class="fu">tidy</span>(mgs_model_3)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 4 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -525,8 +526,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 Population     0.401    0.188       2.14 3.25e- 2
 ## 3 Area           0.870    0.245       3.55 3.88e- 4
 ## 4 MGS            0.238    0.0363      6.55 5.74e-11</code></pre>
-<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="modeling-poisson-distribution.html#cb653-1" tabindex="-1"></a>lr_test <span class="ot">&lt;-</span> <span class="fu">lrtest</span>(mgs_model_2, mgs_model_3)</span>
-<span id="cb653-2"><a href="modeling-poisson-distribution.html#cb653-2" tabindex="-1"></a>lr_test</span></code></pre></div>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="modeling-poisson-distribution.html#cb657-1" tabindex="-1"></a>lr_test <span class="ot">&lt;-</span> <span class="fu">lrtest</span>(mgs_model_2, mgs_model_3)</span>
+<span id="cb657-2"><a href="modeling-poisson-distribution.html#cb657-2" tabindex="-1"></a>lr_test</span></code></pre></div>
 <pre class="r-output"><code>## Likelihood ratio test
 ## 
 ## Model 1: Langs ~ Population + Area + MGS

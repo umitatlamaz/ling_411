@@ -134,6 +134,7 @@ data
 model
 from-logits-to-probabilities
 dative-dataset
+testing-the-model
 modeling-poisson-distribution
 poisson-distribution
 modeling-with-poisson-distribution

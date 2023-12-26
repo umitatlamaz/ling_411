@@ -455,3 +455,24 @@ print(lr_test)
 ```
 
 
+## Testing the model
+
+```{r}
+test_data <- select(dative, AnimacyOfRec,LengthOfTheme,LengthOfRecipient,AnimacyOfTheme,RealizationOfRecipient)
+head(test_data)
+
+# Make predictions on the test set
+predictions <- predict(model, newdata = test_data, type = "response")
+
+
+# For binary classification, calculate accuracy
+predicted_classes <- ifelse(predictions > 0.5, 'PP', 'NP')
+
+
+accuracy <- mean(predicted_classes == test_data$RealizationOfRecipient)
+
+accuracy
+```
+
+
+
