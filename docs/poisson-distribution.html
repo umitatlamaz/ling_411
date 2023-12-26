@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 13 Poisson Distribution | Ling 411 - Fall 2023</title>
+  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 13 Poisson Distribution | Ling 411 - Fall 2023" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <meta name="github-repo" content="rstudio/ling_411" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 13 Poisson Distribution | Ling 411 - Fall 2023" />
+  
+  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  
+
+<meta name="author" content="Ümit Atlamaz" />
+
+
+<meta name="date" content="2023-12-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="logistic-regression.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Ling 411 - Fall 2023</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#disclaimer"><i class="fa fa-check"></i><b>1.1</b> Disclaimer</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#some-great-resources"><i class="fa fa-check"></i><b>1.2</b> Some great resources</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#blocks"><i class="fa fa-check"></i><b>1.3</b> Blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basics.html"><a href="basics.html#basic-math-operations"><i class="fa fa-check"></i><b>2.1</b> Basic Math Operations</a></li>
+<li class="chapter" data-level="2.2" data-path="basics.html"><a href="basics.html#operators"><i class="fa fa-check"></i><b>2.2</b> Operators</a></li>
+<li class="chapter" data-level="2.3" data-path="basics.html"><a href="basics.html#variables-and-assignment"><i class="fa fa-check"></i><b>2.3</b> Variables and Assignment</a></li>
+<li class="chapter" data-level="2.4" data-path="basics.html"><a href="basics.html#data-types"><i class="fa fa-check"></i><b>2.4</b> Data Types</a></li>
+<li class="chapter" data-level="2.5" data-path="basics.html"><a href="basics.html#determining-the-data-type"><i class="fa fa-check"></i><b>2.5</b> Determining the data type</a></li>
+<li class="chapter" data-level="2.6" data-path="basics.html"><a href="basics.html#changing-the-types"><i class="fa fa-check"></i><b>2.6</b> Changing the types</a></li>
+<li class="chapter" data-level="2.7" data-path="basics.html"><a href="basics.html#installing-packages"><i class="fa fa-check"></i><b>2.7</b> Installing packages</a></li>
+<li class="chapter" data-level="2.8" data-path="basics.html"><a href="basics.html#plotting"><i class="fa fa-check"></i><b>2.8</b> Plotting</a></li>
+<li class="chapter" data-level="2.9" data-path="basics.html"><a href="basics.html#operators-and-functions-in-this-section"><i class="fa fa-check"></i><b>2.9</b> Operators and functions in this section</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="basics.html"><a href="basics.html#operators-1"><i class="fa fa-check"></i><b>2.9.1</b> Operators</a></li>
+<li class="chapter" data-level="2.9.2" data-path="basics.html"><a href="basics.html#functions"><i class="fa fa-check"></i><b>2.9.2</b> Functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-structures.html"><a href="data-structures.html#data-types-in-r"><i class="fa fa-check"></i><b>3.1</b> Data Types in R</a></li>
+<li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html#data-structures-in-r"><i class="fa fa-check"></i><b>3.2</b> Data Structures in R</a></li>
+<li class="chapter" data-level="3.3" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>3.3</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-structures.html"><a href="data-structures.html#what-are-vectors-good-for"><i class="fa fa-check"></i><b>3.3.1</b> What are vectors good for?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>3.4</b> Data Frames</a></li>
+<li class="chapter" data-level="3.5" data-path="data-structures.html"><a href="data-structures.html#working-with-data-frames"><i class="fa fa-check"></i><b>3.5</b> Working with data frames</a></li>
+<li class="chapter" data-level="3.6" data-path="data-structures.html"><a href="data-structures.html#functions-in-this-section"><i class="fa fa-check"></i><b>3.6</b> Functions in this section</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-data.html"><a href="working-with-data.html"><i class="fa fa-check"></i><b>4</b> Working with Data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="working-with-data.html"><a href="working-with-data.html#basic-dataframes"><i class="fa fa-check"></i><b>4.1</b> Basic dataframes</a></li>
+<li class="chapter" data-level="4.2" data-path="working-with-data.html"><a href="working-with-data.html#tibbles"><i class="fa fa-check"></i><b>4.2</b> Tibbles</a></li>
+<li class="chapter" data-level="4.3" data-path="working-with-data.html"><a href="working-with-data.html#beyond-toy-data"><i class="fa fa-check"></i><b>4.3</b> Beyond Toy Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="working-with-data.html"><a href="working-with-data.html#reading-data-from-a-csv-file"><i class="fa fa-check"></i><b>4.3.1</b> Reading data from a csv file</a></li>
+<li class="chapter" data-level="4.3.2" data-path="working-with-data.html"><a href="working-with-data.html#reading-data-from-r-data-packages"><i class="fa fa-check"></i><b>4.3.2</b> Reading data from R data packages</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="working-with-data.html"><a href="working-with-data.html#summarizing-data"><i class="fa fa-check"></i><b>4.4</b> Summarizing Data</a></li>
+<li class="chapter" data-level="4.5" data-path="working-with-data.html"><a href="working-with-data.html#working-with-dplyr"><i class="fa fa-check"></i><b>4.5</b> Working with dplyr</a></li>
+<li class="chapter" data-level="4.6" data-path="working-with-data.html"><a href="working-with-data.html#pipes"><i class="fa fa-check"></i><b>4.6</b> Pipes</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="working-with-data.html"><a href="working-with-data.html#the-problem"><i class="fa fa-check"></i><b>4.6.1</b> The problem</a></li>
+<li class="chapter" data-level="4.6.2" data-path="working-with-data.html"><a href="working-with-data.html#pipes-1"><i class="fa fa-check"></i><b>4.6.2</b> Pipes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="plotting-1.html"><a href="plotting-1.html"><i class="fa fa-check"></i><b>5</b> Plotting</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="plotting-1.html"><a href="plotting-1.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>5.1</b> The basics of ggplot2</a></li>
+<li class="chapter" data-level="5.2" data-path="plotting-1.html"><a href="plotting-1.html#the-basics-of-ggplot2-1"><i class="fa fa-check"></i><b>5.2</b> The basics of ggplot2</a></li>
+<li class="chapter" data-level="5.3" data-path="plotting-1.html"><a href="plotting-1.html#using-lines-in-plots"><i class="fa fa-check"></i><b>5.3</b> Using lines in plots</a></li>
+<li class="chapter" data-level="5.4" data-path="plotting-1.html"><a href="plotting-1.html#color-and-fill"><i class="fa fa-check"></i><b>5.4</b> Color and fill</a></li>
+<li class="chapter" data-level="5.5" data-path="plotting-1.html"><a href="plotting-1.html#grouping-and-facets"><i class="fa fa-check"></i><b>5.5</b> Grouping and facets</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#distributions"><i class="fa fa-check"></i><b>6.1</b> Distributions</a></li>
+<li class="chapter" data-level="6.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#centraltendency"><i class="fa fa-check"></i><b>6.2</b> Measures of central tendency</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean"><i class="fa fa-check"></i><b>6.2.1</b> The mean</a></li>
+<li class="chapter" data-level="6.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#calculating-the-mean-in-r"><i class="fa fa-check"></i><b>6.2.2</b> Calculating the mean in R</a></li>
+<li class="chapter" data-level="6.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#median"><i class="fa fa-check"></i><b>6.2.3</b> The median</a></li>
+<li class="chapter" data-level="6.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>6.2.4</b> Mean or median? What’s the difference?</a></li>
+<li class="chapter" data-level="6.2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#housingpriceexample"><i class="fa fa-check"></i><b>6.2.5</b> A real life example</a></li>
+<li class="chapter" data-level="6.2.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#trimmedmean"><i class="fa fa-check"></i><b>6.2.6</b> Trimmed mean</a></li>
+<li class="chapter" data-level="6.2.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>6.2.7</b> Mode</a></li>
+<li class="chapter" data-level="6.2.8" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summary"><i class="fa fa-check"></i><b>6.2.8</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#var"><i class="fa fa-check"></i><b>6.3</b> Measures of variability</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#range"><i class="fa fa-check"></i><b>6.3.1</b> Range</a></li>
+<li class="chapter" data-level="6.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quantiles-and-percentile"><i class="fa fa-check"></i><b>6.3.2</b> Quantiles and percentile</a></li>
+<li class="chapter" data-level="6.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#interquartile-range"><i class="fa fa-check"></i><b>6.3.3</b> Interquartile range</a></li>
+<li class="chapter" data-level="6.3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#aad"><i class="fa fa-check"></i><b>6.3.4</b> Mean absolute deviation</a></li>
+<li class="chapter" data-level="6.3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>6.3.5</b> Variance</a></li>
+<li class="chapter" data-level="6.3.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#sd"><i class="fa fa-check"></i><b>6.3.6</b> Standard deviation</a></li>
+<li class="chapter" data-level="6.3.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#which-measure-to-use"><i class="fa fa-check"></i><b>6.3.7</b> Which measure to use?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summary"><i class="fa fa-check"></i><b>6.4</b> Getting an overall summary of a variable</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarising-a-vector"><i class="fa fa-check"></i><b>6.4.1</b> Summarising a vector</a></li>
+<li class="chapter" data-level="6.4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarising-a-data-frame"><i class="fa fa-check"></i><b>6.4.2</b> Summarising a data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#correlations"><i class="fa fa-check"></i><b>6.5</b> Correlations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html"><i class="fa fa-check"></i><b>7</b> Linear Regression with one Predictor</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#word-frequency-effects"><i class="fa fa-check"></i><b>7.1</b> Word Frequency Effects</a></li>
+<li class="chapter" data-level="7.2" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#simple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="7.3" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#finding-the-regression-line"><i class="fa fa-check"></i><b>7.3</b> Finding the Regression Line</a></li>
+<li class="chapter" data-level="7.4" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#estimating-the-coefficients"><i class="fa fa-check"></i><b>7.4</b> Estimating the Coefficients</a></li>
+<li class="chapter" data-level="7.5" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#data-is-messy"><i class="fa fa-check"></i><b>7.5</b> Data is messy</a></li>
+<li class="chapter" data-level="7.6" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#simplified-frequency-data"><i class="fa fa-check"></i><b>7.6</b> Simplified Frequency Data</a></li>
+<li class="chapter" data-level="7.7" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#residuals"><i class="fa fa-check"></i><b>7.7</b> Residuals</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#sum-of-squared-errors"><i class="fa fa-check"></i><b>7.7.1</b> Sum of Squared Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html"><i class="fa fa-check"></i><b>8</b> Linear Regression with Many Predictors</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#fitting-two-linear-models"><i class="fa fa-check"></i><b>8.1</b> Fitting two Linear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html"><i class="fa fa-check"></i><b>9</b> Linear &amp; Non-Linear Transformations</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-transformations"><i class="fa fa-check"></i><b>9.1</b> Linear Transformations</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#centering"><i class="fa fa-check"></i><b>9.1.1</b> Centering</a></li>
+<li class="chapter" data-level="9.1.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#standardizing"><i class="fa fa-check"></i><b>9.1.2</b> Standardizing</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#scaling-and-standardizing-in-r"><i class="fa fa-check"></i><b>9.2</b> Scaling and Standardizing in R</a></li>
+<li class="chapter" data-level="9.3" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#non-linear-transformations"><i class="fa fa-check"></i><b>9.3</b> Non-linear Transformations</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#logarithms-log-transformation"><i class="fa fa-check"></i><b>9.3.1</b> Logarithms &amp; Log Transformation</a></li>
+<li class="chapter" data-level="9.3.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-regression-with-log-transformation"><i class="fa fa-check"></i><b>9.3.2</b> Linear Regression with Log Transformation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="categorical-predictors.html"><a href="categorical-predictors.html"><i class="fa fa-check"></i><b>10</b> Categorical Predictors</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictor---continuous-outcome"><i class="fa fa-check"></i><b>10.1</b> Categorical Predictor - Continuous Outcome</a></li>
+<li class="chapter" data-level="10.2" data-path="categorical-predictors.html"><a href="categorical-predictors.html#taste-vs.-smell-words"><i class="fa fa-check"></i><b>10.2</b> Taste vs. Smell Words</a></li>
+<li class="chapter" data-level="10.3" data-path="categorical-predictors.html"><a href="categorical-predictors.html#contrasts-coding"><i class="fa fa-check"></i><b>10.3</b> Contrasts &amp; Coding</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="categorical-predictors.html"><a href="categorical-predictors.html#treatment-coding."><i class="fa fa-check"></i><b>10.3.1</b> Treatment Coding.</a></li>
+<li class="chapter" data-level="10.3.2" data-path="categorical-predictors.html"><a href="categorical-predictors.html#sum-coding"><i class="fa fa-check"></i><b>10.3.2</b> Sum Coding</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictors-with-more-than-2-levels"><i class="fa fa-check"></i><b>10.4</b> Categorical Predictors with more than 2 levels</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="effect-size-significance.html"><a href="effect-size-significance.html"><i class="fa fa-check"></i><b>11</b> Effect Size &amp; Significance</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#cohens-d"><i class="fa fa-check"></i><b>11.1</b> Cohen’s <em>d</em></a></li>
+<li class="chapter" data-level="11.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error"><i class="fa fa-check"></i><b>11.2</b> Standard Error</a></li>
+<li class="chapter" data-level="11.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#confidence-interval"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval</a></li>
+<li class="chapter" data-level="11.4" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error-of-the-difference-of-two-means"><i class="fa fa-check"></i><b>11.4</b> Standard Error of the difference of two means</a></li>
+<li class="chapter" data-level="11.5" data-path="effect-size-significance.html"><a href="effect-size-significance.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.5</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="11.6" data-path="effect-size-significance.html"><a href="effect-size-significance.html#calculating-the-t-score"><i class="fa fa-check"></i><b>11.6</b> Calculating the t-score</a></li>
+<li class="chapter" data-level="11.7" data-path="effect-size-significance.html"><a href="effect-size-significance.html#p-value"><i class="fa fa-check"></i><b>11.7</b> p-value</a></li>
+<li class="chapter" data-level="11.8" data-path="effect-size-significance.html"><a href="effect-size-significance.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>11.8</b> Type I and Type II Errors</a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#type-i-error"><i class="fa fa-check"></i><b>11.8.1</b> Type I Error</a></li>
+<li class="chapter" data-level="11.8.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#typee-ii-error"><i class="fa fa-check"></i><b>11.8.2</b> Typee II Error</a></li>
+<li class="chapter" data-level="11.8.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#statistical-power"><i class="fa fa-check"></i><b>11.8.3</b> Statistical Power</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="logistic-regression.html"><a href="logistic-regression.html#the-intuition"><i class="fa fa-check"></i><b>12.1</b> The Intuition</a></li>
+<li class="chapter" data-level="12.2" data-path="logistic-regression.html"><a href="logistic-regression.html#the-math"><i class="fa fa-check"></i><b>12.2</b> The Math</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#binomial-bernoulli-distributions"><i class="fa fa-check"></i><b>12.2.1</b> Binomial &amp; Bernoulli Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-1"><i class="fa fa-check"></i><b>12.3</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-odds-logits"><i class="fa fa-check"></i><b>12.3.1</b> Log Odds &amp; Logits</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-in-r"><i class="fa fa-check"></i><b>12.4</b> Logistic Regression in R</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#data"><i class="fa fa-check"></i><b>12.4.1</b> Data</a></li>
+<li class="chapter" data-level="12.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#model"><i class="fa fa-check"></i><b>12.4.2</b> Model</a></li>
+<li class="chapter" data-level="12.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#from-logits-to-probabilities"><i class="fa fa-check"></i><b>12.4.3</b> From logits to probabilities</a></li>
+<li class="chapter" data-level="12.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#dative-dataset"><i class="fa fa-check"></i><b>12.4.4</b> Dative Dataset</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="poisson-distribution.html"><a href="poisson-distribution.html"><i class="fa fa-check"></i><b>13</b> Poisson Distribution</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2023</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="poisson-distribution" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Poisson Distribution<a href="poisson-distribution.html#poisson-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Counting is an inherently <strong>discrete process</strong> (not continuous). For example, a sentence can have 4 words or 5 words. However, it cannot have 4.5 words. In addition, counting has no negative values. For example, a sentence can have 2, 3 or 20 words in it but it cannot have -1 words in it. It just doesn’t make sense. Thus, technically, we cannot model <strong>count data</strong> with a normal distribution assumption. Instead, count processes are modeled wit what is called a <strong>Poisson distribution</strong> named after Siméon Denis Poisson.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="logistic-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-poisson_distribution.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["main.pdf", "main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

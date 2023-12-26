@@ -1,0 +1,204 @@
+# Modeling Poisson Distribution
+Counting is an inherently **discrete process** (not continuous). For example, a sentence can have 4 words or 5 words. However, it cannot have 4.5 words. In addition, counting has no negative values. For example, a sentence can have 2, 3 or 20 words in it but it cannot have -1 words in it. It just doesn't make sense. Thus, technically, we cannot model **count data** with a normal distribution assumption. Instead, count processes are modeled wit what is called a **Poisson distribution** named after Siméon Denis Poisson. When the outcome (dependent variable) is a count, it is more appropriate to use modeling techniques that make a Poisson assumption. 
+
+## Poisson Distribution
+**Poisson Distribution** models count distributions. It has a single parameter $\lambda$ which builds in both the central tendency and spread (so to speak). $\lambda$ is the average rate at which an event would occur at a specified time. It tells you the average number of events you would expect to occur in a given interval. 
+
+For example, assume that on average you get **5 email per day**. A day is your interval and $\lambda$ is the average number of emails. Given $\lambda = 5$, the Poisson distribution of emails per day looks like the following.
+
+
+```{r}
+# Set the lambda parameter for the Poisson distribution
+lambda <- 5
+
+# Generate values for x (number of events) and their corresponding probabilities
+x <- 0:15
+probabilities <- dpois(x, lambda)
+
+barplot(probabilities, names.arg = x, col = "blue",
+        xlab = "Number of Events (i.e. num of emails per day)",
+        ylab = "Probability")
+
+# Add a title and labels to the plot
+title(paste("Poisson distribution with λ =", lambda))
+
+```
+
+The bar plot above plots the **probability density** of each event. In other words, it just gives us a probability for each number of emails per day. As you can see, when $\lambda = 5$, it is more likely to get 4 or 5 emails than 15 emails per day. Let us play with the number of events to see what the probability distribution looks like. 
+
+
+```{r}
+# Set the lambda parameter for the Poisson distribution
+lambda <- 5
+
+# Generate values for x (number of events) and their corresponding probabilities
+x <- 0:50
+probabilities <- dpois(x, lambda)
+
+barplot(probabilities, names.arg = x, col = "blue",
+        xlab = "Number of Events (i.e. num of emails per day)",
+        ylab = "Probability")
+
+# Add a title and labels to the plot
+title(paste("Poisson distribution with λ =", lambda))
+
+```
+
+Notice how we kept $\lambda$ constant and merely increased the number of emails per day. We now have a long tail with probabilities close to 0. This just simply means 'if you are receiving on average 5 emails per day, then the probability of getting 50 emails on a given day is very low (close to 0).'
+
+
+Let us now change our $\lambda$ to see what it looks like. Assume that on average you get 20 emails per day. 
+
+
+
+
+```{r}
+# Set the lambda parameter for the Poisson distribution
+lambda <- 20
+
+# Generate values for x (number of events) and their corresponding probabilities
+x <- 0:50
+probabilities <- dpois(x, lambda)
+
+barplot(probabilities, names.arg = x, col = "blue",
+        xlab = "Number of Events (i.e. num of emails per day)",
+        ylab = "Probability")
+
+# Add a title and labels to the plot
+title(paste("Poisson distribution with λ =", lambda))
+
+```
+
+So far, we have used the ```dpois()``` function to generate the probability distributions of possible events. It takes in an array of possible event values and a $\lambda$ and returns the probability associated with each event given $\lambda$. These are theoretical values. What the barplot above tells us is the following: 'For any given day, you are likely to get 20 emails. It is also equally likely that you'll get 18 or 21 emails. It is also possible that you only get 9 emails but it is a lot less likely. It is very unlikely that you'll get no emails at all.'
+
+Given the probabilities above, how does a real day look like then? For simulating real life scenarios, we need to randomly sample some data using the probabilities above. For that, we'll use the ```rpois()``` function. The ```r``` prefix before distributions suggests that we want to do some random sampling. We've seen this several times. 
+
+* ```dnorm()``` -- ```rnorm()```
+* ```dbinom()``` -- ```rbinom()```
+* ```dpois()``` -- ```rpois()```
+
+
+Let us now simulate a single day with $\lambda = 20$. Think of it like 'On average I get 20 emails per day. Given that today is just another day in the office, how many emails am I getting today?' Each time we run the code below, we'll get a slightly different number as the sampling is random. 
+
+
+```{r}
+# Number of samples and lambda
+rpois(1,lambda=20)
+```
+
+Now, let us project what a month will look like in terms of the number of emails I receive. For that, we just need to sample not once but 30 times. 
+
+
+```{r}
+# Number of samples and lambda
+emails_this_month <- rpois(30,lambda=20)
+emails_this_month
+```
+
+
+Let us plot the emails to get a better visual.
+
+
+
+```{r}
+
+# Plot a bar graph
+barplot(emails_this_month, names.arg = 1:30, col = "skyblue",
+        main = "Emails this month",
+        xlab = "Day", ylab = "Number of Emails")
+
+# Add a horizontal line representing the average rate (lambda)
+abline(h = lambda, col = "red", lty = 2)
+
+```
+
+
+## Modeling with **Poisson distribution**
+When modeling data where the outcome is a count, we should assume a Poisson distribution and model our data accordingly. To do this, we'll use generalized linear models with a Possion assumption. Our goal is to estimate the $\lambda$ parameter. For any given set of independent variables, we assume that the outcome will be:
+
+* $y \sim Poisson(\lambda)$
+
+Let us first get some data though.
+
+### Data
+We'll use the Nettle (1999) data which we used earlier in the semester. 
+
+```{r}
+library(tidyverse)
+nettle <- read_csv('/Users/umit/ling_411/data/nettle_1999_climate.csv')
+
+nettle
+```
+
+The data consists of *population, area, mean growing season* (```MGS```), and  *number of languages* spoken in a country. For now, we'll just try to predict the number of language spoken in a country as a function of the ```MGS```.
+
+
+```{r}
+library(broom)
+mgs_model <- glm(Langs ~ MGS, data = nettle,
+                 family = 'poisson')
+
+tidy(mgs_model)
+```
+
+
+Let us interpret the coefficients. We observe that the intercept is positive and the p-value is very small. This indicates a positive correlation between the number of languages and mean number growing seasons and the relationship is statistically significant. There's one thing to pay attention though. The coefficients in ```glm poisson``` are expressed in logarithms. In order for them to make a bit more sense, we need to exponantiate them (remember that exponentiation is the inverse of logarithms).
+
+
+```{r}
+
+intercept <- tidy(mgs_model)$estimate[1]
+slope <- tidy(mgs_model)$estimate[2]
+
+exp(intercept)
+exp(slope)
+```
+
+
+The intercept is ```30.45637```. This means that on average, a country with 0 months of growing season (e.g. desert of ice/snow) will have 30 languages. Let us predict other values.
+
+```{r}
+langs <- exp(intercept + 1:12 * slope)
+langs
+```
+
+
+```{r}
+filter(nettle, MGS == 0 | MGS == 12)
+```
+
+
+```{r}
+mgs_model_1 <- mgs_model <- glm(Langs ~ MGS, data = nettle,
+                 family = 'poisson')
+
+mgs_model_2 <- mgs_model <- glm(Langs ~ Population + Area + MGS, data = nettle,
+                 family = 'poisson')
+
+library(lmtest)
+
+lr_test <- lrtest(mgs_model_1, mgs_model_2)
+print(lr_test)
+
+```
+
+
+
+```{r}
+library(MASS)
+
+
+mgs_model_3 <- mgs_model <- glm.nb(Langs ~ Population + Area + MGS, data = nettle)
+
+tidy(mgs_model_3)
+
+
+lr_test <- lrtest(mgs_model_2, mgs_model_3)
+lr_test
+
+
+
+
+
+```
+

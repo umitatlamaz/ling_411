@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  22 DEC 2023 13:02
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.11)  26 DEC 2023 08:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1294,9 +1294,43 @@ File: main_files/figure-latex/unnamed-chunk-294-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[192] [193] [194]
+[192] [193] [194] [195] [196
+
+]
+Chapter 13.
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+[197]
+File: main_files/figure-latex/unnamed-chunk-300-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-300-1.pdf>
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+[198]
+File: main_files/figure-latex/unnamed-chunk-301-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-301-1.pdf>
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+[199]
+File: main_files/figure-latex/unnamed-chunk-302-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-302-1.pdf>
+[200]
+File: main_files/figure-latex/unnamed-chunk-305-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-305-1.pdf>
+[201]
+Overfull \hbox (90.75pt too wide) in paragraph at lines 8773--8773
+[]\TU/lmtt/m/n/10 ## -- Column specification --------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 8773--8773
+[]\TU/lmtt/m/n/10 ## i Use `spec()` to retrieve the full column specification for this data.[] 
+ []
+
+
+Overfull \hbox (96.0pt too wide) in paragraph at lines 8773--8773
+[]\TU/lmtt/m/n/10 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.[] 
+ []
+
+[202] [203] [204]
 No file main.bbl.
-[195] (./main.aux)
+[205] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1304,15 +1338,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 08127CF729D529D14C57A5119572F5E4;11642.
+(rerunfilecheck)             Checksum: 90876C69D97AB5453D2E7BD3E90CE905;12234.
  ) 
 Here is how much of TeX's memory you used:
- 18239 strings out of 477743
- 351179 string characters out of 5843158
- 821105 words of memory out of 5000000
- 38956 multiletter control sequences out of 15000+600000
- 475790 words of font info for 91 fonts, out of 8000000 for 9000
+ 18279 strings out of 477743
+ 352993 string characters out of 5843158
+ 821996 words of memory out of 5000000
+ 38990 multiletter control sequences out of 15000+600000
+ 475798 words of font info for 92 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,8n,121p,923b,484s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (195 pages).
+Output written on main.pdf (205 pages).

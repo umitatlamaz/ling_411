@@ -120,7 +120,7 @@
 
 \title{Ling 411 - Fall 2023}
 \author{Ümit Atlamaz}
-\date{2023-12-22}
+\date{2023-12-26}
 
 \begin{document}
 \maketitle
@@ -3193,7 +3193,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \hypertarget{plotting-1}{%
 \chapter{Plotting}\label{plotting-1}}
 
-(22 December, 2023, 13:02)
+(26 December, 2023, 08:38)
 
 \hypertarget{the-basics-of-ggplot2}{%
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}}
@@ -8591,6 +8591,381 @@ Now let us compare the two models.
 \NormalTok{\#\#   \#Df  LogLik Df  Chisq Pr(\textgreater{}Chisq)    }
 \NormalTok{\#\# 1   2 {-}1831.1                         }
 \NormalTok{\#\# 2   5 {-}1379.5  3 903.19  \textless{} 2.2e{-}16 ***}
+\NormalTok{\#\# {-}{-}{-}}
+\NormalTok{\#\# Signif. codes:  0 \textquotesingle{}***\textquotesingle{} 0.001 \textquotesingle{}**\textquotesingle{} 0.01 \textquotesingle{}*\textquotesingle{} 0.05 \textquotesingle{}.\textquotesingle{} 0.1 \textquotesingle{} \textquotesingle{} 1}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{modeling-poisson-distribution}{%
+\chapter{Modeling Poisson Distribution}\label{modeling-poisson-distribution}}
+
+Counting is an inherently \textbf{discrete process} (not continuous). For example, a sentence can have 4 words or 5 words. However, it cannot have 4.5 words. In addition, counting has no negative values. For example, a sentence can have 2, 3 or 20 words in it but it cannot have -1 words in it. It just doesn't make sense. Thus, technically, we cannot model \textbf{count data} with a normal distribution assumption. Instead, count processes are modeled wit what is called a \textbf{Poisson distribution} named after Siméon Denis Poisson. When the outcome (dependent variable) is a count, it is more appropriate to use modeling techniques that make a Poisson assumption.
+
+\hypertarget{poisson-distribution}{%
+\section{Poisson Distribution}\label{poisson-distribution}}
+
+\textbf{Poisson Distribution} models count distributions. It has a single parameter \(\lambda\) which builds in both the central tendency and spread (so to speak). \(\lambda\) is the average rate at which an event would occur at a specified time. It tells you the average number of events you would expect to occur in a given interval.
+
+For example, assume that on average you get \textbf{5 email per day}. A day is your interval and \(\lambda\) is the average number of emails. Given \(\lambda = 5\), the Poisson distribution of emails per day looks like the following.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Set the lambda parameter for the Poisson distribution}
+\NormalTok{lambda }\OtherTok{\textless{}{-}} \DecValTok{5}
+
+\CommentTok{\# Generate values for x (number of events) and their corresponding probabilities}
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{0}\SpecialCharTok{:}\DecValTok{15}
+\NormalTok{probabilities }\OtherTok{\textless{}{-}} \FunctionTok{dpois}\NormalTok{(x, lambda)}
+
+\FunctionTok{barplot}\NormalTok{(probabilities, }\AttributeTok{names.arg =}\NormalTok{ x, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{,}
+        \AttributeTok{xlab =} \StringTok{"Number of Events (i.e. num of emails per day)"}\NormalTok{,}
+        \AttributeTok{ylab =} \StringTok{"Probability"}\NormalTok{)}
+
+\CommentTok{\# Add a title and labels to the plot}
+\FunctionTok{title}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Poisson distribution with λ ="}\NormalTok{, lambda))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-300-1.pdf}
+
+The bar plot above plots the \textbf{probability density} of each event. In other words, it just gives us a probability for each number of emails per day. As you can see, when \(\lambda = 5\), it is more likely to get 4 or 5 emails than 15 emails per day. Let us play with the number of events to see what the probability distribution looks like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Set the lambda parameter for the Poisson distribution}
+\NormalTok{lambda }\OtherTok{\textless{}{-}} \DecValTok{5}
+
+\CommentTok{\# Generate values for x (number of events) and their corresponding probabilities}
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{0}\SpecialCharTok{:}\DecValTok{50}
+\NormalTok{probabilities }\OtherTok{\textless{}{-}} \FunctionTok{dpois}\NormalTok{(x, lambda)}
+
+\FunctionTok{barplot}\NormalTok{(probabilities, }\AttributeTok{names.arg =}\NormalTok{ x, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{,}
+        \AttributeTok{xlab =} \StringTok{"Number of Events (i.e. num of emails per day)"}\NormalTok{,}
+        \AttributeTok{ylab =} \StringTok{"Probability"}\NormalTok{)}
+
+\CommentTok{\# Add a title and labels to the plot}
+\FunctionTok{title}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Poisson distribution with λ ="}\NormalTok{, lambda))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-301-1.pdf}
+
+Notice how we kept \(\lambda\) constant and merely increased the number of emails per day. We now have a long tail with probabilities close to 0. This just simply means `if you are receiving on average 5 emails per day, then the probability of getting 50 emails on a given day is very low (close to 0).'
+
+Let us now change our \(\lambda\) to see what it looks like. Assume that on average you get 20 emails per day.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Set the lambda parameter for the Poisson distribution}
+\NormalTok{lambda }\OtherTok{\textless{}{-}} \DecValTok{20}
+
+\CommentTok{\# Generate values for x (number of events) and their corresponding probabilities}
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{0}\SpecialCharTok{:}\DecValTok{50}
+\NormalTok{probabilities }\OtherTok{\textless{}{-}} \FunctionTok{dpois}\NormalTok{(x, lambda)}
+
+\FunctionTok{barplot}\NormalTok{(probabilities, }\AttributeTok{names.arg =}\NormalTok{ x, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{,}
+        \AttributeTok{xlab =} \StringTok{"Number of Events (i.e. num of emails per day)"}\NormalTok{,}
+        \AttributeTok{ylab =} \StringTok{"Probability"}\NormalTok{)}
+
+\CommentTok{\# Add a title and labels to the plot}
+\FunctionTok{title}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Poisson distribution with λ ="}\NormalTok{, lambda))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-302-1.pdf}
+
+So far, we have used the \texttt{dpois()} function to generate the probability distributions of possible events. It takes in an array of possible event values and a \(\lambda\) and returns the probability associated with each event given \(\lambda\). These are theoretical values. What the barplot above tells us is the following: `For any given day, you are likely to get 20 emails. It is also equally likely that you'll get 18 or 21 emails. It is also possible that you only get 9 emails but it is a lot less likely. It is very unlikely that you'll get no emails at all.'
+
+Given the probabilities above, how does a real day look like then? For simulating real life scenarios, we need to randomly sample some data using the probabilities above. For that, we'll use the \texttt{rpois()} function. The \texttt{r} prefix before distributions suggests that we want to do some random sampling. We've seen this several times.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{dnorm()} -- \texttt{rnorm()}
+\item
+  \texttt{dbinom()} -- \texttt{rbinom()}
+\item
+  \texttt{dpois()} -- \texttt{rpois()}
+\end{itemize}
+
+Let us now simulate a single day with \(\lambda = 20\). Think of it like `On average I get 20 emails per day. Given that today is just another day in the office, how many emails am I getting today?' Each time we run the code below, we'll get a slightly different number as the sampling is random.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Number of samples and lambda}
+\FunctionTok{rpois}\NormalTok{(}\DecValTok{1}\NormalTok{,}\AttributeTok{lambda=}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 37}
+\end{Highlighting}
+\end{Shaded}
+
+Now, let us project what a month will look like in terms of the number of emails I receive. For that, we just need to sample not once but 30 times.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Number of samples and lambda}
+\NormalTok{emails\_this\_month }\OtherTok{\textless{}{-}} \FunctionTok{rpois}\NormalTok{(}\DecValTok{30}\NormalTok{,}\AttributeTok{lambda=}\DecValTok{20}\NormalTok{)}
+\NormalTok{emails\_this\_month}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1] 19 15 18 17 23 20 21 14 20 25 26 15 15 17 18 12 18 19 18 24 17 13 15 19 18}
+\NormalTok{\#\# [26] 26 15 14 14 17}
+\end{Highlighting}
+\end{Shaded}
+
+Let us plot the emails to get a better visual.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot a bar graph}
+\FunctionTok{barplot}\NormalTok{(emails\_this\_month, }\AttributeTok{names.arg =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{, }\AttributeTok{col =} \StringTok{"skyblue"}\NormalTok{,}
+        \AttributeTok{main =} \StringTok{"Emails this month"}\NormalTok{,}
+        \AttributeTok{xlab =} \StringTok{"Day"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Number of Emails"}\NormalTok{)}
+
+\CommentTok{\# Add a horizontal line representing the average rate (lambda)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =}\NormalTok{ lambda, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-305-1.pdf}
+
+\hypertarget{modeling-with-poisson-distribution}{%
+\section{\texorpdfstring{Modeling with \textbf{Poisson distribution}}{Modeling with Poisson distribution}}\label{modeling-with-poisson-distribution}}
+
+When modeling data where the outcome is a count, we should assume a Poisson distribution and model our data accordingly. To do this, we'll use generalized linear models with a Possion assumption. Our goal is to estimate the \(\lambda\) parameter. For any given set of independent variables, we assume that the outcome will be:
+
+\begin{itemize}
+\tightlist
+\item
+  \(y \sim Poisson(\lambda)\)
+\end{itemize}
+
+Let us first get some data though.
+
+\hypertarget{data-1}{%
+\subsection{Data}\label{data-1}}
+
+We'll use the Nettle (1999) data which we used earlier in the semester.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{nettle }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}/Users/umit/ling\_411/data/nettle\_1999\_climate.csv\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 74 Columns: 5
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (1): Country
+## dbl (4): Population, Area, MGS, Langs
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nettle}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 74 x 5}
+\NormalTok{\#\#    Country      Population  Area   MGS Langs}
+\NormalTok{\#\#    \textless{}chr\textgreater{}             \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 Algeria            4.41  6.38  6.6     18}
+\NormalTok{\#\#  2 Angola             4.01  6.1   6.22    42}
+\NormalTok{\#\#  3 Australia          4.24  6.89  6      234}
+\NormalTok{\#\#  4 Bangladesh         5.07  5.16  7.4     37}
+\NormalTok{\#\#  5 Benin              3.69  5.05  7.14    52}
+\NormalTok{\#\#  6 Bolivia            3.88  6.04  6.92    38}
+\NormalTok{\#\#  7 Botswana           3.13  5.76  4.6     27}
+\NormalTok{\#\#  8 Brazil             5.19  6.93  9.71   209}
+\NormalTok{\#\#  9 Burkina Faso       3.97  5.44  5.17    75}
+\NormalTok{\#\# 10 CAR                3.5   5.79  8.08    94}
+\NormalTok{\#\# \# i 64 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+The data consists of \emph{population, area, mean growing season} (\texttt{MGS}), and \emph{number of languages} spoken in a country. For now, we'll just try to predict the number of language spoken in a country as a function of the \texttt{MGS}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(broom)}
+\NormalTok{mgs\_model }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(Langs }\SpecialCharTok{\textasciitilde{}}\NormalTok{ MGS, }\AttributeTok{data =}\NormalTok{ nettle,}
+                 \AttributeTok{family =} \StringTok{\textquotesingle{}poisson\textquotesingle{}}\NormalTok{)}
+
+\FunctionTok{tidy}\NormalTok{(mgs\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 5}
+\NormalTok{\#\#   term        estimate std.error statistic   p.value}
+\NormalTok{\#\#   \textless{}chr\textgreater{}          \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 (Intercept)    3.42    0.0392       87.1 0        }
+\NormalTok{\#\# 2 MGS            0.141   0.00453      31.2 2.42e{-}213}
+\end{Highlighting}
+\end{Shaded}
+
+Let us interpret the coefficients. We observe that the intercept is positive and the p-value is very small. This indicates a positive correlation between the number of languages and mean number growing seasons and the relationship is statistically significant. There's one thing to pay attention though. The coefficients in \texttt{glm\ poisson} are expressed in logarithms. In order for them to make a bit more sense, we need to exponantiate them (remember that exponentiation is the inverse of logarithms).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{intercept }\OtherTok{\textless{}{-}} \FunctionTok{tidy}\NormalTok{(mgs\_model)}\SpecialCharTok{$}\NormalTok{estimate[}\DecValTok{1}\NormalTok{]}
+\NormalTok{slope }\OtherTok{\textless{}{-}} \FunctionTok{tidy}\NormalTok{(mgs\_model)}\SpecialCharTok{$}\NormalTok{estimate[}\DecValTok{2}\NormalTok{]}
+
+\FunctionTok{exp}\NormalTok{(intercept)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 30.45637}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp}\NormalTok{(slope)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 1.151545}
+\end{Highlighting}
+\end{Shaded}
+
+The intercept is \texttt{30.45637}. This means that on average, a country with 0 months of growing season (e.g.~desert of ice/snow) will have 30 languages. Let us predict other values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{langs }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(intercept }\SpecialCharTok{+} \DecValTok{1}\SpecialCharTok{:}\DecValTok{12} \SpecialCharTok{*}\NormalTok{ slope)}
+\NormalTok{langs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1]  35.07188  40.38685  46.50727  53.55521  61.67123  71.01719  81.77948}
+\NormalTok{\#\#  [8]  94.17275 108.44415 124.87831 143.80298 165.59559}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{filter}\NormalTok{(nettle, MGS }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{|}\NormalTok{ MGS }\SpecialCharTok{==} \DecValTok{12}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 6 x 5}
+\NormalTok{\#\#   Country         Population  Area   MGS Langs}
+\NormalTok{\#\#   \textless{}chr\textgreater{}                \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 Guyana                2.9   5.33    12    14}
+\NormalTok{\#\# 2 Oman                  3.19  5.33     0     8}
+\NormalTok{\#\# 3 Solomon Islands       3.52  4.46    12    66}
+\NormalTok{\#\# 4 Suriname              2.63  5.21    12    17}
+\NormalTok{\#\# 5 Vanuatu               2.21  4.09    12   111}
+\NormalTok{\#\# 6 Yemen                 4.09  5.72     0     6}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mgs\_model\_1 }\OtherTok{\textless{}{-}}\NormalTok{ mgs\_model }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(Langs }\SpecialCharTok{\textasciitilde{}}\NormalTok{ MGS, }\AttributeTok{data =}\NormalTok{ nettle,}
+                 \AttributeTok{family =} \StringTok{\textquotesingle{}poisson\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{mgs\_model\_2 }\OtherTok{\textless{}{-}}\NormalTok{ mgs\_model }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(Langs }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Population }\SpecialCharTok{+}\NormalTok{ Area }\SpecialCharTok{+}\NormalTok{ MGS, }\AttributeTok{data =}\NormalTok{ nettle,}
+                 \AttributeTok{family =} \StringTok{\textquotesingle{}poisson\textquotesingle{}}\NormalTok{)}
+
+\FunctionTok{library}\NormalTok{(lmtest)}
+
+\NormalTok{lr\_test }\OtherTok{\textless{}{-}} \FunctionTok{lrtest}\NormalTok{(mgs\_model\_1, mgs\_model\_2)}
+\FunctionTok{print}\NormalTok{(lr\_test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# Likelihood ratio test}
+\NormalTok{\#\# }
+\NormalTok{\#\# Model 1: Langs \textasciitilde{} MGS}
+\NormalTok{\#\# Model 2: Langs \textasciitilde{} Population + Area + MGS}
+\NormalTok{\#\#   \#Df  LogLik Df  Chisq Pr(\textgreater{}Chisq)    }
+\NormalTok{\#\# 1   2 {-}4576.2                         }
+\NormalTok{\#\# 2   4 {-}2861.7  2 3428.9  \textless{} 2.2e{-}16 ***}
+\NormalTok{\#\# {-}{-}{-}}
+\NormalTok{\#\# Signif. codes:  0 \textquotesingle{}***\textquotesingle{} 0.001 \textquotesingle{}**\textquotesingle{} 0.01 \textquotesingle{}*\textquotesingle{} 0.05 \textquotesingle{}.\textquotesingle{} 0.1 \textquotesingle{} \textquotesingle{} 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(MASS)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'MASS'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     select
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mgs\_model\_3 }\OtherTok{\textless{}{-}}\NormalTok{ mgs\_model }\OtherTok{\textless{}{-}} \FunctionTok{glm.nb}\NormalTok{(Langs }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Population }\SpecialCharTok{+}\NormalTok{ Area }\SpecialCharTok{+}\NormalTok{ MGS, }\AttributeTok{data =}\NormalTok{ nettle)}
+
+\FunctionTok{tidy}\NormalTok{(mgs\_model\_3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 4 x 5}
+\NormalTok{\#\#   term        estimate std.error statistic  p.value}
+\NormalTok{\#\#   \textless{}chr\textgreater{}          \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 (Intercept)   {-}4.01     1.25       {-}3.21 1.35e{-} 3}
+\NormalTok{\#\# 2 Population     0.401    0.188       2.14 3.25e{-} 2}
+\NormalTok{\#\# 3 Area           0.870    0.245       3.55 3.88e{-} 4}
+\NormalTok{\#\# 4 MGS            0.238    0.0363      6.55 5.74e{-}11}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lr\_test }\OtherTok{\textless{}{-}} \FunctionTok{lrtest}\NormalTok{(mgs\_model\_2, mgs\_model\_3)}
+\NormalTok{lr\_test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# Likelihood ratio test}
+\NormalTok{\#\# }
+\NormalTok{\#\# Model 1: Langs \textasciitilde{} Population + Area + MGS}
+\NormalTok{\#\# Model 2: Langs \textasciitilde{} Population + Area + MGS}
+\NormalTok{\#\#   \#Df   LogLik Df  Chisq Pr(\textgreater{}Chisq)    }
+\NormalTok{\#\# 1   4 {-}2861.73                         }
+\NormalTok{\#\# 2   5  {-}379.84  1 4963.8  \textless{} 2.2e{-}16 ***}
 \NormalTok{\#\# {-}{-}{-}}
 \NormalTok{\#\# Signif. codes:  0 \textquotesingle{}***\textquotesingle{} 0.001 \textquotesingle{}**\textquotesingle{} 0.01 \textquotesingle{}*\textquotesingle{} 0.05 \textquotesingle{}.\textquotesingle{} 0.1 \textquotesingle{} \textquotesingle{} 1}
 \end{Highlighting}

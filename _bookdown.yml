@@ -14,7 +14,8 @@ rmd_files: ["index.Rmd", "01-intro.Rmd",
             '08-transformations.Rmd',
             '09-categorical_predictors.Rmd',
             '10-significance.Rmd',
-            '11-logistic_regression.Rmd'
+            '11-logistic_regression.Rmd',
+            '12-poisson_distribution.Rmd'
             ]
 
 
