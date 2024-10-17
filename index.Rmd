@@ -1,4 +1,4 @@
---- 
+---
 title: "Ling 411 - Fall 2024"
 author: "Ümit Atlamaz"
 date: "`r Sys.Date()`"
@@ -11,7 +11,6 @@ bibliography:
 description: |
   This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024.
 link-citations: yes
-github-repo: rstudio/ling_411
 ---
 
 ```{r z, include = T}
@@ -20,8 +19,6 @@ set.seed(42)
 knitr::opts_chunk$set(cache.extra = knitr::rand_seed, class.output="r-output")
 source("./source/r_functions.R")
 ```
-
-
 
 # Getting Started
 
@@ -39,24 +36,25 @@ source("./source/r_functions.R")
 Welcome to the R tutorial for Ling 411. The purpose of these lecture notes is to help remind you some of the R related material we covered in the class. The material here is not intended to be complete and self-contained. These are just lecture notes. You need to attend the classes and Problem Sessions to get a full grasp of the concepts.
 
 ## Disclaimer
+
 Some of the material in this book are from [Pavel Logaçev](https://scholar.google.com/citations?user=fhbdTJIAAAAJ&hl=tr)'s class notes for LING 411. I'm indebted to Pavel for his friendship, guidance and support. Without him LING 411 could not exist in its current form.
 
 ## Some great resources
-- Throughout the semester, I will draw on from the following resources. These are just useful resources and feel free to take a look at them as you wish.
-  - Bodo Winter's excellent book: [Statistics for Linguists: An Introduction Using R](https://www.routledge.com/Statistics-for-Linguists-An-Introduction-Using-R/Winter/p/book/9781138056091)
-  - The great introduction materials developed at the University of Glasgow: <https://psyteachr.github.io/>, in particular ['Data Skills for Reproducible Science'](https://psyteachr.github.io/msc-data-skills/).
-  - The also pretty great introduction to R and statistics by Danielle Navarro available [here](https://learningstatisticswithr.com).
-  - Matt Crump's ['Answering Questions with Data'](https://crumplab.github.io/statistics/).
-  - Primers on a variety of topics: https://rstudio.cloud/learn/primers
-  - Cheat sheets on a variety of topics: https://rstudio.cloud/learn/cheat-sheets
 
-- The following tutorials are great too.
-  - ['The Tidyverse Cookbook'](https://rstudio-education.github.io/tidyverse-cookbook/)
-  - ['A Ggplot2 Tutorial for Beautiful Plotting in R'](https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)
-  - ['R Graphics Cookbook, 2nd edition'](https://r-graphics.org/)
-  
-  
+-   Throughout the semester, I will draw on from the following resources. These are just useful resources and feel free to take a look at them as you wish.
+    -   Bodo Winter's excellent book: [Statistics for Linguists: An Introduction Using R](https://www.routledge.com/Statistics-for-Linguists-An-Introduction-Using-R/Winter/p/book/9781138056091)
+    -   The great introduction materials developed at the University of Glasgow: <https://psyteachr.github.io/>, in particular ['Data Skills for Reproducible Science'](https://psyteachr.github.io/msc-data-skills/).
+    -   The also pretty great introduction to R and statistics by Danielle Navarro available [here](https://learningstatisticswithr.com).
+    -   Matt Crump's ['Answering Questions with Data'](https://crumplab.github.io/statistics/).
+    -   Primers on a variety of topics: <https://rstudio.cloud/learn/primers>
+    -   Cheat sheets on a variety of topics: <https://rstudio.cloud/learn/cheat-sheets>
+-   The following tutorials are great too.
+    -   ['The Tidyverse Cookbook'](https://rstudio-education.github.io/tidyverse-cookbook/)
+    -   ['A Ggplot2 Tutorial for Beautiful Plotting in R'](https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)
+    -   ['R Graphics Cookbook, 2nd edition'](https://r-graphics.org/)
+
 ## Blocks
+
 Code, output, and special functions will be shown in designated boxes. The first box below illustrates a **code block**. The code block contains code that you can type in your R interpreter as the source code. You can simply copy and paste it in your R code. The second box indicates the **output** of R given the code in the first box.
 
 ```{r addition}
@@ -65,20 +63,17 @@ Code, output, and special functions will be shown in designated boxes. The first
 
 Functions will be introduced in grey boxes. The following grey box describes the `summary()` function.
 
-`r function_definition("summary(x)", "Returns the summary statistics of a dataframe.", c(x="A dataframe."))`
+`r function_definition("summary(x)", "Returns the summary statistics of a dataframe.", c(x="A dataframe."))`\
 \
-\
-The following code block uses the `summary()` function on the `mtcars` dataframe that comes pre-installed with R. 
-
+The following code block uses the `summary()` function on the `mtcars` dataframe that comes pre-installed with R.
 
 ```{r cars1}
 summary(mtcars)
 ```
+
 \
 If you want to learn more about the `mtcars` dataset, you can simply put a question mark in front of its name, which will show the documentation for the dataset. The documentation will pop up in the `Help` tab on the bottom right window in RStudio.
 
 ```{r mtcars2}
 ?mtcars
 ```
-
-
