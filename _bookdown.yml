@@ -7,7 +7,7 @@ book_filename: "main"
 rmd_files: ["index.Rmd", "01-intro.Rmd", 
             "02-data-structures.Rmd",
             "03-tidyverse.Rmd",
-            # '04-plotting.Rmd',
+            '04-plotting.Rmd',
             # '05-desc_stats.Rmd', 
             # '06-linear_regression.Rmd',
             # '07-multiple_regression.Rmd',
