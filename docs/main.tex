@@ -120,7 +120,7 @@
 
 \title{Ling 411 - Fall 2024}
 \author{Ümit Atlamaz}
-\date{2024-10-17}
+\date{2024-11-04}
 
 \begin{document}
 \maketitle
@@ -3155,6 +3155,341 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \end{Highlighting}
 \end{Shaded}
 
+\chapter{Plotting}\label{plotting-1}
+
+(04 November, 2024, 12:42)
+
+\section{The basics of ggplot2}\label{the-basics-of-ggplot2}
+
+\begin{itemize}
+\tightlist
+\item
+  Let's first take a look at some example plots.
+\item
+  Create a synthetic data set and load the \texttt{ggplot2} package to access the plotting functionality.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{a=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\AttributeTok{a\_sq=}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{, }\AttributeTok{my\_group =} \FunctionTok{c}\NormalTok{(}\StringTok{"weekday"}\NormalTok{,}\StringTok{"weekend"}\NormalTok{))}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#     a a\_sq my\_group}
+\NormalTok{\#\# 1   1    1  weekday}
+\NormalTok{\#\# 2   2    4  weekend}
+\NormalTok{\#\# 3   3    9  weekday}
+\NormalTok{\#\# 4   4   16  weekend}
+\NormalTok{\#\# 5   5   25  weekday}
+\NormalTok{\#\# 6   6   36  weekend}
+\NormalTok{\#\# 7   7   49  weekday}
+\NormalTok{\#\# 8   8   64  weekend}
+\NormalTok{\#\# 9   9   81  weekday}
+\NormalTok{\#\# 10 10  100  weekend}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Take a look at the following code and the resulting plots. Can you tell what parts that start with geom\_\ldots{} does?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ a, }\AttributeTok{y =}\NormalTok{ a\_sq)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-136-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ a, }\AttributeTok{y =}\NormalTok{ a\_sq)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-137-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ a\_sq, }\AttributeTok{y =}\NormalTok{ a)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-138-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ a\_sq, }\AttributeTok{y =}\NormalTok{ a)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-139-1.pdf}
+
+\section{The basics of ggplot2}\label{the-basics-of-ggplot2-1}
+
+\begin{itemize}
+\item
+  So what do those function calls mean?
+\item
+  Let's take a look at it again: This is pretty much the minimal useful plotting command in R.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ a, }\AttributeTok{y =}\NormalTok{ a\_sq)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Each ggplot2 plot specification consists, at a minimum, of three parts:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    {the data to plot}
+  \item
+    {\emph{an abstract specification of the plot} (a rough mapping between variables and axes and other plot elements, such as \emph{groups}, \emph{facets}, etc.)}
+  \item
+    {\emph{concrete instructions on what to draw} (a specification of the actual visual elements to use)}
+  \end{enumerate}
+\item
+  They correspond to three parts of the \texttt{ggplot()} function call
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    {\textbf{data:} \texttt{data\ =\ df}}
+  \item
+    {\textbf{`aesthetic':} \texttt{mapping\ =\ aes(x,\ y)}}
+  \item
+    {\textbf{`geoms':} \texttt{+\ geom\_point()}}
+  \end{enumerate}
+\item
+  You can read the instruction below as \emph{``Create a plot {using the data in data frame df}, {placing \texttt{a} on the x-axis and \texttt{a\_sq} on the y-axis}, {and visualize the data using points}''}.
+\item
+  Keep in mind that information regarding x and y axes is specified within a function called \texttt{aes()}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ a, }\AttributeTok{y =}\NormalTok{ a\_sq)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  As an aside: A shorter way to write the same code is below, and I'll mostly use some mixed form.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Using lines in plots}\label{using-lines-in-plots}
+
+\begin{itemize}
+\item
+  We already know \texttt{geom\_point} and \texttt{geom\_bar}. Let's take a look at some other \emph{geoms}:.
+\item
+  \texttt{geom\_line} connects the (invisible, in this case) points in the plot.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq)) }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-143-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  We can even combine geoms:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-144-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  \ldots{} in fact, as many as we want. But there is no guarantee that the result will look good, or even make sense.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-145-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  The order of their specification matter a little bit. Here, the line is plotted over the bars, in contrast to the previous plot.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-146-1.pdf}
+
+\section{Color and fill}\label{color-and-fill}
+
+\begin{itemize}
+\item
+  Relationships between two variables are usually easy to visualize, but often there is a third variable.
+\item
+  There are various ways for dealing with it.
+\item
+  Let's first try using color coding for the third variable.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{color =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-147-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  Let's try this with bar plots. Not at all what you expected, is it?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{color =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-148-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  This is what we wanted. The right argument for bar plots is \texttt{fill}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{fill =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-149-1.pdf}
+
+\begin{itemize}
+\item
+  So why isn't the aesthetic argument for bar plots not also \texttt{color}?
+\item
+  Because geoms in ggplot2 have \texttt{fill} (the color of the inner part of the object), and a \texttt{color} (the color of the line with which they are drawn).
+\item
+  Points don't have a fill. (Don't ask me why.)
+\item
+  We can try, if you do not believe me. See that even though we specify a \texttt{fill} argument for geom\_point, \texttt{color} argument overwrites it.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{color =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size=}\DecValTok{10}\NormalTok{, }\AttributeTok{fill =} \StringTok{"black"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-150-1.pdf}
+- If points had a fill, we would expect the argument that comes last to overwrite the previous one.
+- Bars have both fill and color arguments.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{fill =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-151-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{color =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"black"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-152-1.pdf}
+
+\section{Grouping and facets}\label{grouping-and-facets}
+
+\begin{itemize}
+\tightlist
+\item
+  Color, fill, etc. implicitly group the data set into different subgroups.
+\item
+  You can see that better if you connect the points by lines.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{color =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()  }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-153-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  This can be done explicitly as well.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{group =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()  }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-154-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  Now it's very hard to see which line is which, so let's at least separate it into different \textbf{facets} (aka \emph{`panels'}).
+\item
+  We can introduce our new facets with the function \texttt{facet\_wrap()}. Keep in mind that the grouping variable is introduced with \texttt{\textasciitilde{}}.
+\item
+  The name of the groups can be seen at the top of the plots.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{color =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()  }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{my\_group)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-155-1.pdf}
 
   \bibliography{book.bib,packages.bib}
 
