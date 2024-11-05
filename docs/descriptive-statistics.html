@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Descriptive Statistics | Ling 411 - Fall 2023</title>
-  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <title>Chapter 6 Descriptive Statistics | Ling 411 - Fall 2024</title>
+  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Descriptive Statistics | Ling 411 - Fall 2023" />
+  <meta property="og:title" content="Chapter 6 Descriptive Statistics | Ling 411 - Fall 2024" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
-  <meta name="github-repo" content="rstudio/ling_411" />
+  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
+  
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Descriptive Statistics | Ling 411 - Fall 2023" />
+  <meta name="twitter:title" content="Chapter 6 Descriptive Statistics | Ling 411 - Fall 2024" />
   
-  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
   
 
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2023-12-26" />
+<meta name="date" content="2024-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="plotting-1.html"/>
-<link rel="next" href="linear-regression-with-one-predictor.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,19 +52,11 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
-<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.30/datatables.js"></script>
-<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -74,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -145,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Ling 411 - Fall 2023</a></li>
+<li><a href="https://umitatlamaz.github.io/ling_411/">Ling 411 - Fall 2024</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
@@ -206,6 +198,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="plotting-1.html"><a href="plotting-1.html#using-lines-in-plots"><i class="fa fa-check"></i><b>5.3</b> Using lines in plots</a></li>
 <li class="chapter" data-level="5.4" data-path="plotting-1.html"><a href="plotting-1.html#color-and-fill"><i class="fa fa-check"></i><b>5.4</b> Color and fill</a></li>
 <li class="chapter" data-level="5.5" data-path="plotting-1.html"><a href="plotting-1.html#grouping-and-facets"><i class="fa fa-check"></i><b>5.5</b> Grouping and facets</a></li>
+<li class="chapter" data-level="5.6" data-path="plotting-1.html"><a href="plotting-1.html#adding-labels-to-the-plot"><i class="fa fa-check"></i><b>5.6</b> Adding Labels to the Plot</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="plotting-1.html"><a href="plotting-1.html#classic-theme"><i class="fa fa-check"></i><b>5.6.1</b> Classic Theme</a></li>
+<li class="chapter" data-level="5.6.2" data-path="plotting-1.html"><a href="plotting-1.html#minimal-theme"><i class="fa fa-check"></i><b>5.6.2</b> Minimal Theme</a></li>
+<li class="chapter" data-level="5.6.3" data-path="plotting-1.html"><a href="plotting-1.html#dark-theme"><i class="fa fa-check"></i><b>5.6.3</b> Dark Theme</a></li>
+<li class="chapter" data-level="5.6.4" data-path="plotting-1.html"><a href="plotting-1.html#modifying-the-size-of-the-title-and-labels."><i class="fa fa-check"></i><b>5.6.4</b> Modifying the size of the title and labels.</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a>
 <ul>
@@ -237,92 +236,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#correlations"><i class="fa fa-check"></i><b>6.5</b> Correlations</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html"><i class="fa fa-check"></i><b>7</b> Linear Regression with one Predictor</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#word-frequency-effects"><i class="fa fa-check"></i><b>7.1</b> Word Frequency Effects</a></li>
-<li class="chapter" data-level="7.2" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#simple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Simple Linear Regression</a></li>
-<li class="chapter" data-level="7.3" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#finding-the-regression-line"><i class="fa fa-check"></i><b>7.3</b> Finding the Regression Line</a></li>
-<li class="chapter" data-level="7.4" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#estimating-the-coefficients"><i class="fa fa-check"></i><b>7.4</b> Estimating the Coefficients</a></li>
-<li class="chapter" data-level="7.5" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#data-is-messy"><i class="fa fa-check"></i><b>7.5</b> Data is messy</a></li>
-<li class="chapter" data-level="7.6" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#simplified-frequency-data"><i class="fa fa-check"></i><b>7.6</b> Simplified Frequency Data</a></li>
-<li class="chapter" data-level="7.7" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#residuals"><i class="fa fa-check"></i><b>7.7</b> Residuals</a>
-<ul>
-<li class="chapter" data-level="7.7.1" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#sum-of-squared-errors"><i class="fa fa-check"></i><b>7.7.1</b> Sum of Squared Errors</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html"><i class="fa fa-check"></i><b>8</b> Linear Regression with Many Predictors</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#fitting-two-linear-models"><i class="fa fa-check"></i><b>8.1</b> Fitting two Linear Models</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html"><i class="fa fa-check"></i><b>9</b> Linear &amp; Non-Linear Transformations</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-transformations"><i class="fa fa-check"></i><b>9.1</b> Linear Transformations</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#centering"><i class="fa fa-check"></i><b>9.1.1</b> Centering</a></li>
-<li class="chapter" data-level="9.1.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#standardizing"><i class="fa fa-check"></i><b>9.1.2</b> Standardizing</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#scaling-and-standardizing-in-r"><i class="fa fa-check"></i><b>9.2</b> Scaling and Standardizing in R</a></li>
-<li class="chapter" data-level="9.3" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#non-linear-transformations"><i class="fa fa-check"></i><b>9.3</b> Non-linear Transformations</a>
-<ul>
-<li class="chapter" data-level="9.3.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#logarithms-log-transformation"><i class="fa fa-check"></i><b>9.3.1</b> Logarithms &amp; Log Transformation</a></li>
-<li class="chapter" data-level="9.3.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-regression-with-log-transformation"><i class="fa fa-check"></i><b>9.3.2</b> Linear Regression with Log Transformation</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="categorical-predictors.html"><a href="categorical-predictors.html"><i class="fa fa-check"></i><b>10</b> Categorical Predictors</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictor---continuous-outcome"><i class="fa fa-check"></i><b>10.1</b> Categorical Predictor - Continuous Outcome</a></li>
-<li class="chapter" data-level="10.2" data-path="categorical-predictors.html"><a href="categorical-predictors.html#taste-vs.-smell-words"><i class="fa fa-check"></i><b>10.2</b> Taste vs. Smell Words</a></li>
-<li class="chapter" data-level="10.3" data-path="categorical-predictors.html"><a href="categorical-predictors.html#contrasts-coding"><i class="fa fa-check"></i><b>10.3</b> Contrasts &amp; Coding</a>
-<ul>
-<li class="chapter" data-level="10.3.1" data-path="categorical-predictors.html"><a href="categorical-predictors.html#treatment-coding."><i class="fa fa-check"></i><b>10.3.1</b> Treatment Coding.</a></li>
-<li class="chapter" data-level="10.3.2" data-path="categorical-predictors.html"><a href="categorical-predictors.html#sum-coding"><i class="fa fa-check"></i><b>10.3.2</b> Sum Coding</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictors-with-more-than-2-levels"><i class="fa fa-check"></i><b>10.4</b> Categorical Predictors with more than 2 levels</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="effect-size-significance.html"><a href="effect-size-significance.html"><i class="fa fa-check"></i><b>11</b> Effect Size &amp; Significance</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#cohens-d"><i class="fa fa-check"></i><b>11.1</b> Cohen’s <em>d</em></a></li>
-<li class="chapter" data-level="11.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error"><i class="fa fa-check"></i><b>11.2</b> Standard Error</a></li>
-<li class="chapter" data-level="11.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#confidence-interval"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval</a></li>
-<li class="chapter" data-level="11.4" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error-of-the-difference-of-two-means"><i class="fa fa-check"></i><b>11.4</b> Standard Error of the difference of two means</a></li>
-<li class="chapter" data-level="11.5" data-path="effect-size-significance.html"><a href="effect-size-significance.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.5</b> Hypothesis Testing</a></li>
-<li class="chapter" data-level="11.6" data-path="effect-size-significance.html"><a href="effect-size-significance.html#calculating-the-t-score"><i class="fa fa-check"></i><b>11.6</b> Calculating the t-score</a></li>
-<li class="chapter" data-level="11.7" data-path="effect-size-significance.html"><a href="effect-size-significance.html#p-value"><i class="fa fa-check"></i><b>11.7</b> p-value</a></li>
-<li class="chapter" data-level="11.8" data-path="effect-size-significance.html"><a href="effect-size-significance.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>11.8</b> Type I and Type II Errors</a>
-<ul>
-<li class="chapter" data-level="11.8.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#type-i-error"><i class="fa fa-check"></i><b>11.8.1</b> Type I Error</a></li>
-<li class="chapter" data-level="11.8.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#typee-ii-error"><i class="fa fa-check"></i><b>11.8.2</b> Typee II Error</a></li>
-<li class="chapter" data-level="11.8.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#statistical-power"><i class="fa fa-check"></i><b>11.8.3</b> Statistical Power</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="logistic-regression.html"><a href="logistic-regression.html#the-intuition"><i class="fa fa-check"></i><b>12.1</b> The Intuition</a></li>
-<li class="chapter" data-level="12.2" data-path="logistic-regression.html"><a href="logistic-regression.html#the-math"><i class="fa fa-check"></i><b>12.2</b> The Math</a>
-<ul>
-<li class="chapter" data-level="12.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#binomial-bernoulli-distributions"><i class="fa fa-check"></i><b>12.2.1</b> Binomial &amp; Bernoulli Distributions</a></li>
-</ul></li>
-<li class="chapter" data-level="12.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-1"><i class="fa fa-check"></i><b>12.3</b> Logistic Regression</a>
-<ul>
-<li class="chapter" data-level="12.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-odds-logits"><i class="fa fa-check"></i><b>12.3.1</b> Log Odds &amp; Logits</a></li>
-</ul></li>
-<li class="chapter" data-level="12.4" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-in-r"><i class="fa fa-check"></i><b>12.4</b> Logistic Regression in R</a>
-<ul>
-<li class="chapter" data-level="12.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#data"><i class="fa fa-check"></i><b>12.4.1</b> Data</a></li>
-<li class="chapter" data-level="12.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#model"><i class="fa fa-check"></i><b>12.4.2</b> Model</a></li>
-<li class="chapter" data-level="12.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#from-logits-to-probabilities"><i class="fa fa-check"></i><b>12.4.3</b> From logits to probabilities</a></li>
-<li class="chapter" data-level="12.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#dative-dataset"><i class="fa fa-check"></i><b>12.4.4</b> Dative Dataset</a></li>
-</ul></li>
-<li class="chapter" data-level="12.5" data-path="logistic-regression.html"><a href="logistic-regression.html#testing-the-model"><i class="fa fa-check"></i><b>12.5</b> Testing the model</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html"><i class="fa fa-check"></i><b>13</b> Modeling Poisson Distribution</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#poisson-distribution"><i class="fa fa-check"></i><b>13.1</b> Poisson Distribution</a></li>
-<li class="chapter" data-level="13.2" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#modeling-with-poisson-distribution"><i class="fa fa-check"></i><b>13.2</b> Modeling with <strong>Poisson distribution</strong></a>
-<ul>
-<li class="chapter" data-level="13.2.1" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#data-1"><i class="fa fa-check"></i><b>13.2.1</b> Data</a></li>
-</ul></li>
-</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -335,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2023</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2024</a>
           </h1>
         </div>
 
@@ -347,14 +260,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 6</span> Descriptive Statistics<a href="descriptive-statistics.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Anytime you have some data, one of the first tasks you need to do is to find ways to summarize your data neatly. Raw data by itself will not make much sense. So, you want to calculate some summary statistics that describes your data. This is <strong>descriptive statistics</strong> (as opposed to <strong>inferential statistics</strong>).</p>
 <p>Let us start with a simple dataset about the mammalian sleep hours.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="descriptive-statistics.html#cb293-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb293-2"><a href="descriptive-statistics.html#cb293-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb293-3"><a href="descriptive-statistics.html#cb293-3" tabindex="-1"></a><span class="fu">library</span>(lsr)</span>
-<span id="cb293-4"><a href="descriptive-statistics.html#cb293-4" tabindex="-1"></a>mammalian_sleep <span class="ot">&lt;-</span> </span>
-<span id="cb293-5"><a href="descriptive-statistics.html#cb293-5" tabindex="-1"></a>      <span class="fu">read_csv</span>(<span class="st">&quot;./data/msleep_ggplot2.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb293-6"><a href="descriptive-statistics.html#cb293-6" tabindex="-1"></a>      <span class="fu">select</span>(name, sleep_total, bodywt) <span class="sc">%&gt;%</span></span>
-<span id="cb293-7"><a href="descriptive-statistics.html#cb293-7" tabindex="-1"></a>      <span class="fu">rename</span>(<span class="at">sleep_total_h =</span> sleep_total, <span class="at">bodywt_kg =</span> bodywt) <span class="sc">%&gt;%</span></span>
-<span id="cb293-8"><a href="descriptive-statistics.html#cb293-8" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">sleep_total_h =</span> <span class="fu">round</span>(sleep_total_h) )</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="descriptive-statistics.html#cb299-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb299-2"><a href="descriptive-statistics.html#cb299-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb299-3"><a href="descriptive-statistics.html#cb299-3" tabindex="-1"></a><span class="fu">library</span>(lsr)</span>
+<span id="cb299-4"><a href="descriptive-statistics.html#cb299-4" tabindex="-1"></a>mammalian_sleep <span class="ot">&lt;-</span> </span>
+<span id="cb299-5"><a href="descriptive-statistics.html#cb299-5" tabindex="-1"></a>      <span class="fu">read_csv</span>(<span class="st">&quot;./data/msleep_ggplot2.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-6"><a href="descriptive-statistics.html#cb299-6" tabindex="-1"></a>      <span class="fu">select</span>(name, sleep_total, bodywt) <span class="sc">%&gt;%</span></span>
+<span id="cb299-7"><a href="descriptive-statistics.html#cb299-7" tabindex="-1"></a>      <span class="fu">rename</span>(<span class="at">sleep_total_h =</span> sleep_total, <span class="at">bodywt_kg =</span> bodywt) <span class="sc">%&gt;%</span></span>
+<span id="cb299-8"><a href="descriptive-statistics.html#cb299-8" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">sleep_total_h =</span> <span class="fu">round</span>(sleep_total_h) )</span></code></pre></div>
 <pre><code>## Rows: 83 Columns: 11
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -363,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="descriptive-statistics.html#cb295-1" tabindex="-1"></a><span class="fu">head</span>(mammalian_sleep)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="descriptive-statistics.html#cb301-1" tabindex="-1"></a><span class="fu">head</span>(mammalian_sleep)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 6 × 3
 ##   name                       sleep_total_h bodywt_kg
 ##   &lt;chr&gt;                              &lt;dbl&gt;     &lt;dbl&gt;
@@ -377,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>There are three variables here, <code>name</code>, <code>sleep_total_h</code> and <code>bodywt_kg</code>. For each animal named in <code>name</code>, the <code>sleep_total_h</code> variable contains the average number of hours animals of this kind sleep per day. The variable <code>bodywt_kg</code> contains the average weight of that animal in kg.</p></li>
 <li><p>Let’s have a look at the <code>sleep_total_h</code> variable:</p></li>
 </ul>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="descriptive-statistics.html#cb297-1" tabindex="-1"></a><span class="fu">print</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="descriptive-statistics.html#cb303-1" tabindex="-1"></a><span class="fu">print</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span></code></pre></div>
 <pre class="r-output"><code>##  [1] 12 17 14 15  4 14  9  7 10  3  5  9 10 12 10  8  9 17  5 18  4 20  3  3 10
 ## [26] 11 15 12 10  2  3  6  6  8 10  3 19 10 14 14 13 12 20 15 11  8 14  8  4 10
 ## [51] 16 10 14  9 10 11 12 14  4  6 11 18  5 13  9 10  8 11 11 17 14 16 13  9  9
@@ -385,10 +298,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>This output doesn’t make it easy to get a sense of what the data are actually saying. Just “looking at the data” isn’t a terribly effective way of understanding data. In order to get some idea about what’s going on, we need to calculate some descriptive statistics and draw some nice pictures.</li>
 </ul>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="descriptive-statistics.html#cb299-1" tabindex="-1"></a><span class="fu">ggplot</span>(mammalian_sleep, <span class="fu">aes</span>(sleep_total_h)) <span class="sc">+</span></span>
-<span id="cb299-2"><a href="descriptive-statistics.html#cb299-2" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">1</span>,</span>
-<span id="cb299-3"><a href="descriptive-statistics.html#cb299-3" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb299-4"><a href="descriptive-statistics.html#cb299-4" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="descriptive-statistics.html#cb305-1" tabindex="-1"></a><span class="fu">ggplot</span>(mammalian_sleep, <span class="fu">aes</span>(sleep_total_h)) <span class="sc">+</span></span>
+<span id="cb305-2"><a href="descriptive-statistics.html#cb305-2" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">1</span>,</span>
+<span id="cb305-3"><a href="descriptive-statistics.html#cb305-3" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb305-4"><a href="descriptive-statistics.html#cb305-4" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:histogram1"></span>
 <img src="main_files/figure-html/histogram1-1.png" alt="A histogram of the average amount of sleep by animal (the `sleep_total_h` variable). As you might expect, the larger the margin the less frequently you tend to see it." width="672" />
 <p class="caption">
@@ -398,9 +311,9 @@ Figure 6.1: A histogram of the average amount of sleep by animal (the <code>slee
 <div id="distributions" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Distributions<a href="descriptive-statistics.html#distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let us see a couple more data examples to get a sense of what data might look like in the wild. First, let us generate some random data with a <strong>uniform distribution</strong> using the <code>runif()</code> function.</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="descriptive-statistics.html#cb300-1" tabindex="-1"></a>uniform <span class="ot">&lt;-</span> <span class="fu">as_tibble_col</span>(<span class="fu">runif</span>(<span class="dv">120</span>, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">6</span>),<span class="at">column_name =</span> <span class="st">&quot;some_value&quot;</span>)</span>
-<span id="cb300-2"><a href="descriptive-statistics.html#cb300-2" tabindex="-1"></a></span>
-<span id="cb300-3"><a href="descriptive-statistics.html#cb300-3" tabindex="-1"></a>uniform</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="descriptive-statistics.html#cb306-1" tabindex="-1"></a>uniform <span class="ot">&lt;-</span> <span class="fu">as_tibble_col</span>(<span class="fu">runif</span>(<span class="dv">120</span>, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">6</span>),<span class="at">column_name =</span> <span class="st">&quot;some_value&quot;</span>)</span>
+<span id="cb306-2"><a href="descriptive-statistics.html#cb306-2" tabindex="-1"></a></span>
+<span id="cb306-3"><a href="descriptive-statistics.html#cb306-3" tabindex="-1"></a>uniform</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 120 × 1
 ##    some_value
 ##         &lt;dbl&gt;
@@ -416,10 +329,10 @@ Figure 6.1: A histogram of the average amount of sleep by animal (the <code>slee
 ## 10       4.54
 ## # ℹ 110 more rows</code></pre>
 <p>Let us plot the uniformly distributed data using a histogram.</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="descriptive-statistics.html#cb302-1" tabindex="-1"></a><span class="fu">ggplot</span>(uniform, <span class="fu">aes</span>(some_value)) <span class="sc">+</span></span>
-<span id="cb302-2"><a href="descriptive-statistics.html#cb302-2" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.5</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
-<span id="cb302-3"><a href="descriptive-statistics.html#cb302-3" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb302-4"><a href="descriptive-statistics.html#cb302-4" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="descriptive-statistics.html#cb308-1" tabindex="-1"></a><span class="fu">ggplot</span>(uniform, <span class="fu">aes</span>(some_value)) <span class="sc">+</span></span>
+<span id="cb308-2"><a href="descriptive-statistics.html#cb308-2" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.5</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
+<span id="cb308-3"><a href="descriptive-statistics.html#cb308-3" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb308-4"><a href="descriptive-statistics.html#cb308-4" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:histogram2"></span>
 <img src="main_files/figure-html/histogram2-1.png" alt="Histogram of a uniform distribution." width="672" />
 <p class="caption">
@@ -427,12 +340,12 @@ Figure 6.2: Histogram of a uniform distribution.
 </p>
 </div>
 <p>This looks good but it doesn’t make as much intuitive sense as we’d like. Let us tweak this slightly. Assume that you have a fair dice with 6 sides. So, whenever we roll the dice, each side has an equal probability (i.e. 1/6). Let us simulate this. The data is going to be very similar, except that this time we will need <strong>discrete</strong> values rather than <strong>continuous</strong> values. For that, we need to use the <code>rdunif()</code> function which generates random values with a discrete uniform distribution.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="descriptive-statistics.html#cb303-1" tabindex="-1"></a>uniform <span class="ot">&lt;-</span> <span class="fu">as_tibble_col</span>(<span class="fu">rdunif</span>(<span class="dv">120</span>, <span class="dv">6</span>, <span class="dv">1</span>), <span class="at">column_name=</span><span class="st">&quot;dice_value&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="descriptive-statistics.html#cb309-1" tabindex="-1"></a>uniform <span class="ot">&lt;-</span> <span class="fu">as_tibble_col</span>(<span class="fu">rdunif</span>(<span class="dv">120</span>, <span class="dv">6</span>, <span class="dv">1</span>), <span class="at">column_name=</span><span class="st">&quot;dice_value&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: `rdunif()` was deprecated in purrr 1.0.0.
 ## This warning is displayed once every 8 hours.
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 ## generated.</code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="descriptive-statistics.html#cb305-1" tabindex="-1"></a>uniform</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="descriptive-statistics.html#cb311-1" tabindex="-1"></a>uniform</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 120 × 1
 ##    dice_value
 ##         &lt;dbl&gt;
@@ -447,19 +360,19 @@ Figure 6.2: Histogram of a uniform distribution.
 ##  9          6
 ## 10          6
 ## # ℹ 110 more rows</code></pre>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="descriptive-statistics.html#cb307-1" tabindex="-1"></a><span class="fu">ggplot</span>(uniform, <span class="fu">aes</span>(dice_value)) <span class="sc">+</span></span>
-<span id="cb307-2"><a href="descriptive-statistics.html#cb307-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb307-3"><a href="descriptive-statistics.html#cb307-3" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="descriptive-statistics.html#cb313-1" tabindex="-1"></a><span class="fu">ggplot</span>(uniform, <span class="fu">aes</span>(dice_value)) <span class="sc">+</span></span>
+<span id="cb313-2"><a href="descriptive-statistics.html#cb313-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb313-3"><a href="descriptive-statistics.html#cb313-3" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
 <pre><code>Just a quick point to think about. Why did we use a histogram for the 
 continuous uniform distribution and a bar graph for a discrete one? </code></pre>
 <p>Now, let us generate some random data with a <strong>normal distribution</strong> using the <code>rnorm</code>()` function.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="descriptive-statistics.html#cb309-1" tabindex="-1"></a>normal <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">rnorm</span>(<span class="dv">160</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="descriptive-statistics.html#cb315-1" tabindex="-1"></a>normal <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">rnorm</span>(<span class="dv">160</span>))</span></code></pre></div>
 <p>Let us plot the normally distributed data using a histogram.</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="descriptive-statistics.html#cb310-1" tabindex="-1"></a><span class="fu">ggplot</span>(normal, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb310-2"><a href="descriptive-statistics.html#cb310-2" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
-<span id="cb310-3"><a href="descriptive-statistics.html#cb310-3" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb310-4"><a href="descriptive-statistics.html#cb310-4" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="descriptive-statistics.html#cb316-1" tabindex="-1"></a><span class="fu">ggplot</span>(normal, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb316-2"><a href="descriptive-statistics.html#cb316-2" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
+<span id="cb316-3"><a href="descriptive-statistics.html#cb316-3" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb316-4"><a href="descriptive-statistics.html#cb316-4" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:histogram3"></span>
 <img src="main_files/figure-html/histogram3-1.png" alt="Histogram of a normal distribution." width="672" />
 <p class="caption">
@@ -467,12 +380,12 @@ Figure 6.3: Histogram of a normal distribution.
 </p>
 </div>
 <p>Here’s another one where we provide the <strong>mean</strong> and <strong>standard deviation</strong> parameteres.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="descriptive-statistics.html#cb311-1" tabindex="-1"></a>normal2 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">rnorm</span>(<span class="dv">160</span>, <span class="at">mean =</span> <span class="dv">8</span>, <span class="at">sd=</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="descriptive-statistics.html#cb317-1" tabindex="-1"></a>normal2 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">rnorm</span>(<span class="dv">160</span>, <span class="at">mean =</span> <span class="dv">8</span>, <span class="at">sd=</span> <span class="fl">0.5</span>))</span></code></pre></div>
 <p>Let us plot the second normally distributed data using a histogram.</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="descriptive-statistics.html#cb312-1" tabindex="-1"></a><span class="fu">ggplot</span>(normal2, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb312-2"><a href="descriptive-statistics.html#cb312-2" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
-<span id="cb312-3"><a href="descriptive-statistics.html#cb312-3" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb312-4"><a href="descriptive-statistics.html#cb312-4" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;steelblue&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="descriptive-statistics.html#cb318-1" tabindex="-1"></a><span class="fu">ggplot</span>(normal2, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb318-2"><a href="descriptive-statistics.html#cb318-2" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
+<span id="cb318-3"><a href="descriptive-statistics.html#cb318-3" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb318-4"><a href="descriptive-statistics.html#cb318-4" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;steelblue&#39;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:histogram4"></span>
 <img src="main_files/figure-html/histogram4-1.png" alt="Histogram of a normal distribution." width="672" />
 <p class="caption">
@@ -480,13 +393,13 @@ Figure 6.4: Histogram of a normal distribution.
 </p>
 </div>
 <p>Finally, let us plot both of the normally distributed data on the same plot to see them side by side.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="descriptive-statistics.html#cb313-1" tabindex="-1"></a><span class="fu">ggplot</span>(normal, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb313-2"><a href="descriptive-statistics.html#cb313-2" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
-<span id="cb313-3"><a href="descriptive-statistics.html#cb313-3" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb313-4"><a href="descriptive-statistics.html#cb313-4" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>) <span class="sc">+</span></span>
-<span id="cb313-5"><a href="descriptive-statistics.html#cb313-5" tabindex="-1"></a>          <span class="fu">geom_histogram</span>(<span class="at">data=</span>normal2, <span class="at">binwidth=</span><span class="fl">0.2</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
-<span id="cb313-6"><a href="descriptive-statistics.html#cb313-6" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb313-7"><a href="descriptive-statistics.html#cb313-7" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;steelblue&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="descriptive-statistics.html#cb319-1" tabindex="-1"></a><span class="fu">ggplot</span>(normal, <span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb319-2"><a href="descriptive-statistics.html#cb319-2" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>,</span>
+<span id="cb319-3"><a href="descriptive-statistics.html#cb319-3" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb319-4"><a href="descriptive-statistics.html#cb319-4" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>) <span class="sc">+</span></span>
+<span id="cb319-5"><a href="descriptive-statistics.html#cb319-5" tabindex="-1"></a>          <span class="fu">geom_histogram</span>(<span class="at">data=</span>normal2, <span class="at">binwidth=</span><span class="fl">0.2</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
+<span id="cb319-6"><a href="descriptive-statistics.html#cb319-6" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb319-7"><a href="descriptive-statistics.html#cb319-7" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;steelblue&#39;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:histogram5"></span>
 <img src="main_files/figure-html/histogram5-1.png" alt="Histogram of two normal distributions side by side." width="672" />
 <p class="caption">
@@ -579,16 +492,16 @@ Figure 6.7: Distributions with different means and standard deviations. The ligh
 <div id="calculating-the-mean-in-r" class="section level3 hasAnchor" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Calculating the mean in R<a href="descriptive-statistics.html#calculating-the-mean-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Okay that’s the maths, how do we get the magic computing box to do the work for us? If you really wanted to, you could do this calculation directly in R. For the first numbers, do this just by typing it in as if R were a calculator…</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="descriptive-statistics.html#cb314-1" tabindex="-1"></a>(<span class="dv">12</span> <span class="sc">+</span> <span class="dv">17</span> <span class="sc">+</span> <span class="dv">14</span> <span class="sc">+</span> <span class="dv">15</span> <span class="sc">+</span> <span class="dv">4</span>) <span class="sc">/</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="descriptive-statistics.html#cb320-1" tabindex="-1"></a>(<span class="dv">12</span> <span class="sc">+</span> <span class="dv">17</span> <span class="sc">+</span> <span class="dv">14</span> <span class="sc">+</span> <span class="dv">15</span> <span class="sc">+</span> <span class="dv">4</span>) <span class="sc">/</span> <span class="dv">5</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] 12.4</code></pre>
 <p>… in which case R outputs the answer 12.4, just as if it were a calculator.</p>
 <ul>
 <li>However, we learned quicker ways of doing that</li>
 </ul>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="descriptive-statistics.html#cb316-1" tabindex="-1"></a><span class="fu">sum</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] )<span class="sc">/</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="descriptive-statistics.html#cb322-1" tabindex="-1"></a><span class="fu">sum</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] )<span class="sc">/</span> <span class="dv">5</span></span></code></pre></div>
 <pre class="r-output"><code>## [1] 12.4</code></pre>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="descriptive-statistics.html#cb318-1" tabindex="-1"></a><span class="co"># or:</span></span>
-<span id="cb318-2"><a href="descriptive-statistics.html#cb318-2" tabindex="-1"></a><span class="fu">mean</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] )</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="descriptive-statistics.html#cb324-1" tabindex="-1"></a><span class="co"># or:</span></span>
+<span id="cb324-2"><a href="descriptive-statistics.html#cb324-2" tabindex="-1"></a><span class="fu">mean</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] )</span></code></pre></div>
 <pre class="r-output"><code>## [1] 12.4</code></pre>
 </div>
 <div id="median" class="section level3 hasAnchor" number="6.2.3">
@@ -613,7 +526,7 @@ Figure 6.7: Distributions with different means and standard deviations. The ligh
 <li><p>To understand why, think of the median as the value that divides the sorted list of numbers into two halves – those on its left, and those on its right.</p></li>
 <li><p>As before, it’s very tedious to do this by hand when you’ve got lots of numbers. To illustrate this, here’s what happens when you use R to sort all the sleep durations. First, I’ll use the <code>sort()</code> function to display the 83 numbers in increasing numerical order:</p></li>
 </ul>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="descriptive-statistics.html#cb320-1" tabindex="-1"></a><span class="fu">sort</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="descriptive-statistics.html#cb326-1" tabindex="-1"></a><span class="fu">sort</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre class="r-output"><code>##  [1]  2  3  3  3  3  3  4  4  4  4  4  5  5  5  5  6  6  6  6  7  8  8  8  8  8
 ## [26]  9  9  9  9  9  9  9  9 10 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11
 ## [51] 11 12 12 12 12 12 12 13 13 13 14 14 14 14 14 14 14 14 15 15 15 16 16 16 16
@@ -621,7 +534,7 @@ Figure 6.7: Distributions with different means and standard deviations. The ligh
 <ul>
 <li>Because the vector is 83 elements long, the middle value is at position 42. This means that the median of this vector is 10. In real life, of course, no-one actually calculates the median by sorting the data and then looking for the middle value. In real life, we use the median command:</li>
 </ul>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="descriptive-statistics.html#cb322-1" tabindex="-1"></a><span class="fu">median</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="descriptive-statistics.html#cb328-1" tabindex="-1"></a><span class="fu">median</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre class="r-output"><code>## [1] 10</code></pre>
 <p>which outputs the median value of 10.</p>
 </div>
@@ -667,16 +580,16 @@ Figure 6.8: Another example of mean and median where mean is moved by the outlie
 <li><p>Not surprisingly, the 0% trimmed mean is just the regular mean, and the 50% trimmed mean is the median. In that sense, trimmed means provide a whole family of central tendency measures that span the range from the mean to the median.</p></li>
 <li><p>For our toy example above, we have 10 observations, and so a 10% trimmed mean is calculated by ignoring the largest value (i.e., <code>12</code>) and the smallest value (i.e., <code>-15</code>) and taking the mean of the remaining values. First, let’s enter the data</p></li>
 </ul>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="descriptive-statistics.html#cb324-1" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="sc">-</span><span class="dv">15</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">12</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="descriptive-statistics.html#cb330-1" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="sc">-</span><span class="dv">15</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">12</span> )</span></code></pre></div>
 <p>Next, let’s calculate means and medians:</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="descriptive-statistics.html#cb325-1" tabindex="-1"></a><span class="fu">mean</span>( dataset )</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="descriptive-statistics.html#cb331-1" tabindex="-1"></a><span class="fu">mean</span>( dataset )</span></code></pre></div>
 <pre class="r-output"><code>## [1] 4.1</code></pre>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="descriptive-statistics.html#cb327-1" tabindex="-1"></a><span class="fu">median</span>( dataset )</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="descriptive-statistics.html#cb333-1" tabindex="-1"></a><span class="fu">median</span>( dataset )</span></code></pre></div>
 <pre class="r-output"><code>## [1] 5.5</code></pre>
 <ul>
 <li>That’s a fairly substantial difference, but I’m tempted to think that the mean is being influenced a bit too much by the extreme values at either end of the data set, especially the <span class="math inline">\(-15\)</span> one. So let’s just try trimming the mean a bit. If I take a 10% trimmed mean, we’ll drop the extreme values on either side, and take the mean of the rest:</li>
 </ul>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="descriptive-statistics.html#cb329-1" tabindex="-1"></a><span class="fu">mean</span>( dataset, <span class="at">trim =</span> .<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="descriptive-statistics.html#cb335-1" tabindex="-1"></a><span class="fu">mean</span>( dataset, <span class="at">trim =</span> .<span class="dv">1</span>)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 5.5</code></pre>
 <ul>
 <li>In this case it gives exactly the same answer as the median. Note that, to get a 10% trimmed mean you write <code>trim = .1</code>, not <code>trim = 10</code>.</li>
@@ -725,15 +638,15 @@ trimmed mean: "What is the mean income of those who have work? (i.e., how much *
 <ul>
 <li>The <strong><em>range</em></strong> of a variable is very simple: it’s the biggest value minus the smallest value. For the sleep data, the maximum value is 20, and the minimum value is 2. We can calculate these values in R using the <code>max()</code> and <code>min()</code> functions:</li>
 </ul>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="descriptive-statistics.html#cb331-1" tabindex="-1"></a><span class="fu">max</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="descriptive-statistics.html#cb337-1" tabindex="-1"></a><span class="fu">max</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre class="r-output"><code>## [1] 20</code></pre>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="descriptive-statistics.html#cb333-1" tabindex="-1"></a><span class="fu">min</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="descriptive-statistics.html#cb339-1" tabindex="-1"></a><span class="fu">min</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre class="r-output"><code>## [1] 2</code></pre>
 <p>where I’ve omitted the output because it’s not interesting.</p>
 <ul>
 <li>The other possibility is to use the <code>range()</code> function; which outputs both the minimum value and the maximum value in a vector, like this:</li>
 </ul>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="descriptive-statistics.html#cb335-1" tabindex="-1"></a><span class="fu">range</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="descriptive-statistics.html#cb341-1" tabindex="-1"></a><span class="fu">range</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre class="r-output"><code>## [1]  2 20</code></pre>
 <ul>
 <li>Although the range is the simplest way to quantify the notion of “variability”, it’s one of the worst. Recall from our discussion of the mean that we want our summary measure to be robust. If the data set has one or two extremely bad values in it, we’d like our statistics not to be unduly influenced by these cases. If we look once again at our toy example of a data set containing very extreme outliers…
@@ -752,20 +665,20 @@ trimmed mean: "What is the mean income of those who have work? (i.e., how much *
 <li><p>Let’s take a look at the 20 shortest sorted sleep durations and determine the 10-th percentile (<span class="math inline">\(0.1\)</span> quantile), 30-th percentile (<span class="math inline">\(0.3\)</span> quantile), 50-th percentile (<span class="math inline">\(0.5\)</span> quantile), and the 90-th percentile (<span class="math inline">\(0.9\)</span> quantile).</p></li>
 <li><p>Here are the values:</p></li>
 </ul>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="descriptive-statistics.html#cb337-1" tabindex="-1"></a><span class="fu">sort</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="descriptive-statistics.html#cb343-1" tabindex="-1"></a><span class="fu">sort</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
 <pre class="r-output"><code>##  [1] 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 6 6 6 6 7</code></pre>
 <ul>
 <li>And here is a sorted plot of the 20 smallest values:</li>
 </ul>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="descriptive-statistics.html#cb339-1" tabindex="-1"></a>quantile <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>)</span>
-<span id="cb339-2"><a href="descriptive-statistics.html#cb339-2" tabindex="-1"></a>quantile_points <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>)<span class="sc">*</span><span class="dv">20</span></span>
-<span id="cb339-3"><a href="descriptive-statistics.html#cb339-3" tabindex="-1"></a>quantile_labels <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;%0.1f quantile</span><span class="sc">\n</span><span class="st">(point %d of 20)&quot;</span>, quantile, quantile_points)</span>
-<span id="cb339-4"><a href="descriptive-statistics.html#cb339-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">y=</span><span class="fu">sort</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>])) <span class="sc">+</span></span>
-<span id="cb339-5"><a href="descriptive-statistics.html#cb339-5" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb339-6"><a href="descriptive-statistics.html#cb339-6" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> quantile_points) <span class="sc">+</span></span>
-<span id="cb339-7"><a href="descriptive-statistics.html#cb339-7" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x=</span>quantile_points, <span class="at">y=</span><span class="fl">6.5</span>, <span class="at">label=</span>quantile_labels )) <span class="sc">+</span></span>
-<span id="cb339-8"><a href="descriptive-statistics.html#cb339-8" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position in ordered vector&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Sleep (hours)&quot;</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="descriptive-statistics.html#cb345-1" tabindex="-1"></a>quantile <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>)</span>
+<span id="cb345-2"><a href="descriptive-statistics.html#cb345-2" tabindex="-1"></a>quantile_points <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>)<span class="sc">*</span><span class="dv">20</span></span>
+<span id="cb345-3"><a href="descriptive-statistics.html#cb345-3" tabindex="-1"></a>quantile_labels <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;%0.1f quantile</span><span class="sc">\n</span><span class="st">(point %d of 20)&quot;</span>, quantile, quantile_points)</span>
+<span id="cb345-4"><a href="descriptive-statistics.html#cb345-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">y=</span><span class="fu">sort</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>])) <span class="sc">+</span></span>
+<span id="cb345-5"><a href="descriptive-statistics.html#cb345-5" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb345-6"><a href="descriptive-statistics.html#cb345-6" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> quantile_points) <span class="sc">+</span></span>
+<span id="cb345-7"><a href="descriptive-statistics.html#cb345-7" tabindex="-1"></a>    <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x=</span>quantile_points, <span class="at">y=</span><span class="fl">6.5</span>, <span class="at">label=</span>quantile_labels )) <span class="sc">+</span></span>
+<span id="cb345-8"><a href="descriptive-statistics.html#cb345-8" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position in ordered vector&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Sleep (hours)&quot;</span>)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
 <ul>
 <li>As you can see:
 <ul>
@@ -783,19 +696,19 @@ trimmed mean: "What is the mean income of those who have work? (i.e., how much *
 <li>The <strong><em>interquartile range</em></strong> (IQR) is like the range, but instead of calculating the difference between the biggest and smallest value, it calculates the difference between the 25th quantile and the 75th quantile.</li>
 <li>R provides you with a way of calculating quantiles, using the (surprise, surprise) <code>quantile()</code> function. Let’s use it to calculate the median sleep durations:</li>
 </ul>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="descriptive-statistics.html#cb340-1" tabindex="-1"></a><span class="fu">quantile</span>( <span class="at">x =</span> mammalian_sleep<span class="sc">$</span>sleep_total_h, <span class="at">probs =</span> .<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="descriptive-statistics.html#cb346-1" tabindex="-1"></a><span class="fu">quantile</span>( <span class="at">x =</span> mammalian_sleep<span class="sc">$</span>sleep_total_h, <span class="at">probs =</span> .<span class="dv">5</span>)</span></code></pre></div>
 <pre class="r-output"><code>## 50% 
 ##  10</code></pre>
 <ul>
 <li>And not surprisingly, this agrees with the answer that we saw earlier with the <code>median()</code> function. Now, we can actually input lots of quantiles at once, by specifying a vector for the <code>probs</code> argument. So lets do that, and get the 25th and 75th percentile:</li>
 </ul>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="descriptive-statistics.html#cb342-1" tabindex="-1"></a><span class="fu">quantile</span>( <span class="at">x =</span> mammalian_sleep<span class="sc">$</span>sleep_total_h, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">75</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="descriptive-statistics.html#cb348-1" tabindex="-1"></a><span class="fu">quantile</span>( <span class="at">x =</span> mammalian_sleep<span class="sc">$</span>sleep_total_h, <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">75</span>) )</span></code></pre></div>
 <pre class="r-output"><code>## 25% 75% 
 ##   8  14</code></pre>
 <ul>
 <li>And, by noting that <span class="math inline">\(14 - 8 = 6\)</span>, we can see that the interquartile range for the sleep durations is 6. Of course, that seems like too much work to do all that typing, so R has a built in function called <code>IQR()</code> that we can use:</li>
 </ul>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="descriptive-statistics.html#cb344-1" tabindex="-1"></a><span class="fu">IQR</span>( <span class="at">x =</span> mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="descriptive-statistics.html#cb350-1" tabindex="-1"></a><span class="fu">IQR</span>( <span class="at">x =</span> mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre class="r-output"><code>## [1] 6</code></pre>
 <ul>
 <li><p>While it’s obvious how to interpret the range, it’s a little less obvious how to interpret the IQR. The simplest way to think about it is like this: the interquartile range is the range spanned by the “middle half” of the data. That is, one quarter of the data falls below the 25th percentile, one quarter of the data is above the 75th percentile, leaving the “middle half” of the data lying in between the two. And the IQR is the range covered by that middle half.</p></li>
@@ -831,14 +744,14 @@ AAD(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}|
 <li><p>And <span class="math inline">\(N=5\)</span>, which means, that, in our case: <span class="math inline">\(AAD(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}| = 3.52\)</span></p></li>
 <li><p>In R, we can compute it for the entire vector.</p></li>
 </ul>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="descriptive-statistics.html#cb346-1" tabindex="-1"></a>mean_sleep <span class="ot">&lt;-</span> <span class="fu">mean</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span>
-<span id="cb346-2"><a href="descriptive-statistics.html#cb346-2" tabindex="-1"></a>deviation_sleep <span class="ot">&lt;-</span> mean_sleep <span class="sc">-</span> mammalian_sleep<span class="sc">$</span>sleep_total_h</span>
-<span id="cb346-3"><a href="descriptive-statistics.html#cb346-3" tabindex="-1"></a><span class="fu">mean</span>( <span class="fu">abs</span>(deviation_sleep) )</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="descriptive-statistics.html#cb352-1" tabindex="-1"></a>mean_sleep <span class="ot">&lt;-</span> <span class="fu">mean</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span>
+<span id="cb352-2"><a href="descriptive-statistics.html#cb352-2" tabindex="-1"></a>deviation_sleep <span class="ot">&lt;-</span> mean_sleep <span class="sc">-</span> mammalian_sleep<span class="sc">$</span>sleep_total_h</span>
+<span id="cb352-3"><a href="descriptive-statistics.html#cb352-3" tabindex="-1"></a><span class="fu">mean</span>( <span class="fu">abs</span>(deviation_sleep) )</span></code></pre></div>
 <pre class="r-output"><code>## [1] 3.576717</code></pre>
 <ul>
 <li>An alternative, more compact way to write it is using (lots) pipes:</li>
 </ul>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="descriptive-statistics.html#cb348-1" tabindex="-1"></a>mammalian_sleep<span class="sc">$</span>sleep_total_h <span class="sc">%&gt;%</span> <span class="fu">subtract</span>(., <span class="fu">mean</span>(.)) <span class="sc">%&gt;%</span> <span class="fu">abs</span>() <span class="sc">%&gt;%</span> <span class="fu">mean</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="descriptive-statistics.html#cb354-1" tabindex="-1"></a>mammalian_sleep<span class="sc">$</span>sleep_total_h <span class="sc">%&gt;%</span> <span class="fu">subtract</span>(., <span class="fu">mean</span>(.)) <span class="sc">%&gt;%</span> <span class="fu">abs</span>() <span class="sc">%&gt;%</span> <span class="fu">mean</span>()</span></code></pre></div>
 <pre class="r-output"><code>## [1] 3.576717</code></pre>
 <ul>
 <li>The interpretation of the AAD is quite straightforward: It is the average distance from the average. When it’s big, the values are quite spread out. When it’s small, they are close. The units are the same (hours in our case).</li>
@@ -920,7 +833,7 @@ No suprises there.
 <li>Now that we’ve got the basic idea, let’s have a look at a concrete example. Once again, let’s use the first five sleep durations. If we follow the same approach that we took last time, we end up with the following table:</li>
 </ul>
 <table>
-<caption><span id="tab:unnamed-chunk-182">Table 6.1: </span>Regular, abssolute, and squared deviations</caption>
+<caption><span id="tab:unnamed-chunk-188">Table 6.1: </span>Regular, abssolute, and squared deviations</caption>
 <colgroup>
 <col width="15%" />
 <col width="10%" />
@@ -978,17 +891,17 @@ No suprises there.
 <ul>
 <li>That last column contains all of our squared deviations, so all we have to do is average them. If we do that by typing all the numbers into R by hand…</li>
 </ul>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="descriptive-statistics.html#cb350-1" tabindex="-1"></a>( <span class="fl">0.16+21.16+2.56+6.76+70.56</span> ) <span class="sc">/</span> (<span class="dv">5-1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="descriptive-statistics.html#cb356-1" tabindex="-1"></a>( <span class="fl">0.16+21.16+2.56+6.76+70.56</span> ) <span class="sc">/</span> (<span class="dv">5-1</span>)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 25.3</code></pre>
 <ul>
 <li><p>We end up with a variance of 25.3. Exciting, isn’t it? For the moment, let’s ignore the burning question that you’re all probably thinking (i.e., what the heck does a variance of 25.3 actually mean?) and instead talk a bit more about how to do the calculations in R.</p></li>
 <li><p>As always, we want to avoid having to type in a whole lot of numbers ourselves. And as it happens, we have the vector <code>X</code> lying around, which we created in the previous section. With this in mind, we can calculate the variance of <code>X</code> by using the following command,</p></li>
 </ul>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="descriptive-statistics.html#cb352-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> mammalian_sleep<span class="sc">$</span>sleep_total_h[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
-<span id="cb352-2"><a href="descriptive-statistics.html#cb352-2" tabindex="-1"></a>(X <span class="sc">-</span> <span class="fu">mean</span>(X) )<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (<span class="fu">length</span>(X) <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="descriptive-statistics.html#cb358-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> mammalian_sleep<span class="sc">$</span>sleep_total_h[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb358-2"><a href="descriptive-statistics.html#cb358-2" tabindex="-1"></a>(X <span class="sc">-</span> <span class="fu">mean</span>(X) )<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (<span class="fu">length</span>(X) <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre class="r-output"><code>## [1]  0.04  5.29  0.64  1.69 17.64</code></pre>
 <p>and as usual we get the same answer as the one that we got when we did everything by hand. However, I <em>still</em> think that this is too much typing. Fortunately, R has a built in function called <code>var()</code> which does calculate variances. So we could also do this…</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="descriptive-statistics.html#cb354-1" tabindex="-1"></a><span class="fu">var</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="descriptive-statistics.html#cb360-1" tabindex="-1"></a><span class="fu">var</span>(X)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 25.3</code></pre>
 <p>and you get the same answer. Great.</p>
 </div>
@@ -1024,28 +937,28 @@ sd( mammalian_sleep$sleep_total_h )
 <li><p>As a consequence, most of us just rely on a <strong>simple rule of thumb</strong>: <strong>“in general, you should expect 68% of the data to fall within 1 standard deviation of the mean, 95% of the data to fall within 2 standard deviation of the mean, and 99.7% of the data to fall within 3 standard deviations of the mean”</strong>. This rule tends to work pretty well most of the time, but it’s not exact: it’s actually calculated based on an <em>assumption</em> that the histogram is symmetric and “bell shaped”. (Strictly, the assumption is that the data are <em>normally</em> distributed, which is an important concept that we’ll discuss more later).</p></li>
 </ul>
 <!-- , applied to the AFL winning margins data. The shaded bars in the histogram show how much of the data fall within one standard deviation of the mean. In this case, 65.3% of the data set lies within this range, which is pretty consistent with the \"approximately 68% rule\" discussed in the main text -->
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="descriptive-statistics.html#cb356-1" tabindex="-1"></a>  p <span class="ot">&lt;-</span> mammalian_sleep <span class="sc">%&gt;%</span></span>
-<span id="cb356-2"><a href="descriptive-statistics.html#cb356-2" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(sleep_total_h)) <span class="sc">+</span></span>
-<span id="cb356-3"><a href="descriptive-statistics.html#cb356-3" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>,</span>
-<span id="cb356-4"><a href="descriptive-statistics.html#cb356-4" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb356-5"><a href="descriptive-statistics.html#cb356-5" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>)</span>
-<span id="cb356-6"><a href="descriptive-statistics.html#cb356-6" tabindex="-1"></a></span>
-<span id="cb356-7"><a href="descriptive-statistics.html#cb356-7" tabindex="-1"></a>  sleep_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span>
-<span id="cb356-8"><a href="descriptive-statistics.html#cb356-8" tabindex="-1"></a>  sleep_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span>
-<span id="cb356-9"><a href="descriptive-statistics.html#cb356-9" tabindex="-1"></a>  bars <span class="ot">&lt;-</span> <span class="fu">c</span>(sleep_mean<span class="sc">-</span>sleep_sd, sleep_mean, sleep_mean<span class="sc">+</span>sleep_sd)</span>
-<span id="cb356-10"><a href="descriptive-statistics.html#cb356-10" tabindex="-1"></a>  bar_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mean-1*sd&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;mean+1*sd&quot;</span>)</span>
-<span id="cb356-11"><a href="descriptive-statistics.html#cb356-11" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> bars, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb356-12"><a href="descriptive-statistics.html#cb356-12" tabindex="-1"></a>      <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>bars[<span class="dv">1</span>], <span class="at">y=</span> <span class="dv">10</span>, <span class="at">label =</span> bar_labels[<span class="dv">1</span>])) <span class="sc">+</span></span>
-<span id="cb356-13"><a href="descriptive-statistics.html#cb356-13" tabindex="-1"></a>      <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>bars[<span class="dv">2</span>], <span class="at">y=</span> <span class="dv">10</span>, <span class="at">label =</span> bar_labels[<span class="dv">2</span>])) <span class="sc">+</span></span>
-<span id="cb356-14"><a href="descriptive-statistics.html#cb356-14" tabindex="-1"></a>      <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>bars[<span class="dv">3</span>], <span class="at">y=</span> <span class="dv">10</span>, <span class="at">label =</span> bar_labels[<span class="dv">3</span>]))</span>
-<span id="cb356-15"><a href="descriptive-statistics.html#cb356-15" tabindex="-1"></a>  p</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="descriptive-statistics.html#cb362-1" tabindex="-1"></a>  p <span class="ot">&lt;-</span> mammalian_sleep <span class="sc">%&gt;%</span></span>
+<span id="cb362-2"><a href="descriptive-statistics.html#cb362-2" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(sleep_total_h)) <span class="sc">+</span></span>
+<span id="cb362-3"><a href="descriptive-statistics.html#cb362-3" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>,</span>
+<span id="cb362-4"><a href="descriptive-statistics.html#cb362-4" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb362-5"><a href="descriptive-statistics.html#cb362-5" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>)</span>
+<span id="cb362-6"><a href="descriptive-statistics.html#cb362-6" tabindex="-1"></a></span>
+<span id="cb362-7"><a href="descriptive-statistics.html#cb362-7" tabindex="-1"></a>  sleep_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span>
+<span id="cb362-8"><a href="descriptive-statistics.html#cb362-8" tabindex="-1"></a>  sleep_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(mammalian_sleep<span class="sc">$</span>sleep_total_h)</span>
+<span id="cb362-9"><a href="descriptive-statistics.html#cb362-9" tabindex="-1"></a>  bars <span class="ot">&lt;-</span> <span class="fu">c</span>(sleep_mean<span class="sc">-</span>sleep_sd, sleep_mean, sleep_mean<span class="sc">+</span>sleep_sd)</span>
+<span id="cb362-10"><a href="descriptive-statistics.html#cb362-10" tabindex="-1"></a>  bar_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mean-1*sd&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;mean+1*sd&quot;</span>)</span>
+<span id="cb362-11"><a href="descriptive-statistics.html#cb362-11" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> bars, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb362-12"><a href="descriptive-statistics.html#cb362-12" tabindex="-1"></a>      <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>bars[<span class="dv">1</span>], <span class="at">y=</span> <span class="dv">10</span>, <span class="at">label =</span> bar_labels[<span class="dv">1</span>])) <span class="sc">+</span></span>
+<span id="cb362-13"><a href="descriptive-statistics.html#cb362-13" tabindex="-1"></a>      <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>bars[<span class="dv">2</span>], <span class="at">y=</span> <span class="dv">10</span>, <span class="at">label =</span> bar_labels[<span class="dv">2</span>])) <span class="sc">+</span></span>
+<span id="cb362-14"><a href="descriptive-statistics.html#cb362-14" tabindex="-1"></a>      <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span>bars[<span class="dv">3</span>], <span class="at">y=</span> <span class="dv">10</span>, <span class="at">label =</span> bar_labels[<span class="dv">3</span>]))</span>
+<span id="cb362-15"><a href="descriptive-statistics.html#cb362-15" tabindex="-1"></a>  p</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:aflsd"></span>
 <img src="main_files/figure-html/aflsd-1.png" alt="An illustration of the standard deviation." width="672" />
 <p class="caption">
 Figure 6.9: An illustration of the standard deviation.
 </p>
 </div>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="descriptive-statistics.html#cb357-1" tabindex="-1"></a>  <span class="fu">with</span>(mammalian_sleep, <span class="fu">mean</span>(sleep_total_h<span class="sc">&gt;</span>(sleep_mean<span class="sc">-</span>sleep_sd) <span class="sc">&amp;</span> sleep_total_h<span class="sc">&lt;</span>(sleep_mean<span class="sc">+</span>sleep_sd) ))</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="descriptive-statistics.html#cb363-1" tabindex="-1"></a>  <span class="fu">with</span>(mammalian_sleep, <span class="fu">mean</span>(sleep_total_h<span class="sc">&gt;</span>(sleep_mean<span class="sc">-</span>sleep_sd) <span class="sc">&amp;</span> sleep_total_h<span class="sc">&lt;</span>(sleep_mean<span class="sc">+</span>sleep_sd) ))</span></code></pre></div>
 <pre class="r-output"><code>## [1] 0.6385542</code></pre>
 <div id="bessels-correction-whats-up-with-all-those-n-1s-in-the-denominator" class="section level4 hasAnchor" number="6.3.6.1">
 <h4><span class="header-section-number">6.3.6.1</span> Bessel’s correction: What’s up with all those <span class="math inline">\(N-1\)</span>s in the denominator?<a href="descriptive-statistics.html#bessels-correction-whats-up-with-all-those-n-1s-in-the-denominator" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1115,7 +1028,7 @@ In short, the IQR and the standard deviation are easily the two most common meas
 <li>For numeric variables, we get a whole bunch of useful descriptive statistics. It gives us the minimum and maximum values (and thus the range), the first and third quartiles (25th and 75th percentiles; and thus the IQR), the mean and the median.</li>
 <li>In sum, it gives us a pretty good collection of descriptive statistics related to the central tendency and the spread of the data.</li>
 </ul>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="descriptive-statistics.html#cb359-1" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="descriptive-statistics.html#cb365-1" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h )</span></code></pre></div>
 <pre class="r-output"><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    2.00    8.00   10.00   10.41   14.00   20.00</code></pre>
 </div>
@@ -1124,7 +1037,7 @@ In short, the IQR and the standard deviation are easily the two most common meas
 <ul>
 <li>Returns the number of <code>TRUE</code> and <code>FALSE</code> values.</li>
 </ul>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="descriptive-statistics.html#cb361-1" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h <span class="sc">&gt;</span> <span class="dv">10</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="descriptive-statistics.html#cb367-1" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep<span class="sc">$</span>sleep_total_h <span class="sc">&gt;</span> <span class="dv">10</span> )</span></code></pre></div>
 <pre class="r-output"><code>##    Mode   FALSE    TRUE 
 ## logical      45      38</code></pre>
 </div>
@@ -1133,7 +1046,7 @@ In short, the IQR and the standard deviation are easily the two most common meas
 <ul>
 <li>Returns the number of observations for each factor level.</li>
 </ul>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="descriptive-statistics.html#cb363-1" tabindex="-1"></a><span class="fu">summary</span>( <span class="fu">as.factor</span>(mammalian_sleep<span class="sc">$</span>name[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]) )</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="descriptive-statistics.html#cb369-1" tabindex="-1"></a><span class="fu">summary</span>( <span class="fu">as.factor</span>(mammalian_sleep<span class="sc">$</span>name[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]) )</span></code></pre></div>
 <pre class="r-output"><code>##                    Cheetah                        Cow 
 ##                          1                          1 
 ##                        Dog Greater short-tailed shrew 
@@ -1150,7 +1063,7 @@ In short, the IQR and the standard deviation are easily the two most common meas
 <ul>
 <li>Returns almost no useful information except for length.</li>
 </ul>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="descriptive-statistics.html#cb365-1" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep<span class="sc">$</span>name )</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="descriptive-statistics.html#cb371-1" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep<span class="sc">$</span>name )</span></code></pre></div>
 <pre class="r-output"><code>##    Length     Class      Mode 
 ##        83 character character</code></pre>
 </div>
@@ -1160,7 +1073,7 @@ In short, the IQR and the standard deviation are easily the two most common meas
 <ul>
 <li><code>summary()</code> can also be called on a data frame, in which case it returns summaries of all variables.</li>
 </ul>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="descriptive-statistics.html#cb367-1" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep )</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="descriptive-statistics.html#cb373-1" tabindex="-1"></a><span class="fu">summary</span>( mammalian_sleep )</span></code></pre></div>
 <pre class="r-output"><code>##      name           sleep_total_h     bodywt_kg       
 ##  Length:83          Min.   : 2.00   Min.   :   0.005  
 ##  Class :character   1st Qu.: 8.00   1st Qu.:   0.174  
@@ -1180,17 +1093,25 @@ Figure 6.10: Different correlations.
 </p>
 </div>
 <p>In R, we can calculate the correlations of two variables using the <code>cor()</code> function. Consider the following example.</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="descriptive-statistics.html#cb369-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb369-2"><a href="descriptive-statistics.html#cb369-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> (x<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb369-3"><a href="descriptive-statistics.html#cb369-3" tabindex="-1"></a></span>
-<span id="cb369-4"><a href="descriptive-statistics.html#cb369-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y=</span>y)) <span class="sc">+</span></span>
-<span id="cb369-5"><a href="descriptive-statistics.html#cb369-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="descriptive-statistics.html#cb370-1" tabindex="-1"></a><span class="fu">cor</span>(x,y)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="descriptive-statistics.html#cb375-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb375-2"><a href="descriptive-statistics.html#cb375-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> (x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb375-3"><a href="descriptive-statistics.html#cb375-3" tabindex="-1"></a></span>
+<span id="cb375-4"><a href="descriptive-statistics.html#cb375-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y=</span>y)) <span class="sc">+</span></span>
+<span id="cb375-5"><a href="descriptive-statistics.html#cb375-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="descriptive-statistics.html#cb376-1" tabindex="-1"></a><span class="fu">cor</span>(x,y)</span></code></pre></div>
 <pre class="r-output"><code>## [1] 0.9713482</code></pre>
 
 </div>
 </div>
+
+
+
+
+
+
+
+
 <div class="footnotes">
 <hr />
 <ol start="1">
@@ -1204,8 +1125,8 @@ Figure 6.10: Different correlations.
           </div>
         </div>
       </div>
-<a href="plotting-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="linear-regression-with-one-predictor.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="plotting-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1236,7 +1157,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-desc_stats.Rmd",
+"link": "https://github.com/umitatlamaz/ling_411/edit/main/05-desc_stats.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -1247,7 +1168,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["main.pdf", "main.epub"],
+"download": ["main.pdf"],
 "search": {
 "engine": "fuse",
 "options": null

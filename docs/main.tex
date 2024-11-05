@@ -120,7 +120,7 @@
 
 \title{Ling 411 - Fall 2024}
 \author{Ümit Atlamaz}
-\date{2024-11-04}
+\date{2024-11-05}
 
 \begin{document}
 \maketitle
@@ -3157,7 +3157,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 
 \chapter{Plotting}\label{plotting-1}
 
-(04 November, 2024, 12:42)
+(05 November, 2024, 11:13)
 
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}
 
@@ -3490,6 +3490,1406 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 \end{Shaded}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-155-1.pdf}
+
+\section{Adding Labels to the Plot}\label{adding-labels-to-the-plot}
+
+\begin{itemize}
+\tightlist
+\item
+  Plots are more meaningful when they have a title and labels indicating what the plot is about and what each axis represents.
+\item
+  We can add titles and labels using the \texttt{labs()} function.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{color =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()  }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{my\_group) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"My First Plot"}\NormalTok{, }\AttributeTok{x =} \StringTok{" x axis = a"}\NormalTok{, }\AttributeTok{y =} \StringTok{"y axis = a squared"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-156-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  Notice that sometimes we want to use a mathematical expression in the labels or title. For example, we should be able to write \(a^2\) rather than a squared.
+\item
+  For this we can use the \texttt{expression} function.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{color =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()  }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{my\_group) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"My First Plot"}\NormalTok{, }\AttributeTok{x =} \StringTok{" x axis = a"}\NormalTok{, }\AttributeTok{y =} \FunctionTok{expression}\NormalTok{(}\StringTok{"y axis ="} \SpecialCharTok{\textasciitilde{}}\NormalTok{ a}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-157-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  We can further modify the size of the title and the labels either by selecting a predefined theme or manually defining the size, font, color, etc.
+\end{itemize}
+
+\subsection{Classic Theme}\label{classic-theme}
+
+\begin{itemize}
+\tightlist
+\item
+  Here is a classic theme
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{color =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()  }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{my\_group) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"My First Plot"}\NormalTok{, }\AttributeTok{x =} \StringTok{" x axis = a"}\NormalTok{, }\AttributeTok{y =} \FunctionTok{expression}\NormalTok{(}\StringTok{"y axis ="} \SpecialCharTok{\textasciitilde{}}\NormalTok{ a}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-158-1.pdf}
+
+\subsection{Minimal Theme}\label{minimal-theme}
+
+Here is a minimal theme
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{color =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()  }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{my\_group) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"My First Plot"}\NormalTok{, }\AttributeTok{x =} \StringTok{" x axis = a"}\NormalTok{, }\AttributeTok{y =} \FunctionTok{expression}\NormalTok{(}\StringTok{"y axis ="} \SpecialCharTok{\textasciitilde{}}\NormalTok{ a}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-159-1.pdf}
+
+\subsection{Dark Theme}\label{dark-theme}
+
+Here is a dark theme
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{color =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()  }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{my\_group) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"My First Plot"}\NormalTok{, }\AttributeTok{x =} \StringTok{" x axis = a"}\NormalTok{, }\AttributeTok{y =} \FunctionTok{expression}\NormalTok{(}\StringTok{"y axis ="} \SpecialCharTok{\textasciitilde{}}\NormalTok{ a}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_dark}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-160-1.pdf}
+
+\subsection{Modifying the size of the title and labels.}\label{modifying-the-size-of-the-title-and-labels.}
+
+We can specify the font size, face, color etc. by adding some arguments into the theme function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(a, a\_sq, }\AttributeTok{color =}\NormalTok{ my\_group)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()  }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{my\_group) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"My First Plot"}\NormalTok{, }\AttributeTok{x =} \StringTok{" x axis = a"}\NormalTok{, }\AttributeTok{y =} \FunctionTok{expression}\NormalTok{(}\StringTok{"y axis ="} \SpecialCharTok{\textasciitilde{}}\NormalTok{ a}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{20}\NormalTok{, }\AttributeTok{color =}\StringTok{\textquotesingle{}steelblue\textquotesingle{}}\NormalTok{, }\AttributeTok{face =} \StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{),}
+    \AttributeTok{axis.title.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{16}\NormalTok{, }\AttributeTok{color =}\StringTok{\textquotesingle{}brown\textquotesingle{}}\NormalTok{, }\AttributeTok{face =} \StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{),}
+    \AttributeTok{axis.title.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{16}\NormalTok{, }\AttributeTok{color =}\StringTok{\textquotesingle{}brown\textquotesingle{}}\NormalTok{, }\AttributeTok{face =} \StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{),}
+    \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{, }\AttributeTok{color =} \StringTok{\textquotesingle{}gray20\textquotesingle{}}\NormalTok{),}
+    \AttributeTok{axis.text.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{, }\AttributeTok{color =} \StringTok{\textquotesingle{}gray20\textquotesingle{}}\NormalTok{),}
+    \AttributeTok{strip.text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{, }\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{),}
+    \AttributeTok{legend.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{20}\NormalTok{, }\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{face =} \StringTok{\textquotesingle{}bold\textquotesingle{}}\NormalTok{),}
+    \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{16}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-161-1.pdf}
+
+\chapter{Descriptive Statistics}\label{descriptive-statistics}
+
+Anytime you have some data, one of the first tasks you need to do is to find ways to summarize your data neatly. Raw data by itself will not make much sense. So, you want to calculate some summary statistics that describes your data. This is \textbf{descriptive statistics} (as opposed to \textbf{inferential statistics}).
+
+Let us start with a simple dataset about the mammalian sleep hours.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(magrittr)}
+\FunctionTok{library}\NormalTok{(lsr)}
+\NormalTok{mammalian\_sleep }\OtherTok{\textless{}{-}} 
+      \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"./data/msleep\_ggplot2.csv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+      \FunctionTok{select}\NormalTok{(name, sleep\_total, bodywt) }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{rename}\NormalTok{(}\AttributeTok{sleep\_total\_h =}\NormalTok{ sleep\_total, }\AttributeTok{bodywt\_kg =}\NormalTok{ bodywt) }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{mutate}\NormalTok{(}\AttributeTok{sleep\_total\_h =} \FunctionTok{round}\NormalTok{(sleep\_total\_h) )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 83 Columns: 11
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (5): name, genus, vore, order, conservation
+## dbl (6): sleep_total, sleep_rem, sleep_cycle, awake, brainwt, bodywt
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(mammalian\_sleep)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 6 x 3}
+\NormalTok{\#\#   name                       sleep\_total\_h bodywt\_kg}
+\NormalTok{\#\#   \textless{}chr\textgreater{}                              \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 Cheetah                               12    50    }
+\NormalTok{\#\# 2 Owl monkey                            17     0.48 }
+\NormalTok{\#\# 3 Mountain beaver                       14     1.35 }
+\NormalTok{\#\# 4 Greater short{-}tailed shrew            15     0.019}
+\NormalTok{\#\# 5 Cow                                    4   600    }
+\NormalTok{\#\# 6 Three{-}toed sloth                      14     3.85}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  There are three variables here, \texttt{name}, \texttt{sleep\_total\_h} and \texttt{bodywt\_kg}. For each animal named in \texttt{name}, the \texttt{sleep\_total\_h} variable contains the average number of hours animals of this kind sleep per day. The variable \texttt{bodywt\_kg} contains the average weight of that animal in kg.
+\item
+  Let's have a look at the \texttt{sleep\_total\_h} variable:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1] 12 17 14 15  4 14  9  7 10  3  5  9 10 12 10  8  9 17  5 18  4 20  3  3 10}
+\NormalTok{\#\# [26] 11 15 12 10  2  3  6  6  8 10  3 19 10 14 14 13 12 20 15 11  8 14  8  4 10}
+\NormalTok{\#\# [51] 16 10 14  9 10 11 12 14  4  6 11 18  5 13  9 10  8 11 11 17 14 16 13  9  9}
+\NormalTok{\#\# [76] 16  4 16  9  5  6 12 10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  This output doesn't make it easy to get a sense of what the data are actually saying. Just ``looking at the data'' isn't a terribly effective way of understanding data. In order to get some idea about what's going on, we need to calculate some descriptive statistics and draw some nice pictures.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(mammalian\_sleep, }\FunctionTok{aes}\NormalTok{(sleep\_total\_h)) }\SpecialCharTok{+}
+        \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\DecValTok{1}\NormalTok{,}
+                       \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+                       \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{main_files/figure-latex/histogram1-1.pdf}
+\caption{\label{fig:histogram1}A histogram of the average amount of sleep by animal (the \texttt{sleep\_total\_h} variable). As you might expect, the larger the margin the less frequently you tend to see it.}
+\end{figure}
+
+\section{Distributions}\label{distributions}
+
+Let us see a couple more data examples to get a sense of what data might look like in the wild. First, let us generate some random data with a \textbf{uniform distribution} using the \texttt{runif()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uniform }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble\_col}\NormalTok{(}\FunctionTok{runif}\NormalTok{(}\DecValTok{120}\NormalTok{, }\AttributeTok{min =} \DecValTok{1}\NormalTok{, }\AttributeTok{max =} \DecValTok{6}\NormalTok{),}\AttributeTok{column\_name =} \StringTok{"some\_value"}\NormalTok{)}
+
+\NormalTok{uniform}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 120 x 1}
+\NormalTok{\#\#    some\_value}
+\NormalTok{\#\#         \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1       2.23}
+\NormalTok{\#\#  2       1.21}
+\NormalTok{\#\#  3       2.64}
+\NormalTok{\#\#  4       5.77}
+\NormalTok{\#\#  5       5.45}
+\NormalTok{\#\#  6       4.46}
+\NormalTok{\#\#  7       4.20}
+\NormalTok{\#\#  8       5.97}
+\NormalTok{\#\#  9       4.28}
+\NormalTok{\#\# 10       4.54}
+\NormalTok{\#\# \# i 110 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Let us plot the uniformly distributed data using a histogram.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(uniform, }\FunctionTok{aes}\NormalTok{(some\_value)) }\SpecialCharTok{+}
+        \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.5}\NormalTok{,}\AttributeTok{boundary=}\DecValTok{0}\NormalTok{,}
+                       \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+                       \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{main_files/figure-latex/histogram2-1.pdf}
+\caption{\label{fig:histogram2}Histogram of a uniform distribution.}
+\end{figure}
+
+This looks good but it doesn't make as much intuitive sense as we'd like. Let us tweak this slightly. Assume that you have a fair dice with 6 sides. So, whenever we roll the dice, each side has an equal probability (i.e.~1/6). Let us simulate this. The data is going to be very similar, except that this time we will need \textbf{discrete} values rather than \textbf{continuous} values. For that, we need to use the \texttt{rdunif()} function which generates random values with a discrete uniform distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uniform }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble\_col}\NormalTok{(}\FunctionTok{rdunif}\NormalTok{(}\DecValTok{120}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{column\_name=}\StringTok{"dice\_value"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `rdunif()` was deprecated in purrr 1.0.0.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uniform}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 120 x 1}
+\NormalTok{\#\#    dice\_value}
+\NormalTok{\#\#         \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1          2}
+\NormalTok{\#\#  2          2}
+\NormalTok{\#\#  3          6}
+\NormalTok{\#\#  4          4}
+\NormalTok{\#\#  5          4}
+\NormalTok{\#\#  6          6}
+\NormalTok{\#\#  7          1}
+\NormalTok{\#\#  8          6}
+\NormalTok{\#\#  9          6}
+\NormalTok{\#\# 10          6}
+\NormalTok{\#\# \# i 110 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(uniform, }\FunctionTok{aes}\NormalTok{(dice\_value)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+           \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-165-1.pdf}
+
+\begin{verbatim}
+Just a quick point to think about. Why did we use a histogram for the 
+continuous uniform distribution and a bar graph for a discrete one? 
+\end{verbatim}
+
+Now, let us generate some random data with a \textbf{normal distribution} using the \texttt{rnorm}()` function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{normal }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{160}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Let us plot the normally distributed data using a histogram.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(normal, }\FunctionTok{aes}\NormalTok{(value)) }\SpecialCharTok{+}
+        \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.2}\NormalTok{,}
+                       \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+                       \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{main_files/figure-latex/histogram3-1.pdf}
+\caption{\label{fig:histogram3}Histogram of a normal distribution.}
+\end{figure}
+
+Here's another one where we provide the \textbf{mean} and \textbf{standard deviation} parameteres.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{normal2 }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{160}\NormalTok{, }\AttributeTok{mean =} \DecValTok{8}\NormalTok{, }\AttributeTok{sd=} \FloatTok{0.5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Let us plot the second normally distributed data using a histogram.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(normal2, }\FunctionTok{aes}\NormalTok{(value)) }\SpecialCharTok{+}
+        \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.2}\NormalTok{,}
+                       \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+                       \AttributeTok{fill =} \StringTok{\textquotesingle{}steelblue\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{main_files/figure-latex/histogram4-1.pdf}
+\caption{\label{fig:histogram4}Histogram of a normal distribution.}
+\end{figure}
+
+Finally, let us plot both of the normally distributed data on the same plot to see them side by side.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(normal, }\FunctionTok{aes}\NormalTok{(value)) }\SpecialCharTok{+}
+        \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth=}\FloatTok{0.2}\NormalTok{,}
+                       \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+                       \AttributeTok{fill =} \StringTok{\textquotesingle{}lightblue\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+          \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{data=}\NormalTok{normal2, }\AttributeTok{binwidth=}\FloatTok{0.2}\NormalTok{,}\AttributeTok{boundary=}\DecValTok{0}\NormalTok{,}
+                       \AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{,}
+                       \AttributeTok{fill =} \StringTok{\textquotesingle{}steelblue\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{main_files/figure-latex/histogram5-1.pdf}
+\caption{\label{fig:histogram5}Histogram of two normal distributions side by side.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{./img/descriptives2/data_distribution.png}
+\caption{\label{fig:normaldatadistributions}Distributions with different means and standard deviations.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{./img/descriptives2/normal_distribution.png}
+\caption{\label{fig:normalparameterdistributions}Distributions with different means and standard deviations. The light gray area covers the 68\% of the data and the total of the gray areas cover the 95\% of the data.}
+\end{figure}
+
+\section{Measures of central tendency}\label{centraltendency}
+
+Drawing pictures of the data, as I did in Figure \ref{fig:histogram1} is an excellent way to convey the ``gist'' of what the data is trying to tell you, it's often extremely useful to try to condense the data into a few simple ``summary'' statistics. In most situations, the first thing that you'll want to calculate is a measure of \textbf{\emph{central tendency}}. That is, you'd like to know something about the ``average'' or ``middle'' of your data lies. The three most commonly used measures are the \textbf{mean}, \textbf{median} and \textbf{mode}; occasionally people will also report a trimmed mean. I'll explain each of these in turn, and then discuss when each of them is useful.
+
+\subsection{The mean}\label{mean}
+
+\begin{itemize}
+\item
+  The \textbf{\emph{mean}} of a set of observations is just a normal, old-fashioned average: add all of the values up, and then divide by the total number of values. The first five animals' typical amount of sleep is 12 + 17 + 14 + 15 + 4, so the mean of these observations is just:
+  \[
+  \frac{12 + 17 + 14 + 15 + 4}{5} = \frac{62.4}{5} = 12.48
+  \]
+\item
+  Of course, this definition of the mean isn't news to anyone: averages (i.e., means) are used so often in everyday life that this is pretty familiar stuff. However, since the concept of a mean is something that everyone already understands, I'll use this as an excuse to start introducing some of the mathematical notation that statisticians use to describe this calculation, and talk about how the calculations would be done in R.
+\item
+  The first piece of notation to introduce is \(N\), which we'll use to refer to the number of observations that we're averaging (in this case \(N = 5\)).
+\item
+  Next, we need to attach a label to the observations themselves. It's traditional to use \(X\) for this, and to use subscripts to indicate which observation we're actually talking about.
+\item
+  That is, we'll use \(X_1\) to refer to the first observation, \(X_2\) to refer to the second observation, and so on, all the way up to \(X_N\) for the last one. Or, to say the same thing in a slightly more abstract way, we use \(X_i\) to refer to the \(i\)-th observation. Just to make sure we're clear on the notation, the following table lists the 5 observations in the \texttt{sleep\_total\_h} variable, along with the mathematical symbol used to refer to it, and the actual value that the observation corresponds to:
+\end{itemize}
+
+\begin{tabular}{lll}
+\toprule
+the observation & its symbol & the observed value\\
+\midrule
+Cheetah (animal 1) & \$X\_1\$ & 12 hours\\
+Owl monkey (animal 2) & \$X\_2\$ & 17 hours\\
+Mountain beaver (animal 3) & \$X\_3\$ & 14 hours\\
+Greater short-tailed shrew (animal 4) & \$X\_4\$ & 15 hours\\
+Cow (animal 5) & \$X\_5\$ & 4 hours\\
+\bottomrule
+\end{tabular}
+
+\begin{itemize}
+\item
+  Okay, now let's try to write a formula for the mean. By tradition, we use \(\bar{X}\) as the notation for the mean. So the calculation for the mean could be expressed using the following formula:
+  \[
+  \bar{X} = \frac{X_1 + X_2 + ... + X_{N-1} + X_N}{N}
+  \]
+\item
+  This formula is entirely correct, but it's terribly long, so we make use of the \textbf{\emph{summation symbol}} \(\scriptstyle\sum\) to shorten it.\footnote{The choice to use \(\Sigma\) to denote summation isn't arbitrary: it's the Greek upper case letter sigma, which is the analogue of the letter S in that alphabet. Similarly, there's an equivalent symbol used to denote the multiplication of lots of numbers: because multiplications are also called ``products'', we use the \(\Pi\) symbol for this; the Greek upper case pi, which is the analogue of the letter P.} If I want to add up the first five observations, I could write out the sum the long way, \(X_1 + X_2 + X_3 + X_4 +X_5\) or I could use the summation symbol to shorten it to this:
+  \[
+  \sum_{i=1}^5 X_i
+  \]
+\item
+  Taken literally, this could be read as ``the sum, taken over all \(i\) values from 1 to 5, of the value \(X_i\)''. But basically, what it means is ``add up the first five observations''. In any case, we can use this notation to write out the formula for the mean, which looks like this:
+  \[
+  \bar{X} = \frac{1}{N} \sum_{i=1}^N X_i 
+  \]
+\item
+  In all honesty, I can't imagine that all this mathematical notation helps clarify the concept of the mean at all. In fact, it's really just a fancy way of writing out the same thing I said in words: add all the values up, and then divide by the total number of items. However, that's not really the reason I went into all that detail.
+\item
+  My goal was to try to make sure that everyone reading this book is clear on the notation that we'll be using throughout the book: \(\bar{X}\) for the mean, \(\scriptstyle\sum\) for the idea of summation, \(X_i\) for the \(i\)th observation, and \(N\) for the total number of observations.
+\item
+  We're going to be re-using these symbols a fair bit, so it's important that you understand them well enough to be able to ``read'' the equations, and to be able to see that it's just saying ``add up lots of things and then divide by another thing''.
+\end{itemize}
+
+\subsection{Calculating the mean in R}\label{calculating-the-mean-in-r}
+
+Okay that's the maths, how do we get the magic computing box to do the work for us? If you really wanted to, you could do this calculation directly in R. For the first numbers, do this just by typing it in as if R were a calculator\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{12} \SpecialCharTok{+} \DecValTok{17} \SpecialCharTok{+} \DecValTok{14} \SpecialCharTok{+} \DecValTok{15} \SpecialCharTok{+} \DecValTok{4}\NormalTok{) }\SpecialCharTok{/} \DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 12.4}
+\end{Highlighting}
+\end{Shaded}
+
+\ldots{} in which case R outputs the answer 12.4, just as if it were a calculator.
+
+\begin{itemize}
+\tightlist
+\item
+  However, we learned quicker ways of doing that
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{( mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{] )}\SpecialCharTok{/} \DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 12.4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# or:}
+\FunctionTok{mean}\NormalTok{( mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{] )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 12.4}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{The median}\label{median}
+
+\begin{itemize}
+\item
+  The second measure of central tendency that people use a lot is the \textbf{\emph{median}}, and it's even easier to describe than the mean. The median of a set of observations is just the middle value.
+\item
+  As before let's imagine we were interested only in the first 5 animals: They sleep 12, 17, 14, 15, and 4 hours respectively. To figure out the median, we sort these numbers into ascending order:
+  \[
+  4, 12, \color{red}{14}, 15, 17
+  \]
+\item
+  From inspection, it's obvious that the median value of these 5 observations is 14, since that's the middle one in the sorted list (I've put it in red to make it even more obvious). Easy stuff.
+\item
+  But what should we do if we were interested in the first 6 animals rather than the first 5? Since the sixth animal sleeps for 14 hours, our sorted list is now:
+  \[
+  4, 12, \color{red}{14}, \color{red}{14}, 15, 17
+  \]
+\item
+  That's also easy. It's still 14.
+\item
+  But what we do if we were interested in the first 8 animals? Here is our new sorted list.
+  \[
+  4,  7,  9, \color{red}{12}, \color{red}{14}, 14, 15, 17
+  \]
+\item
+  There are now \emph{two} middle numbers, 12 and 14. The median is defined as the average of those two numbers, which is of course 13.
+\item
+  To understand why, think of the median as the value that divides the sorted list of numbers into two halves -- those on its left, and those on its right.
+\item
+  As before, it's very tedious to do this by hand when you've got lots of numbers. To illustrate this, here's what happens when you use R to sort all the sleep durations. First, I'll use the \texttt{sort()} function to display the 83 numbers in increasing numerical order:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sort}\NormalTok{( mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1]  2  3  3  3  3  3  4  4  4  4  4  5  5  5  5  6  6  6  6  7  8  8  8  8  8}
+\NormalTok{\#\# [26]  9  9  9  9  9  9  9  9 10 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11}
+\NormalTok{\#\# [51] 11 12 12 12 12 12 12 13 13 13 14 14 14 14 14 14 14 14 15 15 15 16 16 16 16}
+\NormalTok{\#\# [76] 17 17 17 18 18 19 20 20}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Because the vector is 83 elements long, the middle value is at position 42. This means that the median of this vector is 10. In real life, of course, no-one actually calculates the median by sorting the data and then looking for the middle value. In real life, we use the median command:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{median}\NormalTok{( mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 10}
+\end{Highlighting}
+\end{Shaded}
+
+which outputs the median value of 10.
+
+\subsection{Mean or median? What's the difference?}\label{mean-or-median-whats-the-difference}
+
+\includegraphics{./img/descriptives2/meanmedian.png}
+
+\begin{itemize}
+\item
+  Knowing how to calculate means and medians is only a part of the story. You also need to understand what each one is saying about the data, and what that implies for when you should use each one. This is illustrated in Figure \ref{fig:meanmedian} the mean is kind of like the ``centre of gravity'' of the data set, whereas the median is the ``middle value'' in the data. What this implies, as far as which one you should use, depends a little on what type of data you've got and what you're trying to achieve. As a rough guide:
+\item
+  One consequence is that there's systematic differences between the mean and the median when the histogram is asymmetric (skewed). This is illustrated in Figure \ref{fig:meanmedian} notice that the median (right hand side) is located closer to the ``body'' of the histogram, whereas the mean (left hand side) gets dragged towards the ``tail'' (where the extreme values are).
+\item
+  To give a concrete example, suppose Bob (income \$50,000), Kate (income \$60,000) and Jane (income \$65,000) are sitting at a table: the average income at the table is \$58,333 and the median income is \$60,000. Then Bill sits down with them (income \$100,000,000). The average income has now jumped to \$25,043,750 but the median rises only to \$62,500. If you're interested in looking at the overall income at the table, the mean might be the right answer; but if you're interested in what counts as a typical income at the table, the median would be a better choice here.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{./img/descriptives2/mean_median.png}
+\caption{\label{fig:meanmedian2}Another example of mean and median where mean is moved by the outliers but median is constant.}
+\end{figure}
+
+\subsection{Trimmed mean}\label{trimmedmean}
+
+\begin{itemize}
+\item
+  One of the fundamental rules of applied statistics is that the data are messy. Real life is never simple, and so the data sets that you obtain are never as straightforward as the statistical theory says.\footnote{Or at least, the basic statistical theory -- these days there is a whole subfield of statistics called \emph{robust statistics} that tries to grapple with the messiness of real data and develop theory that can cope with it.} This can have awkward consequences. To illustrate, consider this rather strange looking data set (nevermind what it represents):
+  \[
+  -100,2,3,4,5,6,7,8,9,10
+  \]
+\item
+  If you were to observe this in a real life data set, you'd probably suspect that something funny was going on with the \(-100\) value. It's probably an \textbf{\emph{outlier}}, a value that doesn't really belong with the others. You might consider removing it from the data set entirely, and in this particular case I'd probably agree with that course of action.
+\item
+  In real life, however, you don't always get such cut-and-dried examples. For instance, you might get this instead:
+  \[
+  -15,2,3,4,5,6,7,8,9,12
+  \]
+\item
+  The \(-15\) looks a bit suspicious, but not anywhere near as much as that \(-100\) did. In this case, it's a little trickier. It \emph{might} be a legitimate observation, it might not.
+\item
+  When faced with a situation where some of the most extreme-valued observations might not be quite trustworthy, the mean is not necessarily a good measure of central tendency. It is highly sensitive to one or two extreme values, and is thus not considered to be a \textbf{\emph{robust}} measure.
+\item
+  One remedy that we've seen is to use the median. A more general solution is to use a ``trimmed mean''. To calculate a trimmed mean, what you do is ``discard'' the most extreme examples on both ends (i.e., the largest and the smallest), and then take the mean of everything else. The goal is to preserve the best characteristics of the mean and the median:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    just like a median, you aren't highly influenced by extreme outliers, but \ldots{}
+  \item
+    like the mean, you ``use'' more than one of the observations.
+  \end{itemize}
+\item
+  Generally, we describe a trimmed mean in terms of the percentage of observation on either side that are discarded. So, for instance, a 10\% trimmed mean discards the largest 10\% of the observations \emph{and} the smallest 10\% of the observations, and then takes the mean of the remaining 80\% of the observations.
+\item
+  Not surprisingly, the 0\% trimmed mean is just the regular mean, and the 50\% trimmed mean is the median. In that sense, trimmed means provide a whole family of central tendency measures that span the range from the mean to the median.
+\item
+  For our toy example above, we have 10 observations, and so a 10\% trimmed mean is calculated by ignoring the largest value (i.e., \texttt{12}) and the smallest value (i.e., \texttt{-15}) and taking the mean of the remaining values. First, let's enter the data
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{( }\SpecialCharTok{{-}}\DecValTok{15}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{12}\NormalTok{ )}
+\end{Highlighting}
+\end{Shaded}
+
+Next, let's calculate means and medians:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{( dataset )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 4.1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{median}\NormalTok{( dataset )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 5.5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  That's a fairly substantial difference, but I'm tempted to think that the mean is being influenced a bit too much by the extreme values at either end of the data set, especially the \(-15\) one. So let's just try trimming the mean a bit. If I take a 10\% trimmed mean, we'll drop the extreme values on either side, and take the mean of the rest:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{( dataset, }\AttributeTok{trim =}\NormalTok{ .}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 5.5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  In this case it gives exactly the same answer as the median. Note that, to get a 10\% trimmed mean you write \texttt{trim\ =\ .1}, not \texttt{trim\ =\ 10}.
+\end{itemize}
+
+\subsection{Mode}\label{mode}
+
+\begin{itemize}
+\item
+  The \textbf{\emph{mode}} is the last measure of central tendency we'll look at. It is very simple: it is the value that occurs most frequently.
+\item
+  Let's look at the some soccer data: specifically, the European Cup and Champions League results in the time from 1955-2016.
+\item
+  Lets find out which team has won the most matches. The command below tells R we just want the first 25 rows of the data.frame.
+\end{itemize}
+
+\subsection{Summary}\label{summary}
+
+\begin{itemize}
+\tightlist
+\item
+  There are multiple measures of central tendency that can be used to summarize an aspect of a distribution: \textbf{\_ (arithmetic) mean, median, and mode\_}.
+\item
+  They answer different questions about distribution. For example, in the distribution of number of goals per game in the previous section
+
+  \begin{itemize}
+  \tightlist
+  \item
+    mean: ``If the same number of goals were scored in each game, how many goals would be scored?''
+  \item
+    median: ``What is a `mediocre' game like?''
+  \item
+    mode: ``What is the most typical game like?''
+  \end{itemize}
+\end{itemize}
+
+\section{Measures of variability}\label{var}
+
+\begin{itemize}
+\tightlist
+\item
+  The statistics that we've discussed so far all relate to \emph{central tendency}. That is, they all talk about which values are ``in the middle'' or ``popular'' in the data.
+\item
+  The second thing that we really want is a measure of the \textbf{\emph{variability}} of the data.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    That is, how ``spread out'' are the data?
+  \item
+    In other words, how `representative' is our measure of central tendency of most data points.
+  \end{itemize}
+\item
+  Let's consider interval and ratio scale data.
+\end{itemize}
+
+\subsection{Range}\label{range}
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{\emph{range}} of a variable is very simple: it's the biggest value minus the smallest value. For the sleep data, the maximum value is 20, and the minimum value is 2. We can calculate these values in R using the \texttt{max()} and \texttt{min()} functions:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{max}\NormalTok{( mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 20}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{min}\NormalTok{( mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 2}
+\end{Highlighting}
+\end{Shaded}
+
+where I've omitted the output because it's not interesting.
+
+\begin{itemize}
+\tightlist
+\item
+  The other possibility is to use the \texttt{range()} function; which outputs both the minimum value and the maximum value in a vector, like this:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{range}\NormalTok{( mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1]  2 20}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Although the range is the simplest way to quantify the notion of ``variability'', it's one of the worst. Recall from our discussion of the mean that we want our summary measure to be robust. If the data set has one or two extremely bad values in it, we'd like our statistics not to be unduly influenced by these cases. If we look once again at our toy example of a data set containing very extreme outliers\ldots{}
+  \[
+  -100,2,3,4,5,6,7,8,9,10
+  \]
+  \ldots{} it is clear that the range is not robust, since this has a range of 110, but if the outlier were removed we would have a range of only 8.
+\end{itemize}
+
+\subsection{Quantiles and percentile}\label{quantiles-and-percentile}
+
+\begin{itemize}
+\item
+  A key concept we will need to build on to conceptualize several other measures of variability are \textbf{\emph{quantiles}} or \textbf{\emph{percentiles}}.
+\item
+  A \textbf{\emph{percentile}} is the smallest value in a dataset such that a set percentage is smaller than it. (A \textbf{\emph{quantile}} does pretty much the same but is more generic.)
+\item
+  For example, if the 10-th percentile (i.e., the \(0.1\) quantile) of a list of values is 73, this means that 10 percent of the values are smaller than or equal to 73.
+\item
+  Let's take a look at the 20 shortest sorted sleep durations and determine the 10-th percentile (\(0.1\) quantile), 30-th percentile (\(0.3\) quantile), 50-th percentile (\(0.5\) quantile), and the 90-th percentile (\(0.9\) quantile).
+\item
+  Here are the values:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sort}\NormalTok{(mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h)[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1] 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 6 6 6 6 7}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  And here is a sorted plot of the 20 smallest values:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{quantile }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.9}\NormalTok{)}
+\NormalTok{quantile\_points }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.9}\NormalTok{)}\SpecialCharTok{*}\DecValTok{20}
+\NormalTok{quantile\_labels }\OtherTok{\textless{}{-}} \FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%0.1f quantile}\SpecialCharTok{\textbackslash{}n}\StringTok{(point \%d of 20)"}\NormalTok{, quantile, quantile\_points)}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\ConstantTok{NULL}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{, }\AttributeTok{y=}\FunctionTok{sort}\NormalTok{(mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h)[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{])) }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ quantile\_points) }\SpecialCharTok{+}
+    \FunctionTok{geom\_label}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{quantile\_points, }\AttributeTok{y=}\FloatTok{6.5}\NormalTok{, }\AttributeTok{label=}\NormalTok{quantile\_labels )) }\SpecialCharTok{+}
+    \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Position in ordered vector"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Sleep (hours)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-179-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  As you can see:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    10-th percentile (\(0.1\) quantile): 3 {[}to be found at position 2, since 2 data points constitute 10 percent of the data{]}
+  \item
+    30-th percentile (\(0.3\) quantile): 3 {[}to be found at position 6, since 6 data points constitute 30 percent of the data{]}
+  \item
+    50-th percentile (\(0.5\) quantile): 4 {[}to be found at position 10, since 10 data points constitute 50 percent of the data{]}
+  \item
+    90-th percentile (\(0.9\) quantile): 6 {[}to be found at position 18, since 18 data points constitute 90 percent of the data{]}
+  \end{itemize}
+\item
+  The 50-th percentile is the median.
+\end{itemize}
+
+\subsection{Interquartile range}\label{interquartile-range}
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{\emph{interquartile range}} (IQR) is like the range, but instead of calculating the difference between the biggest and smallest value, it calculates the difference between the 25th quantile and the 75th quantile.
+\item
+  R provides you with a way of calculating quantiles, using the (surprise, surprise) \texttt{quantile()} function. Let's use it to calculate the median sleep durations:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{quantile}\NormalTok{( }\AttributeTok{x =}\NormalTok{ mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h, }\AttributeTok{probs =}\NormalTok{ .}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# 50\% }
+\NormalTok{\#\#  10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  And not surprisingly, this agrees with the answer that we saw earlier with the \texttt{median()} function. Now, we can actually input lots of quantiles at once, by specifying a vector for the \texttt{probs} argument. So lets do that, and get the 25th and 75th percentile:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{quantile}\NormalTok{( }\AttributeTok{x =}\NormalTok{ mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h, }\AttributeTok{probs =} \FunctionTok{c}\NormalTok{(.}\DecValTok{25}\NormalTok{,.}\DecValTok{75}\NormalTok{) )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# 25\% 75\% }
+\NormalTok{\#\#   8  14}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  And, by noting that \(14 - 8 = 6\), we can see that the interquartile range for the sleep durations is 6. Of course, that seems like too much work to do all that typing, so R has a built in function called \texttt{IQR()} that we can use:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{IQR}\NormalTok{( }\AttributeTok{x =}\NormalTok{ mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 6}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  While it's obvious how to interpret the range, it's a little less obvious how to interpret the IQR. The simplest way to think about it is like this: the interquartile range is the range spanned by the ``middle half'' of the data. That is, one quarter of the data falls below the 25th percentile, one quarter of the data is above the 75th percentile, leaving the ``middle half'' of the data lying in between the two. And the IQR is the range covered by that middle half.
+\item
+  IQR is used to identify the outliers (i.e.~extreme values). Any value above \texttt{Q3\ +\ IQR\ *1.5} or below \texttt{Q1\ -\ IQR*1.5} is considered to be an outlier.
+\end{itemize}
+
+\subsection{Mean absolute deviation}\label{aad}
+
+\begin{itemize}
+\item
+  The range and the interquartile range, both rely on the idea that we can measure the spread of the data by looking at the quantiles of the data.
+\item
+  However, this isn't the only way to think about the problem. A different approach is to select a meaningful reference point (usually the mean or the median) and then report the \textbf{\emph{``typical'' deviations}} from that reference point.
+\item
+  Let's go through the \textbf{\emph{mean absolute deviation}} (AAD for average absolute deviation, since MAD is reserved for the median absolute deviation) from the mean a little more slowly. One useful thing about this measure is that the name actually tells you exactly how to calculate it:
+  \[
+  AAD(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}|
+  \]
+\item
+  Let's compute the AAD for the first data points in the sleep data:
+  \[
+  12, 17, 14, 15, 4
+  \]
+\item
+  The mean of the dataset is 12.4. That is, \(\bar{X} = 12.4\)
+\item
+  The deviations \(X_i - \bar{X}\) are:
+  \[
+  -0.4, 4.6, 1.6, 2.6, -8.4
+  \]
+\item
+  The absolute deviations \(|X_i - \bar{X}|\) are:
+  \[
+  0.4, 4.6, 1.6, 2.6, 8.4
+  \]
+\item
+  The sum of the absolute deviations \(\sum_{i = 1}^N |X_i - \bar{X}|\) is 17.6.
+\item
+  And \(N=5\), which means, that, in our case: \(AAD(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}| = 3.52\)
+\item
+  In R, we can compute it for the entire vector.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean\_sleep }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h)}
+\NormalTok{deviation\_sleep }\OtherTok{\textless{}{-}}\NormalTok{ mean\_sleep }\SpecialCharTok{{-}}\NormalTok{ mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h}
+\FunctionTok{mean}\NormalTok{( }\FunctionTok{abs}\NormalTok{(deviation\_sleep) )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 3.576717}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  An alternative, more compact way to write it is using (lots) pipes:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{subtract}\NormalTok{(., }\FunctionTok{mean}\NormalTok{(.)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{abs}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mean}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 3.576717}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  The interpretation of the AAD is quite straightforward: It is the average distance from the average. When it's big, the values are quite spread out. When it's small, they are close. The units are the same (hours in our case).
+\end{itemize}
+
+\subsection{Variance}\label{variance}
+
+\begin{itemize}
+\item
+  Although the mean absolute deviation measure has its uses, it's not the best measure of variability to use.
+\item
+  For a number of practical reasons, there are some solid reasons to prefer squared deviations rather than absolute deviations. A measure of variability based on \emph{squared deviations} has a number of useful properties in \emph{inferential statistics} and \emph{statistical modeling}.\footnote{I will very briefly mention the one that I think is coolest, for a very particular definition of ``cool'', that is. Variances are \emph{additive}. Here's what that means: suppose I have two variables \(X\) and \(Y\), whose variances are \(\mbox{Var}(X)\) and \(\mbox{Var}(Y)\) respectively. Now imagine I want to define a new variable \(Z\) that is the sum of the two, \(Z = X+Y\). As it turns out, the variance of \(Z\) is equal to \(\mbox{Var}(X) + \mbox{Var}(Y)\). This is a \emph{very} useful property, but it's not true of the other measures that I talk about in this section.}
+\item
+  If we do that, we obtain a measure is called the \textbf{\emph{variance}}, which for a specific set of observations \(X\) is written \(\mbox{s}_X^2\). It is the most wide-spread measure of variability because it is a key concept in \emph{inferential statistics}.
+\item
+  The formula that we use to calculate the variance of a set of observations is as follows:
+  \[
+  \mbox{s}_X^2 = \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2
+  \]
+\item
+  As you can see, it's basically the same formula that we used to calculate the mean absolute deviation, except that:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Instead of using ``absolute deviations'' we use ``squared deviations''.
+  \item
+    Instead of dividing by \(N\) (which gives us the average deviation), we divide by \(N-1\) (which gives us \emph{`sort-of-the-average'}). {[}We will talk about this in a little while.{]}
+  \end{enumerate}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Now that we've got the basic idea, let's have a look at a concrete example. Once again, let's use the first five sleep durations. If we follow the same approach that we took last time, we end up with the following table:
+\end{itemize}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-188}Regular, abssolute, and squared deviations}
+\centering
+\begin{tabular}[t]{lllll}
+\toprule
+Notation [English] & \$i\$ [animal] & \$X\_i\$ [value] & \$X\_i - \textbackslash{}bar\{X\}\$ [deviation from mean] & \$(X\_i - \textbackslash{}bar\{X\})\textasciicircum{}2\$ [squared deviation]\\
+\midrule
+ & 1 & 12 & -0.4 & 0.16\\
+ & 2 & 17 & 4.6 & 21.16\\
+ & 3 & 14 & 1.6 & 2.56\\
+ & 4 & 15 & 2.6 & 6.76\\
+ & 5 & 4 & -8.4 & 70.56\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{itemize}
+\tightlist
+\item
+  That last column contains all of our squared deviations, so all we have to do is average them. If we do that by typing all the numbers into R by hand\ldots{}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{( }\FloatTok{0.16+21.16+2.56+6.76+70.56}\NormalTok{ ) }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{5{-}1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 25.3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  We end up with a variance of 25.3. Exciting, isn't it? For the moment, let's ignore the burning question that you're all probably thinking (i.e., what the heck does a variance of 25.3 actually mean?) and instead talk a bit more about how to do the calculations in R.
+\item
+  As always, we want to avoid having to type in a whole lot of numbers ourselves. And as it happens, we have the vector \texttt{X} lying around, which we created in the previous section. With this in mind, we can calculate the variance of \texttt{X} by using the following command,
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{\textless{}{-}}\NormalTok{ mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
+\NormalTok{(X }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(X) )}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{/}\NormalTok{ (}\FunctionTok{length}\NormalTok{(X) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1]  0.04  5.29  0.64  1.69 17.64}
+\end{Highlighting}
+\end{Shaded}
+
+and as usual we get the same answer as the one that we got when we did everything by hand. However, I \emph{still} think that this is too much typing. Fortunately, R has a built in function called \texttt{var()} which does calculate variances. So we could also do this\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(X)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 25.3}
+\end{Highlighting}
+\end{Shaded}
+
+and you get the same answer. Great.
+
+\subsection{Standard deviation}\label{sd}
+
+\begin{itemize}
+\item
+  One problem with the variance is that it is expressed in odd units. In the case above it's \(h^2\) (\emph{hours squared}). I know what \(m^2\) is, but what are \(h^2\)? No idea.
+\item
+  Suppose that you'd like to have a measure that is expressed in the same units as the data itself (i.e., points, not points-squared). What should you do?
+\item
+  The solution to the problem is obvious: take the square root of the variance, known as the \textbf{\emph{standard deviation}}, also called the ``root mean squared deviation'', or RMSD. This solves out problem fairly neatly.
+\item
+  While nobody has a clue what \emph{``a variance of 19.95 hours-squared''} really means, it's much easier to understand \emph{``a standard deviation of 4.5 hours''}, since it's expressed in the original units.
+\item
+  It is traditional to refer to the standard deviation of a sample of data as \(s_x\), though ``sd'' and ``std dev.'' are also used at times. Because the standard deviation is equal to the square root of the variance, you probably won't be surprised to see that the formula is:
+  \[
+  s_x = \sqrt{ \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2 }
+  \]
+\item
+  Interpreting standard deviations is slightly more complex. Because the standard deviation is derived from the variance, and the variance is a quantity that has little to no meaning that makes sense to us humans, the standard deviation doesn't have a simple interpretation.
+\item
+  As a consequence, most of us just rely on a \textbf{simple rule of thumb}: \textbf{``in general, you should expect 68\% of the data to fall within 1 standard deviation of the mean, 95\% of the data to fall within 2 standard deviation of the mean, and 99.7\% of the data to fall within 3 standard deviations of the mean''}. This rule tends to work pretty well most of the time, but it's not exact: it's actually calculated based on an \emph{assumption} that the histogram is symmetric and ``bell shaped''. (Strictly, the assumption is that the data are \emph{normally} distributed, which is an important concept that we'll discuss more later).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{  p }\OtherTok{\textless{}{-}}\NormalTok{ mammalian\_sleep }\SpecialCharTok{\%\textgreater{}\%}
+        \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(sleep\_total\_h)) }\SpecialCharTok{+}
+        \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth =} \DecValTok{1}\NormalTok{,}
+                       \AttributeTok{color =} \StringTok{"black"}\NormalTok{,}
+                       \AttributeTok{fill =} \StringTok{"lightgrey"}\NormalTok{)}
+
+\NormalTok{  sleep\_sd }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h)}
+\NormalTok{  sleep\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h)}
+\NormalTok{  bars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(sleep\_mean}\SpecialCharTok{{-}}\NormalTok{sleep\_sd, sleep\_mean, sleep\_mean}\SpecialCharTok{+}\NormalTok{sleep\_sd)}
+\NormalTok{  bar\_labels }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"mean{-}1*sd"}\NormalTok{, }\StringTok{"mean"}\NormalTok{, }\StringTok{"mean+1*sd"}\NormalTok{)}
+\NormalTok{  p }\OtherTok{\textless{}{-}}\NormalTok{ p }\SpecialCharTok{+} \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ bars, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+      \FunctionTok{geom\_label}\NormalTok{(}\AttributeTok{data=}\ConstantTok{NULL}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{bars[}\DecValTok{1}\NormalTok{], }\AttributeTok{y=} \DecValTok{10}\NormalTok{, }\AttributeTok{label =}\NormalTok{ bar\_labels[}\DecValTok{1}\NormalTok{])) }\SpecialCharTok{+}
+      \FunctionTok{geom\_label}\NormalTok{(}\AttributeTok{data=}\ConstantTok{NULL}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{bars[}\DecValTok{2}\NormalTok{], }\AttributeTok{y=} \DecValTok{10}\NormalTok{, }\AttributeTok{label =}\NormalTok{ bar\_labels[}\DecValTok{2}\NormalTok{])) }\SpecialCharTok{+}
+      \FunctionTok{geom\_label}\NormalTok{(}\AttributeTok{data=}\ConstantTok{NULL}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{bars[}\DecValTok{3}\NormalTok{], }\AttributeTok{y=} \DecValTok{10}\NormalTok{, }\AttributeTok{label =}\NormalTok{ bar\_labels[}\DecValTok{3}\NormalTok{]))}
+\NormalTok{  p}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{main_files/figure-latex/aflsd-1.pdf}
+\caption{\label{fig:aflsd}An illustration of the standard deviation.}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \FunctionTok{with}\NormalTok{(mammalian\_sleep, }\FunctionTok{mean}\NormalTok{(sleep\_total\_h}\SpecialCharTok{\textgreater{}}\NormalTok{(sleep\_mean}\SpecialCharTok{{-}}\NormalTok{sleep\_sd) }\SpecialCharTok{\&}\NormalTok{ sleep\_total\_h}\SpecialCharTok{\textless{}}\NormalTok{(sleep\_mean}\SpecialCharTok{+}\NormalTok{sleep\_sd) ))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.6385542}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{Bessel's correction: What's up with all those \(N-1\)s in the denominator?}{Bessel's correction: What's up with all those N-1s in the denominator?}}\label{bessels-correction-whats-up-with-all-those-n-1s-in-the-denominator}
+
+\begin{itemize}
+\item
+  Now, what's going on with that \(N-1\), and why do I still call the sample variance a \emph{`sort-of-the-average'} of the squared deviations? Let's address these questions in turn.
+\item
+  The important thing to note about variance and standard deviation is they serve \emph{two} purposes: They are used to (i) describe a \textbf{sample}, but also to (ii) tentatively characterize the larger population from which the sample is.
+\item
+  You are \emph{usually} not really interested in the variance of a particular set of numbers, but rather in what they represent. So function number (ii) is the far more dominant use.
+\item
+  In our case, when I want to quantify the variability of the sleep durations dataset, it is not these 83 specific mammals I am interested in -- I want to get a sense of the variability among mammals in general. That is, I want to know -- how much do mammals vary \emph{in general}. These just happen to be a \textbf{\emph{sample}} (83 mammals) from the \textbf{\emph{population}} (all mammals).
+\item
+  What I actually want to compute are not the (squared) deviations from the \textbf{sample mean} (\(\bar{X}\); the average sleep duration of \textbf{these} mammals), but from the actual \textbf{population mean} (\(\mu\); the average sleep duration of \textbf{all} mammals). That is, I don't want \(( X_i - \bar{X})^2\), I want \(( X_i - \mu)^2\).
+\item
+  But I don't know \(\mu\), and the \emph{best guess} I have about it is \(\bar{X}\). And this has consequences: \(( X_i - \bar{X})^2\) underestimates the distance between \(X_i\) and \(\mu\) because we use the same data points (\(X_i\)) to compute the mean (\(\bar{X}\)) and then determine the distance to them.
+\end{itemize}
+
+\begin{itemize}
+\item
+  The problem becomes smaller as \(N\) increases, because it becomes less and less likely that all \(N\) points are squarely on one side of the mean.
+\item
+  Dividing by \(N-1\) \emph{`corrects'} this underestimation problem:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Dividing by a smaller number makes the estimate of the variance bigger.
+  \item
+    As \(N\) increases the difference between dividing by \(N\) and \(N-1\) becomes less and less important, and ultimately negligible.
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Summary}\label{summary-1}
+
+\begin{itemize}
+\tightlist
+\item
+  To recap, these are the two estimators of the variance, but the second one requires knowledge of the true population mean \(\mu\), which we don't know.
+\item
+  Therefore, we use the first one (\(s_X^2\)), and divide by \(N-1\) to avoid underestimating the `true variance'.
+\end{itemize}
+
+\[
+\mbox{s}_X^2 = \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2
+\]
+
+\[
+\mbox{Var}_X = \frac{1}{N} \sum_{i=1}^N \left( X_i - \mu \right)^2
+\]
+
+\subsection{Which measure to use?}\label{which-measure-to-use}
+
+We've discussed quite a few measures of spread (range, IQR, variance and standard deviation). Below is a quick summary.
+In short, the IQR and the standard deviation are easily the two most common measures used to report the variability of the data.
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Range}. Gives you the full spread of the data. It's very vulnerable to outliers, and as a consequence it isn't often used unless you have good reasons to care about the extremes in the data.
+\item
+  \emph{Interquartile range}. Tells you where the ``middle half'' of the data sits. It's pretty robust, and complements the median nicely. This is used a lot.
+\item
+  \emph{Variance}. Tells you the average squared deviation from the mean. It's mathematically elegant, and is probably the ``right'' way to describe variation around the mean, but it's completely uninterpretable because it doesn't use the same units as the data. Almost never used except as a mathematical tool; but it's buried ``under the hood'' of a very large number of statistical tools.
+\item
+  \emph{Standard deviation}. This is the square root of the variance. It's fairly elegant mathematically, and it's expressed in the same units as the data so it can be interpreted pretty well. In situations where the mean is the measure of central tendency, this is the default. This is by far the most popular measure of variation.
+\end{itemize}
+
+\section{Getting an overall summary of a variable}\label{summary}
+
+\begin{itemize}
+\tightlist
+\item
+  It's kind of annoying to have to separately calculate means, medians, standard deviations, etc. Wouldn't it be nice if R had some helpful functions that would do all these tedious calculations at once? Something like \texttt{summary()}, perhaps?
+\item
+  The basic idea behind the \texttt{summary()} function is that it prints out some useful information about whatever object it receives (e.g., a vector or data frame).
+\item
+  Let's take a look at some examples:
+\end{itemize}
+
+\subsection{Summarising a vector}\label{summarising-a-vector}
+
+\subsubsection{Numerical vectors}\label{numerical-vectors}
+
+\begin{itemize}
+\tightlist
+\item
+  For numeric variables, we get a whole bunch of useful descriptive statistics. It gives us the minimum and maximum values (and thus the range), the first and third quartiles (25th and 75th percentiles; and thus the IQR), the mean and the median.
+\item
+  In sum, it gives us a pretty good collection of descriptive statistics related to the central tendency and the spread of the data.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{( mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
+\NormalTok{\#\#    2.00    8.00   10.00   10.41   14.00   20.00}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Logical vectors}\label{logical-vectors}
+
+\begin{itemize}
+\tightlist
+\item
+  Returns the number of \texttt{TRUE} and \texttt{FALSE} values.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{( mammalian\_sleep}\SpecialCharTok{$}\NormalTok{sleep\_total\_h }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{ )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#    Mode   FALSE    TRUE }
+\NormalTok{\#\# logical      45      38}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Factors vectors}\label{factors-vectors}
+
+\begin{itemize}
+\tightlist
+\item
+  Returns the number of observations for each factor level.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{( }\FunctionTok{as.factor}\NormalTok{(mammalian\_sleep}\SpecialCharTok{$}\NormalTok{name[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{]) )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#                    Cheetah                        Cow }
+\NormalTok{\#\#                          1                          1 }
+\NormalTok{\#\#                        Dog Greater short{-}tailed shrew }
+\NormalTok{\#\#                          1                          1 }
+\NormalTok{\#\#            Mountain beaver          Northern fur seal }
+\NormalTok{\#\#                          1                          1 }
+\NormalTok{\#\#                 Owl monkey                   Roe deer }
+\NormalTok{\#\#                          1                          1 }
+\NormalTok{\#\#           Three{-}toed sloth               Vesper mouse }
+\NormalTok{\#\#                          1                          1}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Character vectors}\label{character-vectors}
+
+\begin{itemize}
+\tightlist
+\item
+  Returns almost no useful information except for length.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{( mammalian\_sleep}\SpecialCharTok{$}\NormalTok{name )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#    Length     Class      Mode }
+\NormalTok{\#\#        83 character character}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Summarising a data frame}\label{summarising-a-data-frame}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{summary()} can also be called on a data frame, in which case it returns summaries of all variables.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{( mammalian\_sleep )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#      name           sleep\_total\_h     bodywt\_kg       }
+\NormalTok{\#\#  Length:83          Min.   : 2.00   Min.   :   0.005  }
+\NormalTok{\#\#  Class :character   1st Qu.: 8.00   1st Qu.:   0.174  }
+\NormalTok{\#\#  Mode  :character   Median :10.00   Median :   1.670  }
+\NormalTok{\#\#                     Mean   :10.41   Mean   : 166.136  }
+\NormalTok{\#\#                     3rd Qu.:14.00   3rd Qu.:  41.750  }
+\NormalTok{\#\#                     Max.   :20.00   Max.   :6654.000}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Correlations}\label{correlations}
+
+The descriptive statistics we discussed so far were all about a single variable. Sometimes, we want to describe the relation between two variables. For this we need to calculate \textbf{correlations}. Correlations range between -1 and 1. 0 means no no correlation, 1 means strong positive correlation and -1 means strong negative correlation. Correlation is indicated by the letter \texttt{r}.
+
+\begin{figure}
+\centering
+\includegraphics{./img/corr-1.png}
+\caption{\label{fig:correlations}Different correlations.}
+\end{figure}
+
+In R, we can calculate the correlations of two variables using the \texttt{cor()} function. Consider the following example.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{20}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ (x}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\ConstantTok{NULL}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y=}\NormalTok{y)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-199-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(x,y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.9713482}
+\end{Highlighting}
+\end{Shaded}
+
 
   \bibliography{book.bib,packages.bib}
 
