@@ -60,6 +60,8 @@ ggplot(data = df, mapping = aes(x = a, y = a_sq)) + geom_point()
 - You can read the instruction below as *"Create a plot <span style="color:blue">using the data in data frame df</span>, <span style="color:red">placing `a` on the x-axis and `a_sq` on the y-axis</span>, <span style="color:green">and visualize the data using points</span>"*.
 - Keep in mind that information regarding x and y axes is specified within a function called `aes()`. 
 
+
+
 ```{r, eval=F, error=T}
 ggplot(data = df, mapping = aes(x = a, y = a_sq)) + geom_point()
 ```
@@ -155,3 +157,82 @@ ggplot(df, aes(a, a_sq, group = my_group)) + geom_point()  + geom_line()
 ```{r, error=T}
 ggplot(df, aes(a, a_sq, color = my_group)) + geom_point()  + geom_line() + facet_wrap(~my_group)
 ```
+
+
+## Adding Labels to the Plot
+- Plots are more meaningful when they have a title and labels indicating what the plot is about and what each axis represents. 
+- We can add titles and labels using the `labs()` function. 
+
+
+```{r, error=T}
+ggplot(df, aes(a, a_sq, color = my_group)) + geom_point()  + geom_line() + facet_wrap(~my_group) +
+  labs(title = "My First Plot", x = " x axis = a", y = "y axis = a squared")
+```
+
+
+- Notice that sometimes we want to use a mathematical expression in the labels or title. For example, we should be able to write $a^2$ rather than a squared. 
+- For this we can use the `expression` function. 
+
+
+```{r, error=T}
+ggplot(df, aes(a, a_sq, color = my_group)) + geom_point()  + geom_line() + facet_wrap(~my_group) +
+  labs(title = "My First Plot", x = " x axis = a", y = expression("y axis =" ~ a^2))
+```
+
+- We can further modify the size of the title and the labels either by selecting a predefined theme or manually defining the size, font, color, etc. 
+
+### Classic Theme
+- Here is a classic theme
+
+```{r, error=T}
+ggplot(df, aes(a, a_sq, color = my_group)) + geom_point()  + geom_line() + facet_wrap(~my_group) +
+  labs(title = "My First Plot", x = " x axis = a", y = expression("y axis =" ~ a^2)) +
+  theme_classic()
+```
+
+### Minimal Theme
+
+Here is a minimal theme
+
+```{r, error=T}
+ggplot(df, aes(a, a_sq, color = my_group)) + geom_point()  + geom_line() + facet_wrap(~my_group) +
+  labs(title = "My First Plot", x = " x axis = a", y = expression("y axis =" ~ a^2)) +
+  theme_minimal()
+```
+
+### Dark Theme
+
+Here is a dark theme
+
+```{r, error=T}
+ggplot(df, aes(a, a_sq, color = my_group)) + geom_point()  + geom_line() + facet_wrap(~my_group) +
+  labs(title = "My First Plot", x = " x axis = a", y = expression("y axis =" ~ a^2)) +
+  theme_dark()
+```
+
+
+### Modifying the size of the title and labels.
+
+We can specify the font size, face, color etc. by adding some arguments into the theme function.
+
+
+
+```{r, error=T, fig.width=10, fig.height=8}
+ggplot(df, aes(a, a_sq, color = my_group)) + geom_point()  + geom_line() + facet_wrap(~my_group) +
+  labs(title = "My First Plot", x = " x axis = a", y = expression("y axis =" ~ a^2)) +
+  theme(
+    plot.title = element_text(size = 20, color ='steelblue', face = 'bold'),
+    axis.title.x = element_text(size = 16, color ='brown', face = 'bold'),
+    axis.title.y = element_text(size = 16, color ='brown', face = 'bold'),
+    axis.text.x = element_text(size = 14, color = 'gray20'),
+    axis.text.y = element_text(size = 14, color = 'gray20'),
+    strip.text = element_text(size = 14, color = 'black'),
+    legend.title = element_text(size = 20, color = 'black', face = 'bold'),
+    text = element_text(size = 16)
+  )
+```
+
+
+
+
+
