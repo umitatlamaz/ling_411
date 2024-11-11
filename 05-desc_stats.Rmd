@@ -390,10 +390,10 @@ ggplot(data=NULL, aes(x=1:20, y=sort(mammalian_sleep$sleep_total_h)[1:20])) +
 ```
 
 - As you can see:
-  * 10-th percentile ($0.1$ quantile): 3 [to be found at position 2, since 2 data points constitute 10 percent of the data]
-  * 30-th percentile ($0.3$ quantile): 3 [to be found at position 6, since 6 data points constitute 30 percent of the data]
-  * 50-th percentile ($0.5$ quantile): 4 [to be found at position 10, since 10 data points constitute 50 percent of the data]
-  * 90-th percentile ($0.9$ quantile): 6 [to be found at position 18, since 18 data points constitute 90 percent of the data]
+  * 10-th percentile ($0.1$ quantile): 2 [to be found at position 2, since 2 data points constitute 10 percent of the data]
+  * 30-th percentile ($0.3$ quantile): 6 [to be found at position 6, since 6 data points constitute 30 percent of the data]
+  * 50-th percentile ($0.5$ quantile): 10 [to be found at position 10, since 10 data points constitute 50 percent of the data]
+  * 90-th percentile ($0.9$ quantile): 18 [to be found at position 18, since 18 data points constitute 90 percent of the data]
 - The 50-th percentile is the median.
 
 
