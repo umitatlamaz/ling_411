@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Basics | Ling 411 - Fall 2024</title>
   <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Basics | Ling 411 - Fall 2024" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2024-11-11" />
+<meta name="date" content="2024-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -236,6 +236,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#correlations"><i class="fa fa-check"></i><b>6.5</b> Correlations</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html"><i class="fa fa-check"></i><b>7</b> Linear Regression with one Predictor</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#word-frequency-effects"><i class="fa fa-check"></i><b>7.1</b> Word Frequency Effects</a></li>
+<li class="chapter" data-level="7.2" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#simple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="7.3" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#finding-the-regression-line"><i class="fa fa-check"></i><b>7.3</b> Finding the Regression Line</a></li>
+<li class="chapter" data-level="7.4" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#estimating-the-coefficients"><i class="fa fa-check"></i><b>7.4</b> Estimating the Coefficients</a></li>
+<li class="chapter" data-level="7.5" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#data-is-messy"><i class="fa fa-check"></i><b>7.5</b> Data is messy</a></li>
+<li class="chapter" data-level="7.6" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#simplified-frequency-data"><i class="fa fa-check"></i><b>7.6</b> Simplified Frequency Data</a></li>
+<li class="chapter" data-level="7.7" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#residuals"><i class="fa fa-check"></i><b>7.7</b> Residuals</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#sum-of-squared-errors"><i class="fa fa-check"></i><b>7.7.1</b> Sum of Squared Errors</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -422,11 +435,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Once you install a package, you need to load it before you can use its functions. Just use <code>library(package_name)</code> to load the package. The convention is to load all the packages you will use at the beginning of your script. For example, we can import the <code>tidyverse</code> package as follows.</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="basics.html#cb69-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.3     ✔ readr     2.1.4
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.2     
+## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()

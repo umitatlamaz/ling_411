@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Linear Regression with one Predictor | Ling 411 - Fall 2023</title>
-  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <title>Chapter 7 Linear Regression with one Predictor | Ling 411 - Fall 2024</title>
+  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Linear Regression with one Predictor | Ling 411 - Fall 2023" />
+  <meta property="og:title" content="Chapter 7 Linear Regression with one Predictor | Ling 411 - Fall 2024" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
-  <meta name="github-repo" content="rstudio/ling_411" />
+  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
+  
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Linear Regression with one Predictor | Ling 411 - Fall 2023" />
+  <meta name="twitter:title" content="Chapter 7 Linear Regression with one Predictor | Ling 411 - Fall 2024" />
   
-  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
   
 
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2023-12-26" />
+<meta name="date" content="2024-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="descriptive-statistics.html"/>
-<link rel="next" href="linear-regression-with-many-predictors.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,19 +52,11 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
-<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.30/datatables.js"></script>
-<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -74,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -145,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Ling 411 - Fall 2023</a></li>
+<li><a href="https://umitatlamaz.github.io/ling_411/">Ling 411 - Fall 2024</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
@@ -206,6 +198,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="plotting-1.html"><a href="plotting-1.html#using-lines-in-plots"><i class="fa fa-check"></i><b>5.3</b> Using lines in plots</a></li>
 <li class="chapter" data-level="5.4" data-path="plotting-1.html"><a href="plotting-1.html#color-and-fill"><i class="fa fa-check"></i><b>5.4</b> Color and fill</a></li>
 <li class="chapter" data-level="5.5" data-path="plotting-1.html"><a href="plotting-1.html#grouping-and-facets"><i class="fa fa-check"></i><b>5.5</b> Grouping and facets</a></li>
+<li class="chapter" data-level="5.6" data-path="plotting-1.html"><a href="plotting-1.html#adding-labels-to-the-plot"><i class="fa fa-check"></i><b>5.6</b> Adding Labels to the Plot</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="plotting-1.html"><a href="plotting-1.html#classic-theme"><i class="fa fa-check"></i><b>5.6.1</b> Classic Theme</a></li>
+<li class="chapter" data-level="5.6.2" data-path="plotting-1.html"><a href="plotting-1.html#minimal-theme"><i class="fa fa-check"></i><b>5.6.2</b> Minimal Theme</a></li>
+<li class="chapter" data-level="5.6.3" data-path="plotting-1.html"><a href="plotting-1.html#dark-theme"><i class="fa fa-check"></i><b>5.6.3</b> Dark Theme</a></li>
+<li class="chapter" data-level="5.6.4" data-path="plotting-1.html"><a href="plotting-1.html#modifying-the-size-of-the-title-and-labels."><i class="fa fa-check"></i><b>5.6.4</b> Modifying the size of the title and labels.</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a>
 <ul>
@@ -250,79 +249,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7.1" data-path="linear-regression-with-one-predictor.html"><a href="linear-regression-with-one-predictor.html#sum-of-squared-errors"><i class="fa fa-check"></i><b>7.7.1</b> Sum of Squared Errors</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html"><i class="fa fa-check"></i><b>8</b> Linear Regression with Many Predictors</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#fitting-two-linear-models"><i class="fa fa-check"></i><b>8.1</b> Fitting two Linear Models</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html"><i class="fa fa-check"></i><b>9</b> Linear &amp; Non-Linear Transformations</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-transformations"><i class="fa fa-check"></i><b>9.1</b> Linear Transformations</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#centering"><i class="fa fa-check"></i><b>9.1.1</b> Centering</a></li>
-<li class="chapter" data-level="9.1.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#standardizing"><i class="fa fa-check"></i><b>9.1.2</b> Standardizing</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#scaling-and-standardizing-in-r"><i class="fa fa-check"></i><b>9.2</b> Scaling and Standardizing in R</a></li>
-<li class="chapter" data-level="9.3" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#non-linear-transformations"><i class="fa fa-check"></i><b>9.3</b> Non-linear Transformations</a>
-<ul>
-<li class="chapter" data-level="9.3.1" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#logarithms-log-transformation"><i class="fa fa-check"></i><b>9.3.1</b> Logarithms &amp; Log Transformation</a></li>
-<li class="chapter" data-level="9.3.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-regression-with-log-transformation"><i class="fa fa-check"></i><b>9.3.2</b> Linear Regression with Log Transformation</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="categorical-predictors.html"><a href="categorical-predictors.html"><i class="fa fa-check"></i><b>10</b> Categorical Predictors</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictor---continuous-outcome"><i class="fa fa-check"></i><b>10.1</b> Categorical Predictor - Continuous Outcome</a></li>
-<li class="chapter" data-level="10.2" data-path="categorical-predictors.html"><a href="categorical-predictors.html#taste-vs.-smell-words"><i class="fa fa-check"></i><b>10.2</b> Taste vs. Smell Words</a></li>
-<li class="chapter" data-level="10.3" data-path="categorical-predictors.html"><a href="categorical-predictors.html#contrasts-coding"><i class="fa fa-check"></i><b>10.3</b> Contrasts &amp; Coding</a>
-<ul>
-<li class="chapter" data-level="10.3.1" data-path="categorical-predictors.html"><a href="categorical-predictors.html#treatment-coding."><i class="fa fa-check"></i><b>10.3.1</b> Treatment Coding.</a></li>
-<li class="chapter" data-level="10.3.2" data-path="categorical-predictors.html"><a href="categorical-predictors.html#sum-coding"><i class="fa fa-check"></i><b>10.3.2</b> Sum Coding</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictors-with-more-than-2-levels"><i class="fa fa-check"></i><b>10.4</b> Categorical Predictors with more than 2 levels</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="effect-size-significance.html"><a href="effect-size-significance.html"><i class="fa fa-check"></i><b>11</b> Effect Size &amp; Significance</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#cohens-d"><i class="fa fa-check"></i><b>11.1</b> Cohen’s <em>d</em></a></li>
-<li class="chapter" data-level="11.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error"><i class="fa fa-check"></i><b>11.2</b> Standard Error</a></li>
-<li class="chapter" data-level="11.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#confidence-interval"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval</a></li>
-<li class="chapter" data-level="11.4" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error-of-the-difference-of-two-means"><i class="fa fa-check"></i><b>11.4</b> Standard Error of the difference of two means</a></li>
-<li class="chapter" data-level="11.5" data-path="effect-size-significance.html"><a href="effect-size-significance.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.5</b> Hypothesis Testing</a></li>
-<li class="chapter" data-level="11.6" data-path="effect-size-significance.html"><a href="effect-size-significance.html#calculating-the-t-score"><i class="fa fa-check"></i><b>11.6</b> Calculating the t-score</a></li>
-<li class="chapter" data-level="11.7" data-path="effect-size-significance.html"><a href="effect-size-significance.html#p-value"><i class="fa fa-check"></i><b>11.7</b> p-value</a></li>
-<li class="chapter" data-level="11.8" data-path="effect-size-significance.html"><a href="effect-size-significance.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>11.8</b> Type I and Type II Errors</a>
-<ul>
-<li class="chapter" data-level="11.8.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#type-i-error"><i class="fa fa-check"></i><b>11.8.1</b> Type I Error</a></li>
-<li class="chapter" data-level="11.8.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#typee-ii-error"><i class="fa fa-check"></i><b>11.8.2</b> Typee II Error</a></li>
-<li class="chapter" data-level="11.8.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#statistical-power"><i class="fa fa-check"></i><b>11.8.3</b> Statistical Power</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="logistic-regression.html"><a href="logistic-regression.html#the-intuition"><i class="fa fa-check"></i><b>12.1</b> The Intuition</a></li>
-<li class="chapter" data-level="12.2" data-path="logistic-regression.html"><a href="logistic-regression.html#the-math"><i class="fa fa-check"></i><b>12.2</b> The Math</a>
-<ul>
-<li class="chapter" data-level="12.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#binomial-bernoulli-distributions"><i class="fa fa-check"></i><b>12.2.1</b> Binomial &amp; Bernoulli Distributions</a></li>
-</ul></li>
-<li class="chapter" data-level="12.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-1"><i class="fa fa-check"></i><b>12.3</b> Logistic Regression</a>
-<ul>
-<li class="chapter" data-level="12.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-odds-logits"><i class="fa fa-check"></i><b>12.3.1</b> Log Odds &amp; Logits</a></li>
-</ul></li>
-<li class="chapter" data-level="12.4" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-in-r"><i class="fa fa-check"></i><b>12.4</b> Logistic Regression in R</a>
-<ul>
-<li class="chapter" data-level="12.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#data"><i class="fa fa-check"></i><b>12.4.1</b> Data</a></li>
-<li class="chapter" data-level="12.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#model"><i class="fa fa-check"></i><b>12.4.2</b> Model</a></li>
-<li class="chapter" data-level="12.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#from-logits-to-probabilities"><i class="fa fa-check"></i><b>12.4.3</b> From logits to probabilities</a></li>
-<li class="chapter" data-level="12.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#dative-dataset"><i class="fa fa-check"></i><b>12.4.4</b> Dative Dataset</a></li>
-</ul></li>
-<li class="chapter" data-level="12.5" data-path="logistic-regression.html"><a href="logistic-regression.html#testing-the-model"><i class="fa fa-check"></i><b>12.5</b> Testing the model</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html"><i class="fa fa-check"></i><b>13</b> Modeling Poisson Distribution</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#poisson-distribution"><i class="fa fa-check"></i><b>13.1</b> Poisson Distribution</a></li>
-<li class="chapter" data-level="13.2" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#modeling-with-poisson-distribution"><i class="fa fa-check"></i><b>13.2</b> Modeling with <strong>Poisson distribution</strong></a>
-<ul>
-<li class="chapter" data-level="13.2.1" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#data-1"><i class="fa fa-check"></i><b>13.2.1</b> Data</a></li>
-</ul></li>
-</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -335,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2023</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2024</a>
           </h1>
         </div>
 
@@ -451,16 +377,16 @@ Figure 7.2: Lines with different intercept and slope values.
 <p>The intercept for the data Response Duration Model above is 880ms. So, our Response Duration Model is:</p>
 <p><span class="math display">\[response\ duration = 880ms + (-70 \frac{ms}{freq}) * word\ frequecny   \]</span></p>
 <p>A good way to remember the intercept and the slope and a linear model is to remember the <strong>taxi fares</strong>. The taxi fares will usually start with a constant fee (a minimum fee). This is your intercept. It’s the 0th kilometers and it already costs you 7 TLs. Then the cost for each kilometer is your slope. At the time of writing these notes, it is 6TLs.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="linear-regression-with-one-predictor.html#cb372-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb372-2"><a href="linear-regression-with-one-predictor.html#cb372-2" tabindex="-1"></a></span>
-<span id="cb372-3"><a href="linear-regression-with-one-predictor.html#cb372-3" tabindex="-1"></a>distance <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb372-4"><a href="linear-regression-with-one-predictor.html#cb372-4" tabindex="-1"></a>cost <span class="ot">=</span> <span class="dv">20</span><span class="sc">+</span>(<span class="dv">14</span><span class="sc">*</span>distance)</span>
-<span id="cb372-5"><a href="linear-regression-with-one-predictor.html#cb372-5" tabindex="-1"></a></span>
-<span id="cb372-6"><a href="linear-regression-with-one-predictor.html#cb372-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(distance,cost)) <span class="sc">+</span></span>
-<span id="cb372-7"><a href="linear-regression-with-one-predictor.html#cb372-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb372-8"><a href="linear-regression-with-one-predictor.html#cb372-8" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="at">by =</span> <span class="dv">20</span>)) <span class="sc">+</span> </span>
-<span id="cb372-9"><a href="linear-regression-with-one-predictor.html#cb372-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span>y<span class="sc">~</span>x <span class="sc">+</span> <span class="fu">I</span>(<span class="dv">20</span><span class="sc">+</span><span class="dv">14</span><span class="sc">*</span>x))</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="linear-regression-with-one-predictor.html#cb378-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb378-2"><a href="linear-regression-with-one-predictor.html#cb378-2" tabindex="-1"></a></span>
+<span id="cb378-3"><a href="linear-regression-with-one-predictor.html#cb378-3" tabindex="-1"></a>distance <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb378-4"><a href="linear-regression-with-one-predictor.html#cb378-4" tabindex="-1"></a>cost <span class="ot">=</span> <span class="dv">20</span><span class="sc">+</span>(<span class="dv">14</span><span class="sc">*</span>distance)</span>
+<span id="cb378-5"><a href="linear-regression-with-one-predictor.html#cb378-5" tabindex="-1"></a></span>
+<span id="cb378-6"><a href="linear-regression-with-one-predictor.html#cb378-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(distance,cost)) <span class="sc">+</span></span>
+<span id="cb378-7"><a href="linear-regression-with-one-predictor.html#cb378-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb378-8"><a href="linear-regression-with-one-predictor.html#cb378-8" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="at">by =</span> <span class="dv">20</span>)) <span class="sc">+</span> </span>
+<span id="cb378-9"><a href="linear-regression-with-one-predictor.html#cb378-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span>y<span class="sc">~</span>x <span class="sc">+</span> <span class="fu">I</span>(<span class="dv">20</span><span class="sc">+</span><span class="dv">14</span><span class="sc">*</span>x))</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
 <p><strong>Slope</strong> and <strong>intercept</strong> are the <strong>coefficients</strong> of our linear regression model. Our task is to find the <strong>coefficients</strong> from the data.</p>
 </div>
 <div id="estimating-the-coefficients" class="section level2 hasAnchor" number="7.4">
@@ -469,11 +395,11 @@ Figure 7.2: Lines with different intercept and slope values.
 <p>Let’s not get into the weeds of how to find the right linear regression model. Instead, let’s just use R to estimate the coefficients. This is called <strong>fitting a model</strong>. So, let’s fit a linear model on the taxi model and interpret its results. We’ll start with the taxi model simply because we already know the coefficients. We’ll let R estimate some coefficients for us and then compare them with the coefficients we used to generate the <code>cost</code> data above from the <code>distance</code> variables and our coefficients.</p>
 <p>The simplest way to fit a linear model on some data is the <code>lm()</code> function. <code>lm()</code> takes two variables <code>x</code> (predictor) and <code>y</code> (dependent variable) and fits a model by modeling <code>y</code> as a linear function of <code>x</code>. The tilde <code>~</code> means: element on the left as a function of element on the right.</p>
 <p>For our taxi model, we will model cost as a function of duration. The following lines of code does that.</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="linear-regression-with-one-predictor.html#cb373-1" tabindex="-1"></a><span class="co"># fit a linear regression model of cost as a function of distance</span></span>
-<span id="cb373-2"><a href="linear-regression-with-one-predictor.html#cb373-2" tabindex="-1"></a>taxi_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(cost <span class="sc">~</span> distance)</span>
-<span id="cb373-3"><a href="linear-regression-with-one-predictor.html#cb373-3" tabindex="-1"></a></span>
-<span id="cb373-4"><a href="linear-regression-with-one-predictor.html#cb373-4" tabindex="-1"></a><span class="co"># print the model coefficients</span></span>
-<span id="cb373-5"><a href="linear-regression-with-one-predictor.html#cb373-5" tabindex="-1"></a>taxi_model</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="linear-regression-with-one-predictor.html#cb379-1" tabindex="-1"></a><span class="co"># fit a linear regression model of cost as a function of distance</span></span>
+<span id="cb379-2"><a href="linear-regression-with-one-predictor.html#cb379-2" tabindex="-1"></a>taxi_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(cost <span class="sc">~</span> distance)</span>
+<span id="cb379-3"><a href="linear-regression-with-one-predictor.html#cb379-3" tabindex="-1"></a></span>
+<span id="cb379-4"><a href="linear-regression-with-one-predictor.html#cb379-4" tabindex="-1"></a><span class="co"># print the model coefficients</span></span>
+<span id="cb379-5"><a href="linear-regression-with-one-predictor.html#cb379-5" tabindex="-1"></a>taxi_model</span></code></pre></div>
 <pre class="r-output"><code>## 
 ## Call:
 ## lm(formula = cost ~ distance)
@@ -483,9 +409,9 @@ Figure 7.2: Lines with different intercept and slope values.
 ##          20           14</code></pre>
 <p><strong>Unbelievable!</strong> The model estimated the intercept (start cost) as 20 and the slope (cost per km) as 14. Simple as that. Notice that the model estimated these coefficients simply from the data but nothing else.</p>
 <p>The model object that we stored in the variable <code>taxi_model</code> has a lot more information. Let us take a look at the results of our model. To do this, we’ll take use the <code>glance()</code> function from the <code>broom</code> package.</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="linear-regression-with-one-predictor.html#cb375-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb375-2"><a href="linear-regression-with-one-predictor.html#cb375-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb375-3"><a href="linear-regression-with-one-predictor.html#cb375-3" tabindex="-1"></a><span class="fu">glance</span>(taxi_model)</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="linear-regression-with-one-predictor.html#cb381-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb381-2"><a href="linear-regression-with-one-predictor.html#cb381-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb381-3"><a href="linear-regression-with-one-predictor.html#cb381-3" tabindex="-1"></a><span class="fu">glance</span>(taxi_model)</span></code></pre></div>
 <pre><code>## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable
 
 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable</code></pre>
@@ -495,12 +421,12 @@ Figure 7.2: Lines with different intercept and slope values.
 ## 1         1             1 2.58e-14   1.96e32 8.70e-281     1   598. -1191.
 ## # ℹ 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>There are a lot of details. For now, we’ll focus on only two values <strong>R<sup>2</sup></strong> and the <strong>p value</strong>.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="linear-regression-with-one-predictor.html#cb378-1" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">glance</span>(taxi_model) <span class="sc">%&gt;%</span></span>
-<span id="cb378-2"><a href="linear-regression-with-one-predictor.html#cb378-2" tabindex="-1"></a>  <span class="fu">select</span>(r.squared, p.value)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="linear-regression-with-one-predictor.html#cb384-1" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">glance</span>(taxi_model) <span class="sc">%&gt;%</span></span>
+<span id="cb384-2"><a href="linear-regression-with-one-predictor.html#cb384-2" tabindex="-1"></a>  <span class="fu">select</span>(r.squared, p.value)</span></code></pre></div>
 <pre><code>## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable
 
 ## Warning in summary.lm(x): essentially perfect fit: summary may be unreliable</code></pre>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="linear-regression-with-one-predictor.html#cb380-1" tabindex="-1"></a>results</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="linear-regression-with-one-predictor.html#cb386-1" tabindex="-1"></a>results</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 1 × 2
 ##   r.squared   p.value
 ##       &lt;dbl&gt;     &lt;dbl&gt;
@@ -511,38 +437,38 @@ Figure 7.2: Lines with different intercept and slope values.
 <h2><span class="header-section-number">7.5</span> Data is messy<a href="linear-regression-with-one-predictor.html#data-is-messy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the taxi model above, we worked with a very simplistic and ideal dataset. We know that in theory that is what a tax fare should look like. However, İstanbul is a crowded city and there are lots of traffic jams and traffic is quite unpredictable as there are so many random variables. Since the taxi charges you not only for the distance but also the duration you wait at the lights, there is always going to be some random addition to the fare. Let us incorporate that randomness to our taxi cost data and rerun our model to see what it looks like.</p>
 <p>All we are going to do is to add some random values to our taxi prices. Let’s generate some random numbers and bind it to a new cost variable.</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="linear-regression-with-one-predictor.html#cb382-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb382-2"><a href="linear-regression-with-one-predictor.html#cb382-2" tabindex="-1"></a>hidden_cost <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">4.5</span>)</span>
-<span id="cb382-3"><a href="linear-regression-with-one-predictor.html#cb382-3" tabindex="-1"></a>total_cost <span class="ot">&lt;-</span> cost <span class="sc">+</span> hidden_cost</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="linear-regression-with-one-predictor.html#cb388-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb388-2"><a href="linear-regression-with-one-predictor.html#cb388-2" tabindex="-1"></a>hidden_cost <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">4.5</span>)</span>
+<span id="cb388-3"><a href="linear-regression-with-one-predictor.html#cb388-3" tabindex="-1"></a>total_cost <span class="ot">&lt;-</span> cost <span class="sc">+</span> hidden_cost</span></code></pre></div>
 <p>Let us plot the theoretical costs and the total costs side by side. We’ll use the <code>gridExtra</code> package to plot two plots side by side.</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="linear-regression-with-one-predictor.html#cb383-1" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="linear-regression-with-one-predictor.html#cb389-1" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;gridExtra&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
 ## 
 ##     combine</code></pre>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="linear-regression-with-one-predictor.html#cb386-1" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(distance,cost)) <span class="sc">+</span></span>
-<span id="cb386-2"><a href="linear-regression-with-one-predictor.html#cb386-2" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb386-3"><a href="linear-regression-with-one-predictor.html#cb386-3" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="at">by =</span> <span class="dv">20</span>)) <span class="sc">+</span> </span>
-<span id="cb386-4"><a href="linear-regression-with-one-predictor.html#cb386-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb386-5"><a href="linear-regression-with-one-predictor.html#cb386-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb386-6"><a href="linear-regression-with-one-predictor.html#cb386-6" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Taxi cost without traffic&quot;</span>)</span>
-<span id="cb386-7"><a href="linear-regression-with-one-predictor.html#cb386-7" tabindex="-1"></a></span>
-<span id="cb386-8"><a href="linear-regression-with-one-predictor.html#cb386-8" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(distance,total_cost)) <span class="sc">+</span></span>
-<span id="cb386-9"><a href="linear-regression-with-one-predictor.html#cb386-9" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb386-10"><a href="linear-regression-with-one-predictor.html#cb386-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="at">by =</span> <span class="dv">20</span>)) <span class="sc">+</span> </span>
-<span id="cb386-11"><a href="linear-regression-with-one-predictor.html#cb386-11" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)<span class="sc">+</span></span>
-<span id="cb386-12"><a href="linear-regression-with-one-predictor.html#cb386-12" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb386-13"><a href="linear-regression-with-one-predictor.html#cb386-13" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Taxi cost with traffic&quot;</span>)</span>
-<span id="cb386-14"><a href="linear-regression-with-one-predictor.html#cb386-14" tabindex="-1"></a></span>
-<span id="cb386-15"><a href="linear-regression-with-one-predictor.html#cb386-15" tabindex="-1"></a><span class="fu">grid.arrange</span>(plot1, plot2, <span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="linear-regression-with-one-predictor.html#cb392-1" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(distance,cost)) <span class="sc">+</span></span>
+<span id="cb392-2"><a href="linear-regression-with-one-predictor.html#cb392-2" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb392-3"><a href="linear-regression-with-one-predictor.html#cb392-3" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="at">by =</span> <span class="dv">20</span>)) <span class="sc">+</span> </span>
+<span id="cb392-4"><a href="linear-regression-with-one-predictor.html#cb392-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb392-5"><a href="linear-regression-with-one-predictor.html#cb392-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb392-6"><a href="linear-regression-with-one-predictor.html#cb392-6" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Taxi cost without traffic&quot;</span>)</span>
+<span id="cb392-7"><a href="linear-regression-with-one-predictor.html#cb392-7" tabindex="-1"></a></span>
+<span id="cb392-8"><a href="linear-regression-with-one-predictor.html#cb392-8" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(distance,total_cost)) <span class="sc">+</span></span>
+<span id="cb392-9"><a href="linear-regression-with-one-predictor.html#cb392-9" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb392-10"><a href="linear-regression-with-one-predictor.html#cb392-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="at">by =</span> <span class="dv">20</span>)) <span class="sc">+</span> </span>
+<span id="cb392-11"><a href="linear-regression-with-one-predictor.html#cb392-11" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)<span class="sc">+</span></span>
+<span id="cb392-12"><a href="linear-regression-with-one-predictor.html#cb392-12" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb392-13"><a href="linear-regression-with-one-predictor.html#cb392-13" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Taxi cost with traffic&quot;</span>)</span>
+<span id="cb392-14"><a href="linear-regression-with-one-predictor.html#cb392-14" tabindex="-1"></a></span>
+<span id="cb392-15"><a href="linear-regression-with-one-predictor.html#cb392-15" tabindex="-1"></a><span class="fu">grid.arrange</span>(plot1, plot2, <span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="main_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
 <p>OK, now it looks like we have some more realistic data. Let us rerun our linear model to see what the coefficients look like.</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="linear-regression-with-one-predictor.html#cb389-1" tabindex="-1"></a>better_taxi_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_cost<span class="sc">~</span>distance)</span>
-<span id="cb389-2"><a href="linear-regression-with-one-predictor.html#cb389-2" tabindex="-1"></a></span>
-<span id="cb389-3"><a href="linear-regression-with-one-predictor.html#cb389-3" tabindex="-1"></a>better_taxi_model</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="linear-regression-with-one-predictor.html#cb395-1" tabindex="-1"></a>better_taxi_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_cost<span class="sc">~</span>distance)</span>
+<span id="cb395-2"><a href="linear-regression-with-one-predictor.html#cb395-2" tabindex="-1"></a></span>
+<span id="cb395-3"><a href="linear-regression-with-one-predictor.html#cb395-3" tabindex="-1"></a>better_taxi_model</span></code></pre></div>
 <pre class="r-output"><code>## 
 ## Call:
 ## lm(formula = total_cost ~ distance)
@@ -552,7 +478,7 @@ Figure 7.2: Lines with different intercept and slope values.
 ##       32.08        13.65</code></pre>
 <p>Notice that we got a new intercept and slope. It’s kinda weird. We know that the taxi start fare is 20TL. However, our intercept is a lot higher (this will differ as each time you run your code as the traffic cost we calculated is random unless you set some seed number to generate the random values). This is quite off given our original intercept.</p>
 <p>Notice that the slope is a little off too. It’s not exactly 14 but it’s not way off like the intercept. So, did our linear model do well? Before answering this question more formally, I’ll draw your attention to one point. Our model predicts that your initial taxi fare will be a little higher at the beginning and it will sort of even out as your distance increases. Even though our model doesn’t guess the intercept correctly, it still does a very decent job in modeling the real life taxi costs (or a simulation of it). Just add up the intercept and slope and that should give you around the minimum cost you’ll pay for a taxi ride.</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="linear-regression-with-one-predictor.html#cb391-1" tabindex="-1"></a><span class="fu">coef</span>(better_taxi_model)[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">coef</span>(better_taxi_model)[<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="linear-regression-with-one-predictor.html#cb397-1" tabindex="-1"></a><span class="fu">coef</span>(better_taxi_model)[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">coef</span>(better_taxi_model)[<span class="dv">2</span>]</span></code></pre></div>
 <pre class="r-output"><code>## (Intercept) 
 ##    45.72571</code></pre>
 <p>At this point, I want to remind you that taxi rides in İstanbul have a minimum of 70 TLs for short distance trips (2km or less). So, our model does pretty good for a real life scenario.</p>
@@ -561,10 +487,10 @@ Figure 7.2: Lines with different intercept and slope values.
 <h2><span class="header-section-number">7.6</span> Simplified Frequency Data<a href="linear-regression-with-one-predictor.html#simplified-frequency-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let us use a simple frequency data. Go ahead and download the <code>log10ELP_frequency.csv</code> file from Moodle. This is the same data in Bodo Winter’s ELP_frequency.csv file with an added column for log10 normalization. We will plot the data using a scatterplot with geom_point and also draw a regression line.</p>
 <p>We will use log normal values as the x axis and the reaction time as the y axis.</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="linear-regression-with-one-predictor.html#cb393-1" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb393-2"><a href="linear-regression-with-one-predictor.html#cb393-2" tabindex="-1"></a></span>
-<span id="cb393-3"><a href="linear-regression-with-one-predictor.html#cb393-3" tabindex="-1"></a></span>
-<span id="cb393-4"><a href="linear-regression-with-one-predictor.html#cb393-4" tabindex="-1"></a>freq_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;/Users/umit/ling_411/data/log10ELP_frequency.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="linear-regression-with-one-predictor.html#cb399-1" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb399-2"><a href="linear-regression-with-one-predictor.html#cb399-2" tabindex="-1"></a></span>
+<span id="cb399-3"><a href="linear-regression-with-one-predictor.html#cb399-3" tabindex="-1"></a></span>
+<span id="cb399-4"><a href="linear-regression-with-one-predictor.html#cb399-4" tabindex="-1"></a>freq_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;/Users/umit/ling_411/data/log10ELP_frequency.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 12 Columns: 4
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -573,19 +499,19 @@ Figure 7.2: Lines with different intercept and slope values.
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="linear-regression-with-one-predictor.html#cb395-1" tabindex="-1"></a><span class="fu">ggplot</span>(freq_data, <span class="fu">aes</span>(<span class="at">x=</span>log10freq, <span class="at">y=</span>RT)) <span class="sc">+</span></span>
-<span id="cb395-2"><a href="linear-regression-with-one-predictor.html#cb395-2" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb395-3"><a href="linear-regression-with-one-predictor.html#cb395-3" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> Word)) <span class="sc">+</span></span>
-<span id="cb395-4"><a href="linear-regression-with-one-predictor.html#cb395-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb395-5"><a href="linear-regression-with-one-predictor.html#cb395-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span>F)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="linear-regression-with-one-predictor.html#cb401-1" tabindex="-1"></a><span class="fu">ggplot</span>(freq_data, <span class="fu">aes</span>(<span class="at">x=</span>log10freq, <span class="at">y=</span>RT)) <span class="sc">+</span></span>
+<span id="cb401-2"><a href="linear-regression-with-one-predictor.html#cb401-2" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb401-3"><a href="linear-regression-with-one-predictor.html#cb401-3" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> Word)) <span class="sc">+</span></span>
+<span id="cb401-4"><a href="linear-regression-with-one-predictor.html#cb401-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb401-5"><a href="linear-regression-with-one-predictor.html#cb401-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span>F)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="main_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="linear-regression-with-one-predictor.html#cb397-1" tabindex="-1"></a>freq_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(freq_data<span class="sc">$</span>RT <span class="sc">~</span> freq_data<span class="sc">$</span>log10freq)</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="linear-regression-with-one-predictor.html#cb403-1" tabindex="-1"></a>freq_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(freq_data<span class="sc">$</span>RT <span class="sc">~</span> freq_data<span class="sc">$</span>log10freq)</span></code></pre></div>
 <p>OK, let us also get a glace at our model. We’ll first take a look at the slope and the intercept and then <strong>R<sup>2</sup></strong> and the <strong>p value</strong>.</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="linear-regression-with-one-predictor.html#cb398-1" tabindex="-1"></a><span class="fu">coef</span>(freq_model)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="linear-regression-with-one-predictor.html#cb404-1" tabindex="-1"></a><span class="fu">coef</span>(freq_model)</span></code></pre></div>
 <pre class="r-output"><code>##         (Intercept) freq_data$log10freq 
 ##           870.90539           -70.27646</code></pre>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="linear-regression-with-one-predictor.html#cb400-1" tabindex="-1"></a><span class="fu">glance</span>(freq_model)</span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="linear-regression-with-one-predictor.html#cb406-1" tabindex="-1"></a><span class="fu">glance</span>(freq_model)</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -596,24 +522,24 @@ Figure 7.2: Lines with different intercept and slope values.
 <h2><span class="header-section-number">7.7</span> Residuals<a href="linear-regression-with-one-predictor.html#residuals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>So far, we built and plotted linear models by estimating the intercept and slope of a line that seems to best describe our data. In the simple taxi model, we were in a perfect position. Our model had a <strong>perfect fit</strong> on our data. However, once we introduced some <strong>random noise</strong> (e.g. random traffic jams) into our data, our linear model still did a decent job but it was not a perfect fit.</p>
 <p>Next, we tried modeling the simple frequency data and we got a decent model that describes the trend in our data but the fit is not perfect. Can we find a way to quantify how good our model fits our data (“goodness of fit”). That’s what we will do here. Let us reconsider the frequency data plot. This time, we’ll draw lines from the data points to the regression line. The distance for each data point is called a <strong>residual</strong>. It describes the amount by which our model missed the actual value.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="linear-regression-with-one-predictor.html#cb402-1" tabindex="-1"></a>freq_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(freq_data<span class="sc">$</span>RT <span class="sc">~</span> freq_data<span class="sc">$</span>log10freq)</span>
-<span id="cb402-2"><a href="linear-regression-with-one-predictor.html#cb402-2" tabindex="-1"></a><span class="fu">ggplot</span>(freq_data, <span class="fu">aes</span>(<span class="at">x=</span>log10freq, <span class="at">y=</span>RT)) <span class="sc">+</span></span>
-<span id="cb402-3"><a href="linear-regression-with-one-predictor.html#cb402-3" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb402-4"><a href="linear-regression-with-one-predictor.html#cb402-4" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> Word)) <span class="sc">+</span></span>
-<span id="cb402-5"><a href="linear-regression-with-one-predictor.html#cb402-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb402-6"><a href="linear-regression-with-one-predictor.html#cb402-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span>F)<span class="sc">+</span></span>
-<span id="cb402-7"><a href="linear-regression-with-one-predictor.html#cb402-7" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> log10freq, <span class="at">y =</span> RT,</span>
-<span id="cb402-8"><a href="linear-regression-with-one-predictor.html#cb402-8" tabindex="-1"></a>                   <span class="at">xend =</span> log10freq, <span class="at">yend =</span> <span class="fu">fitted</span>(freq_model)))</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="linear-regression-with-one-predictor.html#cb408-1" tabindex="-1"></a>freq_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(freq_data<span class="sc">$</span>RT <span class="sc">~</span> freq_data<span class="sc">$</span>log10freq)</span>
+<span id="cb408-2"><a href="linear-regression-with-one-predictor.html#cb408-2" tabindex="-1"></a><span class="fu">ggplot</span>(freq_data, <span class="fu">aes</span>(<span class="at">x=</span>log10freq, <span class="at">y=</span>RT)) <span class="sc">+</span></span>
+<span id="cb408-3"><a href="linear-regression-with-one-predictor.html#cb408-3" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb408-4"><a href="linear-regression-with-one-predictor.html#cb408-4" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> Word)) <span class="sc">+</span></span>
+<span id="cb408-5"><a href="linear-regression-with-one-predictor.html#cb408-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb408-6"><a href="linear-regression-with-one-predictor.html#cb408-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span>F)<span class="sc">+</span></span>
+<span id="cb408-7"><a href="linear-regression-with-one-predictor.html#cb408-7" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> log10freq, <span class="at">y =</span> RT,</span>
+<span id="cb408-8"><a href="linear-regression-with-one-predictor.html#cb408-8" tabindex="-1"></a>                   <span class="at">xend =</span> log10freq, <span class="at">yend =</span> <span class="fu">fitted</span>(freq_model)))</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="main_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="linear-regression-with-one-predictor.html#cb404-1" tabindex="-1"></a><span class="fu">ggplot</span>(freq_data, <span class="fu">aes</span>(<span class="at">x=</span>log10freq, <span class="at">y=</span>RT)) <span class="sc">+</span></span>
-<span id="cb404-2"><a href="linear-regression-with-one-predictor.html#cb404-2" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb404-3"><a href="linear-regression-with-one-predictor.html#cb404-3" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> Word)) <span class="sc">+</span></span>
-<span id="cb404-4"><a href="linear-regression-with-one-predictor.html#cb404-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb404-5"><a href="linear-regression-with-one-predictor.html#cb404-5" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">680</span>)<span class="sc">+</span></span>
-<span id="cb404-6"><a href="linear-regression-with-one-predictor.html#cb404-6" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> log10freq, <span class="at">y =</span> RT,</span>
-<span id="cb404-7"><a href="linear-regression-with-one-predictor.html#cb404-7" tabindex="-1"></a>                   <span class="at">xend =</span> log10freq, <span class="at">yend =</span> <span class="dv">680</span>))</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="linear-regression-with-one-predictor.html#cb410-1" tabindex="-1"></a><span class="fu">ggplot</span>(freq_data, <span class="fu">aes</span>(<span class="at">x=</span>log10freq, <span class="at">y=</span>RT)) <span class="sc">+</span></span>
+<span id="cb410-2"><a href="linear-regression-with-one-predictor.html#cb410-2" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb410-3"><a href="linear-regression-with-one-predictor.html#cb410-3" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> Word)) <span class="sc">+</span></span>
+<span id="cb410-4"><a href="linear-regression-with-one-predictor.html#cb410-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb410-5"><a href="linear-regression-with-one-predictor.html#cb410-5" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">680</span>)<span class="sc">+</span></span>
+<span id="cb410-6"><a href="linear-regression-with-one-predictor.html#cb410-6" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> log10freq, <span class="at">y =</span> RT,</span>
+<span id="cb410-7"><a href="linear-regression-with-one-predictor.html#cb410-7" tabindex="-1"></a>                   <span class="at">xend =</span> log10freq, <span class="at">yend =</span> <span class="dv">680</span>))</span></code></pre></div>
+<p><img src="main_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
 <p>Now, we have two models:</p>
 <ul>
 <li>A model where there is a relation between frequency and reaction time</li>
@@ -623,20 +549,20 @@ Figure 7.2: Lines with different intercept and slope values.
 <h3><span class="header-section-number">7.7.1</span> Sum of Squared Errors<a href="linear-regression-with-one-predictor.html#sum-of-squared-errors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One way to describe the errors of the model is to sum the squares of each error value. This is called the Sum of Squared Errors.</p>
 <p>To do this, we need to get the residuals of the model, square them and then sum them. Let us do this for the linear model.</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="linear-regression-with-one-predictor.html#cb405-1" tabindex="-1"></a>SSE_freq_model <span class="ot">&lt;-</span> <span class="fu">sum</span>((<span class="fu">residuals</span>(freq_model))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb405-2"><a href="linear-regression-with-one-predictor.html#cb405-2" tabindex="-1"></a>SSE_freq_model</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="linear-regression-with-one-predictor.html#cb411-1" tabindex="-1"></a>SSE_freq_model <span class="ot">&lt;-</span> <span class="fu">sum</span>((<span class="fu">residuals</span>(freq_model))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb411-2"><a href="linear-regression-with-one-predictor.html#cb411-2" tabindex="-1"></a>SSE_freq_model</span></code></pre></div>
 <pre class="r-output"><code>## [1] 40114.97</code></pre>
 <p>Let us also calculate it for the null model. The intercept for the null model was 680 I found this value by taking the average reaction time. This will be my null model. The mean was 679.9167. So, we’ll deduce the the mean from the actual values to find the residuals. The rest is just the same.</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="linear-regression-with-one-predictor.html#cb407-1" tabindex="-1"></a>null_model_residuals <span class="ot">&lt;-</span> freq_data<span class="sc">$</span>RT <span class="sc">-</span> <span class="dv">680</span></span>
-<span id="cb407-2"><a href="linear-regression-with-one-predictor.html#cb407-2" tabindex="-1"></a>SSE_null_model <span class="ot">&lt;-</span> <span class="fu">sum</span>(null_model_residuals<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb407-3"><a href="linear-regression-with-one-predictor.html#cb407-3" tabindex="-1"></a>SSE_null_model</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="linear-regression-with-one-predictor.html#cb413-1" tabindex="-1"></a>null_model_residuals <span class="ot">&lt;-</span> freq_data<span class="sc">$</span>RT <span class="sc">-</span> <span class="dv">680</span></span>
+<span id="cb413-2"><a href="linear-regression-with-one-predictor.html#cb413-2" tabindex="-1"></a>SSE_null_model <span class="ot">&lt;-</span> <span class="fu">sum</span>(null_model_residuals<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb413-3"><a href="linear-regression-with-one-predictor.html#cb413-3" tabindex="-1"></a>SSE_null_model</span></code></pre></div>
 <pre class="r-output"><code>## [1] 152743.3</code></pre>
 <p>These numbers are very similar to what Bodo Winter reports in his chapter. He might not have done the rounding I did. We use the null model to calculate a <strong>standardized measure of fit</strong>. One measure is <strong>R<sup>2</sup></strong> and it is calculated as follows.</p>
 <p><span class="math display">\[R^2 = 1 - \frac{SSE_{model}}{SSE_{null}} \]</span>
 Let’s calculate <strong>R<sup>2</sup></strong>.</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="linear-regression-with-one-predictor.html#cb409-1" tabindex="-1"></a>r_squared <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (SSE_freq_model<span class="sc">/</span>SSE_null_model)</span>
-<span id="cb409-2"><a href="linear-regression-with-one-predictor.html#cb409-2" tabindex="-1"></a></span>
-<span id="cb409-3"><a href="linear-regression-with-one-predictor.html#cb409-3" tabindex="-1"></a>r_squared</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="linear-regression-with-one-predictor.html#cb415-1" tabindex="-1"></a>r_squared <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (SSE_freq_model<span class="sc">/</span>SSE_null_model)</span>
+<span id="cb415-2"><a href="linear-regression-with-one-predictor.html#cb415-2" tabindex="-1"></a></span>
+<span id="cb415-3"><a href="linear-regression-with-one-predictor.html#cb415-3" tabindex="-1"></a>r_squared</span></code></pre></div>
 <pre class="r-output"><code>## [1] 0.73737</code></pre>
 <p><strong>Excellent!</strong> We’ve calculated <strong>R<sup>2</sup></strong> and it is the same as what we found earlier when we took at a look at the model report using the <code>glance()</code> function.</p>
 <p>So, what is this <strong>R<sup>2</sup></strong>? When we interpret <strong>R<sup>2</sup></strong>, we say “n” amount of the variance in the dependent variable (RT) can be accounted for by incorporating the independent variable (word frequency). In this case, 73% of the variance is due to word frequency. The remaining 27% is due to chance or some other factors we didn’t consider.</p>
@@ -644,13 +570,21 @@ Let’s calculate <strong>R<sup>2</sup></strong>.</p>
 </div>
 </div>
 </div>
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="linear-regression-with-many-predictors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="descriptive-statistics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -681,7 +615,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-linear_regression.Rmd",
+"link": "https://github.com/umitatlamaz/ling_411/edit/main/06-linear_regression.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -692,7 +626,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["main.pdf", "main.epub"],
+"download": ["main.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
