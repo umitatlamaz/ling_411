@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Linear Regression with one Predictor | Ling 411 - Fall 2024</title>
   <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Linear Regression with one Predictor | Ling 411 - Fall 2024" />
   <meta property="og:type" content="book" />
@@ -287,43 +287,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The typical dataset we will be working with has a structure similar to the one below:</p>
 <table>
 <colgroup>
-<col width="21%" />
-<col width="21%" />
 <col width="26%" />
-<col width="30%" />
+<col width="23%" />
+<col width="26%" />
+<col width="23%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>dependent var.<br>(<span class="math inline">\(Y\)</span>)</th>
-<th align="left">predictor 1<br>(<span class="math inline">\(X_1\)</span>)</th>
-<th align="left">predictor 2<br>(<span class="math inline">\(X_2\)</span>)</th>
-<th align="left">(other predictors)</th>
+<th align="center">dependent var.<br>(<span class="math inline">\(Y\)</span>)</th>
+<th align="center">predictor 1<br>(<span class="math inline">\(X_1\)</span>)</th>
+<th align="center">predictor 2<br>(<span class="math inline">\(X_2\)</span>)</th>
+<th align="center">other predictors<br> (<span class="math inline">\(X_3\)</span>…<span class="math inline">\(X_n\)</span>)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>705</td>
-<td align="left">1.2</td>
-<td align="left">2.2</td>
-<td align="left">(…)</td>
+<td align="center">705</td>
+<td align="center">1.2</td>
+<td align="center">2.2</td>
+<td align="center">(…)</td>
 </tr>
 <tr class="even">
-<td>209</td>
-<td align="left">8.3</td>
-<td align="left">-4.0</td>
-<td align="left">(…)</td>
+<td align="center">209</td>
+<td align="center">8.3</td>
+<td align="center">-4.0</td>
+<td align="center">(…)</td>
 </tr>
 <tr class="odd">
-<td>334</td>
-<td align="left">7.2</td>
-<td align="left">-1.4</td>
-<td align="left">(…)</td>
+<td align="center">334</td>
+<td align="center">7.2</td>
+<td align="center">-1.4</td>
+<td align="center">(…)</td>
 </tr>
 <tr class="even">
-<td>…</td>
-<td align="left">…</td>
-<td align="left">…</td>
-<td align="left">(…)</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">(…)</td>
 </tr>
 </tbody>
 </table>
@@ -364,7 +364,7 @@ Figure 7.1: Response duration as a function of word frequency. The frequencies a
 <ul>
 <li><strong>Slope</strong> can be defined as the amount of change in <code>y</code> as <code>x</code> changes one unit.
 <span class="math display">\[ slope = \frac{\Delta y}{\Delta x}  \]</span></li>
-<li>A rising slope will have a positive value whereas a descending slope will have a positive value.</li>
+<li>A rising slope will have a positive value whereas a descending slope will have a negative value.</li>
 <li>For example, the slope in the Response Duration Model above is -70. This means that for each unit of increase in frequency, we observe a 70ms decrease in reaction time.</li>
 </ul>
 <p>A slope is not enough to define a line on a plot. There can be an infinite number of lines that have the same slope. We also need the <strong>intercept</strong>. Intercept determines the value predicted for y when x is 0. Consider the following graphs.</p>
@@ -376,16 +376,16 @@ Figure 7.2: Lines with different intercept and slope values.
 </div>
 <p>The intercept for the data Response Duration Model above is 880ms. So, our Response Duration Model is:</p>
 <p><span class="math display">\[response\ duration = 880ms + (-70 \frac{ms}{freq}) * word\ frequecny   \]</span></p>
-<p>A good way to remember the intercept and the slope and a linear model is to remember the <strong>taxi fares</strong>. The taxi fares will usually start with a constant fee (a minimum fee). This is your intercept. It’s the 0th kilometers and it already costs you 7 TLs. Then the cost for each kilometer is your slope. At the time of writing these notes, it is 6TLs.</p>
+<p>A good way to remember the intercept and the slope and a linear model is to remember the <strong>taxi fares</strong>. The taxi fares will usually start with a constant fee (a minimum fee). This is your intercept. It’s the 0th kilometers and it already costs you 30 TLs. Then the cost for each kilometer is your slope. At the time of writing these notes, it is 20TLs.</p>
 <div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="linear-regression-with-one-predictor.html#cb378-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb378-2"><a href="linear-regression-with-one-predictor.html#cb378-2" tabindex="-1"></a></span>
 <span id="cb378-3"><a href="linear-regression-with-one-predictor.html#cb378-3" tabindex="-1"></a>distance <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb378-4"><a href="linear-regression-with-one-predictor.html#cb378-4" tabindex="-1"></a>cost <span class="ot">=</span> <span class="dv">20</span><span class="sc">+</span>(<span class="dv">14</span><span class="sc">*</span>distance)</span>
+<span id="cb378-4"><a href="linear-regression-with-one-predictor.html#cb378-4" tabindex="-1"></a>cost <span class="ot">=</span> <span class="dv">30</span><span class="sc">+</span>(<span class="dv">20</span><span class="sc">*</span>distance)</span>
 <span id="cb378-5"><a href="linear-regression-with-one-predictor.html#cb378-5" tabindex="-1"></a></span>
 <span id="cb378-6"><a href="linear-regression-with-one-predictor.html#cb378-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(distance,cost)) <span class="sc">+</span></span>
 <span id="cb378-7"><a href="linear-regression-with-one-predictor.html#cb378-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span><span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb378-8"><a href="linear-regression-with-one-predictor.html#cb378-8" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="at">by =</span> <span class="dv">20</span>)) <span class="sc">+</span> </span>
-<span id="cb378-9"><a href="linear-regression-with-one-predictor.html#cb378-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span>y<span class="sc">~</span>x <span class="sc">+</span> <span class="fu">I</span>(<span class="dv">20</span><span class="sc">+</span><span class="dv">14</span><span class="sc">*</span>x))</span></code></pre></div>
+<span id="cb378-9"><a href="linear-regression-with-one-predictor.html#cb378-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span>y<span class="sc">~</span>x <span class="sc">+</span> <span class="fu">I</span>(<span class="dv">30</span><span class="sc">+</span><span class="dv">20</span><span class="sc">*</span>x))</span></code></pre></div>
 <p><img src="main_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
 <p><strong>Slope</strong> and <strong>intercept</strong> are the <strong>coefficients</strong> of our linear regression model. Our task is to find the <strong>coefficients</strong> from the data.</p>
 </div>
@@ -406,8 +406,8 @@ Figure 7.2: Lines with different intercept and slope values.
 ## 
 ## Coefficients:
 ## (Intercept)     distance  
-##          20           14</code></pre>
-<p><strong>Unbelievable!</strong> The model estimated the intercept (start cost) as 20 and the slope (cost per km) as 14. Simple as that. Notice that the model estimated these coefficients simply from the data but nothing else.</p>
+##          30           20</code></pre>
+<p><strong>Unbelievable!</strong> The model estimated the intercept (start cost) as 30 and the slope (cost per km) as 20. Simple as that. Notice that the model estimated these coefficients simply from the data but nothing else.</p>
 <p>The model object that we stored in the variable <code>taxi_model</code> has a lot more information. Let us take a look at the results of our model. To do this, we’ll take use the <code>glance()</code> function from the <code>broom</code> package.</p>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="linear-regression-with-one-predictor.html#cb381-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
 <span id="cb381-2"><a href="linear-regression-with-one-predictor.html#cb381-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -418,7 +418,7 @@ Figure 7.2: Lines with different intercept and slope values.
 <pre class="r-output"><code>## # A tibble: 1 × 12
 ##   r.squared adj.r.squared    sigma statistic   p.value    df logLik    AIC
 ##       &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1         1             1 2.58e-14   1.96e32 8.70e-281     1   598. -1191.
+## 1         1             1 2.10e-14   6.00e32 3.63e-285     1   603. -1199.
 ## # ℹ 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p>There are a lot of details. For now, we’ll focus on only two values <strong>R<sup>2</sup></strong> and the <strong>p value</strong>.</p>
 <div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="linear-regression-with-one-predictor.html#cb384-1" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">glance</span>(taxi_model) <span class="sc">%&gt;%</span></span>
@@ -430,15 +430,15 @@ Figure 7.2: Lines with different intercept and slope values.
 <pre class="r-output"><code>## # A tibble: 1 × 2
 ##   r.squared   p.value
 ##       &lt;dbl&gt;     &lt;dbl&gt;
-## 1         1 8.70e-281</code></pre>
-<p>Without going into any detail yet, I can tell you that we got an excellent model. Our <strong>R<sup>2</sup></strong> is 1, which is perfect and our p value is very small <code>1.51e-287</code> (This means that there are 286 zeroes after 0. and before 151. So, a very small number). When the p value is so small, we can conclude that the relation between distance and cost is <strong>statistically significant</strong> (i.e. not random).</p>
+## 1         1 3.63e-285</code></pre>
+<p>Without going into any detail yet, I can tell you that we got an excellent model. Our <strong>R<sup>2</sup></strong> is 1, which is perfect and our p value is very small <code>3.63e-285</code> (This means that there are 284 zeroes after 0. and before 363 So, a very small number). When the p value is so small, we can conclude that the relation between distance and cost is <strong>statistically significant</strong> (i.e. not random).</p>
 </div>
 <div id="data-is-messy" class="section level2 hasAnchor" number="7.5">
 <h2><span class="header-section-number">7.5</span> Data is messy<a href="linear-regression-with-one-predictor.html#data-is-messy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the taxi model above, we worked with a very simplistic and ideal dataset. We know that in theory that is what a tax fare should look like. However, İstanbul is a crowded city and there are lots of traffic jams and traffic is quite unpredictable as there are so many random variables. Since the taxi charges you not only for the distance but also the duration you wait at the lights, there is always going to be some random addition to the fare. Let us incorporate that randomness to our taxi cost data and rerun our model to see what it looks like.</p>
 <p>All we are going to do is to add some random values to our taxi prices. Let’s generate some random numbers and bind it to a new cost variable.</p>
 <div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="linear-regression-with-one-predictor.html#cb388-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb388-2"><a href="linear-regression-with-one-predictor.html#cb388-2" tabindex="-1"></a>hidden_cost <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">mean=</span><span class="fl">7.5</span>, <span class="at">sd=</span><span class="fl">4.5</span>)</span>
+<span id="cb388-2"><a href="linear-regression-with-one-predictor.html#cb388-2" tabindex="-1"></a>hidden_cost <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">mean=</span><span class="dv">15</span>, <span class="at">sd=</span><span class="dv">5</span>)</span>
 <span id="cb388-3"><a href="linear-regression-with-one-predictor.html#cb388-3" tabindex="-1"></a>total_cost <span class="ot">&lt;-</span> cost <span class="sc">+</span> hidden_cost</span></code></pre></div>
 <p>Let us plot the theoretical costs and the total costs side by side. We’ll use the <code>gridExtra</code> package to plot two plots side by side.</p>
 <div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="linear-regression-with-one-predictor.html#cb389-1" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div>
@@ -475,13 +475,13 @@ Figure 7.2: Lines with different intercept and slope values.
 ## 
 ## Coefficients:
 ## (Intercept)     distance  
-##       32.08        13.65</code></pre>
-<p>Notice that we got a new intercept and slope. It’s kinda weird. We know that the taxi start fare is 20TL. However, our intercept is a lot higher (this will differ as each time you run your code as the traffic cost we calculated is random unless you set some seed number to generate the random values). This is quite off given our original intercept.</p>
-<p>Notice that the slope is a little off too. It’s not exactly 14 but it’s not way off like the intercept. So, did our linear model do well? Before answering this question more formally, I’ll draw your attention to one point. Our model predicts that your initial taxi fare will be a little higher at the beginning and it will sort of even out as your distance increases. Even though our model doesn’t guess the intercept correctly, it still does a very decent job in modeling the real life taxi costs (or a simulation of it). Just add up the intercept and slope and that should give you around the minimum cost you’ll pay for a taxi ride.</p>
+##       50.09        19.61</code></pre>
+<p>Notice that we got a new intercept and slope. It’s kinda weird. We know that the taxi start fare is 30TL. However, our intercept is a lot higher (this will differ as each time you run your code as the traffic cost we calculated is random unless you set some seed number to generate the random values). This is quite off given our original intercept.</p>
+<p>Notice that the slope is a little off too. It’s not exactly 20 but it’s not way off like the intercept. So, did our linear model do well? Before answering this question more formally, I’ll draw your attention to one point. Our model predicts that your initial taxi fare will be a little higher at the beginning and it will sort of even out as your distance increases. Even though our model doesn’t guess the intercept correctly, it still does a very decent job in modeling the real life taxi costs (or a simulation of it). Just add up the intercept and slope and that should give you around the minimum cost you’ll pay for a taxi ride.</p>
 <div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="linear-regression-with-one-predictor.html#cb397-1" tabindex="-1"></a><span class="fu">coef</span>(better_taxi_model)[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">coef</span>(better_taxi_model)[<span class="dv">2</span>]</span></code></pre></div>
 <pre class="r-output"><code>## (Intercept) 
-##    45.72571</code></pre>
-<p>At this point, I want to remind you that taxi rides in İstanbul have a minimum of 70 TLs for short distance trips (2km or less). So, our model does pretty good for a real life scenario.</p>
+##    69.69523</code></pre>
+<p>At this point, I want to remind you that taxi rides in İstanbul have a minimum of 100 TLs for short distance trips (2km or less). So, our model does pretty good for a real life scenario.</p>
 </div>
 <div id="simplified-frequency-data" class="section level2 hasAnchor" number="7.6">
 <h2><span class="header-section-number">7.6</span> Simplified Frequency Data<a href="linear-regression-with-one-predictor.html#simplified-frequency-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
