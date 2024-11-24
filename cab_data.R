@@ -12,7 +12,7 @@ set.seed(42)
 
 n = 1000
 hidden_cost <- rnorm(1000, mean=20, sd=15)
-cab_fares <- data.frame( distance_km = rint_unif(n, min=10, max=50),
+cab_fares <- data.frame( distance_km = rint_unif(n, min=1, max=50),
                          n_bridges = rint_unif(n, min=0, max=10)
 )
 

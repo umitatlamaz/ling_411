@@ -3157,7 +3157,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 
 \chapter{Plotting}\label{plotting-1}
 
-(24 November, 2024, 18:45)
+(24 November, 2024, 19:32)
 
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}
 
@@ -5439,7 +5439,7 @@ In many real life scenarios, multiple factors will be involved in the outcome of
 
 Let us consider our taxi example again. While our taxi model is primarily based on the distance we travel, sometimes we need to cross bridges or toll roads. These factors will obviously increase the cost as they get added to our total cost. The following is a simple example. You can download the data from Moodle or by just clicking this \href{'https://github.com/umitatlamaz/ling_411/blob/main/data/taxi_fares_2024.csv'}{data link}.
 
-Let us see if there is any relationship between the number of bridges and the cost when we travel only 3 kilometers.
+Let us see if there is any relationship between the number of bridges and the cost when we travel only 10 kilometers.
 
 \includegraphics{main_files/figure-latex/carsPerfect2A-1.pdf}
 
@@ -5469,7 +5469,7 @@ In R, fitting a linear model with multiple predictors is quite simple. All we ha
 \NormalTok{\#\# }
 \NormalTok{\#\# Coefficients:}
 \NormalTok{\#\#           (Intercept)  cab\_fares$distance\_km    cab\_fares$n\_bridges  }
-\NormalTok{\#\#                 49.72                  19.98                  33.08}
+\NormalTok{\#\#                 49.52                  19.99                  33.08}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5478,14 +5478,14 @@ The model is doing pretty well. The data coefficients I used to generate the dat
 \begin{itemize}
 \tightlist
 \item
-  intercept = 7
+  intercept = 30
 \item
-  distance slope = 6
+  distance slope = 20
 \item
-  bridge slope = 13
+  bridge slope = 33
 \end{itemize}
 
-I also added some random noise with the mean=7.5, sd=4.5. Let us also glance at the \textbf{R2} and the \textbf{p.values} using the summary function. Alternatively, we could use the \texttt{glance()} function from the \texttt{broom} package. Give it a shot to see if you obsrve any differences.
+I also added some random noise with the mean=20, sd=15. Let us also glance at the \textbf{R2} and the \textbf{p.values} using the summary function. Alternatively, we could use the \texttt{glance()} function from the \texttt{broom} package. Give it a shot to see if you obsrve any differences.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5501,19 +5501,19 @@ I also added some random noise with the mean=7.5, sd=4.5. Let us also glance at 
 \NormalTok{\#\# }
 \NormalTok{\#\# Residuals:}
 \NormalTok{\#\#     Min      1Q  Median      3Q     Max }
-\NormalTok{\#\# {-}50.081  {-}9.841   0.262  10.316  52.998 }
+\NormalTok{\#\# {-}50.124  {-}9.837   0.271  10.319  53.013 }
 \NormalTok{\#\# }
 \NormalTok{\#\# Coefficients:}
 \NormalTok{\#\#                       Estimate Std. Error t value Pr(\textgreater{}|t|)    }
-\NormalTok{\#\# (Intercept)           49.72151    1.53212   32.45   \textless{}2e{-}16 ***}
-\NormalTok{\#\# cab\_fares$distance\_km 19.98267    0.04014  497.87   \textless{}2e{-}16 ***}
-\NormalTok{\#\# cab\_fares$n\_bridges   33.08070    0.14820  223.22   \textless{}2e{-}16 ***}
+\NormalTok{\#\# (Intercept)           49.51540    1.25546   39.44   \textless{}2e{-}16 ***}
+\NormalTok{\#\# cab\_fares$distance\_km 19.98762    0.03293  606.90   \textless{}2e{-}16 ***}
+\NormalTok{\#\# cab\_fares$n\_bridges   33.08101    0.14820  223.21   \textless{}2e{-}16 ***}
 \NormalTok{\#\# {-}{-}{-}}
 \NormalTok{\#\# Signif. codes:  0 \textquotesingle{}***\textquotesingle{} 0.001 \textquotesingle{}**\textquotesingle{} 0.01 \textquotesingle{}*\textquotesingle{} 0.05 \textquotesingle{}.\textquotesingle{} 0.1 \textquotesingle{} \textquotesingle{} 1}
 \NormalTok{\#\# }
 \NormalTok{\#\# Residual standard error: 15.05 on 997 degrees of freedom}
-\NormalTok{\#\# Multiple R{-}squared:  0.9966, Adjusted R{-}squared:  0.9966 }
-\NormalTok{\#\# F{-}statistic: 1.449e+05 on 2 and 997 DF,  p{-}value: \textless{} 2.2e{-}16}
+\NormalTok{\#\# Multiple R{-}squared:  0.9976, Adjusted R{-}squared:  0.9976 }
+\NormalTok{\#\# F{-}statistic: 2.043e+05 on 2 and 997 DF,  p{-}value: \textless{} 2.2e{-}16}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5529,8 +5529,8 @@ I also added some random noise with the mean=7.5, sd=4.5. Let us also glance at 
 \NormalTok{\#\# \# A tibble: 3 x 5}
 \NormalTok{\#\#   term                  estimate std.error statistic   p.value}
 \NormalTok{\#\#   \textless{}chr\textgreater{}                    \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
-\NormalTok{\#\# 1 (Intercept)               49.7    1.53        32.5 2.93e{-}158}
-\NormalTok{\#\# 2 cab\_fares$distance\_km     20.0    0.0401     498.  0        }
+\NormalTok{\#\# 1 (Intercept)               49.5    1.26        39.4 9.67e{-}206}
+\NormalTok{\#\# 2 cab\_fares$distance\_km     20.0    0.0329     607.  0        }
 \NormalTok{\#\# 3 cab\_fares$n\_bridges       33.1    0.148      223.  0}
 \end{Highlighting}
 \end{Shaded}
@@ -5556,7 +5556,7 @@ In the previous section, we fir a linear model with two variables. The \textbf{R
 \NormalTok{\#\# }
 \NormalTok{\#\# Coefficients:}
 \NormalTok{\#\#           (Intercept)  cab\_fares$distance\_km  }
-\NormalTok{\#\#                229.94                  19.65}
+\NormalTok{\#\#                226.69                  19.71}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5574,7 +5574,7 @@ In the previous section, we fir a linear model with two variables. The \textbf{R
 \NormalTok{\#\# }
 \NormalTok{\#\# Coefficients:}
 \NormalTok{\#\#         (Intercept)  cab\_fares$n\_bridges  }
-\NormalTok{\#\#              667.86                30.31}
+\NormalTok{\#\#              582.14                29.69}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5588,7 +5588,7 @@ It looks like the models are still doing pretty well in identifying the slopes. 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{\#\# [1] 0.825201}
+\NormalTok{\#\# [1] 0.8759}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5600,7 +5600,7 @@ It looks like the models are still doing pretty well in identifying the slopes. 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{\#\# [1] 0.1440328}
+\NormalTok{\#\# [1] 0.09816758}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5614,7 +5614,7 @@ The results are very interesting. It looks like the number of bridges explains t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{\#\# [1] 0.996571}
+\NormalTok{\#\# [1] 0.9975654}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5626,76 +5626,27 @@ The results are very interesting. It looks like the number of bridges explains t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{\#\# [1] 0.9692338}
+\NormalTok{\#\# [1] 0.9740676}
 \end{Highlighting}
 \end{Shaded}
 
 Very close. Not too bad. It looks like when both of the predictors are taken into account, we might be able to explain even more variance but the difference is not huge.
 
-What is \textbf{kinda weird} is that the bridge costs seem to be more important factor than the distance in this model. Consider the same kind of data except now the distances are longer and the number of bridges are still the same. It looks like the coefficients are still the same but the \textbf{R2} values change. This is an important point to stop and think a bit about how your data impacts your results and what kind of conclusions you'll draw from the data. It also shows the importance of the \textbf{representativeness} of your data. The key point is to get data that represents a \textbf{typical} taxi ride for a particular area (population)**. In most cases, we don't cross that many paid bridges. Nor do we ride such long distances either.
+\section{Model Comparison}\label{model-comparison}
+
+AIC lower is better.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{distance\_model\_2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(cab\_fares}\SpecialCharTok{$}\NormalTok{taxi\_fare }\SpecialCharTok{\textasciitilde{}}\NormalTok{ cab\_fares}\SpecialCharTok{$}\NormalTok{distance\_km)}
-\NormalTok{bridge\_model\_2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(cab\_fares}\SpecialCharTok{$}\NormalTok{taxi\_fare }\SpecialCharTok{\textasciitilde{}}\NormalTok{ cab\_fares}\SpecialCharTok{$}\NormalTok{n\_bridges)}
-
-\CommentTok{\#Print coefficients}
-\NormalTok{distance\_model\_2}
+\FunctionTok{AIC}\NormalTok{(taxi\_model\_two\_preds,distance\_model)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{\#\# }
-\NormalTok{\#\# Call:}
-\NormalTok{\#\# lm(formula = cab\_fares$taxi\_fare \textasciitilde{} cab\_fares$distance\_km)}
-\NormalTok{\#\# }
-\NormalTok{\#\# Coefficients:}
-\NormalTok{\#\#           (Intercept)  cab\_fares$distance\_km  }
-\NormalTok{\#\#                229.94                  19.65}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{bridge\_model\_2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{\#\# }
-\NormalTok{\#\# Call:}
-\NormalTok{\#\# lm(formula = cab\_fares$taxi\_fare \textasciitilde{} cab\_fares$n\_bridges)}
-\NormalTok{\#\# }
-\NormalTok{\#\# Coefficients:}
-\NormalTok{\#\#         (Intercept)  cab\_fares$n\_bridges  }
-\NormalTok{\#\#              667.86                30.31}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#Print R squared.}
-\FunctionTok{glance}\NormalTok{(distance\_model\_2)}\SpecialCharTok{$}\NormalTok{r.squared}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{\#\# [1] 0.825201}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{glance}\NormalTok{(bridge\_model\_2)}\SpecialCharTok{$}\NormalTok{r.squared}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{\#\# [1] 0.1440328}
+\NormalTok{\#\#                      df       AIC}
+\NormalTok{\#\# taxi\_model\_two\_preds  4  8265.568}
+\NormalTok{\#\# distance\_model        3 12194.893}
 \end{Highlighting}
 \end{Shaded}
 

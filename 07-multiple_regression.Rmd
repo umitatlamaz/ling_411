@@ -21,12 +21,12 @@ DT::datatable(cab_fares %>% dplyr::rename(fare=taxi_fare) %>% dplyr::select(fare
 ```
 
 
-Let us see if there is any relationship between the number of bridges and the cost when we travel only 3 kilometers. 
+Let us see if there is any relationship between the number of bridges and the cost when we travel only 10 kilometers. 
 
 
-```{r carsPerfect2A, fig.height=2.5, echo=FALSE}
+```{r carsPerfect2A, fig.height=6, echo=FALSE}
 
-cab_fares %>% subset(distance_km==3) %>% ggplot(aes(n_bridges, taxi_fare)) + geom_point() + xlab("Number of bridges crossed") + ylab("fare (3kms)")
+cab_fares %>% subset(distance_km==10) %>% ggplot(aes(n_bridges, taxi_fare)) + geom_point(size=3) + scale_x_continuous(breaks = 1:10) + scale_y_continuous(breaks = seq(250, 600, by = 50), limits = c(250, 600)) + xlab("Number of bridges crossed") + ylab("fare (10kms)")
 ```
 
 It looks like there is a decent positive correlation between the fare and the number of bridges crossed. So, we need to find a way to incorporate this into our linear model. The nice thing about linear models is that they allow us to incorporate multiple predictors each with its own slope.
@@ -53,11 +53,11 @@ taxi_model_two_preds
 
 The model is doing pretty well. The data coefficients I used to generate the data are as follows:
 
-* intercept = 7
-* distance slope = 6
-* bridge slope = 13
+* intercept = 30
+* distance slope = 20
+* bridge slope = 33
 
-I also added some random noise with the mean=7.5, sd=4.5. Let us also glance at the **R<sup>2</sup>** and the **p.values** using the summary function. Alternatively, we could use the `glance()` function from the `broom` package. Give it a shot to see if you obsrve any differences. 
+I also added some random noise with the mean=20, sd=15. Let us also glance at the **R<sup>2</sup>** and the **p.values** using the summary function. Alternatively, we could use the `glance()` function from the `broom` package. Give it a shot to see if you obsrve any differences. 
 
 ```{r}
 summary(taxi_model_two_preds)
@@ -100,29 +100,38 @@ glance(distance_model)$r.squared +glance(bridge_model)$r.squared
 
 Very close. Not too bad. It looks like when both of the predictors are taken into account, we might be able to explain even more variance but the difference is not huge. 
 
-What is **kinda weird**  is that the bridge costs seem to be more important factor than the distance in this model. Consider the same kind of data except now the distances are longer and the number of bridges are still the same. It looks like the coefficients are still the same but the **R<sup>2</sup>** values change. This is an important point to stop and think a bit about how your data impacts your results and what kind of conclusions you'll draw from the data. It also shows the importance of the **representativeness** of your data. The key point is to get data that represents a **typical** taxi ride for a particular area (population)**. In most cases, we don't cross that many paid bridges. Nor do we ride such long distances either. 
+## Model Comparison
 
-
-```{r echo=FALSE, message=FALSE}
-library(tidyverse)
-library(dplyr)
-source("cab_data.R")
-DT::datatable(cab_fares %>% dplyr::rename(fare=taxi_fare) %>% dplyr::select(fare, distance_km, n_bridges), options = list(searching = FALSE), rownames = FALSE)
-```
-
-
+AIC lower is better. 
 ```{r}
 
-distance_model_2 <- lm(cab_fares$taxi_fare ~ cab_fares$distance_km)
-bridge_model_2 <- lm(cab_fares$taxi_fare ~ cab_fares$n_bridges)
-
-#Print coefficients
-distance_model_2
-bridge_model_2
-
-#Print R squared.
-glance(distance_model_2)$r.squared
-glance(bridge_model_2)$r.squared
-
-
+AIC(taxi_model_two_preds,distance_model)
 ```
+
+
+<!-- What is **kinda weird**  is that the bridge costs seem to be more important factor than the distance in this model. Consider the same kind of data except now the distances are longer and the number of bridges are still the same. It looks like the coefficients are still the same but the **R<sup>2</sup>** values change. This is an important point to stop and think a bit about how your data impacts your results and what kind of conclusions you'll draw from the data. It also shows the importance of the **representativeness** of your data. The key point is to get data that represents a **typical** taxi ride for a particular area (population)**. In most cases, we don't cross that many paid bridges. Nor do we ride such long distances either.  -->
+
+
+<!-- ```{r echo=FALSE, message=FALSE} -->
+<!-- library(tidyverse) -->
+<!-- library(dplyr) -->
+<!-- source("cab_data.R") -->
+<!-- DT::datatable(cab_fares %>% dplyr::rename(fare=taxi_fare) %>% dplyr::select(fare, distance_km, n_bridges), options = list(searching = FALSE), rownames = FALSE) -->
+<!-- ``` -->
+
+
+<!-- ```{r} -->
+
+<!-- distance_model_2 <- lm(cab_fares$taxi_fare ~ cab_fares$distance_km) -->
+<!-- bridge_model_2 <- lm(cab_fares$taxi_fare ~ cab_fares$n_bridges) -->
+
+<!-- #Print coefficients -->
+<!-- distance_model_2 -->
+<!-- bridge_model_2 -->
+
+<!-- #Print R squared. -->
+<!-- glance(distance_model_2)$r.squared -->
+<!-- glance(bridge_model_2)$r.squared -->
+
+
+<!-- ``` -->
