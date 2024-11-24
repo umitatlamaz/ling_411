@@ -10,7 +10,7 @@ In the previous section, we built linear models with **one predictor**. In other
 
 In many real life scenarios, multiple factors will be involved in the outcome of a particular experiments. In other words, a particular dependent variable will be the outcome of more than one independent variable (predictors). 
 
-Let us consider our taxi example again. While our taxi model is primarily based on the distance we travel, sometimes we need to cross bridges or toll roads. These factors will obviously increase the cost as they get added to our total cost. The following is a simple example. You can download the data from Moodle or by just clicking this [data link]('https://github.com/umitatlamaz/ling_411/blob/main/data/taxi_fares.csv'). 
+Let us consider our taxi example again. While our taxi model is primarily based on the distance we travel, sometimes we need to cross bridges or toll roads. These factors will obviously increase the cost as they get added to our total cost. The following is a simple example. You can download the data from Moodle or by just clicking this [data link]('https://github.com/umitatlamaz/ling_411/blob/main/data/taxi_fares_2024.csv'). 
 
 
 ```{r echo=FALSE, message=FALSE}
@@ -42,6 +42,8 @@ In R, fitting a linear model with multiple predictors is quite simple. All we ha
 
 
 ```{r}
+
+
 
 taxi_model_two_preds <- lm(cab_fares$taxi_fare ~ cab_fares$distance_km + cab_fares$n_bridges)
 
@@ -104,15 +106,15 @@ What is **kinda weird**  is that the bridge costs seem to be more important fact
 ```{r echo=FALSE, message=FALSE}
 library(tidyverse)
 library(dplyr)
-source("cab_data_2.R")
-DT::datatable(cab_fares_2 %>% dplyr::rename(fare=taxi_fare_2) %>% dplyr::select(fare, distance_km, n_bridges), options = list(searching = FALSE), rownames = FALSE)
+source("cab_data.R")
+DT::datatable(cab_fares %>% dplyr::rename(fare=taxi_fare) %>% dplyr::select(fare, distance_km, n_bridges), options = list(searching = FALSE), rownames = FALSE)
 ```
 
 
 ```{r}
 
-distance_model_2 <- lm(cab_fares_2$taxi_fare_2 ~ cab_fares_2$distance_km)
-bridge_model_2 <- lm(cab_fares_2$taxi_fare_2 ~ cab_fares_2$n_bridges)
+distance_model_2 <- lm(cab_fares$taxi_fare ~ cab_fares$distance_km)
+bridge_model_2 <- lm(cab_fares$taxi_fare ~ cab_fares$n_bridges)
 
 #Print coefficients
 distance_model_2
