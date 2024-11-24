@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.17)  18 NOV 2024 14:24
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.17)  24 NOV 2024 18:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -717,11 +717,12 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 135.
 
 
 [4]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 135.
+
 
 [5]
 
@@ -1401,10 +1402,31 @@ File: main_files/figure-latex/unnamed-chunk-212-1.pdf Graphic file (type pdf)
 
 
 [127]
+
+[128]
+Chapter 8.
+File: main_files/figure-latex/carsPerfect2A-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/carsPerfect2A-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[129
+
+]
+
+[130]
+
+[131]
+
+[132]
+
+[133]
 No file main.bbl.
 
 
-[128] (./main.aux)
+[134] (./main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
@@ -1417,12 +1439,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 18132 strings out of 476234
- 343383 string characters out of 5786467
- 861984 words of memory out of 5000000
- 40396 multiletter control sequences out of 15000+600000
+ 18146 strings out of 476234
+ 343893 string characters out of 5786467
+ 862152 words of memory out of 5000000
+ 40409 multiletter control sequences out of 15000+600000
  564592 words of font info for 98 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,8n,123p,923b,492s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (128 pages).
+Output written on main.pdf (134 pages).
