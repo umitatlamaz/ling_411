@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.17)  24 NOV 2024 19:32
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.17)  25 NOV 2024 12:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -713,13 +713,12 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 4.99947pt on input line 2.
 
 
-[3])
+[3]
+
+[4])
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
-
-
-[4]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 135.
 
@@ -1421,10 +1420,100 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [131]
 
 [132]
+
+[133]
+
+[134
+
+]
+Chapter 9.
+
+
+[135]
+File: main_files/figure-latex/unnamed-chunk-225-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-225-1.pdf>
+
+
+[136]
+
+[137]
+File: main_files/figure-latex/unnamed-chunk-227-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-227-1.pdf>
+
+
+[138]
+
+[139]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 5857--5857
+[]\TU/lmtt/m/n/10 ## Warning: Removed 2 rows containing missing values (`geom_bar()`).[] 
+ []
+
+File: main_files/figure-latex/unnamed-chunk-230-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-230-1.pdf>
+
+
+[140]
+
+[141]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 5939--5939
+[]\TU/lmtt/m/n/10 ## Warning: Removed 1 rows containing missing values (`geom_bar()`).[] 
+ []
+
+File: main_files/figure-latex/unnamed-chunk-232-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-232-1.pdf>
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 5955--5955
+[]\TU/lmtt/m/n/10 ## Warning: Removed 2 rows containing missing values (`geom_bar()`).[] 
+ []
+
+File: main_files/figure-latex/unnamed-chunk-232-2.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-232-2.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[142]
+File: main_files/figure-latex/unnamed-chunk-232-3.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-232-3.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[143]
+File: ./img/skewness.jpg Graphic file (type bmp)
+<./img/skewness.jpg>
+
+
+[144]
+Overfull \hbox (43.5pt too wide) in paragraph at lines 6029--6029
+[]\TU/lmtt/m/n/10 ## Warning: Removed 2288 rows containing non-finite values (`stat_bin()`).[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 6033--6033
+[]\TU/lmtt/m/n/10 ## Warning: Removed 2 rows containing missing values (`geom_bar()`).[] 
+ []
+
+
+
+[145]
+File: main_files/figure-latex/unnamed-chunk-234-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-234-1.pdf>
+[146]
+File: main_files/figure-latex/unnamed-chunk-235-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-235-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[147]
 No file main.bbl.
 
 
-[133] (./main.aux)
+[148] (./main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
@@ -1437,12 +1526,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 18148 strings out of 476234
- 343917 string characters out of 5786467
- 862197 words of memory out of 5000000
- 40411 multiletter control sequences out of 15000+600000
+ 18245 strings out of 476234
+ 348100 string characters out of 5786467
+ 863001 words of memory out of 5000000
+ 40499 multiletter control sequences out of 15000+600000
  564592 words of font info for 98 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,8n,123p,923b,492s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (133 pages).
+Output written on main.pdf (148 pages).

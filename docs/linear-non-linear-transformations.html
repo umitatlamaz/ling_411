@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Linear &amp; Non-Linear Transformations | Ling 411 - Fall 2023</title>
-  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <title>Chapter 9 Linear &amp; Non-Linear Transformations | Ling 411 - Fall 2024</title>
+  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Linear &amp; Non-Linear Transformations | Ling 411 - Fall 2023" />
+  <meta property="og:title" content="Chapter 9 Linear &amp; Non-Linear Transformations | Ling 411 - Fall 2024" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
-  <meta name="github-repo" content="rstudio/ling_411" />
+  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
+  
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Linear &amp; Non-Linear Transformations | Ling 411 - Fall 2023" />
+  <meta name="twitter:title" content="Chapter 9 Linear &amp; Non-Linear Transformations | Ling 411 - Fall 2024" />
   
-  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
   
 
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2023-12-26" />
+<meta name="date" content="2024-11-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="linear-regression-with-many-predictors.html"/>
-<link rel="next" href="categorical-predictors.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -64,7 +64,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -74,7 +74,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -145,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Ling 411 - Fall 2023</a></li>
+<li><a href="https://umitatlamaz.github.io/ling_411/">Ling 411 - Fall 2024</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
@@ -206,6 +206,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="plotting-1.html"><a href="plotting-1.html#using-lines-in-plots"><i class="fa fa-check"></i><b>5.3</b> Using lines in plots</a></li>
 <li class="chapter" data-level="5.4" data-path="plotting-1.html"><a href="plotting-1.html#color-and-fill"><i class="fa fa-check"></i><b>5.4</b> Color and fill</a></li>
 <li class="chapter" data-level="5.5" data-path="plotting-1.html"><a href="plotting-1.html#grouping-and-facets"><i class="fa fa-check"></i><b>5.5</b> Grouping and facets</a></li>
+<li class="chapter" data-level="5.6" data-path="plotting-1.html"><a href="plotting-1.html#adding-labels-to-the-plot"><i class="fa fa-check"></i><b>5.6</b> Adding Labels to the Plot</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="plotting-1.html"><a href="plotting-1.html#classic-theme"><i class="fa fa-check"></i><b>5.6.1</b> Classic Theme</a></li>
+<li class="chapter" data-level="5.6.2" data-path="plotting-1.html"><a href="plotting-1.html#minimal-theme"><i class="fa fa-check"></i><b>5.6.2</b> Minimal Theme</a></li>
+<li class="chapter" data-level="5.6.3" data-path="plotting-1.html"><a href="plotting-1.html#dark-theme"><i class="fa fa-check"></i><b>5.6.3</b> Dark Theme</a></li>
+<li class="chapter" data-level="5.6.4" data-path="plotting-1.html"><a href="plotting-1.html#modifying-the-size-of-the-title-and-labels."><i class="fa fa-check"></i><b>5.6.4</b> Modifying the size of the title and labels.</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a>
 <ul>
@@ -253,6 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html"><i class="fa fa-check"></i><b>8</b> Linear Regression with Many Predictors</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#fitting-two-linear-models"><i class="fa fa-check"></i><b>8.1</b> Fitting two Linear Models</a></li>
+<li class="chapter" data-level="8.2" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#model-comparison"><i class="fa fa-check"></i><b>8.2</b> Model Comparison</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html"><i class="fa fa-check"></i><b>9</b> Linear &amp; Non-Linear Transformations</a>
 <ul>
@@ -268,61 +276,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.2" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html#linear-regression-with-log-transformation"><i class="fa fa-check"></i><b>9.3.2</b> Linear Regression with Log Transformation</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="categorical-predictors.html"><a href="categorical-predictors.html"><i class="fa fa-check"></i><b>10</b> Categorical Predictors</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictor---continuous-outcome"><i class="fa fa-check"></i><b>10.1</b> Categorical Predictor - Continuous Outcome</a></li>
-<li class="chapter" data-level="10.2" data-path="categorical-predictors.html"><a href="categorical-predictors.html#taste-vs.-smell-words"><i class="fa fa-check"></i><b>10.2</b> Taste vs. Smell Words</a></li>
-<li class="chapter" data-level="10.3" data-path="categorical-predictors.html"><a href="categorical-predictors.html#contrasts-coding"><i class="fa fa-check"></i><b>10.3</b> Contrasts &amp; Coding</a>
-<ul>
-<li class="chapter" data-level="10.3.1" data-path="categorical-predictors.html"><a href="categorical-predictors.html#treatment-coding."><i class="fa fa-check"></i><b>10.3.1</b> Treatment Coding.</a></li>
-<li class="chapter" data-level="10.3.2" data-path="categorical-predictors.html"><a href="categorical-predictors.html#sum-coding"><i class="fa fa-check"></i><b>10.3.2</b> Sum Coding</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="categorical-predictors.html"><a href="categorical-predictors.html#categorical-predictors-with-more-than-2-levels"><i class="fa fa-check"></i><b>10.4</b> Categorical Predictors with more than 2 levels</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="effect-size-significance.html"><a href="effect-size-significance.html"><i class="fa fa-check"></i><b>11</b> Effect Size &amp; Significance</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#cohens-d"><i class="fa fa-check"></i><b>11.1</b> Cohen’s <em>d</em></a></li>
-<li class="chapter" data-level="11.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error"><i class="fa fa-check"></i><b>11.2</b> Standard Error</a></li>
-<li class="chapter" data-level="11.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#confidence-interval"><i class="fa fa-check"></i><b>11.3</b> Confidence Interval</a></li>
-<li class="chapter" data-level="11.4" data-path="effect-size-significance.html"><a href="effect-size-significance.html#standard-error-of-the-difference-of-two-means"><i class="fa fa-check"></i><b>11.4</b> Standard Error of the difference of two means</a></li>
-<li class="chapter" data-level="11.5" data-path="effect-size-significance.html"><a href="effect-size-significance.html#hypothesis-testing"><i class="fa fa-check"></i><b>11.5</b> Hypothesis Testing</a></li>
-<li class="chapter" data-level="11.6" data-path="effect-size-significance.html"><a href="effect-size-significance.html#calculating-the-t-score"><i class="fa fa-check"></i><b>11.6</b> Calculating the t-score</a></li>
-<li class="chapter" data-level="11.7" data-path="effect-size-significance.html"><a href="effect-size-significance.html#p-value"><i class="fa fa-check"></i><b>11.7</b> p-value</a></li>
-<li class="chapter" data-level="11.8" data-path="effect-size-significance.html"><a href="effect-size-significance.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>11.8</b> Type I and Type II Errors</a>
-<ul>
-<li class="chapter" data-level="11.8.1" data-path="effect-size-significance.html"><a href="effect-size-significance.html#type-i-error"><i class="fa fa-check"></i><b>11.8.1</b> Type I Error</a></li>
-<li class="chapter" data-level="11.8.2" data-path="effect-size-significance.html"><a href="effect-size-significance.html#typee-ii-error"><i class="fa fa-check"></i><b>11.8.2</b> Typee II Error</a></li>
-<li class="chapter" data-level="11.8.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#statistical-power"><i class="fa fa-check"></i><b>11.8.3</b> Statistical Power</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="logistic-regression.html"><a href="logistic-regression.html#the-intuition"><i class="fa fa-check"></i><b>12.1</b> The Intuition</a></li>
-<li class="chapter" data-level="12.2" data-path="logistic-regression.html"><a href="logistic-regression.html#the-math"><i class="fa fa-check"></i><b>12.2</b> The Math</a>
-<ul>
-<li class="chapter" data-level="12.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#binomial-bernoulli-distributions"><i class="fa fa-check"></i><b>12.2.1</b> Binomial &amp; Bernoulli Distributions</a></li>
-</ul></li>
-<li class="chapter" data-level="12.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-1"><i class="fa fa-check"></i><b>12.3</b> Logistic Regression</a>
-<ul>
-<li class="chapter" data-level="12.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-odds-logits"><i class="fa fa-check"></i><b>12.3.1</b> Log Odds &amp; Logits</a></li>
-</ul></li>
-<li class="chapter" data-level="12.4" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-in-r"><i class="fa fa-check"></i><b>12.4</b> Logistic Regression in R</a>
-<ul>
-<li class="chapter" data-level="12.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#data"><i class="fa fa-check"></i><b>12.4.1</b> Data</a></li>
-<li class="chapter" data-level="12.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#model"><i class="fa fa-check"></i><b>12.4.2</b> Model</a></li>
-<li class="chapter" data-level="12.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#from-logits-to-probabilities"><i class="fa fa-check"></i><b>12.4.3</b> From logits to probabilities</a></li>
-<li class="chapter" data-level="12.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#dative-dataset"><i class="fa fa-check"></i><b>12.4.4</b> Dative Dataset</a></li>
-</ul></li>
-<li class="chapter" data-level="12.5" data-path="logistic-regression.html"><a href="logistic-regression.html#testing-the-model"><i class="fa fa-check"></i><b>12.5</b> Testing the model</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html"><i class="fa fa-check"></i><b>13</b> Modeling Poisson Distribution</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#poisson-distribution"><i class="fa fa-check"></i><b>13.1</b> Poisson Distribution</a></li>
-<li class="chapter" data-level="13.2" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#modeling-with-poisson-distribution"><i class="fa fa-check"></i><b>13.2</b> Modeling with <strong>Poisson distribution</strong></a>
-<ul>
-<li class="chapter" data-level="13.2.1" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#data-1"><i class="fa fa-check"></i><b>13.2.1</b> Data</a></li>
-</ul></li>
-</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -335,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2023</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2024</a>
           </h1>
         </div>
 
@@ -393,7 +346,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb438-7"><a href="linear-non-linear-transformations.html#cb438-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span>F, <span class="at">fullrange=</span><span class="cn">TRUE</span>)<span class="sc">+</span></span>
 <span id="cb438-8"><a href="linear-non-linear-transformations.html#cb438-8" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
 <span id="cb438-9"><a href="linear-non-linear-transformations.html#cb438-9" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span> <span class="dv">870</span>, <span class="at">label=</span><span class="st">&quot;870&quot;</span>))</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 <p>Overall, our model does a decent job in showing us that there is a trend in our data. As the frequency of a word increases, reaction time decreases. However, the model also makes some hard to interpret prediction. Our model predicts that when the frequency of a word is 0, RT is expected to be 870. But that’s kinda odd. What does it mean for a word to have 0 frequency. If a word has 0 frequency, does it even exist?</p>
 <p>At this point, we can step back and ask ourselves a question regarding the <strong>intercept</strong>. When we defined the intercept, we defined it as the value y takes when x is 0. We mentioned that this was the way to define a line mathematically. But why x=0?</p>
 <p>Maybe setting the intercept as the value y takes when x=0 is mathematically meaningful. We can assume that x=0 is the <strong>center</strong> of the positive and negative integers both of which go to infinity. However, our data are usually finite and their center is usually not 0. We have talked about various measures of <strong>central tendency</strong> to identify the center of our data (e.g. mean, median, mode). How about we take the <strong>mean</strong> as the center of our data. In other words, how about we take the mean to be our x=0 point? This is called <strong>centering</strong>.</p>
@@ -425,7 +378,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb441-5"><a href="linear-non-linear-transformations.html#cb441-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span>F, <span class="at">fullrange=</span><span class="cn">TRUE</span>)<span class="sc">+</span></span>
 <span id="cb441-6"><a href="linear-non-linear-transformations.html#cb441-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
 <span id="cb441-7"><a href="linear-non-linear-transformations.html#cb441-7" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data=</span><span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">mean</span>(centered_log_freq), <span class="at">y=</span> <span class="dv">675</span>, <span class="at">label=</span><span class="st">&quot;680&quot;</span>))</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
 <p>Let us take a look at the intercept and slope values of the two models as well as their <strong>R<sup>2</sup></strong> values to see if centering has any effect on the model and its interpretation.</p>
 <pre class="r-output"><code>## # A tibble: 2 × 2
 ##   names                   x
@@ -471,7 +424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb448-4"><a href="linear-non-linear-transformations.html#cb448-4" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
 <span id="cb448-5"><a href="linear-non-linear-transformations.html#cb448-5" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (`geom_bar()`).</code></pre>
-<p><img src="main_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
 </div>
 </div>
 <div id="scaling-and-standardizing-in-r" class="section level2 hasAnchor" number="9.2">
@@ -524,20 +477,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb454-5"><a href="linear-non-linear-transformations.html#cb454-5" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
 <span id="cb454-6"><a href="linear-non-linear-transformations.html#cb454-6" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing missing values (`geom_bar()`).</code></pre>
-<p><img src="main_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
 <div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="linear-non-linear-transformations.html#cb456-1" tabindex="-1"></a><span class="fu">ggplot</span>(cab_fares, <span class="fu">aes</span>(distance_c)) <span class="sc">+</span></span>
 <span id="cb456-2"><a href="linear-non-linear-transformations.html#cb456-2" tabindex="-1"></a>        <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">n.breaks=</span><span class="dv">10</span>)<span class="sc">+</span></span>
 <span id="cb456-3"><a href="linear-non-linear-transformations.html#cb456-3" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.3</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
 <span id="cb456-4"><a href="linear-non-linear-transformations.html#cb456-4" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
 <span id="cb456-5"><a href="linear-non-linear-transformations.html#cb456-5" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (`geom_bar()`).</code></pre>
-<p><img src="main_files/figure-html/unnamed-chunk-227-2.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-232-2.png" width="672" /></p>
 <div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="linear-non-linear-transformations.html#cb458-1" tabindex="-1"></a><span class="fu">ggplot</span>(cab_fares, <span class="fu">aes</span>(distance_c_z)) <span class="sc">+</span></span>
 <span id="cb458-2"><a href="linear-non-linear-transformations.html#cb458-2" tabindex="-1"></a>        <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">n.breaks=</span><span class="dv">10</span>)<span class="sc">+</span></span>
 <span id="cb458-3"><a href="linear-non-linear-transformations.html#cb458-3" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">0.1</span>,<span class="at">boundary=</span><span class="dv">0</span>,</span>
 <span id="cb458-4"><a href="linear-non-linear-transformations.html#cb458-4" tabindex="-1"></a>                       <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
 <span id="cb458-5"><a href="linear-non-linear-transformations.html#cb458-5" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-227-3.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-232-3.png" width="672" /></p>
 <p><strong>Important</strong> A z-score above 3 or below -3 is usually interpreted as an extreme value.</p>
 </div>
 <div id="non-linear-transformations" class="section level2 hasAnchor" number="9.3">
@@ -578,7 +531,7 @@ Figure 9.1: Skewness. Image by <a href="https://www.allaboutcircuits.com/technic
 <span id="cb461-6"><a href="linear-non-linear-transformations.html#cb461-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(turkish_freq<span class="sc">$</span>frequency), <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span> )</span></code></pre></div>
 <pre><code>## Warning: Removed 2288 rows containing non-finite values (`stat_bin()`).</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (`geom_bar()`).</code></pre>
-<p><img src="main_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
 <p>It looks like most of the words are quite infrequent and a handful of words are very frequent. In fact, word frequencies are skewed in a very interesting way and they have a special distribution name called <strong>Zipfian</strong> distribution named after George Kingsley Zipf. But we’re not interested in that for now.</p>
 <p>The important point to notice is where the mean is in this distribution. The mean is shown with the dashed line and it does not in any way reflect the majority of the data. What is more important is that when the data is skewed, its linear modeling will usually result in <strong>residuals that are not normal</strong>. If the residuals are not normal, then the model will lose its validity. It is important that you notice what matters is the <strong>normality of the residuals</strong> not the normality of the data. Non-normal data is still fine for liner models as long as the residuals are normal.</p>
 <p><strong>So, what are logarithms and how do they help?</strong></p>
@@ -669,7 +622,7 @@ Figure 9.1: Skewness. Image by <a href="https://www.allaboutcircuits.com/technic
 <span id="cb464-9"><a href="linear-non-linear-transformations.html#cb464-9" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
 <span id="cb464-10"><a href="linear-non-linear-transformations.html#cb464-10" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&#39;lightblue&#39;</span>)<span class="sc">+</span></span>
 <span id="cb464-11"><a href="linear-non-linear-transformations.html#cb464-11" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(turkish_freq<span class="sc">$</span>log10freq), <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span> )</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
 <p>Notice that the data is still skewed but it’s not as bad as before and the mean is closer to the bulk of the data.</p>
 </div>
 <div id="linear-regression-with-log-transformation" class="section level3 hasAnchor" number="9.3.2">
@@ -685,13 +638,21 @@ Figure 9.1: Skewness. Image by <a href="https://www.allaboutcircuits.com/technic
 </div>
 </div>
 </div>
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="linear-regression-with-many-predictors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="categorical-predictors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="linear-regression-with-many-predictors.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -722,7 +683,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/08-transformations.Rmd",
+"link": "https://github.com/umitatlamaz/ling_411/edit/main/08-transformations.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -733,7 +694,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["main.pdf", "main.epub"],
+"download": ["main.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
