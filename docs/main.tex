@@ -120,7 +120,7 @@
 
 \title{Ling 411 - Fall 2024}
 \author{Ümit Atlamaz}
-\date{2024-11-25}
+\date{2024-12-02}
 
 \begin{document}
 \maketitle
@@ -3157,7 +3157,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 
 \chapter{Plotting}\label{plotting-1}
 
-(25 November, 2024, 12:28)
+(02 December, 2024, 12:51)
 
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}
 
@@ -6121,6 +6121,624 @@ You should run a linear model with and without log transformation to see how the
 \end{itemize}
 
 You can also fit a linear regression plot against a point plot to see how they differ. Let us do this for the \texttt{log10ELP\_frequency} data. It's the smaller dataset. You should also consider log10 transforming your dependent variable as well.
+
+\chapter{Categorical Predictors}\label{categorical-predictors}
+
+Remember that we talked about four basic types of models in terms of their dependent and independent variable types. Variables can assume \textbf{continuous} values (e.g.~reaction time, voicing duration, word count, etc.) or \textbf{categorical} values (e.g.~positive-negative, gender, agreement type, word order (SVO - SOV) etc.).
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Predictor Type (independent var.)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Outcome Type (dependent var.)}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Continuous & Continuous \\
+\textbf{Categorical} & \textbf{Continuous} \\
+Continuous & Categorical \\
+Categorical & Categorical \\
+\end{longtable}
+
+So far we built models where both the predictor and and the outcome are \textbf{continuous}. Now, we are moving to modeling data where the predictors are \textbf{categorical} and the outcomes are \textbf{continuous}.
+
+\section{Categorical Predictor - Continuous Outcome}\label{categorical-predictor---continuous-outcome}
+
+Models with categorical predictors are quite common in linguistics as well as in many fields that rely on data analytics. Here are some examples:
+
+\begin{itemize}
+\tightlist
+\item
+  What are the reaction times of children vs.~adults for a picture naming task?
+\item
+  How does pro-drop impact the acceptability ratings of clauses. (Assuming ratings are continuous).
+\item
+  How does NP ellipsis impact time to comprehend a linguistic expression?
+\end{itemize}
+
+Outside linguistics, especially in UX Research, people carry out a lot of A/B testing. For example, they check to see if a particular change to the UI has a significant impact on the user behavior. Here are some examples:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the impact of the background color on the length of stay on a webpage?
+\item
+  How much money do people from different cities spend on our platform?
+\item
+  How does the language of a campaign affect the amount of donations made by people?
+\end{itemize}
+
+Categorical predictors are used whenever you compare two or more groups based on some classification (e.g.~age, education level, native speaker status, and so on.).
+
+\section{Taste vs.~Smell Words}\label{taste-vs.-smell-words}
+
+The data and analysis for this section comes from Bodo Winter's Chapter 7.
+
+Smell words have been claimed to be more negative than taste words. I don't know if this is true for every language or not but Turkish presents some very nice data points in this direction. Consider the following two expressions.
+
+\begin{itemize}
+\tightlist
+\item
+  Burası (çok) kokuyor.
+\item
+  Bu (çok) tatlı.
+\end{itemize}
+
+Just the verb \emph{kok} ``smell'' seems to have a negative connotation. On the other hand, the adjective \emph{tatlı} ``tasty'' whose root \emph{tat} ``taste'' and the suffix \emph{-lı} simply means ``with'' has a positive connotation. While this is simply a hunch, we don't have enough evidence for Turkish to claim that this is in fact true. Let's hope that someone will run an experiment for Turkish and report the results. For now, we'll use the \textbf{senses\_valence} dataset from Bodo Winter's book.
+
+Let us read in the dataset and see what it looks like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Import tidyverse}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\CommentTok{\#Read in the data}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}data/winter\_2016\_senses\_valence.csv\textquotesingle{}}\NormalTok{)}
+\CommentTok{\#print the head to see what it looks like}
+\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 405 x 3}
+\NormalTok{\#\#    Word      Modality   Val}
+\NormalTok{\#\#    \textless{}chr\textgreater{}     \textless{}chr\textgreater{}    \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 abrasive  Touch     5.40}
+\NormalTok{\#\#  2 absorbent Sight     5.88}
+\NormalTok{\#\#  3 aching    Touch     5.23}
+\NormalTok{\#\#  4 acidic    Taste     5.54}
+\NormalTok{\#\#  5 acrid     Smell     5.17}
+\NormalTok{\#\#  6 adhesive  Touch     5.24}
+\NormalTok{\#\#  7 alcoholic Taste     5.56}
+\NormalTok{\#\#  8 alive     Sight     6.04}
+\NormalTok{\#\#  9 amber     Sight     5.72}
+\NormalTok{\#\# 10 angular   Sight     5.48}
+\NormalTok{\#\# \# i 395 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+The dataset consists of three variables:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Word}: A word associated with some sense.
+\item
+  \textbf{Modality}: Modality of the sense (touch, smell, etc.)
+\item
+  \textbf{Valence}: A numeric value representing the attractiveness-aversiveness of a word.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Higher Valence is better. See \href{https://en.wikipedia.org/wiki/Valence_(psychology)}{Wikipedia for more on valence}.
+  \end{itemize}
+\end{itemize}
+
+For now, we're only interested in \textbf{smell} and \textbf{taste}. Yet, it looks like the data has more than that. Let's print the unique values in the Modality column to see all the categories.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{unique}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{Modality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] "Touch" "Sight" "Taste" "Smell" "Sound"}
+\end{Highlighting}
+\end{Shaded}
+
+Let's now select the rows that have only \textbf{smell} and \textbf{taste} values. For this, we will use the filter function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Filter the data}
+\NormalTok{senses\_data }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(data, Modality }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Smell\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Taste\textquotesingle{}}\NormalTok{))}
+
+\CommentTok{\# Check the unique values to make sure}
+\FunctionTok{unique}\NormalTok{(senses\_data}\SpecialCharTok{$}\NormalTok{Modality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] "Taste" "Smell"}
+\end{Highlighting}
+\end{Shaded}
+
+Let us quickly get some summary statistics using the `summarize()' function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#pipe the data to a group\_by function}
+\CommentTok{\#then pipe the groupings to the summarize function}
+\CommentTok{\# create the summary variables for mean and sd}
+\NormalTok{senses\_data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(Modality) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{M =} \FunctionTok{mean}\NormalTok{(Val), }\AttributeTok{SD =} \FunctionTok{sd}\NormalTok{(Val))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 3}
+\NormalTok{\#\#   Modality     M    SD}
+\NormalTok{\#\#   \textless{}chr\textgreater{}    \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 Smell     5.47 0.336}
+\NormalTok{\#\# 2 Taste     5.81 0.303}
+\end{Highlighting}
+\end{Shaded}
+
+It looks like the mean valence for the two groups (smell and taste) are slightly different. Without fitting a model, we won't yet know if this difference is significant (i.e.~meaningful but not by chance).
+
+Before fitting a model though, let us visualize the data to see what it looks like. For categorical variables, it is often useful to plot a box-and-whiskers plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{senses\_data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Modality, }\AttributeTok{y =}\NormalTok{ Val, }\AttributeTok{fill =}\NormalTok{ Modality)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-240-1.pdf}
+
+An alternative way to plot the data is to use density graphs, which are essentially smoothed histograms.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{senses\_data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Val, }\AttributeTok{fill =}\NormalTok{ Modality, }\FunctionTok{after\_stat}\NormalTok{(scaled))) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha=}\FloatTok{0.5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-241-1.pdf}
+
+\section{Contrasts \& Coding}\label{contrasts-coding}
+
+Linear models are essentially linear equations. This means that they are defined on numeric values (e.g.~5, 0.2, etc.) but not categorical values (e.g.~child-adult, SOV-VSO, etc.). To be able to use linear models with categorical values, we need to convert our categories into some numeric values that can be used in a linear equation. This conversion of categorical values into numeric values is called \textbf{contrast coding}. There are various ways in which this coding can be done and they have slightly different interpretations. While numbers are somewhat arbitrary, the interpretation of the coefficients depends on the choice of the coding technique.
+
+\subsection{Treatment Coding.}\label{treatment-coding.}
+
+One way of coding the difference between two categories is to convert them into ones and zeroes. This is called \textbf{treatment coding}. Sometimes it is also called \textbf{dummy coding}.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+\textbf{Word} & \textbf{Category} & \textbf{Treatment Coding} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+odor & smell & 0 \\
+sweet & taste & 1 \\
+acrid & smell & 0 \\
+\end{longtable}
+
+Let us do this by hand before training a model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a new column with 0 for smell and 1 for taste}
+\NormalTok{senses\_data }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(senses\_data, }\AttributeTok{treatment =} \FunctionTok{ifelse}\NormalTok{(Modality }\SpecialCharTok{==} \StringTok{\textquotesingle{}Taste\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+
+\NormalTok{senses\_data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 72 x 4}
+\NormalTok{\#\#    Word       Modality   Val treatment}
+\NormalTok{\#\#    \textless{}chr\textgreater{}      \textless{}chr\textgreater{}    \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 acidic     Taste     5.54         1}
+\NormalTok{\#\#  2 acrid      Smell     5.17         0}
+\NormalTok{\#\#  3 alcoholic  Taste     5.56         1}
+\NormalTok{\#\#  4 antiseptic Smell     5.51         0}
+\NormalTok{\#\#  5 aromatic   Smell     5.95         0}
+\NormalTok{\#\#  6 astringent Taste     5.96         1}
+\NormalTok{\#\#  7 barbecued  Taste     6.05         1}
+\NormalTok{\#\#  8 beery      Taste     6.07         1}
+\NormalTok{\#\#  9 bitter     Taste     5.12         1}
+\NormalTok{\#\# 10 bland      Taste     5.75         1}
+\NormalTok{\#\# \# i 62 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Now that our categories are turned into numeric values, we can run a model. Let us fit a model where \textbf{valence} is a function of \textbf{modality} using our \textbf{treatment} codes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Val }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment, }\AttributeTok{data =}\NormalTok{ senses\_data)}
+
+\NormalTok{model\_1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = Val \textasciitilde{} treatment, data = senses\_data)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\# (Intercept)    treatment  }
+\NormalTok{\#\#      5.4710       0.3371}
+\end{Highlighting}
+\end{Shaded}
+
+In treatment coding, the intercept becomes the mean of one of your variables whereas the slope is the difference between the two means. You can see this clearly once you plot a linear function between the two variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(senses\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ treatment, }\AttributeTok{y=}\NormalTok{ Val))}\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{, }\AttributeTok{se=}\NormalTok{F)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-244-1.pdf}
+
+Let us now take a look at the usual numbers R2 and p-value to interpret how our model is doing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(model\_1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = Val \textasciitilde{} treatment, data = senses\_data)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Residuals:}
+\NormalTok{\#\#      Min       1Q   Median       3Q      Max }
+\NormalTok{\#\# {-}0.99315 {-}0.20870  0.04343  0.19115  0.62788 }
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\#             Estimate Std. Error t value Pr(\textgreater{}|t|)    }
+\NormalTok{\#\# (Intercept)  5.47101    0.06297  86.889  \textless{} 2e{-}16 ***}
+\NormalTok{\#\# treatment    0.33711    0.07793   4.326 4.95e{-}05 ***}
+\NormalTok{\#\# {-}{-}{-}}
+\NormalTok{\#\# Signif. codes:  0 \textquotesingle{}***\textquotesingle{} 0.001 \textquotesingle{}**\textquotesingle{} 0.01 \textquotesingle{}*\textquotesingle{} 0.05 \textquotesingle{}.\textquotesingle{} 0.1 \textquotesingle{} \textquotesingle{} 1}
+\NormalTok{\#\# }
+\NormalTok{\#\# Residual standard error: 0.3148 on 70 degrees of freedom}
+\NormalTok{\#\# Multiple R{-}squared:  0.2109, Adjusted R{-}squared:  0.1997 }
+\NormalTok{\#\# F{-}statistic: 18.71 on 1 and 70 DF,  p{-}value: 4.951e{-}05}
+\end{Highlighting}
+\end{Shaded}
+
+Normally, you don't have to do the treatment coding by hand. R will do it automatically for you. We did it manually to make sure we understand what's under the hood.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Val }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Modality, }\AttributeTok{data =}\NormalTok{ senses\_data)}
+
+\NormalTok{model\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = Val \textasciitilde{} Modality, data = senses\_data)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\#   (Intercept)  ModalityTaste  }
+\NormalTok{\#\#        5.4710         0.3371}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Interpreting the coefficients:} Our model is simply the following mathematical model.
+
+\[valence = 5.8 + (−0.3) * modality\]
+So, our model predicts only two values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Create a dataset consisting of categories in the data}
+\NormalTok{preds }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{Modality =} \FunctionTok{unique}\NormalTok{(senses\_data}\SpecialCharTok{$}\NormalTok{Modality))}
+\CommentTok{\# Print to see what they look like}
+\NormalTok{preds}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 1}
+\NormalTok{\#\#   Modality}
+\NormalTok{\#\#   \textless{}chr\textgreater{}   }
+\NormalTok{\#\# 1 Taste   }
+\NormalTok{\#\# 2 Smell}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# See the predictions}
+\FunctionTok{predict}\NormalTok{(model\_2, preds)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#        1        2 }
+\NormalTok{\#\# 5.808124 5.471012}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Sum Coding}\label{sum-coding}
+
+Sum coding is a slightly different coding mechanism. Instead of using 0 and 1 as the coding scheme, we use -1 and 1 as the coding scheme. This has the benefit of having the mean of the means as the intercept. To be able to use R's coding functionality, we should convert our categorical values as \textbf{factors}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{senses\_data}\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(senses\_data, }\AttributeTok{Modality =} \FunctionTok{factor}\NormalTok{(Modality))}
+
+\NormalTok{senses\_data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 72 x 4}
+\NormalTok{\#\#    Word       Modality   Val treatment}
+\NormalTok{\#\#    \textless{}chr\textgreater{}      \textless{}fct\textgreater{}    \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 acidic     Taste     5.54         1}
+\NormalTok{\#\#  2 acrid      Smell     5.17         0}
+\NormalTok{\#\#  3 alcoholic  Taste     5.56         1}
+\NormalTok{\#\#  4 antiseptic Smell     5.51         0}
+\NormalTok{\#\#  5 aromatic   Smell     5.95         0}
+\NormalTok{\#\#  6 astringent Taste     5.96         1}
+\NormalTok{\#\#  7 barbecued  Taste     6.05         1}
+\NormalTok{\#\#  8 beery      Taste     6.07         1}
+\NormalTok{\#\#  9 bitter     Taste     5.12         1}
+\NormalTok{\#\# 10 bland      Taste     5.75         1}
+\NormalTok{\#\# \# i 62 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Next, we can use the contrasts function to see what the current coding scheme looks like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{contrasts}\NormalTok{(senses\_data}\SpecialCharTok{$}\NormalTok{Modality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#       Taste}
+\NormalTok{\#\# Smell     0}
+\NormalTok{\#\# Taste     1}
+\end{Highlighting}
+\end{Shaded}
+
+We can also use R's built in cont function to get various coding types.
+
+\textbf{For treatment coding:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Treatment coding with two variables}
+\FunctionTok{contr.treatment}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   2}
+\NormalTok{\#\# 1 0}
+\NormalTok{\#\# 2 1}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{For Sum coding:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Sum coding with two variables}
+\FunctionTok{contr.sum}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   [,1]}
+\NormalTok{\#\# 1    1}
+\NormalTok{\#\# 2   {-}1}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{More than 2 variables:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Treatment coding with 3 variables}
+\FunctionTok{contr.treatment}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   2 3}
+\NormalTok{\#\# 1 0 0}
+\NormalTok{\#\# 2 1 0}
+\NormalTok{\#\# 3 0 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Sum coding with 3 variables}
+\FunctionTok{contr.sum}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   [,1] [,2]}
+\NormalTok{\#\# 1    1    0}
+\NormalTok{\#\# 2    0    1}
+\NormalTok{\#\# 3   {-}1   {-}1}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{More than 2 variables:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Treatment coding with 5 variables}
+\FunctionTok{contr.treatment}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   2 3 4 5}
+\NormalTok{\#\# 1 0 0 0 0}
+\NormalTok{\#\# 2 1 0 0 0}
+\NormalTok{\#\# 3 0 1 0 0}
+\NormalTok{\#\# 4 0 0 1 0}
+\NormalTok{\#\# 5 0 0 0 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Sum coding with 5 variables}
+\FunctionTok{contr.sum}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   [,1] [,2] [,3] [,4]}
+\NormalTok{\#\# 1    1    0    0    0}
+\NormalTok{\#\# 2    0    1    0    0}
+\NormalTok{\#\# 3    0    0    1    0}
+\NormalTok{\#\# 4    0    0    0    1}
+\NormalTok{\#\# 5   {-}1   {-}1   {-}1   {-}1}
+\end{Highlighting}
+\end{Shaded}
+
+Let us use sum coding on our data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Create a new column by copying the modality factors (Taste and Smell)}
+\NormalTok{senses\_data }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(senses\_data, }\AttributeTok{sum\_coding=}\NormalTok{Modality)}
+\CommentTok{\#Use sum coding using contrasts() and contr.sum()}
+\FunctionTok{contrasts}\NormalTok{(senses\_data}\SpecialCharTok{$}\NormalTok{sum\_coding) }\OtherTok{\textless{}{-}} \FunctionTok{contr.sum}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\CommentTok{\#run constrasts to see if it worked}
+\FunctionTok{contrasts}\NormalTok{(senses\_data}\SpecialCharTok{$}\NormalTok{sum\_coding)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#       [,1]}
+\NormalTok{\#\# Smell    1}
+\NormalTok{\#\# Taste   {-}1}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can fit a linear model and see what the coefficients look like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_3 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Val }\SpecialCharTok{\textasciitilde{}}\NormalTok{ sum\_coding, }\AttributeTok{data=}\NormalTok{senses\_data)}
+
+\NormalTok{model\_3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = Val \textasciitilde{} sum\_coding, data = senses\_data)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\# (Intercept)  sum\_coding1  }
+\NormalTok{\#\#      5.6396      {-}0.1686}
+\end{Highlighting}
+\end{Shaded}
+
+The intercept is now the mean of the means. The slope is halved.
+
+Let us also plot the model to see where the intercept is.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(senses\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ sum\_coding, }\AttributeTok{y=}\NormalTok{ Val))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-256-1.pdf}
+
+\section{Categorical Predictors with more than 2 levels}\label{categorical-predictors-with-more-than-2-levels}
+
+Remember that originally our data had 5 levels (``Touch'' ``Sight'' ``Taste'' ``Smell'' ``Sound''). Let us build a linear model that includes all of them.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_4 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Val }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Modality, }\AttributeTok{data=}\NormalTok{data)}
+\NormalTok{model\_4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Call:}
+\NormalTok{\#\# lm(formula = Val \textasciitilde{} Modality, data = data)}
+\NormalTok{\#\# }
+\NormalTok{\#\# Coefficients:}
+\NormalTok{\#\#   (Intercept)  ModalitySmell  ModalitySound  ModalityTaste  ModalityTouch  }
+\NormalTok{\#\#       5.57966       {-}0.10865       {-}0.17447        0.22846       {-}0.04523}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ Modality, }\AttributeTok{y=}\NormalTok{ Val, }\AttributeTok{color=}\NormalTok{Modality))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method=}\StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{, }\AttributeTok{se=}\NormalTok{F)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-258-1.pdf}
 
   \bibliography{book.bib,packages.bib}
 
