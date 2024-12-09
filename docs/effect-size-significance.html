@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 11 Effect Size &amp; Significance | Ling 411 - Fall 2023</title>
-  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <title>Chapter 11 Effect Size &amp; Significance | Ling 411 - Fall 2024</title>
+  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 11 Effect Size &amp; Significance | Ling 411 - Fall 2023" />
+  <meta property="og:title" content="Chapter 11 Effect Size &amp; Significance | Ling 411 - Fall 2024" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
-  <meta name="github-repo" content="rstudio/ling_411" />
+  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
+  
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 11 Effect Size &amp; Significance | Ling 411 - Fall 2023" />
+  <meta name="twitter:title" content="Chapter 11 Effect Size &amp; Significance | Ling 411 - Fall 2024" />
   
-  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
   
 
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2023-12-26" />
+<meta name="date" content="2024-12-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="categorical-predictors.html"/>
-<link rel="next" href="logistic-regression.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -64,7 +64,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -74,7 +74,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -145,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Ling 411 - Fall 2023</a></li>
+<li><a href="https://umitatlamaz.github.io/ling_411/">Ling 411 - Fall 2024</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
@@ -206,6 +206,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="plotting-1.html"><a href="plotting-1.html#using-lines-in-plots"><i class="fa fa-check"></i><b>5.3</b> Using lines in plots</a></li>
 <li class="chapter" data-level="5.4" data-path="plotting-1.html"><a href="plotting-1.html#color-and-fill"><i class="fa fa-check"></i><b>5.4</b> Color and fill</a></li>
 <li class="chapter" data-level="5.5" data-path="plotting-1.html"><a href="plotting-1.html#grouping-and-facets"><i class="fa fa-check"></i><b>5.5</b> Grouping and facets</a></li>
+<li class="chapter" data-level="5.6" data-path="plotting-1.html"><a href="plotting-1.html#adding-labels-to-the-plot"><i class="fa fa-check"></i><b>5.6</b> Adding Labels to the Plot</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="plotting-1.html"><a href="plotting-1.html#classic-theme"><i class="fa fa-check"></i><b>5.6.1</b> Classic Theme</a></li>
+<li class="chapter" data-level="5.6.2" data-path="plotting-1.html"><a href="plotting-1.html#minimal-theme"><i class="fa fa-check"></i><b>5.6.2</b> Minimal Theme</a></li>
+<li class="chapter" data-level="5.6.3" data-path="plotting-1.html"><a href="plotting-1.html#dark-theme"><i class="fa fa-check"></i><b>5.6.3</b> Dark Theme</a></li>
+<li class="chapter" data-level="5.6.4" data-path="plotting-1.html"><a href="plotting-1.html#modifying-the-size-of-the-title-and-labels."><i class="fa fa-check"></i><b>5.6.4</b> Modifying the size of the title and labels.</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a>
 <ul>
@@ -253,6 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html"><i class="fa fa-check"></i><b>8</b> Linear Regression with Many Predictors</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#fitting-two-linear-models"><i class="fa fa-check"></i><b>8.1</b> Fitting two Linear Models</a></li>
+<li class="chapter" data-level="8.2" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#model-comparison"><i class="fa fa-check"></i><b>8.2</b> Model Comparison</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html"><i class="fa fa-check"></i><b>9</b> Linear &amp; Non-Linear Transformations</a>
 <ul>
@@ -295,34 +303,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.8.3" data-path="effect-size-significance.html"><a href="effect-size-significance.html#statistical-power"><i class="fa fa-check"></i><b>11.8.3</b> Statistical Power</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="logistic-regression.html"><a href="logistic-regression.html#the-intuition"><i class="fa fa-check"></i><b>12.1</b> The Intuition</a></li>
-<li class="chapter" data-level="12.2" data-path="logistic-regression.html"><a href="logistic-regression.html#the-math"><i class="fa fa-check"></i><b>12.2</b> The Math</a>
-<ul>
-<li class="chapter" data-level="12.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#binomial-bernoulli-distributions"><i class="fa fa-check"></i><b>12.2.1</b> Binomial &amp; Bernoulli Distributions</a></li>
-</ul></li>
-<li class="chapter" data-level="12.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-1"><i class="fa fa-check"></i><b>12.3</b> Logistic Regression</a>
-<ul>
-<li class="chapter" data-level="12.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-odds-logits"><i class="fa fa-check"></i><b>12.3.1</b> Log Odds &amp; Logits</a></li>
-</ul></li>
-<li class="chapter" data-level="12.4" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-in-r"><i class="fa fa-check"></i><b>12.4</b> Logistic Regression in R</a>
-<ul>
-<li class="chapter" data-level="12.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#data"><i class="fa fa-check"></i><b>12.4.1</b> Data</a></li>
-<li class="chapter" data-level="12.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#model"><i class="fa fa-check"></i><b>12.4.2</b> Model</a></li>
-<li class="chapter" data-level="12.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#from-logits-to-probabilities"><i class="fa fa-check"></i><b>12.4.3</b> From logits to probabilities</a></li>
-<li class="chapter" data-level="12.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#dative-dataset"><i class="fa fa-check"></i><b>12.4.4</b> Dative Dataset</a></li>
-</ul></li>
-<li class="chapter" data-level="12.5" data-path="logistic-regression.html"><a href="logistic-regression.html#testing-the-model"><i class="fa fa-check"></i><b>12.5</b> Testing the model</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html"><i class="fa fa-check"></i><b>13</b> Modeling Poisson Distribution</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#poisson-distribution"><i class="fa fa-check"></i><b>13.1</b> Poisson Distribution</a></li>
-<li class="chapter" data-level="13.2" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#modeling-with-poisson-distribution"><i class="fa fa-check"></i><b>13.2</b> Modeling with <strong>Poisson distribution</strong></a>
-<ul>
-<li class="chapter" data-level="13.2.1" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#data-1"><i class="fa fa-check"></i><b>13.2.1</b> Data</a></li>
-</ul></li>
-</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -335,7 +315,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2023</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2024</a>
           </h1>
         </div>
 
@@ -692,20 +672,20 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 <span id="cb543-3"><a href="effect-size-significance.html#cb543-3" tabindex="-1"></a></span>
 <span id="cb543-4"><a href="effect-size-significance.html#cb543-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">4</span>, .<span class="dv">3</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t (df=2)&quot;</span>, <span class="st">&quot;normal&quot;</span>),</span>
 <span id="cb543-5"><a href="effect-size-significance.html#cb543-5" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;steelblue&quot;</span> ), <span class="at">lty=</span><span class="dv">5</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-266-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
 <p><strong>t-distribution</strong> approaches normal distribution (for z-scores) as the degrees of freedom increases. At 30 degrees of freedom or above, it becomes very similar to normal distribution.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
 <div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="effect-size-significance.html#cb544-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">10</span>), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>)) <span class="co">#10 degrees of freedom</span></span>
 <span id="cb544-2"><a href="effect-size-significance.html#cb544-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;steelblue&#39;</span>,<span class="at">add=</span><span class="cn">TRUE</span>) </span>
 <span id="cb544-3"><a href="effect-size-significance.html#cb544-3" tabindex="-1"></a></span>
 <span id="cb544-4"><a href="effect-size-significance.html#cb544-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">4</span>, .<span class="dv">3</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t (df=2)&quot;</span>, <span class="st">&quot;normal&quot;</span>),</span>
 <span id="cb544-5"><a href="effect-size-significance.html#cb544-5" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;steelblue&quot;</span> ), <span class="at">lty=</span><span class="dv">5</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
 <div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="effect-size-significance.html#cb545-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">30</span>), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>)) <span class="co">#30 degrees of freedom</span></span>
 <span id="cb545-2"><a href="effect-size-significance.html#cb545-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col =</span> <span class="st">&#39;steelblue&#39;</span>,<span class="at">add=</span><span class="cn">TRUE</span>) </span>
 <span id="cb545-3"><a href="effect-size-significance.html#cb545-3" tabindex="-1"></a></span>
 <span id="cb545-4"><a href="effect-size-significance.html#cb545-4" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">4</span>, .<span class="dv">3</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t (df=2)&quot;</span>, <span class="st">&quot;normal&quot;</span>),</span>
 <span id="cb545-5"><a href="effect-size-significance.html#cb545-5" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;steelblue&quot;</span> ), <span class="at">lty=</span><span class="dv">5</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-268-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
 </div>
 <div id="p-value" class="section level2 hasAnchor" number="11.7">
 <h2><span class="header-section-number">11.7</span> p-value<a href="effect-size-significance.html#p-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -920,6 +900,16 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
 </div>
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
 <div class="footnotes">
 <hr />
 <ol start="4">
@@ -932,8 +922,8 @@ t-score is going to be a value from a t-distribution. A t-distribution is very s
           </div>
         </div>
       </div>
-<a href="categorical-predictors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="logistic-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="categorical-predictors.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -964,7 +954,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-significance.Rmd",
+"link": "https://github.com/umitatlamaz/ling_411/edit/main/10-significance.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -975,7 +965,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["main.pdf", "main.epub"],
+"download": ["main.pdf"],
 "search": {
 "engine": "fuse",
 "options": null

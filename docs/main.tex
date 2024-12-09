@@ -120,7 +120,7 @@
 
 \title{Ling 411 - Fall 2024}
 \author{Ümit Atlamaz}
-\date{2024-12-02}
+\date{2024-12-09}
 
 \begin{document}
 \maketitle
@@ -3157,7 +3157,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 
 \chapter{Plotting}\label{plotting-1}
 
-(02 December, 2024, 12:51)
+(09 December, 2024, 12:04)
 
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}
 
@@ -6739,6 +6739,1040 @@ Remember that originally our data had 5 levels (``Touch'' ``Sight'' ``Taste'' ``
 \end{Shaded}
 
 \includegraphics{main_files/figure-latex/unnamed-chunk-258-1.pdf}
+
+\chapter{Effect Size \& Significance}\label{effect-size-significance}
+
+Often times, we will observe a difference between the means of two groups. These groups could be variables of any factor. For example, age could be a factor an we are investigating the difference in voice pitch between children and adults. Or, we could be looking at the difference between the frequency of using the word \textbf{darlamak} between members of Gen X and Gen Z. Yet another example would be looking at the difference between the average valence of smell and taste words.
+
+In all these cases, we are comparing two means. So, let's say we collect data from 100 adults and 100 children and observe that on average children's fundamental frequencies in their voice pitch is 100Hz higher than those of adults.
+
+What have we found? Is this a big difference? (As humans we are usually able to distinguish between an adult and a child when they speak. So, assuming that fundamental frequency is a predictor of adult vs child, then we know that some level of difference in Hertz is the source of this difference. But what is that level?)
+
+Let's say we run another experiment with 5 children and 5 adults. Now, we find the average difference to be 200. So, once again, we face the same question. Is 100 big? Is 200 big? Obviously 200 is bigger than 100 but we don't know if these are big numbers or not.
+
+Once again, we need to think of magnitude not in terms of absolute values but relative to a population (e.g.~humans, children, adults, men, women, etc.). So, it would be great if we could figure out a way to calculate the \textbf{effect size} of a predictor (e.g.~being adult or being a child) in a \textbf{standardized way}. If we have a standard definition of effect size, then we can compute this for any kind of metric.
+
+As we are trying to figure out a standardized effect size (and other values), we'll keep three main points in mind:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Magnitude of difference}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The bigger the difference between (means of) two sample groups, the more you should expect to see a difference in the population.
+  \end{itemize}
+\item
+  \textbf{Variability in the data}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The less variability in the data, the more certain you'll be about the estimate.
+  \end{itemize}
+\item
+  \textbf{Sample Size}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The bigger the sample size, the more accurate is your measurement of the difference.
+  \end{itemize}
+\end{itemize}
+
+\section{\texorpdfstring{Cohen's \emph{d}}{Cohen's d}}\label{cohens-d}
+
+Cohen's \emph{d} is the measure used to quantify the \textbf{strength} of a difference between two means (m1 and m2). The formula for Cohen's \emph{d} is given below:
+
+\[d = \frac{m_1-m_2}{s}\]
+where:
+\[m_1 = \text{mean of group 1}\]
+\[m_2 = \text{mean of group 2}\]
+
+\[s = \text{pooled standard deviation}\]
+
+We'll calculate s using the formula below for \textbf{pooled} standard deviation:
+
+\[s = \sqrt{\frac{(n_1-1)*sd_1^2 + (n_2-1)*sd_2^2}{n_1+n_2-2}}\]
+
+where:
+
+\[n_1 = \text{number of items in group 1}\]
+
+\[n_2 = \text{number of items in group 2}\]
+
+\[sd_1 = \text{standard deviation of group 1}\]
+
+\[sd_2 = \text{standard deviation of group 2}\]
+
+The reason why we are calculating the \textbf{pooled} standard deviation is to make sure that our standard deviations that come from different means (i.e.~groups of data) are weighted. Below, we'll see that the pooled standard deviation has a slightly different value than the standard deviation of the whole data.
+
+\textbf{Let us try Cohen's \emph{d} for the Smell and Taste data. }
+
+First, load the data and select the relevant data using the filter function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Import tidyverse}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\CommentTok{\#Read in the data}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}data/winter\_2016\_senses\_valence.csv\textquotesingle{}}\NormalTok{)}
+\CommentTok{\#filter in the data for the relevant conditions (Taste and Smell)}
+\NormalTok{senses\_data }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(data, Modality }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Taste\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Smell\textquotesingle{}}\NormalTok{))}
+\CommentTok{\#print the head to see what it looks like}
+\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 405 x 3}
+\NormalTok{\#\#    Word      Modality   Val}
+\NormalTok{\#\#    \textless{}chr\textgreater{}     \textless{}chr\textgreater{}    \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 abrasive  Touch     5.40}
+\NormalTok{\#\#  2 absorbent Sight     5.88}
+\NormalTok{\#\#  3 aching    Touch     5.23}
+\NormalTok{\#\#  4 acidic    Taste     5.54}
+\NormalTok{\#\#  5 acrid     Smell     5.17}
+\NormalTok{\#\#  6 adhesive  Touch     5.24}
+\NormalTok{\#\#  7 alcoholic Taste     5.56}
+\NormalTok{\#\#  8 alive     Sight     6.04}
+\NormalTok{\#\#  9 amber     Sight     5.72}
+\NormalTok{\#\# 10 angular   Sight     5.48}
+\NormalTok{\#\# \# i 395 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+Let us get the means for each category.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#calculate means for each condition (Taste, Smell)}
+\NormalTok{means }\OtherTok{\textless{}{-}}\NormalTok{ senses\_data }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(Modality) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{avg =} \FunctionTok{mean}\NormalTok{(Val))}
+
+\CommentTok{\#print means to see what it looks like}
+\NormalTok{means}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 2}
+\NormalTok{\#\#   Modality   avg}
+\NormalTok{\#\#   \textless{}chr\textgreater{}    \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 Smell     5.47}
+\NormalTok{\#\# 2 Taste     5.81}
+\end{Highlighting}
+\end{Shaded}
+
+Let us get the length of each group (i.e.~number of items in each group).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#get the number of items for each condition (Taste, Smell)}
+\NormalTok{lengths  }\OtherTok{\textless{}{-}}\NormalTok{ senses\_data }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(Modality) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{N =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+Let us now calculate s (pooled standard deviation).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#calculate standard deviation for each condition (Taste, Smell)}
+\NormalTok{s\_devs  }\OtherTok{\textless{}{-}}\NormalTok{ senses\_data }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(Modality) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{s =} \FunctionTok{sd}\NormalTok{(Val))}
+
+\CommentTok{\#calculate pooled standard deviation using the formula above}
+\NormalTok{s }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(((lengths}\SpecialCharTok{$}\NormalTok{N[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(s\_devs}\SpecialCharTok{$}\NormalTok{s[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ (lengths}\SpecialCharTok{$}\NormalTok{N[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(s\_devs}\SpecialCharTok{$}\NormalTok{s[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}\SpecialCharTok{/}\NormalTok{(lengths}\SpecialCharTok{$}\NormalTok{N[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{+}\NormalTok{lengths}\SpecialCharTok{$}\NormalTok{N[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{))}
+
+\CommentTok{\#print the pooled standard deviation}
+\NormalTok{s}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.3148274}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#calculate and print the standard deviation of the whole data for comparison}
+\FunctionTok{sd}\NormalTok{(senses\_data}\SpecialCharTok{$}\NormalTok{Val)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.3519115}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can calculate Cohen's \emph{d}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d }\OtherTok{=}\NormalTok{ (means}\SpecialCharTok{$}\NormalTok{avg[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}}\NormalTok{ means}\SpecialCharTok{$}\NormalTok{avg[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{/}\NormalTok{ s}
+\NormalTok{d}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] {-}1.070784}
+\end{Highlighting}
+\end{Shaded}
+
+We can also use the package \texttt{effsize} to calculate Cohen's d.~You'll see observe a difference between our calculation and the calculation given by the effsize package This is mainly because they use a slightly difference way of calculating variation in the data (the denominator). That's not a huge difference.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(effsize)}
+\FunctionTok{cohen.d}\NormalTok{(Val }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Modality, }\AttributeTok{data =}\NormalTok{ senses\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Cohen\textquotesingle{}s d}
+\NormalTok{\#\# }
+\NormalTok{\#\# d estimate: {-}1.070784 (large)}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#      lower      upper }
+\NormalTok{\#\# {-}1.5955866 {-}0.5459824}
+\end{Highlighting}
+\end{Shaded}
+
+How to interpret Cohen's d?
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+\textbf{Cohen's \emph{d} } & \textbf{Magnitude} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbar0.2\textbar{} & small \\
+\textbar0.5\textbar{} & medium \\
+\textbar0.8\textbar{} & large \\
+\end{longtable}
+
+\begin{figure}
+\centering
+\includegraphics{./img/cohens.png}
+\caption{\label{fig:cohens}Cohen's \emph{d}.}
+\end{figure}
+
+\section{Standard Error}\label{standard-error}
+
+Cohen's \emph{d} is a standard measure of difference in magnitude between two samples. It does not care about the sample size though. Your sample size for each group could be 2, 200, 2K, 2M, and so on.
+
+Although, Cohen's \emph{d} can tell us whether the difference between the two samples is large, it won't tell us much about our population.
+
+Here's a small example. I want to test if there is a difference between the voice pitch of people who wear \textbf{blue shirts} and people who wear \textbf{red shirts}. Assume that the following is my data.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+\textbf{Participant (by shirt color) } & \textbf{Fundamental Frequency} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Blue 1 & 175 \\
+Blue 2 & 125 \\
+Red 1 & 220 \\
+Red 2 & 190 \\
+\end{longtable}
+
+Let us run Cohen's d on this data to see what the magnitude of the difference is.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{blue }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{175}\NormalTok{,}\DecValTok{125}\NormalTok{)}
+\NormalTok{red }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{220}\NormalTok{,}\DecValTok{190}\NormalTok{)}
+\FunctionTok{mean}\NormalTok{(blue) }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(red)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] {-}55}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cohen.d}\NormalTok{(blue,red)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Cohen\textquotesingle{}s d}
+\NormalTok{\#\# }
+\NormalTok{\#\# d estimate: {-}1.886484 (large)}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#     lower     upper }
+\NormalTok{\#\# {-}7.058361  3.285392}
+\end{Highlighting}
+\end{Shaded}
+
+We get a large effect. However, there's no way we can conclude that shirt color has anything to do with someone's voice pitch. We cannot generalize to the population. We observe a difference but we probably have a decent error margin in our prediction. To quantify this error, we need to introduce a new metric \textbf{standard error}.
+
+Standard Error (SE) is a combination of the \textbf{variability} in the data and the \textbf{sample size}
+
+\[SE = \frac{s}{\sqrt{N}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  s = standard deviation
+\item
+  N = sample size
+\end{itemize}
+
+The bigger the standard error, the less accurate is your estimation of the population parameters. This means your estimation (of the parameters, i.e.~mean and standard deviation) is less reliable. The smaller the SE, the more accurate is your calculation of the population parameter estimates.
+
+As you can see from the formula:
+
+\begin{itemize}
+\tightlist
+\item
+  SE will increase as your standard deviation grows (i.e.~there is more variance in the data)
+\item
+  SE will decrease as your sample size grows
+\end{itemize}
+
+Let us calculate the standard error for each of our means.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Calculate Standard Errors}
+\NormalTok{SE\_blue }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(blue)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\NormalTok{SE\_red }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(red)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+
+\CommentTok{\#print Standard Error for blue shirts}
+\NormalTok{SE\_blue}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 25}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#print Standard Error for red shirts}
+\NormalTok{SE\_red}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 15}
+\end{Highlighting}
+\end{Shaded}
+
+Standard Error tells us how close or far away from the true population mean. In this example, we were trying to get the average voice pitch for people wearing a blue shirt and people wearing a red shirt. In each sample, we have only 2 samples. Obviously, this is very little data and the Standard Errors are going to be big.
+
+\section{Confidence Interval}\label{confidence-interval}
+
+Confidence interval is a metric that helps you determine the level of confidence in your population parameter estimates. The formula for 95\% Confidence Interval is as follows:
+
+\[CI = [mean \pm 1.96 * SE ]\]
+Let us decompose this formula a bit.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{mean} is the sample mean of some sample
+\item
+  \textbf{SE} is the standard error of the sample
+\item
+  \(\pm\) indicates that the value is going to be somewhere between \emph{mean plus or minus some value}.
+\item
+  \textbf{1.96} is a special number that indicates the 95\% CI.\footnote{In fact, it corresponds to the z-score value of 95\%. For calculating the 90\% interval, we would use the corresponding z-score value 1.64.}
+\end{itemize}
+
+As the name suggests, CI is an interval and the numbers returned define the range of possible values for 95\% of the time.
+
+Let us calculate the 95\% confidence intervals for our our means for the blue and red data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#calculate means}
+\NormalTok{mean\_blue }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(blue)}
+\NormalTok{mean\_red }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(red)}
+
+
+\CommentTok{\#calculate CIs}
+\NormalTok{CI\_blue }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(mean\_blue }\SpecialCharTok{{-}} \FloatTok{1.96} \SpecialCharTok{*}\NormalTok{ SE\_blue, mean\_blue }\SpecialCharTok{+} \FloatTok{1.96} \SpecialCharTok{*}\NormalTok{ SE\_blue)}
+\NormalTok{CI\_red }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(mean\_red }\SpecialCharTok{{-}} \FloatTok{1.96} \SpecialCharTok{*}\NormalTok{ SE\_red, mean\_red }\SpecialCharTok{+} \FloatTok{1.96} \SpecialCharTok{*}\NormalTok{ SE\_red)}
+
+
+\NormalTok{name }\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}SE\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}CI\_min\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}CI\_max\textquotesingle{}}\NormalTok{)}
+\NormalTok{val\_blue}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(mean\_blue,SE\_blue,CI\_blue)}
+\NormalTok{val\_red}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(mean\_red,SE\_red,CI\_red)}
+
+\CommentTok{\#print mean, SE, and CI for blue}
+\NormalTok{blue\_st }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(name, val\_blue)}
+\NormalTok{blue\_st}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#     name val\_blue}
+\NormalTok{\#\# 1   mean      150}
+\NormalTok{\#\# 2     SE       25}
+\NormalTok{\#\# 3 CI\_min      101}
+\NormalTok{\#\# 4 CI\_max      199}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#print mean, SE, and CI for red}
+\NormalTok{red\_st }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(name, val\_red)}
+\NormalTok{red\_st}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#     name val\_red}
+\NormalTok{\#\# 1   mean   205.0}
+\NormalTok{\#\# 2     SE    15.0}
+\NormalTok{\#\# 3 CI\_min   175.6}
+\NormalTok{\#\# 4 CI\_max   234.4}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Standard Error of the difference of two means}\label{standard-error-of-the-difference-of-two-means}
+
+In the previous sections, we calculated the SE and CI for each sample (blue and red). However, what we are ultimately interested in is the difference in the means between two groups. The difference in the mean is what will tell us if there is a significant difference between the voice pitches of people wearing different colors. To calculate the Standard Error for the difference in mean of two samples, we use the formula below.
+
+\[SE_{diff} = \sqrt{\frac{SD_1^2}{n_1}+\frac{SD_2^2}{n_2}}\]
+Let us calculate the SE of the difference in mean.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#calculate standard deviations}
+
+\NormalTok{sd\_blue }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(blue)}
+\NormalTok{sd\_red }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(red)}
+
+\CommentTok{\# calculate SE\_diff}
+\NormalTok{SE\_diff }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(sd\_blue}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ sd\_red}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}
+
+\CommentTok{\#print SE\_diff}
+\NormalTok{SE\_diff}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 29.15476}
+\end{Highlighting}
+\end{Shaded}
+
+Let us now calculate the 95\% CI for the difference in means.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#calculate the difference in means}
+\NormalTok{diff\_mean }\OtherTok{\textless{}{-}}\NormalTok{ mean\_blue }\SpecialCharTok{{-}}\NormalTok{ mean\_red}
+
+\CommentTok{\#calculate the 95\% CI}
+\NormalTok{CI\_diff }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(diff\_mean}\FloatTok{{-}1.96}\SpecialCharTok{*}\NormalTok{SE\_diff, diff\_mean}\FloatTok{+1.96}\SpecialCharTok{*}\NormalTok{SE\_diff)}
+
+\CommentTok{\#print the CI\_diff by rounding the numbers to 2 decimal point}
+\FunctionTok{round}\NormalTok{(CI\_diff, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] {-}112.14    2.14}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Hypothesis Testing}\label{hypothesis-testing}
+
+Remember that throughout the semester we talked about forming and testing hypotheses. Let us form our hypotheses and then test them.
+
+Let us build our \textbf{alternative hypothesis}.
+
+\begin{itemize}
+\tightlist
+\item
+  H1: There is a difference in voice pitch between people who wear blue and people who wear red.
+\end{itemize}
+
+Now, let us build our null hypothesis.
+
+\begin{itemize}
+\tightlist
+\item
+  H0: There is \textbf{no} difference in voice pitch between people who wear blue and people who wear red.
+\end{itemize}
+
+In hypothesis testing framework, we do not try proving our alternative hypothesis (H1). Instead, we try \textbf{rejecting the null hypothesis}.
+
+To reject the null hypothesis we do the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Make an observation.
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  In this case, our observation is the difference in means between two colors.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Calculate the probability of making this observation.
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  This means we need to find the \textbf{p-value} of the observation.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Check the \textbf{p-value} against a \textbf{critical value} called alpha (\(\alpha\)).
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  If the \textbf{p-value} is smaller than the \textbf{critical value}, then we \textbf{reject} the null hypothesis.
+\item
+  else, we maintain the null hypothesis.
+\end{itemize}
+
+What is the \textbf{critical value}. Critical value is a value that we define depending on the nature of our question. It's up to us and how we want to interpret the results. The scientific community has converged on using several critical values.
+
+\begin{itemize}
+\tightlist
+\item
+  \(\alpha\) = 0.05 (commonly adopted for social sciences)
+\item
+  \(\alpha\) = 0.01
+\item
+  \(\alpha\) = 0.001
+\end{itemize}
+
+\textbf{So, how do we calculate the p-value for our null hypothesis}?
+
+In other words, how do we calculate the p-value for the difference we observe between people who wear blue and red? To do this, we need a particular method that allows us to calculate some statistics for the \textbf{difference between two means}. For this, we will use a \textbf{t-test} which allows us to calculate a standardized \textbf{t-score} which comes from a particular distribution called \textbf{t-distribution}. Once we have a \textbf{t-score}, we can check it against the \textbf{t-distribution} to calculate its \textbf{p-value}.
+
+\section{Calculating the t-score}\label{calculating-the-t-score}
+
+\textbf{t-score} is calculated using the following formula.
+
+\[t = \frac{mean1-mean2}{SE_{diff}}\]
+What the t-score encodes is 1) magnitude of the difference, 2)Variability in the data 3) Sample size. So, all of the information we need.
+
+Let us calculate the t-score for our data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#calculate the t{-}score}
+\NormalTok{t }\OtherTok{\textless{}{-}}\NormalTok{ diff\_mean }\SpecialCharTok{/}\NormalTok{ SE\_diff}
+\CommentTok{\#print the t{-}score}
+\NormalTok{t}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] {-}1.886484}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{How do we interpret the t-score}
+t-score is going to be a value from a t-distribution. A t-distribution is very similar to a normal distribution except that it has \textbf{heavier tails}. What this means is that there is a higher probability of having more extreme values especially with small data sets. Let's take a look at the t-and normal distributions.
+
+A t-distribution is like a normal distribution but has an additional parameter called \textbf{degrees of freedom}. This is relatively vague concept we won't go into. You can google it and find what it means intuitively. For our purposes, we will just assume that degrees of freedom is calculated by deducing 1 from our sample size.
+
+\begin{itemize}
+\tightlist
+\item
+  df\_blue = sample\_size\_blue - 1
+\item
+  df\_red = sample\_size\_red - 1
+\end{itemize}
+
+When we are calculating the degrees of freedom for both samples, then we calculate it using the formula below:
+
+\begin{itemize}
+\tightlist
+\item
+  df = sample\_size\_blue + sample\_size\_red -2
+\end{itemize}
+
+Given that we have a total of 4 data points, then our df will be 2.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{dt}\NormalTok{(x, }\AttributeTok{df=}\DecValTok{2}\NormalTok{), }\AttributeTok{from=}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\AttributeTok{to=}\DecValTok{4}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{,}\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{)) }\CommentTok{\# 2 degrees of freedom}
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{dnorm}\NormalTok{(x), }\AttributeTok{from=}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\AttributeTok{to=}\DecValTok{4}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}steelblue\textquotesingle{}}\NormalTok{,}\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{) }
+
+\FunctionTok{legend}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, .}\DecValTok{3}\NormalTok{, }\AttributeTok{legend=}\FunctionTok{c}\NormalTok{(}\StringTok{"t (df=2)"}\NormalTok{, }\StringTok{"normal"}\NormalTok{),}
+       \AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"steelblue"}\NormalTok{ ), }\AttributeTok{lty=}\DecValTok{5}\NormalTok{, }\AttributeTok{cex=}\FloatTok{1.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-271-1.pdf}
+
+\textbf{t-distribution} approaches normal distribution (for z-scores) as the degrees of freedom increases. At 30 degrees of freedom or above, it becomes very similar to normal distribution.\footnote{This is part of the reason why people aim for at least 30 participants in each group.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{dt}\NormalTok{(x, }\AttributeTok{df=}\DecValTok{10}\NormalTok{), }\AttributeTok{from=}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\AttributeTok{to=}\DecValTok{4}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{,}\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{)) }\CommentTok{\#10 degrees of freedom}
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{dnorm}\NormalTok{(x), }\AttributeTok{from=}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\AttributeTok{to=}\DecValTok{4}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}steelblue\textquotesingle{}}\NormalTok{,}\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{) }
+
+\FunctionTok{legend}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, .}\DecValTok{3}\NormalTok{, }\AttributeTok{legend=}\FunctionTok{c}\NormalTok{(}\StringTok{"t (df=2)"}\NormalTok{, }\StringTok{"normal"}\NormalTok{),}
+       \AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"steelblue"}\NormalTok{ ), }\AttributeTok{lty=}\DecValTok{5}\NormalTok{, }\AttributeTok{cex=}\FloatTok{1.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-272-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{dt}\NormalTok{(x, }\AttributeTok{df=}\DecValTok{30}\NormalTok{), }\AttributeTok{from=}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\AttributeTok{to=}\DecValTok{4}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{,}\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{)) }\CommentTok{\#30 degrees of freedom}
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{dnorm}\NormalTok{(x), }\AttributeTok{from=}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\AttributeTok{to=}\DecValTok{4}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}steelblue\textquotesingle{}}\NormalTok{,}\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{) }
+
+\FunctionTok{legend}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, .}\DecValTok{3}\NormalTok{, }\AttributeTok{legend=}\FunctionTok{c}\NormalTok{(}\StringTok{"t (df=2)"}\NormalTok{, }\StringTok{"normal"}\NormalTok{),}
+       \AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"steelblue"}\NormalTok{ ), }\AttributeTok{lty=}\DecValTok{5}\NormalTok{, }\AttributeTok{cex=}\FloatTok{1.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-273-1.pdf}
+
+\section{p-value}\label{p-value}
+
+p-value is the probability of observing a particular t-score given a t-distribution. So, all we need to do now is to calculate the p-value for the t-score we observed above. There are various ways of doing this. Many people use a t-table to do the calculation. See \href{https://www.sjsu.edu/faculty/gerstman/StatPrimer/t-table.pdf}{this link}.
+
+Alternatively, we can calculate it using the \texttt{pt()} function, which takes the following arguments.
+
+\begin{itemize}
+\tightlist
+\item
+  t-score
+\item
+  degrees of freedom
+\item
+  A Boolean for lower.tail (optional)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pt}\NormalTok{(}\FunctionTok{abs}\NormalTok{(t),}\FloatTok{1.6374}\NormalTok{,}\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.1135606}
+\end{Highlighting}
+\end{Shaded}
+
+The value we get is going to be the probability of t-score on one tail of the distribution (called \textbf{one-tailed}). This is used for a directional hypothesis (e.g.~red shirts have a higher voice pitch than blue ones). In our case, we are interested in the difference regardless of the direction. For this, we can simply multiply our p-value by 2 to get a \textbf{two-tailed} distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\SpecialCharTok{*}\FunctionTok{pt}\NormalTok{(}\FunctionTok{abs}\NormalTok{(t),}\FloatTok{1.6374}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.2271212}
+\end{Highlighting}
+\end{Shaded}
+
+It looks like our p-value is larger than the critical value \(\alpha = 0.05\). So, we must \textbf{cannot reject} our null hypothesis. This means that, there is a big chance of observing such a difference in mean when we have only a total of 4 data points.
+
+Even though our effect size is large as can be seen below, our results are \textbf{not significant}. In other words, the big difference is due to chance and we cannot conclude that there is a difference in the voice pitches of people who wear blue and people who wear red.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cohen.d}\NormalTok{(blue,red)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\# Cohen\textquotesingle{}s d}
+\NormalTok{\#\# }
+\NormalTok{\#\# d estimate: {-}1.886484 (large)}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#     lower     upper }
+\NormalTok{\#\# {-}7.058361  3.285392}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Type I and Type II Errors}\label{type-i-and-type-ii-errors}
+
+Sometimes, we might find \(p < 0.05\) which suggests that we have found a significant result. However, this is not always true. Such errors are called Type I error (also known as False Positive). Other times, there might be a significant difference between our two groups but we might fail to identify this significance because we got \(p \geq 0.05\). Such errors are called Type II errors (a.k.a. False Negative). Such errors usually occur when we don't have sufficient data (i.e.~sample size is too small).
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Error Type}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Explanation}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{a.k.a.}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Type I} & \(p < 0.05\) but in fact there is no significant difference & False Positive \\
+\textbf{Type II} & \(p \geq 0.05\) but in fact there is a significant difference & False Negative \\
+\end{longtable}
+
+\subsection{Type I Error}\label{type-i-error}
+
+Remember that the difference between two groups of data is \textbf{statistically significant} means that there is an actual meaningful difference in the way these data are generated. This difference can be small or big in terms of its effect size. This difference might be caused by one factor or by many factors. What matters is that there is an underlying difference in the mechanism that is generating the data. This underlying difference is causing the actual variance in the data from two distinct groups.
+
+Also remember that the variance within or across two groups can also be caused by completely random factors. For example, when you are measuring the reaction time, a little insect in the room might lead to a bit of a distraction and increase the reaction time.
+
+Given all this background, let us see a little bit of a random data that was generated from a single distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_1 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+\NormalTok{data\_2 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{data\_1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1] {-}0.2918083  1.3658382  0.8477967  0.2659059  0.2180279  1.5515670}
+\NormalTok{\#\#  [7] {-}0.6108410  1.7481764  1.4492960  0.1299375}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1]  0.902252069  1.893100214  2.350915095  2.488970394  1.371067213}
+\NormalTok{\#\#  [6]  0.785526756  1.455494590  0.741888890 {-}0.002923752  1.844143483}
+\end{Highlighting}
+\end{Shaded}
+
+You see that the data points are different but the parameters are the same. So underlyingly, they come from the same distribution, same data generation process, there is no actual difference between the two datasets in terms of the underlying mechanism.
+
+Let us now pass the data through a t test for a few times to see if we can ever find a statistically significant difference.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 1, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = 1.2268, df = 13.421, p{-}value = 0.241}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}0.5369389  1.9584459}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# mean of x mean of y }
+\NormalTok{\#\# 1.5472968 0.8365433}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 1, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = 0.36582, df = 17.977, p{-}value = 0.7188}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}0.8814711  1.2531201}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# mean of x mean of y }
+\NormalTok{\#\# 0.8219205 0.6360959}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 1, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = {-}0.082117, df = 16.257, p{-}value = 0.9356}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}1.0340503  0.9568318}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# mean of x mean of y }
+\NormalTok{\#\# 0.9797846 1.0183939}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 1, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = 2.3062, df = 17.808, p{-}value = 0.03335}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  0.06683172 1.44707262}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# mean of x mean of y }
+\NormalTok{\#\# 1.5390768 0.7821246}
+\end{Highlighting}
+\end{Shaded}
+
+As you can see, the fourth model came out to be statistically significant. This is a Type I Error.
+
+\subsection{Typee II Error}\label{typee-ii-error}
+
+Now, let us create data with different parameters. This time, the means are going to be different.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_1 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+\NormalTok{data\_2 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{data\_1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1]  1.51270701  0.25792144  0.08844023 {-}0.12089654 {-}1.19432890  0.61199690}
+\NormalTok{\#\#  [7] {-}0.21713985 {-}0.18275671  0.93334633  0.82177311}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1]  2.3921164  0.5238261  1.6503486  2.3911105 {-}0.1107889  0.1392074}
+\NormalTok{\#\#  [7] {-}0.1317387 {-}0.4592140  1.0799826  1.6532043}
+\end{Highlighting}
+\end{Shaded}
+
+Now, let's run the model a few times again.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 0, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = {-}0.49924, df = 13.421, p{-}value = 0.6257}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}1.5369389  0.9584459}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# mean of x mean of y }
+\NormalTok{\#\# 0.5472968 0.8365433}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 0, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = {-}1.6028, df = 17.977, p{-}value = 0.1264}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}1.8814711  0.2531201}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\#  mean of x  mean of y }
+\NormalTok{\#\# {-}0.1780795  0.6360959}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 0, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = {-}2.209, df = 16.257, p{-}value = 0.04186}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}2.03405031 {-}0.04316822}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\#   mean of x   mean of y }
+\NormalTok{\#\# {-}0.02021535  1.01839391}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Welch Two Sample t{-}test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  rnorm(10, mean = 0, sd = 1) and rnorm(10, mean = 1, sd = 1)}
+\NormalTok{\#\# t = {-}0.74048, df = 17.808, p{-}value = 0.4687}
+\NormalTok{\#\# alternative hypothesis: true difference in means is not equal to 0}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  {-}0.9331683  0.4470726}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# mean of x mean of y }
+\NormalTok{\#\# 0.5390768 0.7821246}
+\end{Highlighting}
+\end{Shaded}
+
+As you can see, the results end up being not significant despite an actual difference in the parameters that generate data.
+
+\subsection{Statistical Power}\label{statistical-power}
+
+The rate at which a model would makes a Type II error is called Type II Error rate represented as \(\beta\). We want to minimize \(\beta\) as much as possible. The lower the error rate, the more powerful our model is. A standard way of measuring how powerful our model is the concept of \textbf{statistical power}.
+
+\begin{itemize}
+\tightlist
+\item
+  Statistical power = 1-\(\beta\)
+\end{itemize}
+
+The higher the statistical power of a model, the more reliable it is. Often people aim for a value above 80\%. To calculate the statistical power of a t test in r, we can use the following code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{effect\_size }\OtherTok{\textless{}{-}} \FunctionTok{cohen.d}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}\SpecialCharTok{$}\NormalTok{estimate}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{alpha }\OtherTok{\textless{}{-}} \FloatTok{0.05}
+
+\NormalTok{power }\OtherTok{\textless{}{-}} \FunctionTok{power.t.test}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{delta =}\NormalTok{ effect\_size, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{, }\AttributeTok{sig.level =}\NormalTok{ alpha, }\AttributeTok{type =} \StringTok{"two.sample"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{power}
+
+\NormalTok{power}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.3273469}
+\end{Highlighting}
+\end{Shaded}
+
+Now, let us try the same data with an increased number of observations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{effect\_size }\OtherTok{\textless{}{-}} \FunctionTok{cohen.d}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{,}\AttributeTok{mean =}\DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{))}\SpecialCharTok{$}\NormalTok{estimate}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{300}
+\NormalTok{alpha }\OtherTok{\textless{}{-}} \FloatTok{0.05}
+
+\NormalTok{power }\OtherTok{\textless{}{-}} \FunctionTok{power.t.test}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{delta =}\NormalTok{ effect\_size, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{, }\AttributeTok{sig.level =}\NormalTok{ alpha, }\AttributeTok{type =} \StringTok{"two.sample"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{power}
+
+\NormalTok{power}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.999999}
+\end{Highlighting}
+\end{Shaded}
+
 
   \bibliography{book.bib,packages.bib}
 
