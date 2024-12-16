@@ -396,7 +396,7 @@ The value we get is going to be the probability of t-score on one tail of the di
 ```
 
 
-It looks like our p-value is larger than the critical value $\alpha = 0.05$. So, we must **cannot reject** our null hypothesis. This means that, there is a big chance of observing such a difference in mean when we have only a total of 4 data points. 
+It looks like our p-value is larger than the critical value $\alpha = 0.05$. So, we **cannot reject** our null hypothesis. This means that, there is a big chance of observing such a difference in mean when we have only a total of 4 data points. 
 
 Even though our effect size is large as can be seen below, our results are **not significant**. In other words, the big difference is due to chance and we cannot conclude that there is a difference in the voice pitches of people who wear blue and people who wear red.
 
