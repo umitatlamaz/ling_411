@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 Logistic Regression | Ling 411 - Fall 2023</title>
-  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <title>Chapter 12 Logistic Regression | Ling 411 - Fall 2024</title>
+  <meta name="description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 Logistic Regression | Ling 411 - Fall 2023" />
+  <meta property="og:title" content="Chapter 12 Logistic Regression | Ling 411 - Fall 2024" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
-  <meta name="github-repo" content="rstudio/ling_411" />
+  <meta property="og:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
+  
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 Logistic Regression | Ling 411 - Fall 2023" />
+  <meta name="twitter:title" content="Chapter 12 Logistic Regression | Ling 411 - Fall 2024" />
   
-  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2023." />
+  <meta name="twitter:description" content="This is an R tutorial for the Ling 411 Class at Boğaziçi University in Fall 2024." />
   
 
 <meta name="author" content="Ümit Atlamaz" />
 
 
-<meta name="date" content="2023-12-26" />
+<meta name="date" content="2024-12-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="effect-size-significance.html"/>
-<link rel="next" href="modeling-poisson-distribution.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -64,7 +64,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -74,7 +74,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -145,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Ling 411 - Fall 2023</a></li>
+<li><a href="https://umitatlamaz.github.io/ling_411/">Ling 411 - Fall 2024</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
@@ -206,6 +206,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="plotting-1.html"><a href="plotting-1.html#using-lines-in-plots"><i class="fa fa-check"></i><b>5.3</b> Using lines in plots</a></li>
 <li class="chapter" data-level="5.4" data-path="plotting-1.html"><a href="plotting-1.html#color-and-fill"><i class="fa fa-check"></i><b>5.4</b> Color and fill</a></li>
 <li class="chapter" data-level="5.5" data-path="plotting-1.html"><a href="plotting-1.html#grouping-and-facets"><i class="fa fa-check"></i><b>5.5</b> Grouping and facets</a></li>
+<li class="chapter" data-level="5.6" data-path="plotting-1.html"><a href="plotting-1.html#adding-labels-to-the-plot"><i class="fa fa-check"></i><b>5.6</b> Adding Labels to the Plot</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="plotting-1.html"><a href="plotting-1.html#classic-theme"><i class="fa fa-check"></i><b>5.6.1</b> Classic Theme</a></li>
+<li class="chapter" data-level="5.6.2" data-path="plotting-1.html"><a href="plotting-1.html#minimal-theme"><i class="fa fa-check"></i><b>5.6.2</b> Minimal Theme</a></li>
+<li class="chapter" data-level="5.6.3" data-path="plotting-1.html"><a href="plotting-1.html#dark-theme"><i class="fa fa-check"></i><b>5.6.3</b> Dark Theme</a></li>
+<li class="chapter" data-level="5.6.4" data-path="plotting-1.html"><a href="plotting-1.html#modifying-the-size-of-the-title-and-labels."><i class="fa fa-check"></i><b>5.6.4</b> Modifying the size of the title and labels.</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics</a>
 <ul>
@@ -253,6 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html"><i class="fa fa-check"></i><b>8</b> Linear Regression with Many Predictors</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#fitting-two-linear-models"><i class="fa fa-check"></i><b>8.1</b> Fitting two Linear Models</a></li>
+<li class="chapter" data-level="8.2" data-path="linear-regression-with-many-predictors.html"><a href="linear-regression-with-many-predictors.html#model-comparison"><i class="fa fa-check"></i><b>8.2</b> Model Comparison</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="linear-non-linear-transformations.html"><a href="linear-non-linear-transformations.html"><i class="fa fa-check"></i><b>9</b> Linear &amp; Non-Linear Transformations</a>
 <ul>
@@ -315,14 +323,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.5" data-path="logistic-regression.html"><a href="logistic-regression.html#testing-the-model"><i class="fa fa-check"></i><b>12.5</b> Testing the model</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html"><i class="fa fa-check"></i><b>13</b> Modeling Poisson Distribution</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#poisson-distribution"><i class="fa fa-check"></i><b>13.1</b> Poisson Distribution</a></li>
-<li class="chapter" data-level="13.2" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#modeling-with-poisson-distribution"><i class="fa fa-check"></i><b>13.2</b> Modeling with <strong>Poisson distribution</strong></a>
-<ul>
-<li class="chapter" data-level="13.2.1" data-path="modeling-poisson-distribution.html"><a href="modeling-poisson-distribution.html#data-1"><i class="fa fa-check"></i><b>13.2.1</b> Data</a></li>
-</ul></li>
-</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -335,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2023</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ling 411 - Fall 2024</a>
           </h1>
         </div>
 
@@ -410,7 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>For example, we want to build a model that returns something like the following.</p>
-<p><img src="main_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-283-1.png" width="672" /></p>
 <p>Once we estimate the probabilities, we have a model that can:</p>
 <ul>
 <li><strong>predict</strong> the categorical outcome (e.g. adult vs. child)</li>
@@ -438,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>…</li>
 </ul>
 <p>A good way of understanding the binomial distribution is to think of a coin-flip experiment. Imagine that you have a fair coin and you flip the coin 10 times. What is the probability that you will have 5 heads (i.e. successes)?</p>
-<p><img src="main_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-284-1.png" width="672" /></p>
 <p>To get the actual probability values in R, we can use the <code>dbinom()</code> function.</p>
 <div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="logistic-regression.html#cb580-1" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span> <span class="co">#number of trials</span></span>
 <span id="cb580-2"><a href="logistic-regression.html#cb580-2" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.5</span> <span class="co">#probability of success (e.g. heads)</span></span>
@@ -448,17 +448,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="r-output"><code>## [1] 0.2460938</code></pre>
 <p>Try it with different parameters to see how the probabilites change.</p>
 <p>Notice that the binomial distribution is a discrete distribution (not continuous) but the plot looks very similar to a normal distribution especially when the number of trials is at or above 30.</p>
-<p><img src="main_files/figure-html/unnamed-chunk-281-1.png" width="672" /></p>
-<p><img src="main_files/figure-html/unnamed-chunk-282-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-286-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-287-1.png" width="672" /></p>
 </div>
 <div id="bernoulli-distribution" class="section level4 hasAnchor" number="12.2.1.2">
 <h4><span class="header-section-number">12.2.1.2</span> Bernoulli distribution<a href="logistic-regression.html#bernoulli-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A Bernoulli distribution is a special case of a binomial distribution with where the number of trials is 1. The only relevant parameter is the <span class="math inline">\(p\)</span>. Thus, Bernoulli distribution for a fair coin would look like the following.</p>
-<p><img src="main_files/figure-html/unnamed-chunk-283-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-288-1.png" width="672" /></p>
 <p>What if the coin were a bit unfair. Assume that you want to cheat but not too much to avoid getting caught.</p>
-<p><img src="main_files/figure-html/unnamed-chunk-284-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-289-1.png" width="672" /></p>
 <p>Finally, going back to our toy example from above about the length of utterances. Notice that this is also a Bernoulli distribution.</p>
-<p><img src="main_files/figure-html/unnamed-chunk-285-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-290-1.png" width="672" /></p>
 <p>Bernoulli distribution will vary based on a single parameter <span class="math inline">\(p\)</span>, which is the probability of success for a given condition.</p>
 </div>
 </div>
@@ -485,7 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>So, we need a way to convert <strong>arbitrary numbers</strong> (output of the linear equation) to <strong>probabilities</strong>. Remember that probabilities range between [0,1].</p>
 <p>In mathematics, there is a really nice function that will squeeze arbitrary numbers between [0,1]. The name of this function is the <strong>logistic function</strong>.</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-286"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-291"></span>
 <img src="img/logis.png" alt="Logistic Function"  />
 <p class="caption">
 Figure 12.1: Logistic Function
@@ -713,7 +713,7 @@ Figure 12.1: Logistic Function
 <span id="cb605-3"><a href="logistic-regression.html#cb605-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> mdl_preds,</span>
 <span id="cb605-4"><a href="logistic-regression.html#cb605-4" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> BAC_vals, <span class="at">y =</span> y_preds)) <span class="sc">+</span></span>
 <span id="cb605-5"><a href="logistic-regression.html#cb605-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="main_files/figure-html/unnamed-chunk-294-1.png" width="672" /></p>
+<p><img src="main_files/figure-html/unnamed-chunk-299-1.png" width="672" /></p>
 </div>
 <div id="dative-dataset" class="section level3 hasAnchor" number="12.4.4">
 <h3><span class="header-section-number">12.4.4</span> Dative Dataset<a href="logistic-regression.html#dative-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -821,13 +821,23 @@ Figure 12.1: Logistic Function
 
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="effect-size-significance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modeling-poisson-distribution.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="effect-size-significance.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -858,7 +868,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/11-logistic_regression.Rmd",
+"link": "https://github.com/umitatlamaz/ling_411/edit/main/11-logistic_regression.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -869,7 +879,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["main.pdf", "main.epub"],
+"download": ["main.pdf"],
 "search": {
 "engine": "fuse",
 "options": null

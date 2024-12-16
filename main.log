@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.17)  9 DEC 2024 12:04
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.17)  16 DEC 2024 12:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -725,13 +725,13 @@ LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 
 [5]
 
-[6
-
-]
+[6]
 Chapter 1.
 
 
-[7]
+[7
+
+]
 Underfull \hbox (badness 10000) in paragraph at lines 213--216
 
  []
@@ -1621,10 +1621,103 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [181]
 
 [182]
+
+[183]
+
+[184
+
+]
+Chapter 12.
+
+
+[185]
+Underfull \hbox (badness 10000) in paragraph at lines 7828--7830
+
+ []
+
+File: main_files/figure-latex/unnamed-chunk-283-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-283-1.pdf>
+
+
+[186]
+File: main_files/figure-latex/unnamed-chunk-284-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-284-1.pdf>
+
+
+[187]
+File: main_files/figure-latex/unnamed-chunk-286-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-286-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[188]
+File: main_files/figure-latex/unnamed-chunk-287-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-287-1.pdf>
+
+
+[189]
+File: main_files/figure-latex/unnamed-chunk-288-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-288-1.pdf>
+File: main_files/figure-latex/unnamed-chunk-289-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-289-1.pdf>
+
+
+[190]
+File: main_files/figure-latex/unnamed-chunk-290-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-290-1.pdf>
+
+
+[191]
+File: ./img/logis.png Graphic file (type bmp)
+<./img/logis.png>
+
+
+[192]
+
+[193]
+Overfull \hbox (90.75pt too wide) in paragraph at lines 8148--8148
+[]\TU/lmtt/m/n/10 ## -- Column specification --------------------------------------------------------[] 
+ []
+
+
+
+[194]
+Overfull \hbox (43.5pt too wide) in paragraph at lines 8148--8148
+[]\TU/lmtt/m/n/10 ## i Use `spec()` to retrieve the full column specification for this data.[] 
+ []
+
+
+Overfull \hbox (96.0pt too wide) in paragraph at lines 8148--8148
+[]\TU/lmtt/m/n/10 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.[] 
+ []
+
+
+
+[195]
+
+[196]
+
+[197]
+File: main_files/figure-latex/unnamed-chunk-299-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/unnamed-chunk-299-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[198]
+
+[199]
+
+[200]
+
+[201]
 No file main.bbl.
 
 
-[183] (./main.aux)
+[202] (./main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
@@ -1637,12 +1730,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 18367 strings out of 476234
- 352608 string characters out of 5786467
- 864281 words of memory out of 5000000
- 40611 multiletter control sequences out of 15000+600000
+ 18472 strings out of 476234
+ 356856 string characters out of 5786467
+ 865228 words of memory out of 5000000
+ 40707 multiletter control sequences out of 15000+600000
  564600 words of font info for 99 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,8n,123p,923b,492s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (183 pages).
+Output written on main.pdf (202 pages).

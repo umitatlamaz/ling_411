@@ -120,7 +120,7 @@
 
 \title{Ling 411 - Fall 2024}
 \author{Ümit Atlamaz}
-\date{2024-12-09}
+\date{2024-12-16}
 
 \begin{document}
 \maketitle
@@ -3157,7 +3157,7 @@ One final useful function is the \texttt{filter()} function. It allows you to fi
 
 \chapter{Plotting}\label{plotting-1}
 
-(09 December, 2024, 12:04)
+(16 December, 2024, 12:11)
 
 \section{The basics of ggplot2}\label{the-basics-of-ggplot2}
 
@@ -7770,6 +7770,820 @@ Now, let us try the same data with an increased number of observations.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{\#\# [1] 0.999999}
+\end{Highlighting}
+\end{Shaded}
+
+\chapter{Logistic Regression}\label{logistic-regression}
+
+So far, we built linear models where the outcome (i.e.~dependent variable) was a continuous value (e.g.~reaction time, frequency, etc.). Now, we turn to modeling data where the outcome is a \textbf{categorial} value. In particular, we will use \textbf{logistic regression} to model \textbf{categorical} outcomes where the number of categories is \textbf{two}. Some examples are:
+
+\begin{itemize}
+\tightlist
+\item
+  acceptable -- unacceptable expression
+\item
+  NP NP construction -- NP PP construction
+\item
+  SOV -- SVO word order
+\item
+  accusative present -- accusative absent
+\item
+  adult -- child
+\end{itemize}
+
+For example, we can use \textbf{average utterance length} as an indicator of \textbf{child speech} vs.~\textbf{adult speech}. Consider the following artificial toy dataset.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+\textbf{Utterance length } & \textbf{Utterer} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2 & child \\
+8 & adult \\
+12 & adult \\
+3 & adult \\
+3 & child \\
+6 & adult \\
+\textbf{5} & \textbf{???} \\
+\end{longtable}
+
+\textbf{Given the data set above, can we predict whether it was uttered by a child or an adult?}
+
+Notice that the answer is not that straightforward as it is possible that the utterance belongs to a child because it is shortish but on the other hand, we do see that the adults also produce short sentences (e.g.~utterance length of 3).
+
+\section{The Intuition}\label{the-intuition}
+
+The core intuition behind logistic regression is very simple. The task is to \textbf{model the probability of an outcome given a predictor}. Going back to our toy example above, we would like a model that can produce probabilities like the following.
+
+\begin{itemize}
+\tightlist
+\item
+  \(p(child | length = 5)\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    read as \emph{probability of the utterer being a child given that the utterance length is 5}
+    \\
+  \end{itemize}
+\item
+  \(p(adult | length = 5)\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    read as \emph{probability of the utterer being an adult given that the utterance length is 5}
+  \end{itemize}
+\end{itemize}
+
+For example, we want to build a model that returns something like the following.
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-283-1.pdf}
+
+Once we estimate the probabilities, we have a model that can:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{predict} the categorical outcome (e.g.~adult vs.~child)
+\item
+  help us \textbf{interpret} the relationship between a predictor and the outcome
+\end{itemize}
+
+Let us now turn to the math behind how the logistic regression works.
+
+\section{The Math}\label{the-math}
+
+Remember that our \textbf{linear regression} models assumed that our data is \textbf{normally distributed}. Normal distribution is a distribution of continuous values. Similarly, for \textbf{logistic regression}, we assume that the \textbf{outcome variables} come from a certain probability distribution.
+
+\subsection{Binomial \& Bernoulli Distributions}\label{binomial-bernoulli-distributions}
+
+\subsubsection{Binomial Distribution}\label{binomial-distribution}
+
+The \textbf{Binomial Distribution} is a discrete probability distribution with a fixed number of \textbf{Bernoulli trials} with the parameters:
+
+\begin{itemize}
+\tightlist
+\item
+  \(n\) trials
+\item
+  \(p\) probability
+\end{itemize}
+
+where each trial has only two possible outcomes: \textbf{success} or \textbf{failure}. Success can be associated with any outcome that is relevant to you as long as there are only two outomes. For example:
+
+\begin{itemize}
+\tightlist
+\item
+  success = child -- failure = adult
+\item
+  success = acceptable -- failure = unacceptable
+\item
+  success = SVO -- failure = SOV
+\item
+  \ldots{}
+\end{itemize}
+
+A good way of understanding the binomial distribution is to think of a coin-flip experiment. Imagine that you have a fair coin and you flip the coin 10 times. What is the probability that you will have 5 heads (i.e.~successes)?
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-284-1.pdf}
+
+To get the actual probability values in R, we can use the \texttt{dbinom()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{=} \DecValTok{10} \CommentTok{\#number of trials}
+\NormalTok{p }\OtherTok{=} \FloatTok{0.5} \CommentTok{\#probability of success (e.g. heads)}
+\NormalTok{s }\OtherTok{=} \DecValTok{5} \CommentTok{\#number of successes in n trails (e.g. number of heads in 10 trials)}
+
+\FunctionTok{dbinom}\NormalTok{(s,n,p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.2460938}
+\end{Highlighting}
+\end{Shaded}
+
+Try it with different parameters to see how the probabilites change.
+
+Notice that the binomial distribution is a discrete distribution (not continuous) but the plot looks very similar to a normal distribution especially when the number of trials is at or above 30.
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-286-1.pdf}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-287-1.pdf}
+
+\subsubsection{Bernoulli distribution}\label{bernoulli-distribution}
+
+A Bernoulli distribution is a special case of a binomial distribution with where the number of trials is 1. The only relevant parameter is the \(p\). Thus, Bernoulli distribution for a fair coin would look like the following.
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-288-1.pdf}
+
+What if the coin were a bit unfair. Assume that you want to cheat but not too much to avoid getting caught.
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-289-1.pdf}
+
+Finally, going back to our toy example from above about the length of utterances. Notice that this is also a Bernoulli distribution.
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-290-1.pdf}
+
+Bernoulli distribution will vary based on a single parameter \(p\), which is the probability of success for a given condition.
+
+\section{Logistic Regression}\label{logistic-regression-1}
+
+Remember that in \textbf{linear regression}, the goal was to estimate the model parameters that can describe a line.
+
+\[ \underbrace{Y}_{\text{dependent variable}} =
+            \overbrace{\underbrace{a}_{\text{intercept}}}^{\text{additive term}} + 
+            \overbrace{\underbrace{b}_{\text{slope}} * \underbrace{X}_{\text{predictor}}}^{\text{additive term}} \]
+
+In other words, our model took input some data, assumed that the variance in the data can be described by a line, then tried to estimate the parameters (i.e.~intercept and slope). For example, we tried to estimate the taxi fare cost and our linear model could predict it as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  cost = Intercept + Slope * Distance (in km)
+\item
+  cost = 20 + 14 * 5
+\end{itemize}
+
+The values for the intercept and the slope were estimated by the model after analyzing the input data. The output of the model (i.e.~the cost) is an \textbf{arbitrary number} (e.g.~90 TL).
+
+In \textbf{logistic regression}, we don't want an arbitrary number. Instead, we want a \textbf{category} (e.g.~adult or child) along with a \textbf{probability}. In fact, what we need is a probability for success and the Bernoulli distribution will handle the rest.
+
+\begin{itemize}
+\tightlist
+\item
+  \(y \sim Bernoulli(p)\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    read as \emph{\(y\) as a function of Bernoulli(p)}
+  \item
+    \(y\) is the predicted category
+  \end{itemize}
+\end{itemize}
+
+So, we need a way to convert \textbf{arbitrary numbers} (output of the linear equation) to \textbf{probabilities}. Remember that probabilities range between {[}0,1{]}.
+
+In mathematics, there is a really nice function that will squeeze arbitrary numbers between {[}0,1{]}. The name of this function is the \textbf{logistic function}.
+
+\begin{figure}
+\centering
+\includegraphics{./img/logis.png}
+\caption{\label{fig:unnamed-chunk-291}Logistic Function}
+\end{figure}
+
+In R, we can use the \texttt{plogis()} function to apply the logistic function to an arbitrary number. Try the following code with various values to see what you get.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plogis}\NormalTok{(}\DecValTok{90}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plogis}\NormalTok{(}\FloatTok{2.1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.8909032}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plogis}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plogis}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.04742587}
+\end{Highlighting}
+\end{Shaded}
+
+This is nice because we can use the logistic function to convert the output of our linear function to probabilities. Once we have the probabilities, we can get a Bernoulli distribution to predict the category we are interested in.
+
+By now, it should be clear where the name \textbf{logistic regression} comes from.
+
+\subsection{Log Odds \& Logits}\label{log-odds-logits}
+
+In a nutshell, the logistic regression model works as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  \(p = logistic(output)\)
+\item
+  \(y \sim Bernoulli(p)\)
+\end{itemize}
+
+You calculate some output:
+
+\begin{itemize}
+\tightlist
+\item
+  (\(output = Intercept + Slope * input\))
+\end{itemize}
+
+You convert it to a probability:
+
+\begin{itemize}
+\tightlist
+\item
+  \(p = logistic(output)\)
+\end{itemize}
+
+The rest is just a Bernoulli distribution with the parameter \(p\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(y \sim Bernoulli(p)\)
+\end{itemize}
+
+There is an important difference though. In \textbf{linear regression} the output is just an arbitrary number :
+
+\begin{itemize}
+\tightlist
+\item
+  (\(output = Intercept + Slope * input\)).
+\end{itemize}
+
+In \textbf{logistic regression}, the model output is a \textbf{logit}. So, we calculate the probability of logits rather than arbitrary numbers.
+
+\begin{itemize}
+\tightlist
+\item
+  \(logit(p)= intercept + slope * x\)
+\end{itemize}
+
+\subsubsection{Odds, Log Odds, and Logits}\label{odds-log-odds-and-logits}
+
+Yon understand \textbf{logits}, we need to understand the concept of \textbf{odds}. You must have heard questions like:
+
+\begin{itemize}
+\tightlist
+\item
+  What are the \textbf{odds} that our team will win this week?
+\item
+  The \textbf{odds} are in my favor.
+\item
+  The \textbf{odds} are 1 to 1.
+\end{itemize}
+
+The \textbf{odds} express the probability of an event occurring (p) over the probability of an event not occurring (1 − p).
+
+\begin{itemize}
+\tightlist
+\item
+  \(odds(X=win) = \frac{P(X=win)}{1-P(X=win)}\)
+\end{itemize}
+
+\textbf{Logits} are log odds (\(log(odd)\)). Converting the odds to log odds (i.e.~logits) turns them into a \textbf{continuous scale} from negative infinity to positive infinity. Thus, it allows us to model \textbf{categorical outcomes} similar to \textbf{continuous outcomes}.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+\textbf{Probability} & \textbf{Odds} & \textbf{log odds (logits}) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.1 & 0.11 to 1 & --2.20 \\
+0.4 & 0.67 to 1 & --0.41 \\
+0.5 & 1 to 1 & 0.00 \\
+0.8 & 4 to 1 & +1.39 \\
+0.9 & 9 to 1 & +2.20 \\
+\end{longtable}
+
+\textbf{Logistic Regression} models estimate coefficients (intercept and slope) as \textbf{logits}. We can turn logits into probabilities, simply by feeding them into the \textbf{logistic function}.
+
+\section{Logistic Regression in R}\label{logistic-regression-in-r}
+
+\subsection{Data}\label{data}
+
+Let us see \textbf{logistic regression} in action by using it on a dataset from Bodo Winter's book. For this task, we will use the \texttt{speech\_errors} dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}\textasciitilde{}/ling\_411/data/speech\_errors.csv\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 40 Columns: 2
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## dbl (2): BAC, speech_error
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 40 x 2}
+\NormalTok{\#\#       BAC speech\_error}
+\NormalTok{\#\#     \textless{}dbl\textgreater{}        \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1 0.0737            0}
+\NormalTok{\#\#  2 0.0973            0}
+\NormalTok{\#\#  3 0.234             0}
+\NormalTok{\#\#  4 0.138             1}
+\NormalTok{\#\#  5 0.0933            0}
+\NormalTok{\#\#  6 0.262             1}
+\NormalTok{\#\#  7 0.357             0}
+\NormalTok{\#\#  8 0.237             1}
+\NormalTok{\#\#  9 0.352             1}
+\NormalTok{\#\# 10 0.379             1}
+\NormalTok{\#\# \# i 30 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+The data consists of two columns:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{BAC}: A continuous value representing the level of Blood Alcohol Concentration
+\item
+  \texttt{speech\_error}: A binary value representing the presence and absence of a speech error.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    1 = speech error
+  \item
+    0 = no speech error
+  \end{itemize}
+\end{itemize}
+
+\subsection{Model}\label{model}
+
+In R, we will use the \texttt{glm()} function, which stands for \textbf{generalized linear model}. \texttt{glm()} takes input
+
+\begin{itemize}
+\tightlist
+\item
+  an output variable,
+\item
+  predictors
+\item
+  a dataset
+\item
+  a \textbf{family} parameter, which will be \texttt{\textquotesingle{}binomial\textquotesingle{}} for our purposes
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{speech\_error\_model }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(speech\_error }\SpecialCharTok{\textasciitilde{}}\NormalTok{ BAC, }\AttributeTok{data =}\NormalTok{ data,}
+                          \AttributeTok{family =} \StringTok{\textquotesingle{}binomial\textquotesingle{}}
+\NormalTok{                          )}
+\end{Highlighting}
+\end{Shaded}
+
+Simple as that, we have modeled the presence and absence of speech errors as a function of blood alcohol concentration using \textbf{logistic regression}. Let us inspect the model coefficients to understand what our model learnt from the data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(broom)}
+\FunctionTok{tidy}\NormalTok{(speech\_error\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 5}
+\NormalTok{\#\#   term        estimate std.error statistic  p.value}
+\NormalTok{\#\#   \textless{}chr\textgreater{}          \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 (Intercept)    {-}3.64      1.12     {-}3.24 0.00118 }
+\NormalTok{\#\# 2 BAC            16.1       4.86      3.32 0.000903}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{We learn a few things:}
+
+\begin{itemize}
+\tightlist
+\item
+  The slope of BAC is positive (16.1). This means that an increase in BAC will lead to an increase in speech errors.
+\item
+  We also see that the p \textless{} 0.05. This indicates that our conclusion is statistically significant.
+\item
+  Remember that the output of logistic regression is a \textbf{logit}. Thus our coefficients (intercept and slope) are in logit units.
+\end{itemize}
+
+\textbf{The results of the model can be reported as:}
+
+\begin{itemize}
+\tightlist
+\item
+  There was a reliable effect of BAC (logit coefficient: +16.11, SE = 4.86, z=3.3, p = 0.0009).
+\end{itemize}
+
+\subsection{From logits to probabilities}\label{from-logits-to-probabilities}
+
+Logits are a bit confusing. Let us turn our logits to probabilities to get a more intuitive understanding of the model results.
+
+First, let us convert the intecept to a probability. Remember that the intercept is the logit for BAC = 0.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{intercept }\OtherTok{\textless{}{-}} \FunctionTok{tidy}\NormalTok{(speech\_error\_model)}\SpecialCharTok{$}\NormalTok{estimate[}\DecValTok{1}\NormalTok{]}
+\NormalTok{slope }\OtherTok{\textless{}{-}} \FunctionTok{tidy}\NormalTok{(speech\_error\_model)}\SpecialCharTok{$}\NormalTok{estimate[}\DecValTok{2}\NormalTok{]}
+
+\FunctionTok{plogis}\NormalTok{(intercept)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.02549508}
+\end{Highlighting}
+\end{Shaded}
+
+This shows that a sober person will make a speech error with the probability \(P=0.025\), quite a small probability.
+
+Now let us check the probability of a person with a BAC of 0.4 making speech errors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{logit }\OtherTok{\textless{}{-}}\NormalTok{ intercept }\SpecialCharTok{+}\NormalTok{ slope }\SpecialCharTok{*} \FloatTok{0.3}
+\NormalTok{probablity }\OtherTok{\textless{}{-}} \FunctionTok{plogis}\NormalTok{(logit)}
+\NormalTok{probablity}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.7670986}
+\end{Highlighting}
+\end{Shaded}
+
+That is a huge jump. Our model predicts that someone with a \(BAC = 0.3\) will make a speech error with a probability \(P = 0.76\), a lot more likely.
+
+Let's see what the data looks like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_bac\_0}\FloatTok{.3} \OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(data,BAC}\SpecialCharTok{\textgreater{}=}\FloatTok{0.3}\NormalTok{)}
+\NormalTok{data\_bac\_0}\FloatTok{.3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 9 x 2}
+\NormalTok{\#\#     BAC speech\_error}
+\NormalTok{\#\#   \textless{}dbl\textgreater{}        \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 0.357            0}
+\NormalTok{\#\# 2 0.352            1}
+\NormalTok{\#\# 3 0.379            1}
+\NormalTok{\#\# 4 0.306            0}
+\NormalTok{\#\# 5 0.382            1}
+\NormalTok{\#\# 6 0.308            1}
+\NormalTok{\#\# 7 0.394            1}
+\NormalTok{\#\# 8 0.332            1}
+\NormalTok{\#\# 9 0.395            1}
+\end{Highlighting}
+\end{Shaded}
+
+Not bad. Using \textbf{logistic regression} we can:
+
+\begin{itemize}
+\tightlist
+\item
+  understand the relationship between variables where the outcome is categorical (two categories)
+\item
+  make predictions
+\end{itemize}
+
+Now that we have the model coefficients, we can predict some values and plot them.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BAC\_vals }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.01}\NormalTok{)}
+\NormalTok{y\_preds }\OtherTok{\textless{}{-}} \FunctionTok{plogis}\NormalTok{(intercept }\SpecialCharTok{+}\NormalTok{ slope }\SpecialCharTok{*}\NormalTok{ BAC\_vals)}
+
+\NormalTok{mdl\_preds }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(BAC\_vals, y\_preds)}
+\NormalTok{mdl\_preds}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 41 x 2}
+\NormalTok{\#\#    BAC\_vals y\_preds}
+\NormalTok{\#\#       \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}}
+\NormalTok{\#\#  1     0     0.0255}
+\NormalTok{\#\#  2     0.01  0.0298}
+\NormalTok{\#\#  3     0.02  0.0349}
+\NormalTok{\#\#  4     0.03  0.0407}
+\NormalTok{\#\#  5     0.04  0.0475}
+\NormalTok{\#\#  6     0.05  0.0553}
+\NormalTok{\#\#  7     0.06  0.0644}
+\NormalTok{\#\#  8     0.07  0.0748}
+\NormalTok{\#\#  9     0.08  0.0867}
+\NormalTok{\#\# 10     0.09  0.100 }
+\NormalTok{\#\# \# i 31 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ BAC, }\AttributeTok{y =}\NormalTok{ speech\_error)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{4}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.6}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{data =}\NormalTok{ mdl\_preds,}
+            \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ BAC\_vals, }\AttributeTok{y =}\NormalTok{ y\_preds)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-299-1.pdf}
+
+\subsection{Dative Dataset}\label{dative-dataset}
+
+Let us now turn to another dataset we discussed earlier in the semester. This is the dative dataset by Bresnan et al.~(2007). The main goal of the experiment was to identify the factors in determining the dative alternation in English:
+
+\begin{itemize}
+\tightlist
+\item
+  Alex gave Sam a book. (NP NP)
+\item
+  Alex gave a book to Sam. (NP PP)
+\end{itemize}
+
+The dative data set can be found directly using the \texttt{languageR} library. Let us take a look at the columns in the dataset and also some values to get a sense of what it looks like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(languageR)}
+
+\FunctionTok{colnames}\NormalTok{(dative)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#  [1] "Speaker"                "Modality"               "Verb"                  }
+\NormalTok{\#\#  [4] "SemanticClass"          "LengthOfRecipient"      "AnimacyOfRec"          }
+\NormalTok{\#\#  [7] "DefinOfRec"             "PronomOfRec"            "LengthOfTheme"         }
+\NormalTok{\#\# [10] "AnimacyOfTheme"         "DefinOfTheme"           "PronomOfTheme"         }
+\NormalTok{\#\# [13] "RealizationOfRecipient" "AccessOfRec"            "AccessOfTheme"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(dative,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   Speaker Modality Verb SemanticClass LengthOfRecipient AnimacyOfRec DefinOfRec}
+\NormalTok{\#\# 1    \textless{}NA\textgreater{}  written feed             t                 1      animate   definite}
+\NormalTok{\#\# 2    \textless{}NA\textgreater{}  written give             a                 2      animate   definite}
+\NormalTok{\#\# 3    \textless{}NA\textgreater{}  written give             a                 1      animate   definite}
+\NormalTok{\#\#     PronomOfRec LengthOfTheme AnimacyOfTheme DefinOfTheme PronomOfTheme}
+\NormalTok{\#\# 1    pronominal            14      inanimate   indefinite nonpronominal}
+\NormalTok{\#\# 2 nonpronominal             3      inanimate   indefinite nonpronominal}
+\NormalTok{\#\# 3 nonpronominal            13      inanimate     definite nonpronominal}
+\NormalTok{\#\#   RealizationOfRecipient AccessOfRec AccessOfTheme}
+\NormalTok{\#\# 1                     NP       given           new}
+\NormalTok{\#\# 2                     NP       given           new}
+\NormalTok{\#\# 3                     NP       given           new}
+\end{Highlighting}
+\end{Shaded}
+
+Next, let us take a look at the possible values for the RealizationOfRecipient column to see what they look like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{levels}\NormalTok{(dative}\SpecialCharTok{$}\NormalTok{RealizationOfRecipient)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] "NP" "PP"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{levels}\NormalTok{(dative}\SpecialCharTok{$}\NormalTok{AnimacyOfRec)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] "animate"   "inanimate"}
+\end{Highlighting}
+\end{Shaded}
+
+OK so, we have only two values. This is a good task for logistic regression. Let us for now model the RealizationOfRecipient as a function of the AnimacyOfRec.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_1 }\OtherTok{\textless{}{-}}\NormalTok{ model }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(RealizationOfRecipient }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AnimacyOfRec, dative, }\AttributeTok{family=}\StringTok{\textquotesingle{}binomial\textquotesingle{}}\NormalTok{)}
+
+\FunctionTok{tidy}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 5}
+\NormalTok{\#\#   term                  estimate std.error statistic   p.value}
+\NormalTok{\#\#   \textless{}chr\textgreater{}                    \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 (Intercept)              {-}1.15    0.0426    {-}27.1  1.15e{-}161}
+\NormalTok{\#\# 2 AnimacyOfRecinanimate     1.23    0.136       9.02 1.87e{-} 19}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_2 }\OtherTok{\textless{}{-}}\FunctionTok{glm}\NormalTok{(RealizationOfRecipient }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AnimacyOfRec}\SpecialCharTok{+}\NormalTok{LengthOfTheme}\SpecialCharTok{+}\NormalTok{LengthOfRecipient}\SpecialCharTok{+}\NormalTok{AnimacyOfTheme, dative, }\AttributeTok{family=}\StringTok{\textquotesingle{}binomial\textquotesingle{}}\NormalTok{)}
+
+\FunctionTok{tidy}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# \# A tibble: 2 x 5}
+\NormalTok{\#\#   term                  estimate std.error statistic   p.value}
+\NormalTok{\#\#   \textless{}chr\textgreater{}                    \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}}
+\NormalTok{\#\# 1 (Intercept)              {-}1.15    0.0426    {-}27.1  1.15e{-}161}
+\NormalTok{\#\# 2 AnimacyOfRecinanimate     1.23    0.136       9.02 1.87e{-} 19}
+\end{Highlighting}
+\end{Shaded}
+
+Now let us compare the two models.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(lmtest)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: zoo
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'zoo'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     as.Date, as.Date.numeric
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lr\_test }\OtherTok{\textless{}{-}} \FunctionTok{lrtest}\NormalTok{(model\_1, model\_2)}
+\FunctionTok{print}\NormalTok{(lr\_test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# Likelihood ratio test}
+\NormalTok{\#\# }
+\NormalTok{\#\# Model 1: RealizationOfRecipient \textasciitilde{} AnimacyOfRec}
+\NormalTok{\#\# Model 2: RealizationOfRecipient \textasciitilde{} AnimacyOfRec + LengthOfTheme + LengthOfRecipient + }
+\NormalTok{\#\#     AnimacyOfTheme}
+\NormalTok{\#\#   \#Df  LogLik Df  Chisq Pr(\textgreater{}Chisq)    }
+\NormalTok{\#\# 1   2 {-}1831.1                         }
+\NormalTok{\#\# 2   5 {-}1379.5  3 903.19  \textless{} 2.2e{-}16 ***}
+\NormalTok{\#\# {-}{-}{-}}
+\NormalTok{\#\# Signif. codes:  0 \textquotesingle{}***\textquotesingle{} 0.001 \textquotesingle{}**\textquotesingle{} 0.01 \textquotesingle{}*\textquotesingle{} 0.05 \textquotesingle{}.\textquotesingle{} 0.1 \textquotesingle{} \textquotesingle{} 1}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Testing the model}\label{testing-the-model}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test\_data }\OtherTok{\textless{}{-}} \FunctionTok{select}\NormalTok{(dative, AnimacyOfRec,LengthOfTheme,LengthOfRecipient,AnimacyOfTheme,RealizationOfRecipient)}
+\FunctionTok{head}\NormalTok{(test\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\#   AnimacyOfRec LengthOfTheme LengthOfRecipient AnimacyOfTheme}
+\NormalTok{\#\# 1      animate            14                 1      inanimate}
+\NormalTok{\#\# 2      animate             3                 2      inanimate}
+\NormalTok{\#\# 3      animate            13                 1      inanimate}
+\NormalTok{\#\# 4      animate             5                 1      inanimate}
+\NormalTok{\#\# 5      animate             3                 2      inanimate}
+\NormalTok{\#\# 6      animate             4                 2      inanimate}
+\NormalTok{\#\#   RealizationOfRecipient}
+\NormalTok{\#\# 1                     NP}
+\NormalTok{\#\# 2                     NP}
+\NormalTok{\#\# 3                     NP}
+\NormalTok{\#\# 4                     NP}
+\NormalTok{\#\# 5                     NP}
+\NormalTok{\#\# 6                     NP}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Make predictions on the test set}
+\NormalTok{predictions }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model, }\AttributeTok{newdata =}\NormalTok{ test\_data, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
+
+
+\CommentTok{\# For binary classification, calculate accuracy}
+\NormalTok{predicted\_classes }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(predictions }\SpecialCharTok{\textgreater{}} \FloatTok{0.5}\NormalTok{, }\StringTok{\textquotesingle{}PP\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}NP\textquotesingle{}}\NormalTok{)}
+
+
+\NormalTok{accuracy }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(predicted\_classes }\SpecialCharTok{==}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{RealizationOfRecipient)}
+
+\NormalTok{accuracy}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# [1] 0.7425682}
 \end{Highlighting}
 \end{Shaded}
 
